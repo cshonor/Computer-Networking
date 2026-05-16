@@ -1,6 +1,6 @@
 # 第2章 应用层
 
-> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `problem.md` / `demo_code/`。
+> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `demo_code/`。
 
 应用层是自顶向下的起点：**HTTP、DNS、邮件、P2P、CDN、Socket** 直接决定用户体验与后端接口形态。完整精读笔记见 **[study.md](./study.md)**。
 

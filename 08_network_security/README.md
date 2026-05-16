@@ -1,6 +1,6 @@
 # 第8章 计算机网络中的安全
 
-> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `problem.md` / `demo_code/`。
+> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `demo_code/`。
 
 本章覆盖**安全属性与威胁**、**密码学**、**完整性与签名**、**鉴别**、**邮件安全**、**TLS**、**IPsec/VPN**、**无线与蜂窝安全**、**防火墙与 IDS**。完整精读见 **[study.md](./study.md)**。
 

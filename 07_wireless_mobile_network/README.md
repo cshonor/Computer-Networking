@@ -1,6 +1,6 @@
 # 第7章 无线网络和移动网络
 
-> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `problem.md` / `demo_code/`。
+> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `demo_code/`。
 
 本章从**无线 vs 移动**、**链路特征**、**802.11**、**蜂窝 4G/5G**、**移动性管理** 到 **TCP 影响** 串联。完整精读见 **[study.md](./study.md)**。
 

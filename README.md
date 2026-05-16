@@ -43,7 +43,6 @@ Computer-Networking/
 | `README.md` | 本章知识点精简笔记（速查） |
 | `study.md` | 个人精读学习笔记 |
 | `demo_code/` | 对应语言网络编程示例（Java / Go / Python / C++ 等） |
-| `problem.md` | 错题、难点、面试题整理 |
 
 ## 学习目标
 

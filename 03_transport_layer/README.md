@@ -1,6 +1,6 @@
 # 第3章 运输层
 
-> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `problem.md` / `demo_code/`。
+> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `demo_code/`。
 
 运输层实现**进程到进程**通信：多路复用/分解、**UDP**、可靠传输原理、**TCP**（连接、RTT、**流量控制 rwnd**、**拥塞控制**），以及 **QUIC / HTTP/3**。完整精读见 **[study.md](./study.md)**。
 

@@ -1,6 +1,6 @@
 # 第5章 网络层：控制平面
 
-> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `problem.md` / `demo_code/`。
+> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `demo_code/`。
 
 本章覆盖**控制平面 vs 数据平面**、**路由算法（LS/DV）**、**OSPF**、**BGP**、**SDN 控制器**、**ICMP** 与 **SNMP/NETCONF** 等。完整精读见 **[study.md](./study.md)**。
 

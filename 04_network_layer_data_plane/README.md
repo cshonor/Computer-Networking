@@ -1,6 +1,6 @@
 # 第4章 网络层：数据平面
 
-> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `problem.md` / `demo_code/`。
+> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `demo_code/`。
 
 本章覆盖**转发与路由的区分**、**路由器体系结构**、**IPv4/IPv6/NAT/DHCP**、**SDN 与泛化转发**，以及**中间盒**与章末实践总结。完整精读见 **[study.md](./study.md)**。
 

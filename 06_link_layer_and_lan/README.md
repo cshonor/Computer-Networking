@@ -1,6 +1,6 @@
 # 第6章 链路层和局域网
 
-> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `problem.md` / `demo_code/`。
+> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `demo_code/`。
 
 本章覆盖**成帧与 MAC**、**差错检测（含 CRC）**、**多路访问**、**以太网/ARP/交换机/VLAN**、**MPLS**、**数据中心网络**及**全章串联回顾**。完整精读见 **[study.md](./study.md)**。
 
