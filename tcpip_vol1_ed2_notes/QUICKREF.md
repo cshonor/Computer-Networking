@@ -5,7 +5,7 @@
 | 章 | 主题 | 核心考点 | Go / Rust 场景 |
 |----|------|----------|----------------|
 | 1 | 概述 | **命运共享/端到端**、封装分用、Clark 目标、[考点](../01_architecture/ch01_introduction.md#ch01-exam) | Socket API；见 [ch01 精读](../01_architecture/ch01_introduction.md) |
-| 2 | 地址结构 | IPv4/IPv6、**CIDR**、特殊地址 | `net.IP` 解析、监听 `0.0.0.0` / `::` |
+| 2 | 地址结构 | **CIDR/VLSM**、私有/环回、EUI-64、[考点](../01_architecture/ch02_internet_addresses.md#ch02-exam) | `net.ParseIP`、`IPNet`、前缀 `/x` → [ch02](../01_architecture/ch02_internet_addresses.md) |
 | 3 | 链路层 | 以太网帧、**MTU**、VLAN、Wi-Fi | MTU 影响 UDP/TCP 分包策略 |
 | 4 | ARP | ARP 缓存、**邻居发现**（IPv6） | 容器/本机 ARP 表排障 |
 | 5 | IP | 首部、**分片/重组**、IPv6 | 见 ch10：避免 IP 分片 |
