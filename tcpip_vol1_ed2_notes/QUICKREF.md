@@ -12,8 +12,8 @@
 | 6 | DHCP | **DORA**、T1/T2、SLAAC/EUI-64、Rogue DHCP、[考点](../03_network_layer/ch06_dhcp.md#ch06-exam) | UDP 67/68；169.254 APIPA → [ch06](../03_network_layer/ch06_dhcp.md) |
 | 7 | NAT/防火墙 | NAPT、**EIM/ADF**、Hairpin、STUN/ICE、[考点](../03_network_layer/ch07_firewall_nat.md#ch07-exam) | K8s SNAT、conntrack 满 → [ch07](../03_network_layer/ch07_firewall_nat.md) |
 | 8 | ICMP | ND/DAD、**PTB/PMTUD**、差错不嵌套、[考点](../03_network_layer/ch08_icmpv4_icmpv6.md#ch08-exam) | 勿拦 Type2；`ip neigh` → [ch08](../03_network_layer/ch08_icmpv4_icmpv6.md) |
-| 9 | 广播/多播 | IGMP/MLD、多播地址 | 视频监控、服务发现（mDNS） |
-| 10 | UDP | 无连接、**UDP+IP 分片** | **QUIC/游戏**：单包 ≤1400B；见 [§3.3](../03_transport_layer/study.md#ch3-3) |
+| 9 | 广播/多播 | 32:1 MAC 映射、IGMPv3/SSM、[考点](../04_transport_layer/ch09_broadcast_multicast.md#ch09-exam) | IGMP Snooping、mDNS → [ch09](../04_transport_layer/ch09_broadcast_multicast.md) |
+| 10 | UDP | 消息边界、v6 强制校验和、**分片连锁丢包**、[考点](../04_transport_layer/ch10_udp.md#ch10-exam) | 单包 ≤1400B；见 [ch10](../04_transport_layer/ch10_udp.md) · [§3.3](../03_transport_layer/study.md#ch3-3) |
 | 11 | DNS | 解析流程、记录类型、**DNSSEC** | `net.Resolver`、超时、缓存 |
 | 12 | TCP 基础 | 首部、序号、端口 | 抓包对照 [tcp_header.png](../03_transport_layer/assets/tcp_header.png) |
 | 13 | TCP 连接 | **三次握手/四次挥手**、状态机、**TIME_WAIT** | 短连接耗尽端口；`SO_REUSEADDR`、连接池 → [§3.1](../03_transport_layer/study.md#ch3-1-tcp-conn) |
