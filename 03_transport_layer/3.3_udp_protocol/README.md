@@ -6,6 +6,7 @@
 - **六大特点**：无连接、不可靠、8B 头、端口+校验和、面向报文、广播/多播。
 - **检验和**：IPv4 可 0；IPv6 强制；坏包**丢弃**不重传。
 - **场景**：DNS/直播/VoIP/游戏/IoT；**UDP vs TCP**：[速查表](../study.md#ch3-3-vs-tcp)
+- **首部图**：[四字段](../assets/udp_header_fields.png) · [伪首部/封装](../assets/udp_header_pseudo.png)
 
 ## 与后端开发的联系
 
