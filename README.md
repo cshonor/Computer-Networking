@@ -18,7 +18,8 @@ Computer-Networking/
 ├─ 08_network_security            # 第8章 网络安全（后端必备）
 ├─ 99_socket_code_demo            # 网络编程实战代码（汇总）
 ├─ 99_practice_wireshark_lab      # 抓包实验笔记
-└─ 99_review_exercises_notes      # 综合笔记 + 面试总结
+├─ 99_review_exercises_notes      # 综合笔记 + 面试总结
+└─ TCP-IP卷1读书笔记/            # 《TCP/IP 详解》卷1 并行笔记（见目录内总学习大纲）
 ```
 
 ## 后端必学核心路线（优先级从高到低）
