@@ -7,9 +7,9 @@
 | 1 | 概述 | **命运共享/端到端**、封装分用、Clark 目标、[考点](../01_architecture/ch01_introduction.md#ch01-exam) | Socket API；见 [ch01 精读](../01_architecture/ch01_introduction.md) |
 | 2 | 地址结构 | **CIDR/VLSM**、私有/环回、EUI-64、[考点](../01_architecture/ch02_internet_addresses.md#ch02-exam) | `net.ParseIP`、`IPNet`、前缀 `/x` → [ch02](../01_architecture/ch02_internet_addresses.md) |
 | 3 | 链路层 | 以太网/802.11/PPP、**MTU 1500**、STP、CSMA/CA、[考点](../02_link_layer/ch03_link_layer.md#ch03-exam) | MTU/MSS、环回 `127.0.0.1` → [ch03](../02_link_layer/ch03_link_layer.md) |
-| 4 | ARP | ARP 缓存、**邻居发现**（IPv6） | 容器/本机 ARP 表排障 |
-| 5 | IP | 首部、**分片/重组**、IPv6 | 见 ch10：避免 IP 分片 |
-| 6 | DHCP | 自动配置、租约 | 云主机/容器网络启动 |
+| 4 | ARP | 广播请求/单播应答、**Incomplete**、代理/免费 ARP、[考点](../03_network_layer/ch04_arp.md#ch04-exam) | `arp -a` / `ip neigh`；IPv6 用 ND → [ch04](../03_network_layer/ch04_arp.md) |
+| 5 | IP | v4/v6 头、**LPM**、v6 仅源分片、Mobile IP、[考点](../03_network_layer/ch05_ip.md#ch05-exam) | `Don't Fragment`、TTL → [ch05](../03_network_layer/ch05_ip.md) |
+| 6 | DHCP | **DORA**、T1/T2、SLAAC/EUI-64、Rogue DHCP、[考点](../03_network_layer/ch06_dhcp.md#ch06-exam) | UDP 67/68；169.254 APIPA → [ch06](../03_network_layer/ch06_dhcp.md) |
 | 7 | NAT/防火墙 | **NAT**、状态防火墙、ALG | K8s Service、端口映射、连接跟踪满 |
 | 8 | ICMP | Ping、Traceroute、**PMTUD** | `ping`、路径 MTU 发现失败 |
 | 9 | 广播/多播 | IGMP/MLD、多播地址 | 视频监控、服务发现（mDNS） |
