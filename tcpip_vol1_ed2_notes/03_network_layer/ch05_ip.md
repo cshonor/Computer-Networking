@@ -258,7 +258,7 @@ IP 设计于互信环境 → **源地址无内置认证** → 长期“身份危
 - [ch06 DHCP](ch06_dhcp.md) — 地址动态分配  
 - [ch08 ICMP](ch08_icmpv4_icmpv6.md) — TTL 超时、PMTUD、Packet Too Big  
 - [ch10 UDP](../04_transport_layer/ch10_udp.md) — 端到端分片与 MTU  
-- [ch07 NAT](ch07_nat_firewall.md) — 地址转换
+- [ch07 NAT/防火墙](ch07_firewall_nat.md) — 地址转换与边界
 
 ---
 

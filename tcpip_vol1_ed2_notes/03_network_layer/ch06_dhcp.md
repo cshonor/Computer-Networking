@@ -210,7 +210,7 @@ DHCP **无强认证**，默认信任**物理链路**。
 
 ### 下一章
 
-- [ch07 NAT/防火墙](ch07_nat_firewall.md)  
+- [ch07 NAT/防火墙](ch07_firewall_nat.md)  
 - [ch08 ICMP](ch08_icmpv4_icmpv6.md) — RA/RS、ND  
 - [ch05 IP](ch05_ip.md)
 

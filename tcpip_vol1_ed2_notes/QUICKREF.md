@@ -10,8 +10,8 @@
 | 4 | ARP | 广播请求/单播应答、**Incomplete**、代理/免费 ARP、[考点](../03_network_layer/ch04_arp.md#ch04-exam) | `arp -a` / `ip neigh`；IPv6 用 ND → [ch04](../03_network_layer/ch04_arp.md) |
 | 5 | IP | v4/v6 头、**LPM**、v6 仅源分片、Mobile IP、[考点](../03_network_layer/ch05_ip.md#ch05-exam) | `Don't Fragment`、TTL → [ch05](../03_network_layer/ch05_ip.md) |
 | 6 | DHCP | **DORA**、T1/T2、SLAAC/EUI-64、Rogue DHCP、[考点](../03_network_layer/ch06_dhcp.md#ch06-exam) | UDP 67/68；169.254 APIPA → [ch06](../03_network_layer/ch06_dhcp.md) |
-| 7 | NAT/防火墙 | **NAT**、状态防火墙、ALG | K8s Service、端口映射、连接跟踪满 |
-| 8 | ICMP | Ping、Traceroute、**PMTUD** | `ping`、路径 MTU 发现失败 |
+| 7 | NAT/防火墙 | NAPT、**EIM/ADF**、Hairpin、STUN/ICE、[考点](../03_network_layer/ch07_firewall_nat.md#ch07-exam) | K8s SNAT、conntrack 满 → [ch07](../03_network_layer/ch07_firewall_nat.md) |
+| 8 | ICMP | ND/DAD、**PTB/PMTUD**、差错不嵌套、[考点](../03_network_layer/ch08_icmpv4_icmpv6.md#ch08-exam) | 勿拦 Type2；`ip neigh` → [ch08](../03_network_layer/ch08_icmpv4_icmpv6.md) |
 | 9 | 广播/多播 | IGMP/MLD、多播地址 | 视频监控、服务发现（mDNS） |
 | 10 | UDP | 无连接、**UDP+IP 分片** | **QUIC/游戏**：单包 ≤1400B；见 [§3.3](../03_transport_layer/study.md#ch3-3) |
 | 11 | DNS | 解析流程、记录类型、**DNSSEC** | `net.Resolver`、超时、缓存 |
