@@ -19,7 +19,7 @@ Computer-Networking/
 ├─ 99_socket_code_demo            # 网络编程实战代码（汇总）
 ├─ 99_practice_wireshark_lab      # 抓包实验笔记
 ├─ 99_review_exercises_notes      # 综合笔记 + 面试总结
-└─ tcpip_illustrated_v2/          # TCP/IP Illustrated Vol.1 **2nd ed.**（18 章，见 OUTLINE.md）
+└─ tcpip_vol1_notes/              # TCP/IP Illustrated Vol.1（29/30 章，见 VERSIONS.md）
 ```
 
 ## 后端必学核心路线（优先级从高到低）
