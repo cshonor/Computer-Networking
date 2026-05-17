@@ -6,7 +6,7 @@
 |----|------|----------|----------------|
 | 1 | 概述 | **命运共享/端到端**、封装分用、Clark 目标、[考点](../01_architecture/ch01_introduction.md#ch01-exam) | Socket API；见 [ch01 精读](../01_architecture/ch01_introduction.md) |
 | 2 | 地址结构 | **CIDR/VLSM**、私有/环回、EUI-64、[考点](../01_architecture/ch02_internet_addresses.md#ch02-exam) | `net.ParseIP`、`IPNet`、前缀 `/x` → [ch02](../01_architecture/ch02_internet_addresses.md) |
-| 3 | 链路层 | 以太网帧、**MTU**、VLAN、Wi-Fi | MTU 影响 UDP/TCP 分包策略 |
+| 3 | 链路层 | 以太网/802.11/PPP、**MTU 1500**、STP、CSMA/CA、[考点](../02_link_layer/ch03_link_layer.md#ch03-exam) | MTU/MSS、环回 `127.0.0.1` → [ch03](../02_link_layer/ch03_link_layer.md) |
 | 4 | ARP | ARP 缓存、**邻居发现**（IPv6） | 容器/本机 ARP 表排障 |
 | 5 | IP | 首部、**分片/重组**、IPv6 | 见 ch10：避免 IP 分片 |
 | 6 | DHCP | 自动配置、租约 | 云主机/容器网络启动 |
