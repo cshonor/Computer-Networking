@@ -2,11 +2,10 @@
 
 ## 知识点速记
 
-- **IP 找主机，端口找进程**；线程/协程不参与运输层寻址。
-- **多路分解**：内核按端口（+ TCP 四元组）把报文段交给正确套接字。
-- **UDP**：**(目的 IP, 目的端口)**；**TCP**：**四元组** + 监听/连接套接字分离。
-- **多进程**：分端口（常用）或 **SO_REUSEPORT** 共听一口；**多线程**：只绑一个端口，进程内并发。
-- **示意图**：[总览](../assets/mux_demux_overview.png) · [UDP](../assets/udp_demux.png) · [TCP 四元组](../assets/tcp_mux_4tuple.png)
+- **复用**：多进程 → 封装端口 → 一条 IP；**分用**：一条 IP → 按端口分到进程。
+- **UDP**：目的端口分用；**TCP**：**四元组**；80 端口 TCP 可多连接、UDP 通常单绑。
+- **端口**：0–1023 周知 / 1024–49151 注册 / 49152–65535 动态。
+- **速背+易错**：[§3.2 六](../study.md#ch3-2-exam) · 图：[总览](../assets/mux_demux_overview.png) · [UDP](../assets/udp_demux.png) · [TCP](../assets/tcp_mux_4tuple.png)
 
 ## 与后端开发的联系
 
