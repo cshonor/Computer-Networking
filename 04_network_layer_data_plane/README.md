@@ -10,6 +10,7 @@
 | 锚点 | 内容 |
 |------|------|
 | [#ch4-dp-topdown](./study.md#ch4-dp-topdown) | 总览、六步转发、输入/MAC |
+| [#ch4-packet-walkthrough](./study.md#ch4-packet-walkthrough) | **从零抠**：主机→路由器→下一跳，MAC/IP/FIB |
 | [#ch4-fib](./study.md#ch4-fib) | 转发表 FIB |
 | [#ch4-2](./study.md#ch4-2) | 四大件、Crossbar、排队调度 |
 | [#ch4-4](./study.md#ch4-4) | Match+Action |

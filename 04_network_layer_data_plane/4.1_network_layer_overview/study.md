@@ -7,4 +7,4 @@
 - 输入 → 交换 → 输出  
 - 只查 **FIB**，不查 RIB  
 
-→ [#ch4-dp-topdown](../study.md#ch4-dp-topdown) · [#ch4-fib](../study.md#ch4-fib)
+→ [#ch4-dp-topdown](../study.md#ch4-dp-topdown) · [**一包怎么走**](../study.md#ch4-packet-walkthrough) · [#ch4-fib](../study.md#ch4-fib)
