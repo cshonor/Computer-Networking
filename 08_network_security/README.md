@@ -16,8 +16,8 @@
 
 ## 小节列表
 
-- [8.1_basic_cryptography](./8.1_basic_cryptography/README.md)  
-- [8.2_message_integrity_signature](./8.2_message_integrity_signature/README.md)  
-- [8.3_tls_https](./8.3_tls_https/README.md)  
-- [8.4_ipsec_vpn](./8.4_ipsec_vpn/README.md)  
-- [8.5_firewall_ids](./8.5_firewall_ids/README.md)  
+- [8.1 密码学基础](./8.1_basic_cryptography/study.md) — 对称/非对称、混合加密（[§8.1–8.2](./study.md#ch8-2)）  
+- [8.2 完整性与签名](./8.2_message_integrity_signature/study.md) — 哈希、MAC、PKI（[§8.3–8.4](./study.md#ch8-3)）  
+- [8.3 TLS/HTTPS](./8.3_tls_https/study.md) — 握手、443（[§8.6](./study.md#ch8-6)）  
+- [8.4 IPsec/VPN](./8.4_ipsec_vpn/study.md) — ESP、隧道模式（[§8.7](./study.md#ch8-7)）  
+- [8.5 防火墙/IDS](./8.5_firewall_ids/study.md) — 包过滤、IPS（[§8.9](./study.md#ch8-9)）  

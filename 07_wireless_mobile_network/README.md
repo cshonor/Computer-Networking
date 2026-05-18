@@ -8,6 +8,6 @@
 
 ## 小节列表
 
-- [7.1_wifi_802_11](./7.1_wifi_802_11/README.md) — 概述、无线链路、802.11 MAC/帧/安全（[§7.1–7.3](./study.md#ch7-1)）  
-- [7.2_4g_5g_lte](./7.2_4g_5g_lte/README.md) — LTE EPC、RLC、5G 与切片（[§7.4](./study.md#ch7-4)）  
-- [7.3_mobility_management](./7.3_mobility_management/README.md) — 移动 IP、切换、对 TCP 影响、总结（[§7.5–7.8](./study.md#ch7-5)）  
+- [7.1 WiFi / 802.11](./7.1_wifi_802_11/study.md) — CSMA/CA、RTS/CTS（[§7.1–7.3](./study.md#ch7-1)）  
+- [7.2 4G/5G LTE](./7.2_4g_5g_lte/study.md) — eMBB/URLLC/mMTC（[§7.4](./study.md#ch7-4)）  
+- [7.3 移动性管理](./7.3_mobility_management/study.md) — 移动 IP、切换（[§7.5–7.8](./study.md#ch7-5)）  
