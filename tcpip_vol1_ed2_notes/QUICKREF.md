@@ -21,7 +21,7 @@
 | 15 | 数据流/窗口 | **min(rwnd,cwnd)**、Nagle↔延迟ACK、Persist、SWS、[考点](../04_transport_layer/ch15_tcp_dataflow_window.md#ch15-exam) | `SetNoDelay(true)` → [ch15](../04_transport_layer/ch15_tcp_dataflow_window.md) |
 | 16 | 拥塞控制 | AIMD、Reno/NewReno、**CUBIC**、ECN、[考点](../04_transport_layer/ch16_tcp_congestion.md#ch16-exam) | `tcp_congestion_control` → [ch16](../04_transport_layer/ch16_tcp_congestion.md) |
 | 17 | 保活 | SEQ=NXT−1 探测、半开、NAT 静默断连、[考点](../04_transport_layer/ch17_tcp_keepalive.md#ch17-exam) | `SetKeepAlive` + 应用心跳 → [ch17](../04_transport_layer/ch17_tcp_keepalive.md) |
-| 18 | 安全 | **TLS**、IPsec、EAP、DNSSEC | HTTPS、`rustls`/`crypto/tls`；[ch08 安全](../08_network_security/) |
+| 18 | 安全 | CIA、TLS1.3/IPsec、DNSSEC、PFS、[考点](../05_application_security/ch18_security.md#ch18-exam) | `rustls`/`crypto/tls` → [ch18](../05_application_security/ch18_security.md) |
 
 ## 五条易混（背）
 
