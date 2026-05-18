@@ -1,7 +1,7 @@
 # 第 4 章：网络层 · 数据平面（Data Plane）
 
 > 自顶向下第 8 版第 4 章**数据平面**精读。  
-> **控制平面**（路由协议、RIB、SDN 控制器）→ [../05_network_layer_control_plane/study.md](../05_network_layer_control_plane/study.md)
+> **控制平面**（算路、RIB、下发 FIB）→ [../05_network_layer_control_plane/study.md#ch5-control-plane-basics](../05_network_layer_control_plane/study.md#ch5-control-plane-basics)
 
 **数据平面** = **转发平面**：路由器/交换机内**高速执行**收包、查表、交换、发出；**不算端到端路径**（表项由控制平面事先下发）。
 
