@@ -16,10 +16,10 @@
 | 10 | UDP | 消息边界、v6 强制校验和、**分片连锁丢包**、[考点](../04_transport_layer/ch10_udp.md#ch10-exam) | 单包 ≤1400B；[ch10 考点精读](../04_transport_layer/ch10_udp.md#ch10-exam)；[§3.3 UDP](../03_transport_layer/study.md#ch3-3) |
 | 11 | DNS | 递归/权威、**TTL**、EDNS0/TC→TCP、[考点](../05_application_security/ch11_dns.md#ch11-exam) | `dig +trace`、Happy Eyeballs → [ch11](../05_application_security/ch11_dns.md) |
 | 12 | TCP 基础 | ARQ、**min(rwnd,cwnd)**、累积 ACK、[考点](../04_transport_layer/ch12_tcp_intro.md#ch12-exam) | [tcp_header.png](../03_transport_layer/assets/tcp_header.png) → [ch12](../04_transport_layer/ch12_tcp_intro.md) |
-| 13 | TCP 连接 | **三次握手/四次挥手**、状态机、**TIME_WAIT** | 短连接耗尽端口；`SO_REUSEADDR`、连接池 → [§3.1](../03_transport_layer/study.md#ch3-1-tcp-conn) |
-| 14 | 超时重传 | **RTT**、超时、**快速重传** | 调 `TCP_USER_TIMEOUT`、重试策略 |
-| 15 | 数据流/窗口 | **rwnd**、滑动窗口、**Nagle**、延迟 ACK | **`SetNoDelay(true)`** / `set_nodelay(true)` 防小包卡顿 |
-| 16 | 拥塞控制 | **cwnd**、慢启动、拥塞避免、AIMD | 高 BDP、BBR（扩展阅读）；[§3.7](../03_transport_layer/study.md#ch3-7) |
+| 13 | TCP 连接 | 1.5 RTT、SYN Cookie、PMTUD/MSS、[考点](../04_transport_layer/ch13_tcp_connection.md#ch13-exam) | TIME_WAIT、backlog → [ch13](../04_transport_layer/ch13_tcp_connection.md) · [§3.1](../03_transport_layer/study.md#ch3-1-tcp-conn) |
+| 14 | 超时重传 | Jacobson RTO、**3 dup ACK**、SACK、伪超时/Eifel、[考点](../04_transport_layer/ch14_tcp_timeout_retransmit.md#ch14-exam) | `ss -ti`、勿过小 RTO → [ch14](../04_transport_layer/ch14_tcp_timeout_retransmit.md) |
+| 15 | 数据流/窗口 | **min(rwnd,cwnd)**、Nagle↔延迟ACK、Persist、SWS、[考点](../04_transport_layer/ch15_tcp_dataflow_window.md#ch15-exam) | `SetNoDelay(true)` → [ch15](../04_transport_layer/ch15_tcp_dataflow_window.md) |
+| 16 | 拥塞控制 | AIMD、Reno/NewReno、**CUBIC**、ECN、[考点](../04_transport_layer/ch16_tcp_congestion.md#ch16-exam) | `tcp_congestion_control` → [ch16](../04_transport_layer/ch16_tcp_congestion.md) |
 | 17 | 保活 | **Keepalive** 探测死连接 | 长连接探活 vs 应用层心跳 |
 | 18 | 安全 | **TLS**、IPsec、EAP、DNSSEC | HTTPS、`rustls`/`crypto/tls`；[ch08 安全](../08_network_security/) |
 
