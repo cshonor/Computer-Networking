@@ -9,8 +9,8 @@
 
 ## 小节列表
 
-- [5.1_routing_algorithm](./5.1_routing_algorithm/README.md) — 控制平面范式、Per-router vs SDN、**LS/DV**（[§5.1–5.2](./study.md#ch5-1)）  
-- [5.2_ospf_intra_as_routing](./5.2_ospf_intra_as_routing/README.md) — OSPF、区域、ABR/ASBR（[§5.3](./study.md#ch5-3)）  
-- [5.3_bgp_inter_as_routing](./5.3_bgp_inter_as_routing/README.md) — BGP、eBGP/iBGP、属性与策略、Anycast（[§5.4](./study.md#ch5-4)）  
-- [5.4_sdn_controller_plane](./5.4_sdn_controller_plane/README.md) — SDN 三层、OpenFlow 交互（[§5.5](./study.md#ch5-5)）  
-- [5.5_icmp_snmp_network_manage](./5.5_icmp_snmp_network_manage/README.md) — ICMP、Traceroute、SNMP、NETCONF/YANG、章总结（[§5.6–5.8](./study.md#ch5-6)）  
+- [5.1 路由算法](./5.1_routing_algorithm/study.md) — LS/DV、静态/动态（[§5.1–5.2](./study.md#ch5-2)）  
+- [5.2 OSPF](./5.2_ospf_intra_as_routing/study.md) — 区域、邻居、LSA（[§5.3](./study.md#ch5-3)）  
+- [5.3 BGP](./5.3_bgp_inter_as_routing/study.md) — eBGP/iBGP、AS-Path（[§5.4](./study.md#ch5-4)）  
+- [5.4 SDN 控制平面](./5.4_sdn_controller_plane/study.md) — 南北向、控制器（[§5.5](./study.md#ch5-5)）  
+- [5.5 ICMP/SNMP](./5.5_icmp_snmp_network_manage/study.md) — ping、网管（[§5.6+](./study.md#ch5-6)）  

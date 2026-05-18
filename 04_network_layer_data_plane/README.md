@@ -19,10 +19,10 @@
 
 ## 小节
 
-- [4.1_network_layer_overview](./4.1_network_layer_overview/) — 数据平面定位、FIB  
-- [4.2_router_internal_working](./4.2_router_internal_working/) — 输入/交换/输出  
-- [4.3_ipv4_ipv6_nat](./4.3_ipv4_ipv6_nat/) — IP 首部、LPM、NAT（执行面）  
-- [4.4_sdn_openflow](./4.4_sdn_openflow/) — 流表、泛化转发  
+- [4.1 网络层概述](./4.1_network_layer_overview/study.md) — 双平面、服务模型  
+- [4.2 路由器内部](./4.2_router_internal_working/study.md) — 四大件、Crossbar、FIB  
+- [4.3 IPv4/IPv6/NAT](./4.3_ipv4_ipv6_nat/study.md) — CIDR、NAT、IPv6  
+- [4.4 SDN/OpenFlow](./4.4_sdn_openflow/study.md) — 流表、Match+Action  
 
 ## 图
 
