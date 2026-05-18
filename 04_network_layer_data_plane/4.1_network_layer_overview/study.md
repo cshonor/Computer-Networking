@@ -17,7 +17,8 @@
 | 转发 | 路由 |
 |------|------|
 | 数据平面 | 控制平面 |
-| 单跳查表 | 端到端算路 |
+| 单跳查表 **FIB** | 端到端算路 → **RIB** |
+| 图 | [RIB/FIB](../assets/rib_fib_control_data_plane.png) |
 
 ## SDN
 
