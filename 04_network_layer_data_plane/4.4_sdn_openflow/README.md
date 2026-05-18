@@ -12,7 +12,9 @@
 
 ## 延伸阅读
 
-- 章级精读：[study.md § 4.4](../study.md#ch4-4)（含 [SDN 架构图](../assets/sdn_controller_architecture.png)）  
+- 章级精读（**数据平面** Match+Action）：[study.md § 4.4](../study.md#ch4-4)  
+- SDN 控制器（**控制平面**）：[../../05_network_layer_control_plane/5.4_sdn_controller_plane/](../../05_network_layer_control_plane/5.4_sdn_controller_plane/)  
+- 架构图（全栈参考）：[../assets/sdn_controller_architecture.png](../assets/sdn_controller_architecture.png)  
 - **中间盒与章末总结**：[§4.5](../study.md#ch4-5) · [§4.6](../study.md#ch4-6)
 
 ## 本目录文件说明

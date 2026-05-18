@@ -14,7 +14,7 @@
 ## 延伸阅读
 
 - 自顶向下总览：[study.md § 数据平面总览](../study.md#ch4-dp-topdown)  
-- 章级精读：[study.md § 4.1](../study.md#ch4-1)
+- 章级精读：[study.md 数据平面总览](../study.md#ch4-dp-topdown)
 
 ## 本目录文件说明
 

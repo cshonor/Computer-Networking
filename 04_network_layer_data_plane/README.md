@@ -1,14 +1,27 @@
-# 第4章 网络层：数据平面
+# 第 4 章：网络层 · 数据平面
 
-> 本章小节索引。每个子目录内均有 `README.md` / `study.md` / `demo_code/`。
+> 本章笔记**只写数据平面**（转发、FIB、路由器硬件路径、可编程流表执行）。  
+> **控制平面** → [../05_network_layer_control_plane/](../05_network_layer_control_plane/)
 
-本章覆盖**转发与路由的区分**、**路由器体系结构**、**IPv4/IPv6/NAT/DHCP**、**SDN 与泛化转发**，以及**中间盒**与章末实践总结。完整精读见 **[study.md](./study.md)**。
+完整精读：**[study.md](./study.md)**
 
-**关于 §4.5–4.6**：仓库仅建有 **4.1–4.4** 子目录；**中间盒（§4.5）**与**本章总结（§4.6）**写在章级 [study.md](./study.md#ch4-5) 末尾两节。
+## 章内锚点
 
-## 小节列表
+| 锚点 | 内容 |
+|------|------|
+| [#ch4-dp-topdown](./study.md#ch4-dp-topdown) | 总览、六步转发、输入/MAC |
+| [#ch4-fib](./study.md#ch4-fib) | 转发表 FIB |
+| [#ch4-2](./study.md#ch4-2) | 四大件、Crossbar、排队调度 |
+| [#ch4-4](./study.md#ch4-4) | Match+Action |
 
-- [4.1_network_layer_overview](./4.1_network_layer_overview/README.md) — 数据/控制平面、转发 vs 路由、尽力而为  
-- [4.2_router_internal_working](./4.2_router_internal_working/README.md) — 输入/交换/输出、LPM、排队、调度、缓冲  
-- [4.3_ipv4_ipv6_nat](./4.3_ipv4_ipv6_nat/README.md) — IPv4 首部与分片、CIDR、DHCP、NAT、IPv6 与隧道  
-- [4.4_sdn_openflow](./4.4_sdn_openflow/README.md) — Match+Action、流表示例；延伸阅读 [§4.5 中间盒](./study.md#ch4-5)  
+## 小节
+
+- [4.1_network_layer_overview](./4.1_network_layer_overview/) — 数据平面定位、FIB  
+- [4.2_router_internal_working](./4.2_router_internal_working/) — 输入/交换/输出  
+- [4.3_ipv4_ipv6_nat](./4.3_ipv4_ipv6_nat/) — IP 首部、LPM、NAT（执行面）  
+- [4.4_sdn_openflow](./4.4_sdn_openflow/) — 流表、泛化转发  
+
+## 图
+
+- [rib_fib_control_data_plane.png](./assets/rib_fib_control_data_plane.png)（下半 = FIB）  
+- [crossbar_switching_fabric.png](./assets/crossbar_switching_fabric.png)
