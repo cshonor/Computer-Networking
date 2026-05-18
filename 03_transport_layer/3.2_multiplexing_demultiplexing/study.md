@@ -1,5 +1,18 @@
-# 精读笔记
+# 3.2 复用与分用
 
-> 章级整理：[../study.md#ch3-2](../study.md#ch3-2)  
-> 定义：[一](../study.md#ch3-2-def) · UDP：[二](../study.md#ch3-2-udp) · TCP：[三](../study.md#ch3-2-tcp) · 对比：[四](../study.md#ch3-2-compare) · 端口：[五](../study.md#ch3-2-ports) · **速背/易错**：[六](../study.md#ch3-2-exam)  
-> 图：[总览](../assets/mux_demux_overview.png) · [UDP](../assets/udp_demux.png) · [TCP](../assets/tcp_mux_4tuple.png)
+> 章级精读：[../study.md#ch3-2](../study.md#ch3-2)
+
+## 本节核心目标
+
+弄懂多应用同时上网怎么互不干扰。
+
+## 核心知识点
+
+1. **复用**：发送端多个应用数据，统一交给网络层
+2. **分用**：接收端根据端口号，把数据交给对应程序
+3. 源端口 + 目的端口，实现进程精准区分
+4. UDP、TCP 分用实现差异
+
+## 个人总结
+
+端口号 + 分用机制，让一台主机可以同时跑成千上万个网络应用。

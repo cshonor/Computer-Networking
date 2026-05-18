@@ -8,10 +8,10 @@
 
 ## 小节列表
 
-- [3.1_transport_service_intro](./3.1_transport_service_intro/README.md) — 运输层角色、TCP/UDP、与网络层关系  
-- [3.2_multiplexing_demultiplexing](./3.2_multiplexing_demultiplexing/README.md) — 端口、UDP/TCP 分解、监听与连接套接字  
-- [3.3_udp_protocol](./3.3_udp_protocol/README.md) — UDP 首部、检验和、典型场景  
-- [3.4_reliable_data_transfer_principle](./3.4_reliable_data_transfer_principle/README.md) — rdt、停等利用率、GBN/SR、窗口与序号  
-- [3.5_tcp_connection_and_transmission](./3.5_tcp_connection_and_transmission/README.md) — TCP 段与字节流、RTT 与超时、握手挥手、与流量控制衔接  
-- [3.6_tcp_flow_control](./3.6_tcp_flow_control/README.md) — **rwnd** 流量控制（见 [§3.5-flow](./study.md#ch3-5-flow)）  
-- [3.7_tcp_congestion_control](./3.7_tcp_congestion_control/README.md) — 拥塞原理、TCP 拥塞控制、QUIC（[§3.6–3.8](./study.md#ch3-6)）  
+- [3.1 运输层概述](./3.1_transport_service_intro/study.md) — 端到端、端口、TCP/UDP  
+- [3.2 复用与分用](./3.2_multiplexing_demultiplexing/study.md) — 端口号、UDP/TCP 分用  
+- [3.3 UDP](./3.3_udp_protocol/study.md) — 8 字节首部、场景  
+- [3.4 可靠传输原理](./3.4_reliable_data_transfer_principle/study.md) — ACK、停等、GBN、SR  
+- [3.5 TCP 连接与传输](./3.5_tcp_connection_and_transmission/study.md) — 握手挥手、序号重传  
+- [3.6 TCP 流量控制](./3.6_tcp_flow_control/study.md) — rwnd、滑动窗口（[§3.5-flow](./study.md#ch3-5-flow)）  
+- [3.7 TCP 拥塞控制](./3.7_tcp_congestion_control/study.md) — cwnd、慢启动等（[§3.6–3.8](./study.md#ch3-6)）  

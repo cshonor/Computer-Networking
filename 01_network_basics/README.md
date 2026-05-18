@@ -6,8 +6,8 @@
 
 ## 小节列表
 
-- [1.1_internet_overview](./1.1_internet_overview/README.md) — 因特网的多维定义、构成与服务视角、协议本质  
-- [1.2_network_edge_and_access](./1.2_network_edge_and_access/README.md) — 网络边缘、接入技术、企业与 DC、物理媒介  
-- [1.3_network_core_switching](./1.3_network_core_switching/README.md) — 分组交换与电路交换、ISP 与 IXP、内容提供商网络  
-- [1.4_delay_loss_throughput](./1.4_delay_loss_throughput/README.md) — 四种时延、流量强度与丢包、瓶颈吞吐量  
-- [1.5_protocol_layer_architecture](./1.5_protocol_layer_architecture/README.md) — 五层模型、封装；教材中 **1.6 安全**、**1.7 历史**、**1.8 小结** 一并写在章级 [study.md](./study.md) 中  
+- [1.1 互联网概述](./1.1_internet_overview/study.md) — 因特网定义、ISP、协议组织  
+- [1.2 网络边缘与接入](./1.2_network_edge_and_access/study.md) — 边缘、接入方式、C/S 与 P2P  
+- [1.3 网络核心与交换](./1.3_network_core_switching/study.md) — 分组/电路交换、路由 vs 转发  
+- [1.4 时延丢包吞吐量](./1.4_delay_loss_throughput/study.md) — 四大时延、丢包、瓶颈吞吐量  
+- [1.5 协议分层](./1.5_protocol_layer_architecture/study.md) — 五层、封装解封装（**1.6–1.8** 见 [章级 study.md](./study.md)）  

@@ -6,11 +6,11 @@
 
 ## 小节列表
 
-- [2.1_network_application_principle](./2.1_network_application_principle/README.md) — C/S 与 P2P、进程与 Socket、对运输层的需求  
-- [2.2_http_and_web](./2.2_http_and_web/README.md) — HTTP 连接与 RTT、报文、Cookie、缓存、HTTP/2/3  
-- [2.3_email_smtp_pop3_imap](./2.3_email_smtp_pop3_imap/README.md) — SMTP、MIME、POP3 / IMAP / Web 邮件  
-- [2.4_dns_service](./2.4_dns_service/README.md) — 层次结构、递归/迭代、RR 类型、工程与安全  
-- [2.5_p2p_file_distribution](./2.5_p2p_file_distribution/README.md) — 分发时间下界、BitTorrent 激励  
-- [2.6_video_streaming](./2.6_video_streaming/README.md) — DASH、CDN Enter Deep / Bring Home、GSLB  
-- [2.7_socket_programming_udp](./2.7_socket_programming_udp/README.md) — UDP 套接字与无连接发送（章内 [§2.7.2](./study.md#ch2-7-udp)）  
-- [2.7_socket_programming_tcp](./2.7_socket_programming_tcp/README.md) — TCP 套接字、`accept` 与会话（章内 [§2.7.3](./study.md#ch2-7-tcp)）  
+- [2.1 应用层原理](./2.1_network_application_principle/study.md) — C/S、P2P、选 TCP/UDP  
+- [2.2 HTTP 与 Web](./2.2_http_and_web/study.md) — 报文、持久连接、Cookie、缓存  
+- [2.3 电子邮件](./2.3_email_smtp_pop3_imap/study.md) — SMTP、POP3、IMAP、MIME  
+- [2.4 DNS](./2.4_dns_service/study.md) — 层级、递归/迭代、RR  
+- [2.5 P2P](./2.5_p2p_file_distribution/study.md) — BitTorrent、可扩展分发  
+- [2.6 视频流媒体](./2.6_video_streaming/study.md) — DASH、CDN  
+- [2.7 UDP Socket](./2.7_socket_programming_udp/study.md) — 无连接编程（[§2.7.2](./study.md#ch2-7-udp)）  
+- [2.7 TCP Socket](./2.7_socket_programming_tcp/study.md) — 面向连接编程（[§2.7.3](./study.md#ch2-7-tcp)）  

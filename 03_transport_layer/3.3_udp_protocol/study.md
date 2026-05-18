@@ -1,4 +1,18 @@
-# 精读笔记
+# 3.3 UDP 协议
 
-> 章级整理（含本节）：[../study.md#ch3-3](../study.md#ch3-3)  
-> 特点：[一](../study.md#ch3-3-features) · 首部：[二](../study.md#ch3-3-header)（[字段图](../assets/udp_header_fields.png) · [伪首部](../assets/udp_header_pseudo.png) · RFC ASCII 在正文） · 场景：[三](../study.md#ch3-3-scenes) · [UDP vs TCP](../study.md#ch3-3-vs-tcp) · [首部对比](../study.md#ch3-3-header-vs-tcp) · [速背](../study.md#ch3-3-exam) · QUIC：[五](../study.md#ch3-3-quic)
+> 章级精读：[../study.md#ch3-3](../study.md#ch3-3)
+
+## 本节核心目标
+
+透彻理解 UDP 协议特性与工作方式。
+
+## 核心知识点
+
+1. UDP 头部极简，仅 8 字节
+2. 无连接、无确认、无重传、不保证可靠
+3. 优点：时延极低、无需握手、开销小
+4. 适用场景：语音通话、视频直播、在线游戏
+
+## 个人总结
+
+UDP 尽最大努力交付，快比绝对可靠更重要的时候就用它。

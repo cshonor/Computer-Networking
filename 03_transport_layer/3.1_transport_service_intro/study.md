@@ -1,16 +1,18 @@
-# 精读笔记
+# 3.1 运输层服务概述
 
-> 章级整理（含本节）：[../study.md#ch3-1](../study.md#ch3-1)  
-> TCP 精读：[连接](../study.md#ch3-1-tcp-conn) · [SEQ/ISN](../study.md#ch3-1-tcp-seq) · [ACK/ack](../study.md#ch3-1-tcp-ack) · [握手→传数](../study.md#ch3-1-tcp-seq-full) · [可靠](../study.md#ch3-1-tcp-reliable) · [窗口/流控](../study.md#ch3-1-tcp-flow) · [流量](../study.md#ch3-1-tcp-flow) · [拥塞](../study.md#ch3-1-tcp-cong) · [首部](../study.md#ch3-1-tcp-header)（[结构图](../assets/tcp_header.png)） · [场景](../study.md#ch3-1-tcp-apps)
+> 章级精读：[../study.md#ch3-1](../study.md#ch3-1)
 
-## 教材定位
-- 章节 / 页码：（读完补上）
+## 本节核心目标
 
-## 自己的理解
+建立运输层的整体定位认知。
 
+## 核心知识点
 
-## 关键词汇（中英）
+1. 运输层作用：端到端、进程到进程的数据交付
+2. 复用与分用：多个应用共用同一网络链路
+3. 端口号：区分主机内不同应用进程
+4. TCP 可靠、UDP 轻量，提供两类不同服务
 
+## 个人总结
 
-## 课后习题要点
-
+网络层负责主机到主机，运输层负责程序到程序。
