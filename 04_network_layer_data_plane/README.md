@@ -10,6 +10,8 @@
 | 锚点 | 内容 |
 |------|------|
 | [#ch4-dp-topdown](./study.md#ch4-dp-topdown) | 总览、六步转发、输入/MAC |
+| [#ch4-encapsulation](./study.md#ch4-encapsulation) | **TCP⊂IP⊂MAC** 嵌套、封装/解封装 |
+| [#ch4-encapsulation-diagram](./study.md#ch4-encapsulation-diagram) | **一图汇总** + Wireshark 树形顺序 |
 | [#ch4-packet-walkthrough](./study.md#ch4-packet-walkthrough) | **从零抠**：主机→路由器→下一跳，MAC/IP/FIB |
 | [#ch4-fib](./study.md#ch4-fib) | 转发表 FIB |
 | [#ch4-2](./study.md#ch4-2) | 四大件、Crossbar、排队调度 |
