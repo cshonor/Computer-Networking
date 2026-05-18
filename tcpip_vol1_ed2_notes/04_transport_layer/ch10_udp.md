@@ -1,205 +1,220 @@
 # 第 10 章：用户数据报协议（UDP）与 IP 分片
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
-> 前置：[ch05 IP](../03_network_layer/ch05_ip.md) · [ch03 MTU](../02_link_layer/ch03_link_layer.md#ch03-8) · [ch08 PMTUD](../03_network_layer/ch08_icmpv4_icmpv6.md#ch08-3)  
-> 自顶向下精读：[§3.3 UDP](../../03_transport_layer/study.md#ch3-3) · 首部图：[udp_header_fields.png](../../03_transport_layer/assets/udp_header_fields.png)
+> 前置：**IP/MSS/PMTUD** — [ch05 IP](../03_network_layer/ch05_ip.md) · **链路 MTU/以太帧** — [ch03 链路层](../02_link_layer/ch03_link_layer.md) · **ICMP Fragmentation Needed（PTB）** — [ch08 ICMP](../03_network_layer/ch08_icmpv4_icmpv6.md)  
+> **组播语境**：[ch09 广播与组播](ch09_broadcast_multicast.md)；自顶向下精读：[§3.3 UDP](../../03_transport_layer/study.md#ch3-3) · 首部图示：[udp_header_fields.png](../../03_transport_layer/assets/udp_header_fields.png)
 
-**UDP** 不是「简陋的不可靠协议」，而是传输层**极简主义**：仅提供**端口解复用**与**可选/强制校验和**，把拥塞控制、重传、流控交给应用层 — **QUIC、RoCE、实时音视频** 的基石。极简也暴露底层风险：**超 MTU → IP 分片** 时的连锁丢包与安全面。
+UDP 不提供可靠传输、不重排、不重传——它把 **端到端语义**裁剪到「**端口多路复用** + （可选）**数据完整性覆盖**」，从而成为 **DNS、SNMP、流媒体、VXLAN、QUIC 底层运载**的共同起点。本章后半说明：**一旦上层一次交付的字节序列超过链路 MTU，IPv4 会在中间路由器分片**；任一丢失都会让整「逻辑报文」在接收端被丢弃——这是 UDP 互联网上**隐藏的脆弱点**。[ch03](../02_link_layer/ch03_link_layer.md) MTU、[ch08](../03_network_layer/ch08_icmpv4_icmpv6.md) `PTB` 与本章一起记。
 
 ---
 
 <a id="ch10-1"></a>
 
-## 10.1–10.2 UDP 核心架构
+## 10.1 引言：**无连接 datagram**
 
-### 定位
+| 语义 | UDP 的承诺 | 隐含成本 |
+|------|------------|-----------|
+| **无连接状态** | 无握手、`connect`/`bind`仅为本地 API | 防火墙/NAT 只能凭五元组**猜**会话 |
+| **保留报文边界** | **一次写入** ⇒ **一则 IP 载荷中的 UDP datagram** | 缓冲区小于包长时需 `MSG_TRUNC` 或丢包[^1] |
+| **不可靠、可能乱序** | 照搬 IP：`ECMP`、`队列丢失`都会导致乱序或丢片 | QUIC 等在 UDP 头上重建可靠性 |
 
-| 特性 | 说明 |
-|------|------|
-| **无连接** | 无握手，无连接状态 |
-| **尽力而为** | 继承 IP：可能丢包、**乱序**（ECMP 多路径尤甚） |
-| **消息边界** | 一次 `write` → 一个 UDP 数据报；`read` 得完整报文，**无 TCP 粘包** |
+[^1]: 《详解》对不同 OS 的实现差异给出了 BSD vs Windows vs Linux 的注意点——工程上应尽量用**已知最大报长度**缓冲区或应用层分包。
 
-### UDP 首部（8 字节）
+UDP 不改变 IP TTL、ToS、`Don't Fragment`，这些仍由下层套接字/内核策略控制 **[ch05](../03_network_layer/ch05_ip.md)**。
 
-![UDP 首部](../../03_transport_layer/assets/udp_header_fields.png)
+---
 
-| 字段 | 位宽 | 工程意义 |
-|------|------|----------|
-| 源端口 | 16 | 可选；不需回访可置 **0** |
-| **目的端口** | 16 | **解复用**键 → 套接字队列 |
-| UDP 长度 | 16 | 头+数据；理论最大 **65535** |
-| 校验和 | 16 | 头+数据+**伪首部** |
+<a id="ch10-2"></a>
 
-### 封装
+## 10.2 UDP 首部与长度
 
-```text
-应用载荷 → UDP 头(8B) → IP 载荷；IP 协议字段 = 17 (UDP)
-```
+![UDP Header](../../03_transport_layer/assets/udp_header_fields.png)
 
-### 最佳实践
+UDP 首部 **固定 8 字节**。字段表（建议与 Wireshark 「User Datagram Protocol」一起看）：
 
-万兆/数据中心：无 TCP 式拥塞反馈 → 应用须自实现**速率/窗口控制**，否则缓冲区溢出**灾难性丢包**。
+| 字段（英文惯用名） | 位宽 | 取值 / 语义 | 实务 |
+|-------------------|------|---------------|------|
+| **Source Port** | **16** | 发送方可选；若不需要回音可 **`0`** | `netstat`、`ss -u` |
+| **Destination Port** | **16** | **解复用的键**：决定哪个 socket 收下 | ACL、SDN Match |
+| **Length**（UDP Datagram Length） | **16** | **首部 + 数据** 字节总数；理论上最大 **65535** | IPv4+jumbo frame 特例需考虑 |
+| **Checksum** | **16** | 覆盖首部、数据、伪首部（见 **[§10.3](#ch10-3)**） | IPv4：**可以全 0 表示跳过** |
 
-→ 分用对比 TCP：[§3.2](../../03_transport_layer/study.md#ch3-2) · [§3.3 vs TCP](../../03_transport_layer/study.md#ch3-3-vs-tcp)
+**总长关系**：上层一次交付 `L_data` ⇒ UDP Length = `8 + L_data`。随后 IP Total Length ≥ `UDP Length + IPv4_Header`（或无 jumbo）。
 
 ---
 
 <a id="ch10-3"></a>
 
-## 10.3–10.6 校验和与跨版本特性
+## 10.3–10.4 端到端论点与 **校验和**：伪首部
 
-### 端到端论点
+UDP 首部 Checksum **含伪首部 Pseudo Header**，把 **源/目的 IP、协议字段、UDP 长度**并入计算，从而在「IP 首部没有自身校验和」（IPv6）或「路由重写地址」场景中仍有机会侦测错投。
 
-**伪首部**含源/目的 IP、协议号、UDP 长度 — 跨层但用于检测**错递**（IP 路由错误等），符合 [ch01 端到端](../01_architecture/ch01_introduction.md#ch01-e2e)。
+```
+┌ Pseudo Header ──────────────────────────┐  ← 不参与链路上真实发送  
+│ Src IP (32 / 128)                       │
+│ Dst IP (32 / 128)                       │
+│ Zero (8 bits) │ Proto (8)=17 │ UDP Len │
+└ Pseudo Header ──────────────────────────┘
+        + UDP header + Payload  → one's complement sum → Checksum field
+```
 
-![伪首部与封装](../../03_transport_layer/assets/udp_header_pseudo.png)
+图参考：[udp_header_pseudo.png](../../03_transport_layer/assets/udp_header_pseudo.png)
 
-### IPv4 vs IPv6
+### IPv4 **vs IPv6**：伪首部结构与「是否允许关闭校验和」
 
-| | IPv4 | IPv6 |
-|--|------|------|
-| UDP 校验和 | **可选**（全 0 = 未计算） | **强制**；为 0 则**非法丢弃** |
-| 原因 | IPv4 有 IP 首部校验和 | v6 **无 IP 首部校验和**，UDP 为最后屏障 |
+| 项目 | **IPv4** | **IPv6** |
+|------|----------|-----------|
+| **IP 首部自身校验和** | 有 **[ch05](../03_network_layer/ch05_ip.md)** | **无**：错误检测责任外溢到上层 / 链路 |
+| UDP Checksum **`0`** 语义 | **`0`** 常量表示 *not computed*「发送方跳过」 | **`0`** 作为计算结果时需编码为 **`0xffff`**；**必须为有效值**并由接收方核验 |
+| 典型工程结论 | 许多栈仍计算 UDP checksum | **必须开启** IPv6 UDP checksum；否则会丢包或被中间件扔掉 |
 
-### UDP-Lite (RFC 3828)
+校验和仍为 **端到端**：中间路由器**一般不重算** UDP checksum（NAT 重写地址时需特殊处理）[ch07](../03_network_layer/ch07_firewall_nat.md)。
 
-**部分校验**：仅保护头与关键元数据；载荷位损坏可保留 — **VoIP/多媒体** 中「坏一点」优于整包丢。
+---
+
+<a id="ch10-4"></a>
+
+## 10.5 UDP-Lite（RFC 3828）
+
+**UDP-Lite** 允许只对 **前缀 N 字节**做校验：**语音/视频会议**可以接受「后部若干字节损坏」，但无法忍受整包被判无效。网络设备若不理解该协议需在部署前确认。**考点**：识别「部分覆盖」语义与音视频延迟取舍。
+
+---
+
+<a id="ch10-5"></a>
+
+## 10.6 IPv4 **分片**字段与路径 MTU
+
+当 **IPv4 DF=0**，且 **`Total Length` > egress MTU** 时，路由器或主机把 IP 载荷切成多段，每段外挂自己的 IPv4 Header。
+
+| IPv4 Header 字段（复习） | 作用 |
+|--------------------------|------|
+| **Identification**（16-bit） | 同一「未分片原始报文」拷贝到各片上；接收端重组拼接键的一部分 |
+| **Flags** — **DF**, **MF** | **Don't Fragment**：若超限则 ICMP **Type 3 Code 4 Fragmentation Needed**（PTB）[ch08](../03_network_layer/ch08_icmpv4_icmpv6.md)；**MF=1**：还有后续片 |
+| **Fragment Offset**（13-bit）×8 | **8 字节粒度**对齐；首片偏移 `0`，第二片常为 `ceil(first_payload / 8)` |
+
+**IPv6**：中间路由器 **不分片**；仅源端可把扩展头里做 **分段扩展**（或由上层避免） **[ch05](../03_network_layer/ch05_ip.md)**。
+
+### 考点链：**TCP MSS** vs **IP Fragmentation**
+
+TCP 通过在握手阶段获知 **路径 MSS** ⇒ 尽量让每个 **TCP Segment + IP/TCP Header** 不经 IP 层再切；UDP 没有这个默认协调 ⇒ **单次 write 超长 ⇒ IP 被动分片 ⇒ 任一一片丢失 ⇒ 上位应用看到整 UDP 丢失**——「分片丢失放大」效应。
+
+---
+
+<a id="ch10-6"></a>
+
+## 10.7 **分片算例**：总 IPv4 **4020 B**、链路 **MTU=1500**（三片）
+
+> 条件：外层 IPv4 Header **固定 20 B** (`IHL=5`，无选项)；MTU **指链路允许的最大帧净荷中的 IP datagram**，故每片 **`1500`** 总长 ⇒ **载荷 ≤ 1480 B**。**Payload 必须为 8 的倍数**，1480 ✅。
+
+设某主机发出 **总长 4020 B** IPv4 Datagram：**20 B IPv4 HDR + `4000` B UDP 整块（UDP 8 + 应用 3992）** ⇒ 与用户指定 **4020** 对上。
+
+**分解**：IP 载荷 `4000 B` = `1480 + 1480 + 1040`（三段均为 8 的倍数）。
+
+| # | MF | Fragment Offset ×8 （十进制载荷起点） | 本片的 **IP 载荷** 字节 |
+|---|-----|---------------------------------------|---------------------------|
+| 1 | **`1`** | **0** | **1480**（含 **UDP 首部 8 B** + **应用数据 1472 B**）[^2] |
+| 2 | **`1`** | **`185`** ⇒ 起点 `1480` | **1480** |
+| 3 | **`0`** | **`370`** ⇒ 起点 `2960` | **1040**（剩余 UDP/应用：`4000 − 2960`） |
+
+各片链路帧长：`1500 + 1500 + 1060 = 4060 B`（总长增加来自重复 IPv4 Header ×3）。
+
+[^2]: 首片中 **偏移 0** 的那一个 **UDP header 仅出现一次**：后续片不包含 UDP header 副本，`Offset` >0 的包从 UDP payload 的中间字节开始装载。
+
+考点：**偏移用 8B 粒度** ⇒ `1480÷8 = 185`，`2960÷8 = 370`。若算出第三片载荷不是 **1040** 则算术错误——常见笔误写成 `1032` 来自把「UDP 总长」误认为 **3992 IP 载荷**。
 
 ---
 
 <a id="ch10-7"></a>
 
-## 10.7–10.10 IP 分片与路径 MTU
+## 10.8 **ARP / ND 陷阱**（《详解》强调的 race）
 
-### 分片字段（IPv4）
+超长 UDP ⇒ **多分片**。若内核在发送第一片时才首次解析邻居：
 
-| 字段 | 作用 |
-|------|------|
-| **Identification** | 同原报文各片相同 |
-| **Flags** | **DF**=禁止分片；**MF**=后续还有片 |
-| **Fragment Offset** | 以 **8 字节**为单位 |
+1. ARP **[ch04](../03_network_layer/ch04_arp.md)** / ND **[ch08](../03_network_layer/ch08_icmpv4_icmpv6.md)** Pending 队列只短暂缓存少数后续片；
+2. **后发片早于 ARP Reply** 到期 ⇒ **悄悄丢弃** ⇒ 远端永远收不齐、`Missing fragment` ⇒ 上位应用误判「网络极差」；
 
-超链路 **MTU**（以太网常 **1500**）→ IP 分片。**IPv6 路由器不分片** → 源端须 PMTUD 或缩小包 → [ch05](ch05_ip.md#ch05-3)、[ch08 Type 2](ch08_icmpv4_icmpv6.md#ch08-3)
-
-### 连锁失效
-
-**分片无独立重传**：丢 **1** 片 → 接收方丢弃**整组**重组 → 应用层感知为**整包丢失**，丢包率被放大。
-
-### 10.9 陷阱：分片与 ARP/ND
-
-大 UDP 触发多片时，常**仅首片**触发 **ARP**（v4）或 **ND**（v6）。解析 MAC 期间**后续片**先到 → 发送/重组缓冲有限 → **静默丢片** → 重组永久失败。
-
-→ [ch04 ARP](../03_network_layer/ch04_arp.md) · [ch08 ND](ch08_icmpv4_icmpv6.md#ch08-5)
-
-### 案例：约 4000 字节应用数据，MTU 1500
-
-```text
-总 IP 报文：20(IP) + 8(UDP) + 3992(Data) = 4020 B
-每片 IP 载荷上限：1500 - 20 = 1480 B
-
-片1：1480 B 数据，MF=1，Offset=0
-片2：1480 B 数据，MF=1，Offset=1480/8=185
-片3：1032 B 数据（含 UDP 头剩余+载荷），MF=0，Offset=2960/8=370
-```
-
-（首片通常携带完整 UDP 首部；具体划分以实现为准，**Offset 必为 8 的倍数**。）
-
-### 工程原则
-
-- **避免 IP 分片**：单 UDP ≤ **路径 MTU − IP头 − UDP头**（常 **≤1472** 或保守 **1400**）  
-- 启用 **PMTUD**（DF=1）探测路径 MTU  
-- 勿假设防火墙转发所有分片
+**Mitigation**：预先用 `ping`/`connect`/`ND` warmup；或 **永远不要接近 MTU**：应用层分包。
 
 ---
 
-<a id="ch10-11"></a>
+<a id="ch10-8"></a>
 
-## 10.11–10.13 服务器设计与限制
+## 10.9 服务器实现注意（简述）
 
-### 多宿主绑定
+《详解》列出的端口 `0`、`IPV6_V6ONLY`、缓冲区、`EADDRINUSE`、`weak end system`/`strong end system`、`IP_RECVERR`/`IP_RECVDSTADDR`/`IP_PKTINFO`、`UDP` 校验和卸载等在现代 Linux/BSD/Fuchsia 仍存在 — 本节只抓面试要点：
 
-绑定 **`INADDR_ANY`** 时，回复源 IP 可能≠客户端请求的**目的 IP**（弱主机 + 路由选择）→ 客户端防火墙/策略拒收。
-
-**实践**：按接口绑定，或明确源地址选择策略。
-
-### 缓冲区与截断
-
-| 套接字选项 | 影响 |
-|------------|------|
-| **SO_SNDBUF** | 发送缓冲上限 |
-| **SO_RCVBUF** | 接收缓冲上限 |
-
-接收缓冲 **小于** 到达数据报：BSD 等可 **MSG_TRUNC** 并丢弃超出；Windows 行为可能不同 → 应用层用**长度前缀**等避免非确定性。
-
-### 组播/广播套接字
-
-与 [ch09](ch09_broadcast_multicast.md) 联动：`SO_REUSEADDR`、TTL、出口接口。
+| 主题 | Do / Don't |
+|------|------------|
+| **多宿主 `INADDR_ANY`** | ACK/响应源地址未必等于客户端看见的 dest IP ⇒ 对称路由问题 |
+| **接收缓冲太小** | 高速小包风暴 ⇒ 常见于不同 OS：**截断、`EAGAIN`、`ENOBUFS`、静默丢包** |
+| **组播/广播** **[ch09](ch09_broadcast_multicast.md)** | **`SO_REUSEADDR`/`SO_REUSEPORT`**、出站接口、`IP_MULTICAST_TTL`、`IP multicast loopback` |
+| **`connect` UDP** | 「伪连接」仅固定五元组、方便 `recv`/ICMP 报错投递 |
 
 ---
 
-<a id="ch10-14"></a>
+<a id="ch10-9"></a>
 
-## 10.14 安全性
+## 10.10 安全面
 
-### 反射/放大 DDoS
+UDP（无 handshake） ⇒ **易被伪造**。常见攻击范式：
 
-伪造**受害者源 IP** → 向 DNS/NTP/SSDP 等发**小 UDP 请求** → 服务器向受害者回**大响应** → 放大。
+| 攻击 | 说明 | Mitigation |
+|------|------|------------|
+| **反射 / 放大 DDoS** | 以小查询换大应答（历史上的 Chargen、SNMP、Memcached） | ACL、限速、`<100B` ⇒ close、BCP38 源校验 |
+| **分片重装消耗**（Teardrop 变体、「最后一片永远不出现」） | 占满重装缓冲 ⇒ OOM/`nf_conntrack` | 入口滤片、补丁、限制并发重装 |
+| **Checksum offloading 与 spoofed inner** | SMARTNIC/TOE 可把坏包误判 | 开启硬件校验卸载与驱动一致性测试 |
 
-### 分片重组攻击
-
-大量**缺最后一片**或**重叠偏移**的片 → 占满主机**重组缓冲**（Teardrop 类变体）→ 内存耗尽。
-
-**缓解**：入口过滤（BCP38）、限制重组资源、禁用异常分片、应用层不依赖超大 UDP。
-
-→ [ch05 IP 欺骗](../03_network_layer/ch05_ip.md#ch05-7)
+[ch05 IPv4 spoofing](../03_network_layer/ch05_ip.md)；应用上的加密与认证见自顶向下 [§8 网络安全](../../08_network_security/study.md)。
 
 ---
 
 <a id="ch10-exam"></a>
 
-## 10.15 总结与考点
+## 10.11 考点总结
 
-UDP 的「极简之美」= 忠实传递 IP 语义 + **低延迟**；代价是应用承担**可靠性与拥塞**。
+### 一页易混对照
 
-### 易混速记
+| 问题 | Must Know |
+|------|-----------|
+| **UDP vs TCP 边界语义** | **Datagram ↔ 字节流** |
+| **`UDP Length`=`0`** | 理论上合法但几乎不用；别把 **IPv4 Padding**算进 UDP Len |
+| **IPv6 UDP checksum=`0`** | **非法**：必须改写为 **`0xffff` 存入**或以实现策略拒绝发包 |
+| **IP 片中 UDP header 在哪儿** | **仅首片偏移 0；后续片是纯 payload 后缀** |
+| **丢任意一片的后果** | 重组定时器耗尽 ⇒ **整块上层 datagram** 当作丢失 |
+| **DF=1 oversized** ⇒ | **ICMP PTB**，PMTUD 起点 **[ch08](../03_network_layer/ch08_icmpv4_icmpv6.md)** |
+| **`1400`** 传说 | VLAN/QoS/GRE/GENEVE 可把有效 MTU 砍到 **`1500 − 开销`** ⇒ 保守荷载 |
 
-| 问题 | 要点 |
-|------|------|
-| UDP vs TCP 边界 | UDP **保留报文边界**；TCP **字节流** |
-| v4 vs v6 校验和 | v4 可省略；v6 **必须** |
-| TCP 分段 vs IP 分片 | TCP 按 **MSS**；UDP 大包走 **IP 分片**（危险） |
-| DF + 过大 | **ICMP 需要分片/PTB** → PMTUD |
-| 分片丢一片 | **整报文废** |
-| 端口 0 | 源端口可为 0；目的端口不可 |
+### 推荐包尺度（备忘）
 
-### 推荐包长（实践）
+| 场景 | Payload 建议 |
+|------|----------------|
+| 互联网 UDP DNS/音视频 | **`≤1200`**（穿越 PPPoE、隧道）到 **`≤1400`** |
+| Datacenter Overlay | **`path MTU` 探测**、`DF` + QUIC PMTUD |
 
-| 场景 | 建议 |
-|------|------|
-| 互联网 UDP | **≤1200–1400 B** 载荷（留 IP/UDP 头与隧道余量） |
-| 数据中心 | 仍测路径 MTU；RDMA/QUIC 自有帧边界 |
+### 延伸阅读
 
-### 下一章
-
-- [ch12 TCP 基础](ch12_tcp_intro.md) — 有状态传输  
-- [ch11 DNS](../05_application_security/ch11_dns.md) — UDP/53  
-- [ch09 组播](ch09_broadcast_multicast.md)
+| 跳转 | |
+|------|---|
+| 下一章TCP | （卷一随后章节）序号/三次握手、[study §3 TCP](../../03_transport_layer/study.md) |
+| 组播 UDP | **[ch09](ch09_broadcast_multicast.md)** |
+| ICMP + ND | **[ch08](../03_network_layer/ch08_icmpv4_icmpv6.md)** |
 
 ---
 
 ## Top-Down
 
-- [study.md §3.3](../../03_transport_layer/study.md#ch3-3) · [#ch3-3-exam](../../03_transport_layer/study.md#ch3-3-exam)
+- **[study.md §3.3 UDP](../../03_transport_layer/study.md#ch3-3)**（无连接语义、广播/组播）[· §3.3 考点](../../03_transport_layer/study.md#ch3-3-exam)
+- **[§3.2 多路复用与解复用](../../03_transport_layer/study.md#ch3-2)**：UDP 用 **目的 IP + 目的端口** 键解复用 — 与 TCP 四元组对比
 
 ## Lab
 
-- Wireshark：`udp` · `udp.port == 53`；观察分片 `ip.frag_offset`  
-- `ping -f -l 1500`（Windows）/ `ping -M do -s 1472` 测 PMTUD  
-- `sysctl` / `netstat` 看重组超时
+- Wireshark：`udp && !icmp` vs `udp.length > 1472`，观察 **`ip.frag`**
+- **`ping`** / **`hping`** + **DF**：验证 **PTB** 报文 **[ch08](../03_network_layer/ch08_icmpv4_icmpv6.md)**
+- Linux：`ip -det link show mtu`、`sysctl net.ipv4.ipfrag_*`
 
-## Go / Rust
+## Go / Rust（工程钩子）
 
-- **Go**：`net.ListenUDP`；`ipv4.PacketConn` 设 **DF**；`ReadFromUDP` 注意缓冲 ≥ 最大报文  
-- **Rust**：`tokio::net::UdpSocket`；QUIC 在 UDP 之上自建可靠层  
-- **QUIC/游戏**：单 datagram ≤ **path MTU**；勿依赖 IP 分片
+| 栈 | Hint |
+|---|-----|
+| **Go** `x/net/ipv4` | **`SetControlMessage`/`SetTTL`/`SetICMPFilter`**；大图 UDP 手写 **Path MTU 探测 loop** |
+| **Rust QUIC** (`quinn`) | QUIC 在用户态切 **UDP datagram**；仍受 **下层 IP 限制** |
