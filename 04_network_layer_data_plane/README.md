@@ -27,4 +27,5 @@
 ## 图
 
 - [rib_fib_control_data_plane.png](./assets/rib_fib_control_data_plane.png)（下半 = FIB）  
-- [crossbar_switching_fabric.png](./assets/crossbar_switching_fabric.png)
+- [crossbar_switching_fabric.png](./assets/crossbar_switching_fabric.png)  
+- [ipv4_datagram_header.png](./assets/ipv4_datagram_header.png) — IPv4 首部（[#ch4-ipv4-header](./study.md#ch4-ipv4-header)）
