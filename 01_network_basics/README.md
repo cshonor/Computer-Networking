@@ -13,11 +13,14 @@
 | [network_edge_last_mile.png](./assets/network_edge_last_mile.png) | 1.2 边缘·最后一公里 |
 | [access_cable_hfc.png](./assets/access_cable_hfc.png) | 1.2 同轴/HFC |
 | [access_ftth.png](./assets/access_ftth.png) | 1.2 FTTH 光纤到户 |
+| [routing_vs_forwarding.png](./assets/routing_vs_forwarding.png) | 1.3 路由 vs 转发 |
+| [packet_switching_store_forward.png](./assets/packet_switching_store_forward.png) | 1.3 存储转发·数据报/虚电路 |
+| [virtual_circuit.png](./assets/virtual_circuit.png) | 1.3 虚电路 VCI 换标 |
 
 ## 小节列表
 
 - [1.1 互联网概述](./1.1_internet_overview/study.md) — 五大点背诵 + 易错点  
 - [1.2 网络边缘与接入](./1.2_network_edge_and_access/study.md) — DSL/同轴/光纤、C/S vs P2P、易错表  
-- [1.3 网络核心与交换](./1.3_network_core_switching/study.md) — 分组/电路交换、路由 vs 转发  
+- [1.3 网络核心与交换](./1.3_network_core_switching/study.md) — 电路/分组、数据报/虚电路、路由 vs 转发、易错表  
 - [1.4 时延丢包吞吐量](./1.4_delay_loss_throughput/study.md) — 四大时延、丢包、瓶颈吞吐量  
 - [1.5 协议分层](./1.5_protocol_layer_architecture/study.md) — 五层、封装解封装（**1.6–1.8** 见 [章级 study.md](./study.md)）  
