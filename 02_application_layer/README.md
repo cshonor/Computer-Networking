@@ -8,7 +8,8 @@
 
 | 图 | 说明 |
 |----|------|
-| [email_system_smtp_pop3.png](./assets/email_system_smtp_pop3.png) | 2.3 邮件系统 SMTP/POP3 |
+| [email_system_architecture.png](./assets/email_system_architecture.png) | 2.3 邮件架构（UA/MTA、三步、考点） |
+| [email_system_smtp_pop3.png](./assets/email_system_smtp_pop3.png) | 2.3 邮件系统简图 |
 | [smtp_how_it_works.png](./assets/smtp_how_it_works.png) | 2.3 SMTP 原理 |
 | [imap_how_it_works.png](./assets/imap_how_it_works.png) | 2.3 IMAP 多设备 |
 | [pop3_how_it_works.png](./assets/pop3_how_it_works.png) | 2.3 POP3 下载删除 |
