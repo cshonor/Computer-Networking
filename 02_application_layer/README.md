@@ -6,7 +6,7 @@
 
 ## 小节列表
 
-- [2.1 应用层原理](./2.1_network_application_principle/study.md) — C/S、P2P、选 TCP/UDP  
+- [2.1 应用层原理](./2.1_network_application_principle/study.md) — 定位、C/S vs P2P 对比表、四大需求、TCP/UDP 口诀、易错表  
 - [2.2 HTTP 与 Web](./2.2_http_and_web/study.md) — 报文、持久连接、Cookie；[**四层嵌套**](./2.2_http_and_web/study.md#ch2-http-stack)  
 - [2.3 电子邮件](./2.3_email_smtp_pop3_imap/study.md) — SMTP、POP3、IMAP、MIME  
 - [2.4 DNS](./2.4_dns_service/study.md) — 层级、递归/迭代、RR  

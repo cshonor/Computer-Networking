@@ -28,6 +28,6 @@
 
 - [1.1 互联网概述](./1.1_internet_overview/study.md) — 五大点背诵 + 易错点  
 - [1.2 网络边缘与接入](./1.2_network_edge_and_access/study.md) — 边缘/接入网/光猫一体机/WiFi 数据流、DSL/同轴/光纤、易错表  
-- [1.3 网络核心与交换](./1.3_network_core_switching/study.md) — FDM/TDM通俗、分组≠TDM、数据报/虚电路、路由 vs 转发  
+- [1.3 网络核心与交换](./1.3_network_core_switching/study.md) — 电路/报文/分组考试版、N×L/R、数据报/虚电路、路由 vs 转发  
 - [1.4 时延丢包吞吐量](./1.4_delay_loss_throughput/study.md) — 四大时延、La/R、公式例题、木桶吞吐、易错表  
 - [1.5 协议分层](./1.5_protocol_layer_architecture/study.md) — PDU、TCP/UDP、IPv4/以太网帧、HTTP/SMTP/SSH（**1.6–1.8** 见 [章级](./study.md)）  
