@@ -4,7 +4,7 @@
 
 ## 一、IPv4 协议核心
 
-> 首部结构图：[§4.3 IPv4 首部](../study.md#ch4-ipv4-header)
+> 首部结构图：[§4.3 IPv4 首部](../study.md#ch4-ipv4-header) · [Wireshark 对照](../study.md#ch4-ipv4-wireshark)
 
 ![IPv4 数据报首部](../assets/ipv4_datagram_header.png)
 

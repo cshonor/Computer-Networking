@@ -483,6 +483,20 @@ IP 是数据平面**查表转发**的载荷与首部格式（编址细节见 [4.
 
 ![IPv4 数据报首部字段（固定首部 20B + 可选选项 + 数据）](./assets/ipv4_datagram_header.png)
 
+**整体**：**首部（20–60 字节）+ 数据（TCP/UDP/ICMP…）**；最常见固定首部 **20 字节**（无选项）。
+
+#### 逐行对应（RFC 标准 · 每行 32 位）
+
+| 行 | 字段（位宽） |
+|----|----------------|
+| 1 | **版本(4)** + **首部长度(4)** + **服务类型(8)** + **总长度(16)** |
+| 2 | **标识(16)** + **标志(3)** + **片偏移(13)** |
+| 3 | **TTL(8)** + **协议(8)** + **首部校验和(16)** |
+| 4 | **源 IP(32)** |
+| 5 | **目的 IP(32)** |
+| 6 | **可选字段**（0–40 字节，可没有） |
+| 7 | **上层数据**（TCP / UDP / ICMP …） |
+
 | 字段 | 位数 | 要点 |
 |------|------|------|
 | 版本 | 4 | IPv4 = 4 |
@@ -497,7 +511,41 @@ IP 是数据平面**查表转发**的载荷与首部格式（编址细节见 [4.
 | 选项 | 0~40B | 测试、安全等（可选） |
 | **数据** | 变长 | 常为 TCP/UDP 段等 |
 
-👉 帧里装的就是这个 **IP 数据报**：[以太网帧≠IP](../06_link_layer_and_lan/study.md#ch6-frame-vs-ip) · [逐跳转发](../06_link_layer_and_lan/study.md#ch6-hop-ip-frame)
+<a id="ch4-ipv4-wireshark"></a>
+
+#### Wireshark 里「真实长什么样」
+
+展开 **Internet Protocol Version 4** 与上图**逐字段对应**（线上真包）：
+
+```text
+Internet Protocol Version 4, Src: 192.168.1.100, Dst: 140.205.172.3
+0100 .... = Version: 4
+.... 0101 = Header Length: 20 bytes (5)    ← 5×4B = 20B 首部
+Differentiated Services Field: 0x00
+Total Length: 60                           ← 首部+数据总长度
+Identification: 0x1234
+Flags: 0x40 (Don't fragment)
+Time to Live: 64                           ← 每跳路由器 TTL−1
+Protocol: TCP (6)                          ← 内层是 TCP
+Header Checksum: 0x5678
+Source Address: 192.168.1.100              ← 端到端不变
+Destination Address: 140.205.172.3
+```
+
+实机练习 → [Wireshark 实验章](../99_practice_wireshark_lab/) · 三层树形展开见 [#ch4-encapsulation-wireshark](#ch4-encapsulation-wireshark)
+
+#### 与以太网帧的关系
+
+```text
+以太网帧 = 帧头(14B) + IP数据报(20B+数据) + FCS(4B)
+```
+
+| 谁看 | 看什么 |
+|------|--------|
+| **链路层**（交换机/网卡） | **MAC**；验 FCS |
+| **网络层**（路由器） | 剥帧后看 **IP 数据报** 里的 **目的 IP**、TTL 等 |
+
+👉 [以太网帧≠IP 数据报](../06_link_layer_and_lan/study.md#ch6-frame-vs-ip) · [TCP⊂IP⊂MAC 嵌套](#ch4-encapsulation) · [逐跳转发](../06_link_layer_and_lan/study.md#ch6-hop-ip-frame)
 
 ### 数据平面关心的 IPv4 首部
 
