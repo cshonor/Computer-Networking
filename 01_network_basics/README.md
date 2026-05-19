@@ -22,5 +22,5 @@
 - [1.1 互联网概述](./1.1_internet_overview/study.md) — 五大点背诵 + 易错点  
 - [1.2 网络边缘与接入](./1.2_network_edge_and_access/study.md) — DSL/同轴/光纤、C/S vs P2P、易错表  
 - [1.3 网络核心与交换](./1.3_network_core_switching/study.md) — 电路/分组、数据报/虚电路、路由 vs 转发、易错表  
-- [1.4 时延丢包吞吐量](./1.4_delay_loss_throughput/study.md) — 四大时延、丢包、瓶颈吞吐量  
-- [1.5 协议分层](./1.5_protocol_layer_architecture/study.md) — 五层、封装解封装（**1.6–1.8** 见 [章级 study.md](./study.md)）  
+- [1.4 时延丢包吞吐量](./1.4_delay_loss_throughput/study.md) — 四大时延、La/R、公式例题、木桶吞吐、易错表  
+- [1.5 协议分层](./1.5_protocol_layer_architecture/study.md) — 五层 PDU、对等层、封装流程、易错表（**1.6–1.8** 见 [章级 study.md](./study.md)）  

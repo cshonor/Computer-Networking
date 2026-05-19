@@ -125,6 +125,8 @@
 
 ## 1.4 分组交换网中的时延、丢包和吞吐量
 
+> **背诵提纲** → [1.4 小节 study.md](./1.4_delay_loss_throughput/study.md)（四大时延 + La/R + 瓶颈吞吐 + [易错表](./1.4_delay_loss_throughput/study.md#ch1-4-exam))
+
 ### 1.4.1 四种时延成分
 
 节点总时延：`d_nodal = d_proc + d_queue + d_trans + d_prop`。
@@ -152,6 +154,8 @@
 <a id="ch1-5"></a>
 
 ## 1.5 协议层次及其服务模型
+
+> **背诵提纲** → [1.5 小节 study.md](./1.5_protocol_layer_architecture/study.md)（五层 + 封装解封装 + [易错表](./1.5_protocol_layer_architecture/study.md#ch1-5-exam)）· 实图 [第 4 章封装](../04_network_layer_data_plane/study.md#ch4-encapsulation)
 
 ### 1.5.1 因特网 5 层模型
 
