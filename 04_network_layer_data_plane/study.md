@@ -86,10 +86,19 @@
 
 <a id="ch4-encapsulation"></a>
 
-## 封装嵌套顺序（王道自下而上 · 仅 TCP / IP / MAC）
+## 封装嵌套顺序（王道自下而上 · 链路/网络/运输）
 
 > **不是**「TCP 包住 IP」；**是 IP 包住 TCP，以太网帧再包住 IP**。  
-> 传输层细节 → [第 3 章 TCP 首部](../03_transport_layer/study.md#ch3-1-tcp-header)
+> 传输层细节 → [第 3 章 TCP 首部](../03_transport_layer/study.md#ch3-1-tcp-header)  
+> **访问网页时最内层** → [HTTP 在 TCP 载荷里](../02_application_layer/2.2_http_and_web/study.md#ch2-http-stack)
+
+<a id="ch4-encapsulation-http"></a>
+
+```text
+以太网帧 → IP 数据报 → TCP 段（首部 + 数据区）→ HTTP 报文（应用层文本）
+```
+
+（HTTPS = 先 TLS 再 HTTP，本章先记明文 HTTP。）
 
 ### 正确嵌套（由内到外）
 
@@ -101,12 +110,14 @@
 │        │    ┌──────┐   │    │
 │        │    │ TCP  │   │    │  最内层：TCP 报文段（运输层）
 │        │    │ 首部 │   │    │  序号、ACK、端口…
-│        │    │ 数据 │   │    │
+│        │    │ 数据 │   │    │  ← 常为 HTTP 等应用层报文
 │        │    └──────┘   │    │
 │        └───────────────┘    │
 │ FCS（帧校验）               │
 └─────────────────────────────┘
 ```
+
+（Web 场景最内层示例 → [HTTP 请求/响应](../02_application_layer/2.2_http_and_web/study.md#ch2-http-stack)）
 
 | 顺序 | 说法 |
 |------|------|
