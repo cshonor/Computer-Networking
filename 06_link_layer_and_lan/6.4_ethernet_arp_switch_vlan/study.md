@@ -4,11 +4,14 @@
 
 ## 一、以太网（Ethernet）
 
-> 帧与 IP 嵌套、MAC/FCS 接收逻辑 → [§6.1 帧≠IP](../study.md#ch6-frame-vs-ip)
+> 帧与 IP 嵌套 → [§6.1 帧≠IP](../study.md#ch6-frame-vs-ip) · [帧结构图](../study.md#ch6-ethernet-frame)
 
-- 目前局域网主流技术，基于 IEEE 802.3 标准
+![以太网帧结构](../assets/ethernet_frame_structure.png)
+
+- 目前局域网主流技术，基于 IEEE 802.3 / **Ethernet II**（类型字段 `0x0800`=IPv4）
 - 核心特点：CSMA/CD（早期）、全双工交换（现代）、无确认无连接、尽力而为
-- **帧结构**：目的 MAC、源 MAC、类型/长度（`0x0800`=IPv4）、**载荷（常为 IP 数据报）**、FCS
+- **Ethernet II 帧**（左→右）：前导 7 + SFD 1 + 目的 MAC 6 + 源 MAC 6 + 类型 2（`0x0800`=IPv4，`0x0806`=ARP）+ 数据 46–1500（**IP 数据报**）+ FCS 4
+- **帧长**：最小 64B、最大 1518B（数据区 MTU **1500B**）
 - 接收：**目的 MAC 匹配本口** → 验 FCS/帧长 → 剥帧上交网络层
 - 速率标准：10M/100M/1G/10G/100G 以太网
 

@@ -540,12 +540,14 @@ Destination Address: 140.205.172.3
 以太网帧 = 帧头(14B) + IP数据报(20B+数据) + FCS(4B)
 ```
 
+→ 帧字段详图：[第 6 章 · 以太网帧结构](../06_link_layer_and_lan/study.md#ch6-ethernet-frame)（最小 64B / 最大 1518B，数据区 MTU 1500B）
+
 | 谁看 | 看什么 |
 |------|--------|
 | **链路层**（交换机/网卡） | **MAC**；验 FCS |
 | **网络层**（路由器） | 剥帧后看 **IP 数据报** 里的 **目的 IP**、TTL 等 |
 
-👉 [以太网帧≠IP 数据报](../06_link_layer_and_lan/study.md#ch6-frame-vs-ip) · [TCP⊂IP⊂MAC 嵌套](#ch4-encapsulation) · [逐跳转发](../06_link_layer_and_lan/study.md#ch6-hop-ip-frame)
+👉 [Ethernet II 逐字节](../06_link_layer_and_lan/study.md#ch6-ethernet-frame) · [帧≠IP](../06_link_layer_and_lan/study.md#ch6-frame-vs-ip) · [TCP⊂IP⊂MAC 嵌套](#ch4-encapsulation) · [三层抓包图](#ch4-encapsulation-wireshark)
 
 ### 数据平面关心的 IPv4 首部
 
