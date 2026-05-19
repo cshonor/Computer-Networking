@@ -8,6 +8,8 @@
 
 ## 3.1 运输层服务及其与网络层的关系
 
+> **背诵提纲** → [3.1 小节 study.md](./3.1_transport_service_intro/study.md)（定位 · 复用/分用图 · 端口 · TCP/UDP · [30 字](./3.1_transport_service_intro/study.md#ch3-1-exam)）
+
 ### 一、运输层的战略地位
 
 运输层位于**应用层与网络层之间**，是协议栈中的**关键枢纽/核心层**。
