@@ -51,7 +51,7 @@
 
 ## 1.2 网络边缘：端系统与接入技术
 
-> **背诵提纲** → [1.2 小节 study.md](./1.2_network_edge_and_access/study.md)（接入方式 + 易错对比表 + 配图）
+> **背诵提纲** → [1.2 小节 study.md](./1.2_network_edge_and_access/study.md)（[通俗拆解](./1.2_network_edge_and_access/study.md#ch1-2-intuition) + 接入方式 + 易错表 + 配图）
 
 ### 1.2.1 战略背景分析
 
