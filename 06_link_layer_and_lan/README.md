@@ -11,12 +11,13 @@
 - [link_layer_position_hop_by_hop.png](./assets/link_layer_position_hop_by_hop.png) — 链路层逐跳位置（[§6.1](./study.md#ch6-link-layer-hop)）  
 - [ethernet_frame_structure.png](./assets/ethernet_frame_structure.png) — **以太网帧结构**（[#ch6-ethernet-frame](./study.md#ch6-ethernet-frame)）  
 - [#ch6-hop-ip-frame](./study.md#ch6-hop-ip-frame) — **IP 不变 / 每跳重封帧** 原理 + 示意图  
-- [#ch6-frame-vs-ip](./study.md#ch6-frame-vs-ip) — **以太网帧≠IP 报**、MAC/FCS 校验
+- [#ch6-frame-vs-ip](./study.md#ch6-frame-vs-ip) — **以太网帧≠IP 报**、MAC/FCS 校验  
+- [arp_packet_structure.png](./assets/arp_packet_structure.png) · [arp_request_wireshark_hex.png](./assets/arp_request_wireshark_hex.png) — [#ch6-arp](./study.md#ch6-arp)
 
 ## 小节列表
 
 - [6.1 链路层服务](./6.1_link_layer_service/study.md) — 成帧、MAC、差错（[§6.1](./study.md#ch6-1)）  
 - [6.2 差错检测](./6.2_error_detection_correction/study.md) — 奇偶、校验和、CRC、FEC（[§6.2](./study.md#ch6-2)）  
 - [6.3 MAC 协议](./6.3_mac_protocol/study.md) — CSMA/CD、CSMA/CA（[§6.3](./study.md#ch6-3) · [#ch6-csma](./study.md#ch6-csma)）  
-- [6.4 以太网/ARP/交换机](./6.4_ethernet_arp_switch_vlan/study.md) — VLAN、802.1Q（[§6.4](./study.md#ch6-4)）  
+- [6.4 以太网/ARP/交换机](./6.4_ethernet_arp_switch_vlan/study.md) — ARP、VLAN（[§6.4](./study.md#ch6-4) · [#ch6-arp](./study.md#ch6-arp)）  
 - [6.5 数据中心网络](./6.5_data_center_network/study.md) — 叶脊、东西向流量（[§6.5–6.8](./study.md#ch6-5)）  
