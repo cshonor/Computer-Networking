@@ -493,6 +493,8 @@ Content-Length: 4096
 
 ## 2.4 DNS：因特网的目录服务
 
+> **背诵提纲** → [2.4](./2.4_dns_service/study.md)（四层 · 递归/迭代 · RR · [12 步流程](./2.4_dns_service/study.md#ch2-4-flow) · [易错](./2.4_dns_service/study.md#ch2-4-exam)）
+
 ### 2.4.1 战略背景
 
 DNS 将**主机名映射为 IP 地址**（及其他记录）。单一中心不可扩展，因此是**分布式、层次化**数据库。
@@ -530,6 +532,8 @@ DNS 将**主机名映射为 IP 地址**（及其他记录）。单一中心不�
 
 ## 2.5 P2P 文件分发
 
+> **背诵提纲** → [2.5](./2.5_p2p_file_distribution/study.md)（P2P vs C/S · BitTorrent 七步 · [30 字版](./2.5_p2p_file_distribution/study.md#ch2-5-exam)）
+
 ### 2.5.1 数学优势与自我可扩展性
 
 相对纯 C/S，P2P 可利用**群体内聚合上行**，在规模增大时常表现出更好的可扩展潜力（依赖激励与可达性）。
@@ -554,6 +558,8 @@ DNS 将**主机名映射为 IP 地址**（及其他记录）。单一中心不�
 <a id="ch2-6"></a>
 
 ## 2.6 视频流和内容分发网（CDN）
+
+> **背诵提纲** → [2.6](./2.6_video_streaming/study.md)（DASH/MPD · CDN · TCP/UDP · [播放流程](./2.6_video_streaming/study.md#ch2-6-flow) · [30 字](./2.6_video_streaming/study.md#ch2-6-exam)）
 
 ### 2.6.1 DASH 协议
 
