@@ -107,6 +107,8 @@
 
 ## 2.2 Web 和 HTTP
 
+> **背诵提纲** → [2.2 小节 study.md](./2.2_http_and_web/study.md)（[HTTP/HTTPS TCP 载荷](./2.2_http_and_web/study.md#ch2-http-tls-payload) · [四层嵌套](./2.2_http_and_web/study.md#ch2-http-stack) · [易错](./2.2_http_and_web/study.md#ch2-2-exam)）
+
 ### 2.2.1 战略背景：从文档传输到商业基石
 
 超文本传输协议（**HTTP**）已从早期简单文档交换，演变为支撑商业、社交与云服务的核心载体之一。
@@ -385,6 +387,8 @@ Content-Length: 4096
 <a id="ch2-3"></a>
 
 ## 2.3 因特网中的电子邮件
+
+> **背诵提纲** → [2.3 小节 study.md](./2.3_email_smtp_pop3_imap/study.md)（架构 + SMTP/POP3/IMAP/MIME + [考试速记](./2.3_email_smtp_pop3_imap/study.md#ch2-3-exam)）
 
 ### 2.3.1 战略背景：异步系统与整体链路
 

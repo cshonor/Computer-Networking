@@ -443,7 +443,7 @@ HTTP、SMTP、SSH 等应用层数据，整体叫**报文**。
 | **空行** | `\r\n` | — |
 | **响应体** | 实际资源 | HTML、JSON、图片字节 |
 
-一句话：**HTTP = 行 + 头 + 空行 + 体** 的纯文本（HTTPS 在 TCP 上再套 **TLS** 加密传输）。
+一句话：**HTTP = 行 + 头 + 空行 + 体** 的纯文本。**HTTPS**：HTTP 明文经 **TLS 加密** 后进入 TCP 载荷（**密文**）→ [2.2 专节](../../02_application_layer/2.2_http_and_web/study.md#ch2-http-tls-payload)
 
 ---
 

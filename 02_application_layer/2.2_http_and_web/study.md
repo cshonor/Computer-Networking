@@ -1,6 +1,6 @@
 # 2.2 HTTP 与 Web
 
-> 章级精读：[../study.md#ch2-2](../study.md#ch2-2) · 四层嵌套：[#ch2-http-stack](#ch2-http-stack)
+> 章级精读：[../study.md#ch2-2](../study.md#ch2-2) · 四层嵌套：[#ch2-http-stack](#ch2-http-stack) · **TCP 载荷明文/密文**：[#ch2-http-tls-payload](#ch2-http-tls-payload)
 
 ## 本节核心目标
 
@@ -41,6 +41,95 @@ HTTP 属于**应用层**，放在 **TCP 的数据载荷（Payload）**里，分*
 | 应用 | HTTP 报文 | 在 TCP 载荷里，**明文文本**（HTTPS 再套 TLS） |
 
 → 封装详解：[第 4 章 TCP⊂IP⊂MAC](../../04_network_layer_data_plane/study.md#ch4-encapsulation) · [以太网帧](../../06_link_layer_and_lan/study.md#ch6-ethernet-frame) · [Wireshark 树](../../04_network_layer_data_plane/study.md#ch4-encapsulation-wireshark)
+
+---
+
+<a id="ch2-http-tls-payload"></a>
+
+## HTTP vs HTTPS：TCP 载荷是明文还是密文？
+
+### 1）普通 HTTP：TCP 载荷 = **明文文本**
+
+HTTP **直接**跑在 TCP 上：
+
+```
+┌──────────── TCP 段 ────────────┐
+│ TCP 首部（20～60 B）           │
+├──────────────────────────────┤
+│ TCP 载荷 = 整个 HTTP 报文（明文）│
+│ GET /path HTTP/1.1           │
+│ Host: example.com            │
+│ ...                          │
+└──────────────────────────────┘
+```
+
+抓包 **TCP 数据区** 可直接读出：
+
+```http
+GET /shturl.cc/ HTTP/1.1
+Host: shturl.cc
+User-Agent: ...
+```
+
+**结论：HTTP → TCP 载荷 = 明文（裸奔，中间人可读）**
+
+---
+
+### 2）HTTPS = HTTP + **TLS**（套在 TCP 之上）
+
+**逻辑分层（自下而上）**：
+
+```text
+TCP
+ └── TLS（加密记录层）
+      └── HTTP（应用层明文，仅在两端进程内）
+```
+
+**发送方向数据流**
+
+1. **应用层**：HTTP **明文**（浏览器 / 服务器内部处理）  
+2. **TLS 层**：把 HTTP 明文 **整体加密** → **TLS 密文记录**  
+3. **TCP 层**：把 **TLS 密文** 放进 **TCP 载荷** 发出  
+
+**抓包看到什么**
+
+| 层级 | 抓包可见 |
+|------|----------|
+| TCP 首部 | 源/目的端口、序号等（**明文**） |
+| **TCP 载荷** | **TLS 密文**（乱码，**不可直接读 HTTP**） |
+| 中间路由器/Wi‑Fi/运营商 | 只见 TCP 头 + 密文，**看不到 URL、Cookie、正文** |
+
+**结论：HTTPS → TCP 载荷 = TLS 密文（不是 HTTP 明文）**
+
+---
+
+### 3）抓包对比（一眼分清）
+
+```text
+【HTTP  端口 80】  Ethernet → IP → TCP → 载荷里直接是 GET / HTTP/1.1 ...
+
+【HTTPS 端口 443】 Ethernet → IP → TCP → 载荷里是 TLS Application Data（密文）
+                                    └── Wireshark 配密钥才可解密出 HTTP
+```
+
+> **HTTP/3**：HTTP 跑在 **QUIC（UDP）** 上，仍经 TLS 加密；载荷在 **UDP 包**里而非传统「TCP 载荷」，但**网络上仍是密文**。
+
+---
+
+### 4）考试 / 面试一句话
+
+- **HTTP**：TCP 载荷里是 **明文 HTTP 文本**  
+- **HTTPS**：HTTP 先经 **TLS 加密**，TCP 载荷里是 **密文**  
+
+### 5）易混澄清
+
+| ❌ 错误 | ✅ 正确 |
+|--------|--------|
+| HTTPS 的 TCP 载荷里还有明文 HTTP | 网上（TCP 载荷）**全程密文**；HTTP 明文只在**两端应用层** |
+| TLS 在 IP 层 | TLS 在 **TCP 之上、HTTP 之下**（常称「介于应用与运输之间」） |
+| 加密后 TCP 头也看不见 | **TCP/IP 首部仍明文**；加密的是 **载荷（TLS 记录）** |
+
+→ HTTP 报文格式：[§一、二](#ch2-http-stack) · 首部结构图：[第 1 章 HTTP 响应](../01_network_basics/1.5_protocol_layer_architecture/study.md#ch1-5-app-messages)
 
 ---
 
@@ -114,10 +203,22 @@ Accept: */*\r\n
 \r\n
 ```
 
-展开顺序：**Ethernet II → IPv4 → TCP → [HTTP 明文]**（HTTPS 先看到 TLS，解密后才见 HTTP）
+展开顺序：**Ethernet II → IPv4 → TCP → [HTTP 明文]**（HTTPS：**TCP 载荷 = TLS 密文**，见 [#ch2-http-tls-payload](#ch2-http-tls-payload)）
+
+---
+
+<a id="ch2-2-exam"></a>
+
+## 易错点速记
+
+| 易混 | 纠正 |
+|------|------|
+| HTTPS TCP 载荷 | **TLS 密文**，不是明文 HTTP |
+| HTTP 在哪层明文？ | **仅两端应用进程内**；链路上 HTTP 裸奔、HTTPS 加密 |
+| 端口 | HTTP **80**；HTTPS **443** |
 
 ---
 
 ## 个人总结
 
-HTTP 是互联网使用最广泛的应用层协议；**装在 TCP 里、再被 IP 和以太网帧一层层包住**。无状态靠 Cookie 补状态；后端开发必会读请求行/状态码/首部。
+HTTP 在 **TCP 载荷里明文**；**HTTPS = TLS 加密后再进 TCP 载荷（密文）**。装在 IP/以太网帧里逐层封装。无状态靠 Cookie；必会请求行/状态码/首部。

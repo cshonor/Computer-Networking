@@ -2,10 +2,12 @@
 
 ## 知识点速记
 
-- **异步邮件**：UA ↔ 邮件服务器 ↔（SMTP 转发）↔ 对端；用户读信多为 **Pull**（POP3/IMAP/HTTP）。
-- **SMTP**：命令驱动（`MAIL FROM`、`RCPT TO`、`DATA`）；基于 **TCP**。
-- **MIME**：非 ASCII 与附件；`Content-Type`、`Content-Transfer-Encoding`。
-- **POP3 / IMAP / HTTP**：简单下载 vs 服务器状态 vs Web 邮件主流。
+- **架构图**：[MUA/MTA/MDA + SMTP/POP3 流程](../assets/email_system_smtp_pop3.png)
+- **SMTP**：25/587/465，**推**，HELO→MAIL→RCPT→DATA→`.`→QUIT
+- **POP3**：110/995，**拉**，常下载删服务器 → [对比图](../assets/pop3_how_it_works.png)
+- **IMAP**：143/993，信留服务器、多设备同步 → [图](../assets/imap_how_it_works.png)
+- **MIME**：扩展 SMTP，Base64/UTF-8，不替代 SMTP
+- **背诵**：[study.md §七](./study.md#ch2-3-exam)
 
 ## 与后端开发的联系
 

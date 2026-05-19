@@ -3,7 +3,7 @@
 ## 知识点速记
 
 - **HTTP 演进**：非持续连接 RTT 开销大；**HTTP/1.1 持续连接**；流水线受 **HOL** 限制。
-- **报文**：请求行/首部 + 响应状态行/首部；易抓包调试。
+- **报文**：请求行/首部 + 响应状态行/首部；[HTTP 明文 vs HTTPS 密文](./study.md#ch2-http-tls-payload)（TCP 载荷）
 - **Cookie**：无状态 HTTP 上叠会话；`Set-Cookie` / `Cookie` + 存储。
 - **缓存**：代理 + **条件 GET**（304）；`ETag`、`Cache-Control`。
 - **HTTP/2**：二进制分帧、多路复用；**HTTP/3 + QUIC**：UDP 之上，缓解 TCP 侧 HOL 等问题。
