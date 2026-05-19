@@ -12,7 +12,7 @@
 - [ethernet_frame_structure.png](./assets/ethernet_frame_structure.png) — **以太网帧结构**（[#ch6-ethernet-frame](./study.md#ch6-ethernet-frame)）  
 - [#ch6-hop-ip-frame](./study.md#ch6-hop-ip-frame) — **IP 不变 / 每跳重封帧** 原理 + 示意图  
 - [#ch6-frame-vs-ip](./study.md#ch6-frame-vs-ip) — **以太网帧≠IP 报**、MAC/FCS 校验  
-- [arp_packet_structure.png](./assets/arp_packet_structure.png) · [arp_request_wireshark_hex.png](./assets/arp_request_wireshark_hex.png) — [#ch6-arp](./study.md#ch6-arp)
+- [arp_packet_structure.png](./assets/arp_packet_structure.png) · [arp_request_wireshark_hex.png](./assets/arp_request_wireshark_hex.png) — [#ch6-arp](./study.md#ch6-arp) · [#格式/抓包](./study.md#ch6-arp-format)
 
 ## 小节列表
 
