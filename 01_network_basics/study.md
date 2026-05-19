@@ -155,7 +155,7 @@
 
 ## 1.5 协议层次及其服务模型
 
-> **背诵提纲** → [1.5 小节 study.md](./1.5_protocol_layer_architecture/study.md)（五层 + 封装解封装 + [易错表](./1.5_protocol_layer_architecture/study.md#ch1-5-exam)）· 实图 [第 4 章封装](../04_network_layer_data_plane/study.md#ch4-encapsulation)
+> **背诵提纲** → [1.5](./1.5_protocol_layer_architecture/study.md)（[PDU](./1.5_protocol_layer_architecture/study.md#ch1-5-pdu) · [TCP/UDP](./1.5_protocol_layer_architecture/study.md#ch1-5-tcp-udp) · [IP/帧](./1.5_protocol_layer_architecture/study.md#ch1-5-ip-frame) · [应用层报文](./1.5_protocol_layer_architecture/study.md#ch1-5-app-messages)）· [第 4 章总封装图](../04_network_layer_data_plane/study.md#ch4-encapsulation-diagram)
 
 ### 1.5.1 因特网 5 层模型
 
