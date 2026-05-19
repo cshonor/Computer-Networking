@@ -8,7 +8,9 @@
 
 ## 图
 
-- [link_layer_position_hop_by_hop.png](./assets/link_layer_position_hop_by_hop.png) — 链路层逐跳位置（[§6.1](./study.md#ch6-link-layer-hop)）
+- [link_layer_position_hop_by_hop.png](./assets/link_layer_position_hop_by_hop.png) — 链路层逐跳位置（[§6.1](./study.md#ch6-link-layer-hop)）  
+- [#ch6-hop-ip-frame](./study.md#ch6-hop-ip-frame) — **IP 不变 / 每跳重封帧** 原理 + 示意图  
+- [#ch6-frame-vs-ip](./study.md#ch6-frame-vs-ip) — **以太网帧≠IP 报**、MAC/FCS 校验
 
 ## 小节列表
 

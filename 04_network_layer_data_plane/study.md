@@ -153,7 +153,8 @@
 | **IP 数据报** | IP 包 | 源/目的 **IP**、协议号（如 6=TCP） | 不解析 TCP 序号、ACK |
 | **TCP 报文段** | TCP 段 | 端口、序号、窗口… | 只在**终端**解完外层后读取 |
 
-👉 与 [逐跳转发](#ch4-packet-walkthrough) 的关系：**每一跳只换最外层 MAC**；**IP 与内层 TCP 整块原样穿过路由器**。
+👉 与 [逐跳转发](#ch4-packet-walkthrough) 的关系：**每一跳只换最外层 MAC**；**IP 与内层 TCP 整块原样穿过路由器**。  
+👉 链路层详解：[第 6 章 · 以太网帧≠IP 数据报](../06_link_layer_and_lan/study.md#ch6-frame-vs-ip)
 
 ---
 
@@ -333,6 +334,8 @@ Frame（物理/捕获帧）
   收帧(对MAC) → 剥MAC → 查FIB(对IP) → ARP下一跳MAC → 封新MAC发出
   IP 包头从头到尾不变；MAC 每过一台路由器换一对
 ```
+
+→ 链路层视角展开：[第 6 章 · 逐跳 IP/帧/MAC](../06_link_layer_and_lan/study.md#ch6-hop-ip-frame)
 
 ---
 
