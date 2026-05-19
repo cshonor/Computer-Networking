@@ -84,7 +84,7 @@
 
 ## 1.3 网络核心：交换原理与拓扑演进
 
-> **背诵提纲** → [1.3 小节 study.md](./1.3_network_core_switching/study.md)（电路/分组、数据报/虚电路、路由 vs 转发 + 配图 + [易错表](./1.3_network_core_switching/study.md#ch1-3-exam))
+> **背诵提纲** → [1.3 小节 study.md](./1.3_network_core_switching/study.md)（[FDM/TDM/分组通俗](./1.3_network_core_switching/study.md#ch1-3-switching-intuition) · 电路/分组 · 路由 vs 转发 + [易错表](./1.3_network_core_switching/study.md#ch1-3-exam)）
 
 ### 1.3.1 分组交换（Packet Switching）
 
