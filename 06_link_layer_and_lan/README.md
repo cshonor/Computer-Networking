@@ -17,6 +17,6 @@
 
 - [6.1 链路层服务](./6.1_link_layer_service/study.md) — 成帧、MAC、差错（[§6.1](./study.md#ch6-1)）  
 - [6.2 差错检测](./6.2_error_detection_correction/study.md) — 奇偶、校验和、CRC、FEC（[§6.2](./study.md#ch6-2)）  
-- [6.3 MAC 协议](./6.3_mac_protocol/study.md) — CSMA/CD、CSMA/CA（[§6.3](./study.md#ch6-3)）  
+- [6.3 MAC 协议](./6.3_mac_protocol/study.md) — CSMA/CD、CSMA/CA（[§6.3](./study.md#ch6-3) · [#ch6-csma](./study.md#ch6-csma)）  
 - [6.4 以太网/ARP/交换机](./6.4_ethernet_arp_switch_vlan/study.md) — VLAN、802.1Q（[§6.4](./study.md#ch6-4)）  
 - [6.5 数据中心网络](./6.5_data_center_network/study.md) — 叶脊、东西向流量（[§6.5–6.8](./study.md#ch6-5)）  

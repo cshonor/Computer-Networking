@@ -17,6 +17,8 @@
 
 ## 三、MAC 层核心：CSMA/CA 工作流程
 
+> 与有线 **CSMA/CD** 对比 → [§6.3 · CSMA 专节](../../06_link_layer_and_lan/study.md#ch6-csma)
+
 1. 发送前监听信道，等待 DIFS 时间，信道空闲则发送
 2. 发送 RTS（请求发送）帧，预约信道时间
 3. 接收方回复 CTS（允许发送）帧，确认预约
