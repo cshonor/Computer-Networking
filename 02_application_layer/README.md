@@ -16,6 +16,7 @@
 | [smtp_how_it_works.png](./assets/smtp_how_it_works.png) | 2.3 SMTP 原理 |
 | [imap_how_it_works.png](./assets/imap_how_it_works.png) | 2.3 IMAP 多设备 |
 | [pop3_how_it_works.png](./assets/pop3_how_it_works.png) | 2.3 POP3 下载删除 |
+| [mpeg_dash_architecture.png](./assets/mpeg_dash_architecture.png) | 2.6 MPEG-DASH 转码→CDN→播放器 |
 
 ## 小节列表
 

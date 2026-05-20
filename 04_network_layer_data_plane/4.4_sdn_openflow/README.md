@@ -2,9 +2,10 @@
 
 ## 知识点速记
 
-- **泛化转发**：**Match + Action**；不限于目的 IP。  
-- **流表项**：匹配字段、计数器、动作（转发/丢弃/**改写字段**）。  
-- **能力**：同设备上可实现转发、ACL、LB/NAT 等策略（依表项与 pipeline）。
+- **SDN 精髓**：[控数分离](./study.md#ch4-4-sdn-core) · [三层架构](./study.md#ch4-4-three-layer)  
+- **OpenFlow**：[南向 + 流表](./study.md#ch4-4-openflow) · [未知流 4 步](./study.md#ch4-4-flow)  
+- **背诵**：[口诀 / 30·50 字 / 易错](./study.md#ch4-4-exam) · [传统 vs SDN](./study.md#ch4-4-vs-traditional)  
+- **泛化转发**：**Match + Action**；不限于目的 IP。
 
 ## 与后端开发的联系
 

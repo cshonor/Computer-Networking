@@ -1,6 +1,6 @@
 # 2.6 视频流媒体
 
-> 章级精读：[../study.md#ch2-6](../study.md#ch2-6) · **DASH 精编**：[#ch2-6-dash](#ch2-6-dash) · [播放流程](#ch2-6-flow) · DNS/CDN：[2.4](../2.4_dns_service/study.md) · HTTP：[2.2](../2.2_http_and_web/study.md#ch2-http-tls-payload)
+> 章级精读：[../study.md#ch2-6](../study.md#ch2-6) · **DASH 精编**：[#ch2-6-dash](#ch2-6-dash) · [架构读图](#ch2-6-dash-diagram) · [播放流程](#ch2-6-flow) · DNS/CDN：[2.4](../2.4_dns_service/study.md) · HTTP：[2.2](../2.2_http_and_web/study.md#ch2-http-tls-payload)
 
 ## 本节核心目标
 
@@ -36,6 +36,24 @@
 | **核心思想** | **多码率预编码 + 等长切片 + MPD 清单 + 客户端自适应** |
 
 一句话：**网快看高清，网慢看标清，全程尽量不卡。**
+
+![MPEG-DASH 端到端：转码→多码率→打包→源站→CDN→播放器](../assets/mpeg_dash_architecture.png)
+
+<a id="ch2-6-dash-diagram"></a>
+
+### 读图（端到端架构）
+
+| 阶段 | 图中 | 对应 DASH 概念 |
+|------|------|----------------|
+| **Video Assets** | 原始素材库 | 源视频文件 |
+| **Transcoder** | 转码服务器 | 生成**多码率**版本 |
+| **Bitrate Variants** | 向下三路 | **480p / 720p / 1080p** 等 |
+| **Package and Encrypt** | 打包加密 | **切片（chunks）** + 生成 **MPD**（可 DRM） |
+| **Origin Server** | 绿色存储 | **MPD + 各码率 chunks** 存**源站** |
+| **CDN** | 云 | 边缘**缓存** MPD 与片段，就近分发 |
+| **DASH Player** | 显示器 | **Request/Serve**：拉 **MPD** + 按网络**自适应选片段** |
+
+**播放侧**：播放器 ↔ CDN 为 **HTTP 请求/响应**（[2.2 HTTP](../2.2_http_and_web/study.md)），非专用流媒体协议。
 
 ### 2）四大核心要点（逐条背）
 
@@ -77,13 +95,21 @@
 - 网差、缓冲将空 → **降码率**防卡
 - 切换力求**平滑**，不中断播放
 
-### 3）工作流程（5 步，必考顺序）
+### 3）工作流程
 
-1. 请求 **MPD**
-2. 解析 MPD → 得各码率与片段 **URL**
-3. 探测带宽/缓冲 → **选初始码率**
-4. 下载并播放**首个片段**
-5. 持续监测 → **动态换码率**，循环拉后续片
+**源站侧（上图左→下→中）**
+
+1. **转码** → 多 **Bitrate Variants**  
+2. **打包（+ 可选加密）** → 切片 + **MPD**  
+3. 存入 **Origin Server** → 同步到 **CDN**
+
+**客户端侧（5 步，必考顺序）**
+
+1. 向 CDN **请求 MPD**  
+2. 解析 MPD → 各码率与片段 **URL**  
+3. 测带宽/缓冲 → **选初始码率**  
+4. **HTTP 拉取**并播放首个 **segment**  
+5. 持续监测 → **动态换码率**，循环请求后续片  
 
 ### 4）关键特点（对比传统单文件流）
 

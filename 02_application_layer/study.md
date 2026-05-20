@@ -559,7 +559,7 @@ DNS 将**主机名映射为 IP 地址**（及其他记录）。单一中心不�
 
 ## 2.6 视频流和内容分发网（CDN）
 
-> **背诵提纲** → [2.6](./2.6_video_streaming/study.md)（[DASH 精编](./2.6_video_streaming/study.md#ch2-6-dash) · CDN · TCP/UDP · [流程](./2.6_video_streaming/study.md#ch2-6-flow) · [30 字](./2.6_video_streaming/study.md#ch2-6-exam)）
+> **背诵提纲** → [2.6](./2.6_video_streaming/study.md)（[DASH 架构图](./2.6_video_streaming/study.md#ch2-6-dash-diagram) · [精编](./2.6_video_streaming/study.md#ch2-6-dash) · CDN · [30 字](./2.6_video_streaming/study.md#ch2-6-exam)）
 
 ### 2.6.1 DASH 协议
 

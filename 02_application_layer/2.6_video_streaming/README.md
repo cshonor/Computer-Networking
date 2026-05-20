@@ -3,7 +3,7 @@
 ## 知识点速记
 
 - **流媒体**：分片、缓冲、边下边播
-- **DASH**：[精编+vs HLS](./study.md#ch2-6-dash)（MPD/切片/ABR/6行口诀）
+- **DASH**：[架构图读图](./study.md#ch2-6-dash-diagram) · [精编+vs HLS](./study.md#ch2-6-dash)
 - **CDN**：边缘缓存、DNS 调度、降时延
 - **TCP/UDP**：点播稳 vs 直播快
 - **背诵**：[流程](./study.md#ch2-6-flow) · [30 字](./study.md#ch2-6-exam)

@@ -602,7 +602,8 @@ Destination Address: 140.205.172.3
 流表项：**匹配字段** + **计数器** + **动作**（转发/丢弃/改字段）。
 
 > 流表**谁下发**属控制/SDN → [5.4 SDN 控制器](../05_network_layer_control_plane/5.4_sdn_controller_plane/study.md)  
-> 交换机**按表转发** = 本章数据平面。
+> 交换机**按表转发** = 本章数据平面。  
+> **背诵提纲** → [4.4 精读](./4.4_sdn_openflow/study.md)（[OpenFlow](./4.4_sdn_openflow/study.md#ch4-4-openflow) · [未知流](./4.4_sdn_openflow/study.md#ch4-4-flow) · [30 字](./4.4_sdn_openflow/study.md#ch4-4-exam)）
 
 ---
 
@@ -643,6 +644,6 @@ Destination Address: 140.205.172.3
 | [4.1](./4.1_network_layer_overview/) | 定位、FIB、转发六步 |
 | [4.2](./4.2_router_internal_working/) | 四大件、排队、调度 |
 | [4.3](./4.3_ipv4_ipv6_nat/) | IP 首部、LPM、NAT 执行 |
-| [4.4](./4.4_sdn_openflow/) | Match+Action、流表 |
+| [4.4](./4.4_sdn_openflow/) | SDN/OpenFlow、[精编](./4.4_sdn_openflow/study.md#ch4-4-exam)、流表 |
 
 *控制平面、RIB、OSPF/BGP、SDN 北向 API 见 `05_network_layer_control_plane/`。*
