@@ -843,6 +843,8 @@ UDP 为 **QUIC** 提供「画布」：在用户态实现可靠性、拥塞控制
 
 ## 3.5 面向连接的运输：TCP
 
+> **背诵提纲** → [3.5 小节](./3.5_tcp_connection_and_transmission/study.md)（三次握手/四次挥手 · 序号 ACK · [50 字](./3.5_tcp_connection_and_transmission/study.md#ch3-5-exam) · [握手/挥手读图](./3.5_tcp_connection_and_transmission/study.md#ch3-5-diagram-handshake)）
+
 ### 报文结构与字节流语义
 
 - **序号与确认号**：对**发送的字节流**编号；确认号表示**期望收到的下一字节序号**（累积确认语义）。  
