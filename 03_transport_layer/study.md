@@ -464,13 +464,14 @@ TCP 首部**最小 20 字节，最大 60 字节（含选项）**；UDP 仅 **8 �
 
 ## 3.2 多路复用与多路分解（Multiplexing & Demultiplexing）｜完整版
 
+> **背诵提纲** → [3.2 小节](./3.2_multiplexing_demultiplexing/study.md)（复用/分用 · UDP vs TCP 分用 · [30 字](./3.2_multiplexing_demultiplexing/study.md#ch3-2-exam)）  
 > 对应教材 **§3.2**。本质：**IP 定主机，端口定进程**；TCP 还需 **四元组** 定连接。
 
 <a id="ch3-2-def"></a>
 
 ### 一、核心定义（必背）
 
-![多路复用与多路解复用总览](./assets/mux_demux_overview.png)
+![多路复用/解复用总览](./assets/transport_multiplexing_demultiplexing.png) · [读图](./3.2_multiplexing_demultiplexing/study.md#ch3-2-diagram)
 
 | 概念 | 方向 | 做什么 | 一句话 |
 |------|------|--------|--------|

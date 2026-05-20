@@ -10,12 +10,12 @@
 
 | 图 | 说明 |
 |----|------|
-| [transport_multiplexing_demultiplexing.png](./assets/transport_multiplexing_demultiplexing.png) | 3.1 复用/分用 |
+| [transport_multiplexing_demultiplexing.png](./assets/transport_multiplexing_demultiplexing.png) | 3.1/3.2 多路复用·解复用（三主机 P1～P4） |
 
 ## 小节列表
 
 - [3.1 运输层概述](./3.1_transport_service_intro/study.md) — 进程到进程、复用分用图、端口、TCP/UDP、30 字背诵  
-- [3.2 复用与分用](./3.2_multiplexing_demultiplexing/study.md) — 端口号、UDP/TCP 分用  
+- [3.2 复用与分用](./3.2_multiplexing_demultiplexing/study.md) — 多进一/一进多、UDP目的端口/TCP四元组、30 字背诵  
 - [3.3 UDP](./3.3_udp_protocol/study.md) — 8 字节首部、场景  
 - [3.4 可靠传输原理](./3.4_reliable_data_transfer_principle/study.md) — ACK、停等、GBN、SR  
 - [3.5 TCP 连接与传输](./3.5_tcp_connection_and_transmission/study.md) — 握手挥手、序号重传  

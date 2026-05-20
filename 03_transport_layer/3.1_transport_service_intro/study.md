@@ -24,14 +24,16 @@
 
 ## 二、复用与分用（必考）
 
-![发送方复用、接收方分用：TCP/UDP → IP 数据报](../assets/transport_multiplexing_demultiplexing.png)
+![多路复用/解复用（教材三主机图）](../assets/transport_multiplexing_demultiplexing.png)
 
 ### 读图
 
-| 侧 | 过程 | 图中标签 |
+| 侧 | 过程 | 图中对应 |
 |----|------|----------|
-| **发送** | 多应用 → **端口** → TCP/UDP **复用** → **IP 复用** → 一个 IP 数据报 | 发送方左侧 |
-| **接收** | IP 数据报 → **IP 分用** → TCP/UDP **分用** → **端口** → 对应应用 | 接收方右侧 |
+| **复用（发）** | P1、P2 多 socket → 运输层加首部 → **多进一** 下交网络层 | 中间主机**向上汇聚**的红框说明 |
+| **分用（收）** | 网络层上来 → 运输层按 **IP+端口** → **一进多** 到各 socket → P1/P2 | 中间主机**向下分叉**的红框说明 |
+
+详读 P1～P4、套接字图例 → [3.2 读图专节](../3.2_multiplexing_demultiplexing/study.md#ch3-2-diagram)
 
 ### 概念
 
