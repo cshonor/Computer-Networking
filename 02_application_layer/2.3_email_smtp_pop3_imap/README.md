@@ -5,7 +5,7 @@
 - **架构图**：[UA 实体 + 三步流程 + 中间不落地](../assets/email_system_architecture.png)
 - **SMTP**：**CLI 逐条交互**（≠ HTTP 整包）；[vs HTTP](./study.md#ch2-3-smtp-cli) · [报文格式](./study.md#ch2-3-smtp-message)
 - **POP3**：110/995，**拉**，常下载删服务器 → [对比图](../assets/pop3_how_it_works.png)
-- **IMAP**：143/993，信留服务器、多设备同步 → [图](../assets/imap_how_it_works.png)
+- **IMAP**：143/993，[CLI 报文](./study.md#ch2-3-imap-message)（标签+命令、FETCH=SMTP 邮件格式）→ [图](../assets/imap_how_it_works.png)
 - **MIME**：扩展 SMTP，Base64/UTF-8，不替代 SMTP
 - **背诵**：[study.md §七](./study.md#ch2-3-exam)
 

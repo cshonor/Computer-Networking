@@ -388,7 +388,7 @@ Content-Length: 4096
 
 ## 2.3 因特网中的电子邮件
 
-> **背诵提纲** → [2.3 小节](./2.3_email_smtp_pop3_imap/study.md)（[SMTP CLI 逐条 vs HTTP 整包](./2.3_email_smtp_pop3_imap/study.md#ch2-3-smtp-cli) · [报文格式](./2.3_email_smtp_pop3_imap/study.md#ch2-3-smtp-message) · [考试速记](./2.3_email_smtp_pop3_imap/study.md#ch2-3-exam)）
+> **背诵提纲** → [2.3 小节](./2.3_email_smtp_pop3_imap/study.md)（[SMTP CLI/报文](./2.3_email_smtp_pop3_imap/study.md#ch2-3-smtp-cli) · [IMAP 报文](./2.3_email_smtp_pop3_imap/study.md#ch2-3-imap-message) · [考试速记](./2.3_email_smtp_pop3_imap/study.md#ch2-3-exam)）
 
 ### 2.3.1 战略背景：异步系统与整体链路
 

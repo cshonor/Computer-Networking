@@ -77,6 +77,8 @@
 
 一句话：**IP 找电脑，端口找程序。**
 
+→ 应用层「HTTP 80、SMTP 25」等默认端口 = 填入 **TCP 首部** 的 16 位端口字段：[2.1 附节](../../02_application_layer/2.1_network_application_principle/study.md#ch2-1-ports-tcp)
+
 | 端口范围（了解） | 用途 |
 |------------------|------|
 | 0～1023 | 周知端口（HTTP 80 等） |
