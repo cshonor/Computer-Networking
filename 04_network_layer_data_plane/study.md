@@ -56,8 +56,9 @@
 | 方式 | 要点 |
 |------|------|
 | 内存 | 慢，难线速 |
-| 总线 | 共享，易堵 |
-| **Crossbar** | 并行，高端主流 → [图](#ch4-2-crossbar) |
+| 内存 | CPU 拷贝，慢 |
+| 总线 | 共享，易堵 → [图](#ch4-2-crossbar) |
+| **Crossbar** | 并行，高端主流 → [三种交换](./4.2_router_internal_working/study.md#ch4-2-switching) |
 
 #### 输出端口
 
@@ -443,15 +444,27 @@ Frame（物理/捕获帧）
 
 ### 2）交换结构
 
+> **三种结构精读** → [4.2](./4.2_router_internal_working/study.md#ch4-2-switching)（[内存](./4.2_router_internal_working/study.md#ch4-2-switch-memory) · [总线](./4.2_router_internal_working/study.md#ch4-2-switch-bus) · [Crossbar](./4.2_router_internal_working/study.md#ch4-2-switch-crossbar) · [对比表](./4.2_router_internal_working/study.md#ch4-2-switch-compare) · [口诀](./4.2_router_internal_working/study.md#ch4-2-switch-exam)）
+
+| 结构 | 瓶颈 | 场景 |
+|------|------|------|
+| 内存 | 内存带宽、CPU | 早期低速 |
+| 总线 | 共享总线、串行 | 企业中端 |
+| **Crossbar** | 调度；**并行** | 核心/骨干 |
+
+![三种交换结构：内存 / 总线 / Crossbar](./assets/switching_memory_bus_crossbar_overview.png)
+
 <a id="ch4-2-crossbar"></a>
 
-![Crossbar：交叉点选路，可多对并行](./assets/crossbar_switching_fabric.png)
+![Crossbar 互连网络：I₁ 经交叉点→O₂](./assets/switching_via_crossbar.png)
 
-**读图**：入端口缓冲 → **crosspoint** 接通 → 出端口（例 **A→Y**）。
+**读图**：入端口缓冲 → **crosspoint（交叉点）** 闭合 → 出端口；**多对可同时**（与总线「同一时刻仅一对」对比）。
 
 ### 3）输出端口
 
 缓存排队；溢出 → **丢包**（尾部丢包）。
+
+> **精读** → [4.2 缓冲与队列](./4.2_router_internal_working/study.md#ch4-2-queue)（[Tail Drop](./4.2_router_internal_working/study.md#ch4-2-tail-drop) · [RED](./4.2_router_internal_working/study.md#ch4-2-red-diagram) · [WRED](./4.2_router_internal_working/study.md#ch4-2-wred-diagram) · [WFQ](./4.2_router_internal_working/study.md#ch4-2-wfq-diagram) · [口诀](./4.2_router_internal_working/study.md#ch4-2-queue-exam)）
 
 ### 排队与 HOL
 
@@ -643,7 +656,7 @@ Destination Address: 140.205.172.3
 | 目录 | 数据平面主题 |
 |------|----------------|
 | [4.1](./4.1_network_layer_overview/) | 定位、FIB、转发六步 |
-| [4.2](./4.2_router_internal_working/) | 四大件、排队、调度 |
+| [4.2](./4.2_router_internal_working/) | 四大件、三种交换、[队列/AQM](./4.2_router_internal_working/study.md#ch4-2-queue-exam) |
 | [4.3](./4.3_ipv4_ipv6_nat/) | IP/LPM、[NAT 精编](./4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-exam) |
 | [4.4](./4.4_sdn_openflow/) | SDN/OpenFlow、[精编](./4.4_sdn_openflow/study.md#ch4-4-exam)、流表 |
 
