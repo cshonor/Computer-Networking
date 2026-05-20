@@ -1,6 +1,6 @@
 # 2.4 DNS 域名解析服务
 
-> 章级精读：[../study.md#ch2-4](../study.md#ch2-4)
+> 章级精读：[../study.md#ch2-4](../study.md#ch2-4) · **RR 速记表**：[#ch2-4-rr](#ch2-4-rr) · [12 步解析](#ch2-4-flow)
 
 ## 本节核心目标
 
@@ -74,18 +74,93 @@ DNS 是**树状分布式数据库**，从上到下：
 
 ---
 
-## 五、资源记录 RR（考试常考）
+<a id="ch2-4-rr"></a>
 
-每条记录：**(Name, Value, Type, TTL)**（教材格式）
+## 五、资源记录 RR（考试常考 · 精编完整版）
 
-| 类型 | 作用 | 例子 |
-|------|------|------|
-| **A** | 域名 → **IPv4** | `www.example.com` → `93.184.216.34` |
-| **AAAA** | 域名 → **IPv6** | 同上，IPv6 地址 |
-| **CNAME** | 别名 → **另一域名** | `www` → `cdn.example.com` |
-| **MX** | 邮件服务器（**优先级**数字小优先） | 发信找 MX，再查其 A |
-| **NS** | 该域由哪台 **权威 DNS** 管 | 委派子域 |
-| **PTR** | **反向**：IP → 域名 | 较少考 |
+DNS 数据库的每一条条目都叫 **资源记录 RR（Resource Record）**。
+
+### 1）标准格式（必背）
+
+**(Name, Value, Type, TTL, Class)**
+
+| 字段 | 含义 |
+|------|------|
+| **Name** | 域名（主机名） |
+| **Value** | 对应值（IP / 别名域名 / 邮件服务器域名等） |
+| **Type** | 记录类型（A / AAAA / CNAME / MX / NS / PTR / SOA…） |
+| **TTL** | 生存时间（秒）；控制**缓存多久** |
+| **Class** | 地址类，一般为 **IN（Internet）** |
+
+考试简写常记：**Name, Value, Type, TTL**
+
+区文件示例：`www.example.com. IN A 192.0.2.1`（`IN` = Class）
+
+### 2）常考类型总表（直接背）
+
+| 类型 | 全称 | 作用 | 典型例子 | 考试重点 |
+|------|------|------|----------|----------|
+| **A** | Address | 域名 → **IPv4** | www.baidu.com → 180.101.49.11 | 最基础、必考 |
+| **AAAA** | IPv6 Address | 域名 → **IPv6** | www → 2001:db8::1 | 与 A 区别 |
+| **CNAME** | Canonical Name | **别名 → 规范域名** | www → cdn.example.com | **不能**与 A 等同名共存 |
+| **MX** | Mail Exchange | 邮件服务器；**数字小优先** | example.com MX **10** mail.example.com | Value 必须**域名** |
+| **NS** | Name Server | 本域**权威 DNS** | example.com NS dns1.example.com | 子域委派 |
+| **PTR** | Pointer | **反向：IP → 域名** | 1.1.168.192.in-addr.arpa → host | 反解、邮件反垃圾 |
+| **SOA** | Start of Authority | 区域授权起始（主 DNS、序列号、刷新时间） | zone 第一条 | 结构、zone 头 |
+
+### 3）逐条精解（带易错点）
+
+#### ① A 记录（IPv4）
+
+- `www.example.com. IN A 192.0.2.1`
+- **易错**：同一域名可有多条 **A**（**负载均衡**）
+
+#### ② AAAA 记录（IPv6）
+
+- `www.example.com. IN AAAA 2001:db8::1`
+
+#### ③ CNAME 记录（别名）
+
+- `www.example.com. IN CNAME cdn.example.com.`
+- **易错**：CNAME 所在名**不能同时**有 **A、MX、NS** 等；CNAME **不能指向 IP**
+
+#### ④ MX 记录（邮件）
+
+- `example.com. IN MX 10 mail.example.com.`
+- **易错**：Value **必须是域名**；多 MX：10 主、20 备… → 配合 [2.3 SMTP](../2.3_email_smtp_pop3_imap/study.md)
+
+#### ⑤ NS 记录（权威委派）
+
+- `example.com. IN NS dns1.example.com.`
+
+#### ⑥ PTR 记录（反向）
+
+- IPv4：`1.2.0.192.in-addr.arpa. IN PTR www.example.com.`（IP 字节**反写** + `in-addr.arpa`）
+
+#### ⑦ SOA 记录（区域头）
+
+- 标识**主 DNS、管理员邮箱、序列号、刷新/重试/过期**等（zone 管理）
+
+### 4）考试超简口诀（5 行）
+
+1. **A 指 IPv4，AAAA 指 IPv6**  
+2. **CNAME 是别名，指向域名不指 IP**  
+3. **MX 管邮件，数字小的先干活**  
+4. **NS 指权威，负责本域解析权**  
+5. **PTR 反向查，IP 反解成域名**  
+
+### 5）默写速记表（一页）
+
+| 类型 | 记什么 |
+|------|--------|
+| **A** | 名 → **IPv4** |
+| **AAAA** | 名 → **IPv6** |
+| **CNAME** | 别名 → **域名**（无 A/MX/NS 同存） |
+| **MX** | 邮件服；**小数字优先**；值=域名 |
+| **NS** | 谁管这个域（权威） |
+| **PTR** | **IP → 名** |
+| **SOA** | zone 授权头 |
+| **TTL** | 缓存秒数（所有 RR 都有） |
 
 ---
 
@@ -134,7 +209,11 @@ DNS 是**树状分布式数据库**，从上到下：
 | **架构** | 根 → TLD → 权威 → **本地递归** |
 | **查询** | **客户端↔本地：递归**；**本地↔上级：迭代** |
 | **缓存** | **TTL**；浏览器/OS/本地 DNS |
-| **RR** | **A / AAAA / CNAME / MX / NS** |
+| **RR** | 见 [#ch2-4-rr](#ch2-4-rr) 五句口诀 |
+
+### RR 五句口诀（默写）
+
+**A 四 AAAA 六；CNAME 别名指域名；MX 邮件小优先；NS 权威管本域；PTR 反向 IP 找名。**
 
 ### 易错
 
@@ -142,7 +221,10 @@ DNS 是**树状分布式数据库**，从上到下：
 |------|------|
 | 根服务器存所有 IP？ | **否**；只指向 **TLD** |
 | 全是递归？ | **否**；向上游是 **迭代** |
-| CNAME 直接给 IP？ | 指向**另一域名**，常再查 **A** |
+| CNAME 直接给 IP？ | 只能指向**域名**；该名**不能**再有 A/MX/NS |
+| MX 能写 IP？ | **否**；必须**域名**，再查 A |
+| MX 优先级 | **数字越小越优先** |
+| 一条 A 只能一个 IP？ | **否**；可多条 A **负载均衡** |
 | DNS 只用 TCP？ | 常见 **UDP 53** |
 
 ---

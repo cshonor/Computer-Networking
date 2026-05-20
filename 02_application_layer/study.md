@@ -493,7 +493,7 @@ Content-Length: 4096
 
 ## 2.4 DNS：因特网的目录服务
 
-> **背诵提纲** → [2.4](./2.4_dns_service/study.md)（四层 · 递归/迭代 · RR · [12 步流程](./2.4_dns_service/study.md#ch2-4-flow) · [易错](./2.4_dns_service/study.md#ch2-4-exam)）
+> **背诵提纲** → [2.4](./2.4_dns_service/study.md)（[RR 精编](./2.4_dns_service/study.md#ch2-4-rr) · 递归/迭代 · [12 步](./2.4_dns_service/study.md#ch2-4-flow) · [易错](./2.4_dns_service/study.md#ch2-4-exam)）
 
 ### 2.4.1 战略背景
 

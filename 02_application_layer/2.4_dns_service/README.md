@@ -6,8 +6,8 @@
 - **四层**：根(13组) → TLD → 权威 → 本地递归
 - **查询**：客户端**递归**；本地→上级**迭代**
 - **缓存**：浏览器/OS/本地 DNS，**TTL**
-- **RR**：A、AAAA、CNAME、MX、NS
-- **背诵**：[study.md 全文](./study.md) · [易错](./study.md#ch2-4-exam)
+- **RR**：[精编+默写表](./study.md#ch2-4-rr)（A/AAAA/CNAME/MX/NS/PTR/SOA、五句口诀）
+- **背诵**：[12 步流程](./study.md#ch2-4-flow) · [易错](./study.md#ch2-4-exam)
 
 ## 与后端开发的联系
 
