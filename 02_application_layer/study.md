@@ -636,4 +636,14 @@ while True:
 
 ---
 
+<a id="ch2-8"></a>
+
+## 2.8 自定义应用层协议（WZP 示例）
+
+> **背诵提纲** → [2.8 小节](./2.8_wzp_private_protocol/study.md)（二进制帧 · 指令表 · WZP KV · 流程 · [30 字](./2.8_wzp_private_protocol/study.md#ch2-8-exam) · [wzp_codec.py](./2.8_wzp_private_protocol/demo_code/wzp_codec.py)）
+
+教学用 **WanZhi Protocol**：TCP **9988** 长连接；**4 字节大端长度 + 1 字节 Cmd + UTF-8 Body**；Body 内 `key=value|...`（与 HTTP 首部语法对照见 [2.2](./2.2_http_and_web/study.md#ch2-http-kv-body)）。
+
+---
+
 *本笔记整理自精读材料，可与教材第 2 章对照阅读。*

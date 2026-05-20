@@ -27,3 +27,4 @@
 - [2.6 视频流媒体](./2.6_video_streaming/study.md) — DASH/MPD、CDN、点播TCP/直播UDP、30 字背诵  
 - [2.7 UDP Socket](./2.7_socket_programming_udp/study.md) — 无连接编程（[§2.7.2](./study.md#ch2-7-udp)）  
 - [2.7 TCP Socket](./2.7_socket_programming_tcp/study.md) — 面向连接编程（[§2.7.3](./study.md#ch2-7-tcp)）  
+- [2.8 WZP 私有协议](./2.8_wzp_private_protocol/study.md) — Len+Cmd+Body、KV分隔、TCP 9988、组包解包、30字背诵  

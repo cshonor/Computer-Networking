@@ -51,6 +51,7 @@ Computer-Networking/
 | 2.6 视频流媒体 | [study.md](02_application_layer/2.6_video_streaming/study.md) |
 | 2.7 UDP Socket | [study.md](02_application_layer/2.7_socket_programming_udp/study.md) |
 | 2.7 TCP Socket | [study.md](02_application_layer/2.7_socket_programming_tcp/study.md) |
+| 2.8 WZP 私有协议 | [study.md](02_application_layer/2.8_wzp_private_protocol/study.md) |
 
 ### 第 3 章 · 运输层 — [03_transport_layer/study.md](03_transport_layer/study.md)
 
