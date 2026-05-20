@@ -651,6 +651,7 @@ TCP 首部**最小 20 字节，最大 60 字节（含选项）**；UDP 仅 **8 �
 
 ## 3.3 无连接运输：UDP（User Datagram Protocol）｜完整版
 
+> **背诵提纲** → [3.3 小节](./3.3_udp_protocol/study.md)（8B 首部 · 四特性 · 场景 · UDP/TCP 对比 · [30 字](./3.3_udp_protocol/study.md#ch3-3-exam) · [读图](./3.3_udp_protocol/study.md#ch3-3-diagram)）  
 > **定位**：TCP/IP **传输层**协议；**无连接、不可靠、极简开销、低延迟**。**RFC 768**；IP 协议号 **17**。
 
 <a id="ch3-3-features"></a>
@@ -805,6 +806,8 @@ UDP 为 **QUIC** 提供「画布」：在用户态实现可靠性、拥塞控制
 <a id="ch3-4"></a>
 
 ## 3.4 可靠数据传输原理（Principles of Reliable Data Transfer）
+
+> **背诵提纲** → [3.4 小节](./3.4_reliable_data_transfer_principle/study.md)（rdt 演化 · SW/GBN/SR 对比 · [50 字](./3.4_reliable_data_transfer_principle/study.md#ch3-4-exam) · [停等/GBN 读图](./3.4_reliable_data_transfer_principle/study.md#ch3-4-diagram-sw)）
 
 ### 战略背景
 

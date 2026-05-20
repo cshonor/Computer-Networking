@@ -1,25 +1,25 @@
-# 3.3 — udp protocol
+# 3.3 — UDP 协议
 
 ## 知识点速记
 
-- **RFC 768，IP 协议号 17**；无连接、不可靠、**8B** 固定首部。
-- **六大特点**：无连接、不可靠、8B 头、端口+校验和、面向报文、广播/多播。
-- **检验和**：IPv4 可 0；IPv6 强制；坏包**丢弃**不重传。
-- **场景**：DNS/直播/VoIP/游戏/IoT；**UDP vs TCP**：[速查表](../study.md#ch3-3-vs-tcp)
-- **首部图**：[四字段](../assets/udp_header_fields.png) · [伪首部/封装](../assets/udp_header_pseudo.png)
+- **RFC 768 / IP 17**；无连接、不可靠、**8 B** 固定首部
+- **四特性**：无连接、不可靠、面向报文、低时延
+- **首部**：[读图](./study.md#ch3-3-diagram) · 源/目的端口、长度、检验和
+- **场景**：语音、直播、游戏、DNS/DHCP
+- **背诵**：[30 字](./study.md#ch3-3-exam) · 对比 TCP：[章级](../study.md#ch3-3-vs-tcp)
 
 ## 与后端开发的联系
 
-- 日志、监控、游戏、RTC；以及 **HTTP/3** 网关与防火墙对 UDP 的策略。
+- 日志、监控、游戏、RTC；HTTP/3（QUIC）基于 UDP
 
 ## 延伸阅读
 
-- 章级精读：[study.md § 3.3](../study.md#ch3-3)
+- [study.md](./study.md) · [3.2 分用](../3.2_multiplexing_demultiplexing/study.md)
 
 ## 本目录文件说明
 
 | 文件 | 用途 |
 |------|------|
-| `README.md` | 小节速记（你正在看的） |
-| `study.md` | 个人小节笔记 |
+| `README.md` | 小节速记 |
+| `study.md` | 可背诵完整版 |
 | `demo_code/` | 示例代码 |
