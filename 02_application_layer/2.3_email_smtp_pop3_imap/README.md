@@ -3,7 +3,7 @@
 ## 知识点速记
 
 - **架构图**：[UA 实体 + 三步流程 + 中间不落地](../assets/email_system_architecture.png)
-- **SMTP**：25/587/465，**推**，HELO→MAIL→RCPT→DATA→`.`→QUIT
+- **SMTP**：25/587/465，**推**；[报文格式](./study.md#ch2-3-smtp-message)（命令/354实体/250响应）
 - **POP3**：110/995，**拉**，常下载删服务器 → [对比图](../assets/pop3_how_it_works.png)
 - **IMAP**：143/993，信留服务器、多设备同步 → [图](../assets/imap_how_it_works.png)
 - **MIME**：扩展 SMTP，Base64/UTF-8，不替代 SMTP

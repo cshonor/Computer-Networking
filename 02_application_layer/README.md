@@ -21,7 +21,7 @@
 
 - [2.1 应用层原理](./2.1_network_application_principle/study.md) — 定位、C/S vs P2P 对比表、四大需求、TCP/UDP 口诀、易错表  
 - [2.2 HTTP 与 Web](./2.2_http_and_web/study.md) — 文本vs IP偏移、结构框图读图、四段报文、GET/POST、HTTPS载荷  
-- [2.3 电子邮件](./2.3_email_smtp_pop3_imap/study.md) — MUA/MTA、SMTP/POP3/IMAP 配图、MIME、考试速记  
+- [2.3 电子邮件](./2.3_email_smtp_pop3_imap/study.md) — 架构图、SMTP报文格式(命令/实体/响应)、POP3/IMAP、MIME  
 - [2.4 DNS](./2.4_dns_service/study.md) — 根/TLD/权威/本地、递归 vs 迭代、RR、解析流程、易错表  
 - [2.5 P2P](./2.5_p2p_file_distribution/study.md) — vs C/S、BitTorrent/Tracker、Rarest+Tit-for-Tat、30 字背诵  
 - [2.6 视频流媒体](./2.6_video_streaming/study.md) — DASH/MPD、CDN、点播TCP/直播UDP、30 字背诵  

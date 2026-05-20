@@ -1,6 +1,6 @@
 # 2.3 电子邮件系统
 
-> 章级精读：[../study.md#ch2-3](../study.md#ch2-3) · SMTP 报文三段图：[第 1 章 §1.5](../../01_network_basics/1.5_protocol_layer_architecture/study.md#ch1-5-app-messages)
+> 章级精读：[../study.md#ch2-3](../study.md#ch2-3) · **SMTP 报文格式**：[#ch2-3-smtp-message](#ch2-3-smtp-message) · 三段图：[第 1 章 §1.5](../../01_network_basics/1.5_protocol_layer_architecture/study.md#ch1-5-app-messages)
 
 ## 本节核心目标
 
@@ -96,7 +96,98 @@
 | 结束 | 正文 + **单独一行 `.`** | **250** Message accepted |
 | 断开 | **QUIT** | **221** Bye |
 
-→ 会话示例与邮件**信封/首部/主体**：[第 1 章 SMTP 专节](../../01_network_basics/1.5_protocol_layer_architecture/study.md#ch1-5-app-messages)
+→ 信封/首部/主体示意图：[第 1 章 SMTP 专节](../../01_network_basics/1.5_protocol_layer_architecture/study.md#ch1-5-app-messages)
+
+<a id="ch2-3-smtp-message"></a>
+
+### SMTP 报文完整格式（必背）
+
+#### 通信模式
+
+客户端发**命令报文**，服务器回**响应报文**；均为**纯文本**，依托 **TCP**（与 [HTTP 文本协议](../2.2_http_and_web/study.md#ch2-http-message) 同类，语法不同）。
+
+#### 1）客户端命令报文
+
+**基础命令行**（单行）：
+
+```text
+命令  参数
+```
+
+| 示例 | 含义 |
+|------|------|
+| `EHLO localhost` | 扩展握手 |
+| `MAIL FROM:<send@163.com>` | 发件人 |
+| `RCPT TO:<recv@qq.com>` | 收件人 |
+| `DATA` | 开始传邮件实体 |
+| `QUIT` | 退出 |
+
+#### 2）邮件实体报文（DATA 阶段）
+
+收到 **354** 后发送；结构：
+
+```text
+首部字段名:  字段值
+首部字段名:  字段值
+……
+（空行 \r\n\r\n）
+邮件正文
+.
+```
+
+| 规则 | 说明 |
+|------|------|
+| **邮件首部 KV** | 与 HTTP 相同：**冒号 + 空格** 分键值；**换行**分多条 |
+| **头与正文** | **空行** 分隔 |
+| **结束** | **单独一行只有一个 `.`** → 正文结束（SMTP 协议结束符，不是 HTTP 的 Body 边界以外的概念） |
+
+**标准邮件首部（常考）**
+
+| 首部 | 含义 |
+|------|------|
+| **From:** | 发件人邮箱 |
+| **To:** | 收件人邮箱 |
+| **Subject:** | 主题 |
+| **Date:** | 发送时间 |
+| **Content-Type:** | 正文/MIME 类型 |
+
+→ 首部 KV 详解：[2.2 HTTP/SMTP 冒号规则](../2.2_http_and_web/study.md#ch2-http-kv-body)
+
+**完整实体示例（原样）**
+
+```http
+From: student@test.com
+To: teacher@test.com
+Subject: 网络学习总结
+Content-Type: text/plain;charset=utf-8
+
+今天吃透了SMTP报文结构，和HTTP头部规则一致。
+.
+```
+
+#### 3）服务端响应报文
+
+固定格式：**三位状态码 + 空格 + 描述**
+
+```text
+220  服务就绪
+250  操作成功
+354  可开始传输邮件内容
+500  命令错误
+```
+
+| 码 | 典型场景 |
+|----|----------|
+| **220** | 连接就绪 |
+| **250** | 命令成功 |
+| **354** | 可输入 DATA 邮件体 |
+| **500** | 命令/语法错误 |
+
+#### 极简结构总结
+
+1. **命令报文**：单行 `命令 参数`  
+2. **邮件内容**：**KV 邮件首部 + 空行 + 正文 + 单独一行 `.`**  
+3. **响应报文**：**三位数字 + 文字说明**
 
 ### SMTP 局限（必考）
 
@@ -221,6 +312,10 @@ SMTP **不能原生传**中文、图片、PDF 等 → **MIME 扩展 SMTP**（**�
 1. **SMTP 只负责发和中继，Push，TCP。**  
 2. **POP3 拉到本地常删服务器；IMAP 邮件在服务器、多设备同步。**  
 3. **MIME 让 SMTP 能发中文和附件，不是独立传输协议。**
+
+### SMTP 报文口诀
+
+**命令单行；DATA 后邮件头冒号空格、空行正文、点号结束；响应三位码。**
 
 ### 易错
 

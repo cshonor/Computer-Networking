@@ -388,7 +388,7 @@ Content-Length: 4096
 
 ## 2.3 因特网中的电子邮件
 
-> **背诵提纲** → [2.3 小节 study.md](./2.3_email_smtp_pop3_imap/study.md)（架构 + SMTP/POP3/IMAP/MIME + [考试速记](./2.3_email_smtp_pop3_imap/study.md#ch2-3-exam)）
+> **背诵提纲** → [2.3 小节 study.md](./2.3_email_smtp_pop3_imap/study.md)（[SMTP 报文格式](./2.3_email_smtp_pop3_imap/study.md#ch2-3-smtp-message) · 架构 · POP3/IMAP/MIME · [考试速记](./2.3_email_smtp_pop3_imap/study.md#ch2-3-exam)）
 
 ### 2.3.1 战略背景：异步系统与整体链路
 
