@@ -18,6 +18,9 @@
 | [gbn_error_retransmit.png](./assets/gbn_error_retransmit.png) | 3.4 GBN 丢包回退重传 |
 | [tcp_three_way_handshake.png](./assets/tcp_three_way_handshake.png) | 3.5 TCP 三次握手状态图 |
 | [tcp_four_way_handshake.png](./assets/tcp_four_way_handshake.png) | 3.5 TCP 四次挥手与 TIME_WAIT |
+| [tcp_slow_start_packets.png](./assets/tcp_slow_start_packets.png) | 3.7 慢启动 ACK 驱动与指数增长 |
+| [tcp_slow_start_congestion_avoidance.png](./assets/tcp_slow_start_congestion_avoidance.png) | 3.7 ssthresh 拐点与拥塞避免 |
+| [tcp_congestion_timeout.png](./assets/tcp_congestion_timeout.png) | 3.7 超时后 ssthresh 减半、cwnd=1 |
 
 ## 小节列表
 
@@ -27,4 +30,4 @@
 - [3.4 可靠传输原理](./3.4_reliable_data_transfer_principle/study.md) — rdt演化、SW/GBN/SR对比、利用率公式、配图读图、50字背诵  
 - [3.5 TCP 连接与传输](./3.5_tcp_connection_and_transmission/study.md) — 三次握手/四次挥手读图、序号ACK、快重传、50字背诵  
 - [3.6 TCP 流量控制](./3.6_tcp_flow_control/study.md) — rwnd、零窗口探测、min(rwnd,cwnd)、3行口诀（[§3.5-flow](./study.md#ch3-5-flow)）  
-- [3.7 TCP 拥塞控制](./3.7_tcp_congestion_control/study.md) — cwnd、慢启动等（[§3.6–3.8](./study.md#ch3-6)）  
+- [3.7 TCP 拥塞控制](./3.7_tcp_congestion_control/study.md) — cwnd四阶段、超时vs三重复ACK、配图读图、50字背诵  

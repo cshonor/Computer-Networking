@@ -1,24 +1,25 @@
-# 3.7 — tcp congestion control
+# 3.7 — TCP 拥塞控制
 
 ## 知识点速记
 
-- **拥塞原理**：排队时延与丢包、重传浪费 → 吞吐崩塌；端到端 vs **ECN** 网络辅助。
-- **经典 TCP**：慢启动、拥塞避免、快速重传/恢复；**AIMD** 思想。
-- **CUBIC / BBR**：高 BDP 与缓冲膨胀场景的现代算法。
-- **QUIC / HTTP/3**：[§3.8](../study.md#ch3-8) — 多流、建连、用户态栈。
+- **cwnd** vs **rwnd**；`min(cwnd, rwnd)`
+- **慢启动**：指数至 **ssthresh** · [读图](./study.md#ch3-7-diagram-ss)
+- **拥塞避免**：线性 +1/RTT
+- **超时** vs **3 dup ACK**：[对照表](./study.md#ch3-7-diagram-timeout)
+- **背诵**：[50 字](./study.md#ch3-7-exam)
 
 ## 与后端开发的联系
 
-- 带宽跑不满、时延尖刺、跨洲传输；内核参数、BBR、队列规则（AQM）与业务并发模型联动。
+- 带宽跑不满、跨洲 RTT、BBR/CUBIC、缓冲膨胀
 
 ## 延伸阅读
 
-- [§3.6 拥塞控制原理](../study.md#ch3-6) · [§3.7 TCP 拥塞控制](../study.md#ch3-7) · [§3.8 QUIC](../study.md#ch3-8)
+- [study.md](./study.md) · [3.6 rwnd](../3.6_tcp_flow_control/study.md) · [章级 ch3-6/7](../study.md#ch3-6)
 
 ## 本目录文件说明
 
 | 文件 | 用途 |
 |------|------|
-| `README.md` | 小节速记（你正在看的） |
-| `study.md` | 个人小节笔记 |
+| `README.md` | 小节速记 |
+| `study.md` | 可背诵完整版 |
 | `demo_code/` | 示例代码 |

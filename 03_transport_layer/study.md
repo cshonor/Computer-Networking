@@ -907,6 +907,8 @@ TCP 解决单连接上的可靠与流控后，还需面对**网络整体拥塞**
 
 ## 3.7 TCP 拥塞控制（TCP Congestion Control）
 
+> **背诵提纲** → [3.7 小节](./3.7_tcp_congestion_control/study.md)（cwnd · 四阶段 · 超时 vs 3 dup ACK · [50 字](./3.7_tcp_congestion_control/study.md#ch3-7-exam) · [cwnd 曲线读图](./3.7_tcp_congestion_control/study.md#ch3-7-diagram-ss)）
+
 ### AIMD 与经典状态
 
 TCP 拥塞控制常用 **AIMD（加性增、乘性减）** 思想族：
