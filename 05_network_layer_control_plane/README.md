@@ -9,7 +9,7 @@
 
 ## 小节列表
 
-- [5.1 路由算法](./5.1_routing_algorithm/study.md) — LS/DV、静态/动态（[§5.1–5.2](./study.md#ch5-2)）  
+- [5.1 路由算法](./5.1_routing_algorithm/study.md) — [Dijkstra/BF 手算](./5.1_routing_algorithm/study.md#ch5-1-dijkstra)、LS/DV（[§5.2](./study.md#ch5-2)）  
 - [5.2 OSPF](./5.2_ospf_intra_as_routing/study.md) — 区域、邻居、LSA（[§5.3](./study.md#ch5-3)）  
 - [5.3 BGP](./5.3_bgp_inter_as_routing/study.md) — eBGP/iBGP、AS-Path（[§5.4](./study.md#ch5-4)）  
 - [5.4 SDN 控制平面](./5.4_sdn_controller_plane/study.md) — 南北向、控制器（[§5.5](./study.md#ch5-5)）  

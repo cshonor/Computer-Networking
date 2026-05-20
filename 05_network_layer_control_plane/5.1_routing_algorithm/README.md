@@ -2,10 +2,11 @@
 
 ## 知识点速记
 
-- **控制平面**：路由/策略/编排；**数据平面**：查表转发（第 4 章）。  
-- **范式**：每路由器分布式控制 ↔ **SDN** 逻辑集中 + 北向编程。  
-- **LS**：全局拓扑 + Dijkstra；权值与负载耦合可**震荡**。  
-- **DV**：Bellman-Ford 形式；**计数到无穷**；**毒性逆转**部分缓解。
+- **分类**：[LS/DV + 静/动](./study.md#ch5-1-classify)  
+- **LS**：[OSPF / 泛洪](./study.md#ch5-1-ls) · **Dijkstra 手算](./study.md#ch5-1-dijkstra)  
+- **DV**：[RIP / 毒性逆转](./study.md#ch5-1-dv) · **Bellman-Ford 手算](./study.md#ch5-1-bellman-ford) · [算法对比](./study.md#ch5-1-algo-compare)  
+- **对比表**：[LS vs DV](./study.md#ch5-1-compare) · **背诵**：[口诀 / 30 字](./study.md#ch5-1-exam)  
+- **收敛**：[定义](./study.md#ch5-1-convergence)
 
 ## 与后端开发的联系
 

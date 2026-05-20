@@ -105,6 +105,8 @@
 
 **连贯性**：AS **内部**常落地为 **OSPF**（LS 思路的工业实现）。
 
+> **背诵提纲** → [5.1 路由算法精读](./5.1_routing_algorithm/study.md)（[Dijkstra 手算](./5.1_routing_algorithm/study.md#ch5-1-dijkstra) · [Bellman-Ford](./5.1_routing_algorithm/study.md#ch5-1-bellman-ford) · [LS/DV](./5.1_routing_algorithm/study.md#ch5-1-compare) · [30 字](./5.1_routing_algorithm/study.md#ch5-1-exam)）
+
 ---
 
 <a id="ch5-3"></a>
