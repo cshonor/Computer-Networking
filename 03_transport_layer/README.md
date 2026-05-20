@@ -26,5 +26,5 @@
 - [3.3 UDP](./3.3_udp_protocol/study.md) — 8B首部读图、无连接不可靠、场景、UDP/TCP对比、30 字背诵  
 - [3.4 可靠传输原理](./3.4_reliable_data_transfer_principle/study.md) — rdt演化、SW/GBN/SR对比、利用率公式、配图读图、50字背诵  
 - [3.5 TCP 连接与传输](./3.5_tcp_connection_and_transmission/study.md) — 三次握手/四次挥手读图、序号ACK、快重传、50字背诵  
-- [3.6 TCP 流量控制](./3.6_tcp_flow_control/study.md) — rwnd、滑动窗口（[§3.5-flow](./study.md#ch3-5-flow)）  
+- [3.6 TCP 流量控制](./3.6_tcp_flow_control/study.md) — rwnd、零窗口探测、min(rwnd,cwnd)、3行口诀（[§3.5-flow](./study.md#ch3-5-flow)）  
 - [3.7 TCP 拥塞控制](./3.7_tcp_congestion_control/study.md) — cwnd、慢启动等（[§3.6–3.8](./study.md#ch3-6)）  

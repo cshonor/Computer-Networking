@@ -1,23 +1,25 @@
-# 3.6 — tcp flow control
+# 3.6 — TCP 流量控制
 
 ## 知识点速记
 
-- **Window/rwnd**：接收缓存**剩余可收字节数**；滑动变化 → 滑动窗口。
-- **流量控制**：用窗口限制发送方，防接收端被冲垮；**≠ 拥塞控制**（cwnd 管网络）。
-- 通俗七步流程：[§3.1 窗口/流控](../study.md#ch3-1-tcp-flow) · 公式：[§3.5-flow](../study.md#ch3-5-flow)
+- **定义**：接收方限发送速率，防**接收缓冲区**溢出
+- **rwnd**：剩余可收字节；首部 **Window** 字段随 ACK 通告
+- **公式**：`min(rwnd, cwnd)`；cwnd 属拥塞控制
+- **零窗口**：rwnd=0 停发 → **探测** + **窗口更新**
+- **背诵**：[3 行口诀](./study.md#ch3-6-exam) · 章级：[§3.5-flow](../study.md#ch3-5-flow)
 
 ## 与后端开发的联系
 
-- 大文件上传、慢客户端：若发送无视 `rwnd`，会丢包或内核缓冲异常；零窗口探测（persist）等行为可结合抓包理解。
+- 慢客户端、大上传：无视 rwnd 会丢包；抓包可见 persist 探测
 
 ## 延伸阅读
 
-- 精读正文在章内 **§3.5 流量控制**：[study.md#ch3-5-flow](../study.md#ch3-5-flow)
+- [study.md](./study.md) · [3.5 TCP](../3.5_tcp_connection_and_transmission/study.md) · [3.7 拥塞](../3.7_tcp_congestion_control/study.md)
 
 ## 本目录文件说明
 
 | 文件 | 用途 |
 |------|------|
-| `README.md` | 小节速记（你正在看的） |
-| `study.md` | 个人小节笔记 |
+| `README.md` | 小节速记 |
+| `study.md` | 可背诵完整版 |
 | `demo_code/` | 示例代码 |
