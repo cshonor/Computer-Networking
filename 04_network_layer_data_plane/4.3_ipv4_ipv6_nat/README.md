@@ -4,7 +4,7 @@
 
 - **IPv4**：首部字段、**TTL**、分片与 **PMTUD** 倾向。  
 - **CIDR** 与**子网划分**；**DHCP** Discover/Offer/Request/ACK。  
-- **NAT**：缓解地址枯竭；破坏端到端透明。  
+- **NAT**：[三种类型](./study.md#ch4-3-nat) · [NAPT 过程](./study.md#ch4-3-nat-flow) · [报文改写](./study.md#ch4-3-nat-packet) · [背诵](./study.md#ch4-3-nat-exam)  
 - **IPv6**：128 位、首部简化；**隧道**穿越 IPv4 网络。
 
 ## 与后端开发的联系

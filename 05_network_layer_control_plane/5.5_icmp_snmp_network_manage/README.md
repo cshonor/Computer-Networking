@@ -2,9 +2,9 @@
 
 ## 知识点速记
 
-- **ICMP**：差错/诊断；Ping、Traceroute；**源抑制已弃用**；防火墙常过滤 ICMP。  
-- **SNMP**：Get/GetNext/GetBulk/Set、Trap/Inform；**MIB**；优先 **v3**。  
-- **NETCONF + YANG**：模型化配置与 RPC；常与 **SSH** 结合；流式遥测补「推」能力。  
+- **ICMP**：[定位+类型表](./study.md#ch5-55-icmp) · [ping 流程](./study.md#ch5-55-ping-flow) · [排障 8 步](./study.md#ch5-55-ping-troubleshoot)  
+- **SNMP**：[NMS/Agent/MIB](./study.md#ch5-55-snmp) · [工作流程](./study.md#ch5-55-snmp-flow) · **v3**  
+- **背诵**：[口诀 / 30 字 / 易错](./study.md#ch5-55-exam) · **NETCONF/Telemetry**：[其他网管](./study.md#ch5-55-other-mgmt)  
 - **章总结**：[§5.8](../study.md#ch5-8)
 
 ## 与后端开发的联系

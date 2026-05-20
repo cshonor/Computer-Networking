@@ -582,7 +582,8 @@ Destination Address: 140.205.172.3
 
 ### NAT（数据平面执行）
 
-在中间盒/路由器上**改写 IP/端口**属数据平面 **Match+Action**（策略由控制/管理面配置）。详见 [4.3 NAT](./4.3_ipv4_ipv6_nat/) · [tcpip ch07](../../tcpip_vol1_ed2_notes/03_network_layer/ch07_firewall_nat.md)
+在中间盒/路由器上**改写 IP/端口**属数据平面 **Match+Action**（策略由控制/管理面配置）。  
+**背诵提纲** → [4.3 NAT 精读](./4.3_ipv4_ipv6_nat/study.md#ch4-3-nat)（[NAPT 过程](./4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-flow) · [报文改写](./4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-packet) · [30 字](./4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-exam)）· [tcpip ch07](../../tcpip_vol1_ed2_notes/03_network_layer/ch07_firewall_nat.md)
 
 ---
 
@@ -643,7 +644,7 @@ Destination Address: 140.205.172.3
 |------|----------------|
 | [4.1](./4.1_network_layer_overview/) | 定位、FIB、转发六步 |
 | [4.2](./4.2_router_internal_working/) | 四大件、排队、调度 |
-| [4.3](./4.3_ipv4_ipv6_nat/) | IP 首部、LPM、NAT 执行 |
+| [4.3](./4.3_ipv4_ipv6_nat/) | IP/LPM、[NAT 精编](./4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-exam) |
 | [4.4](./4.4_sdn_openflow/) | SDN/OpenFlow、[精编](./4.4_sdn_openflow/study.md#ch4-4-exam)、流表 |
 
 *控制平面、RIB、OSPF/BGP、SDN 北向 API 见 `05_network_layer_control_plane/`。*

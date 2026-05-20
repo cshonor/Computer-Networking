@@ -165,10 +165,12 @@ SDN 将分布式控制逻辑**上收**到可编程的软件栈，与第 4 章**�
 
 **ICMP** 用于诊断与控制消息，封装在 IP 数据报中（**不是**上层用户数据的传输通道）。
 
-- **常见类型（示例）**：目的不可达（**Type 3**）、**超时（Type 11，TTL 耗尽）**、Echo 请求/应答（**Ping**）等。**源抑制（Source Quench，Type 4）** 在历史上曾用于拥塞提示，**现代网络已基本弃用**（以端到端拥塞控制为主）。  
+- **常见类型（示例）**：目的不可达（**Type 3**）、**超时（Type 11，TTL 耗尽）**、Echo 请求/应答（**Ping，Type 8/0**）等。**源抑制（Source Quench，Type 4）** 在历史上曾用于拥塞提示，**现代网络已基本弃用**（以端到端拥塞控制为主）。  
 - **Traceroute（典型 UDP 实现思路）**：源发送 TTL=1,2,3… 的探测包；中间路由器返回 **ICMP Time Exceeded**；到达目标后常因**未监听高端口**等得到 **ICMP Port Unreachable**，据此推断路径。  
   - 实际实现还有 **ICMP trace、TCP trace** 等变体。  
 - **工程现实**：企业防火墙常**过滤 ICMP**，导致 Ping/Traceroute 出现 `*` 或超时，**不等于**业务 TCP/HTTP 一定故障。
+
+> **背诵提纲** → [5.5 ICMP 精读](./5.5_icmp_snmp_network_manage/study.md)（[类型表](./5.5_icmp_snmp_network_manage/study.md#ch5-55-icmp) · [ping 排障](./5.5_icmp_snmp_network_manage/study.md#ch5-55-ping-troubleshoot) · [30 字](./5.5_icmp_snmp_network_manage/study.md#ch5-55-exam)）
 
 ---
 
@@ -183,6 +185,8 @@ SDN 将分布式控制逻辑**上收**到可编程的软件栈，与第 4 章**�
 - **组成**：管理站、被管设备上的 **Agent**、**MIB**（管理信息库）。  
 - **常用操作**：**Get**、**GetNext**、**GetBulk**、**Set**；异步 **Trap**；**Inform**（带确认的通告，语义因部署而异）。  
 - **安全**：避免 **SNMPv1/v2c** 明文共同体串；生产应优先 **SNMPv3**（认证与加密）。
+
+> **SNMP 流程与版本** → [5.5 精读 §二](./5.5_icmp_snmp_network_manage/study.md#ch5-55-snmp-flow) · [NETCONF/Telemetry](./5.5_icmp_snmp_network_manage/study.md#ch5-55-other-mgmt)
 
 ### NETCONF 与 YANG
 
