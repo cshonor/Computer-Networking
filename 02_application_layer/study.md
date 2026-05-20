@@ -107,7 +107,7 @@
 
 ## 2.2 Web 和 HTTP
 
-> **背诵提纲** → [2.2 小节 study.md](./2.2_http_and_web/study.md)（[HTTP/HTTPS TCP 载荷](./2.2_http_and_web/study.md#ch2-http-tls-payload) · [四层嵌套](./2.2_http_and_web/study.md#ch2-http-stack) · [易错](./2.2_http_and_web/study.md#ch2-2-exam)）
+> **背诵提纲** → [2.2 小节 study.md](./2.2_http_and_web/study.md)（[文本协议 vs IP](./2.2_http_and_web/study.md#ch2-http-message-diagram) · [四段结构](./2.2_http_and_web/study.md#ch2-http-message) · [HTTPS 载荷](./2.2_http_and_web/study.md#ch2-http-tls-payload) · [口诀](./2.2_http_and_web/study.md#ch2-2-exam)）
 
 ### 2.2.1 战略背景：从文档传输到商业基石
 

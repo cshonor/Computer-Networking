@@ -8,6 +8,9 @@
 
 | 图 | 说明 |
 |----|------|
+| [http_message_structure_request_response.png](./assets/http_message_structure_request_response.png) | 2.2 HTTP 请求/响应结构框图 |
+| [http_post_request_headers_body.png](./assets/http_post_request_headers_body.png) | 2.2 POST 请求首部分区 |
+| [http_response_headers_body.png](./assets/http_response_headers_body.png) | 2.2 响应首部与 HTML 体 |
 | [email_system_architecture.png](./assets/email_system_architecture.png) | 2.3 邮件架构（UA/MTA、三步、考点） |
 | [email_system_smtp_pop3.png](./assets/email_system_smtp_pop3.png) | 2.3 邮件系统简图 |
 | [smtp_how_it_works.png](./assets/smtp_how_it_works.png) | 2.3 SMTP 原理 |
@@ -17,7 +20,7 @@
 ## 小节列表
 
 - [2.1 应用层原理](./2.1_network_application_principle/study.md) — 定位、C/S vs P2P 对比表、四大需求、TCP/UDP 口诀、易错表  
-- [2.2 HTTP 与 Web](./2.2_http_and_web/study.md) — 报文、[**HTTP/HTTPS TCP 载荷**](./2.2_http_and_web/study.md#ch2-http-tls-payload)、四层嵌套、Cookie  
+- [2.2 HTTP 与 Web](./2.2_http_and_web/study.md) — 文本vs IP偏移、结构框图读图、四段报文、GET/POST、HTTPS载荷  
 - [2.3 电子邮件](./2.3_email_smtp_pop3_imap/study.md) — MUA/MTA、SMTP/POP3/IMAP 配图、MIME、考试速记  
 - [2.4 DNS](./2.4_dns_service/study.md) — 根/TLD/权威/本地、递归 vs 迭代、RR、解析流程、易错表  
 - [2.5 P2P](./2.5_p2p_file_distribution/study.md) — vs C/S、BitTorrent/Tracker、Rarest+Tit-for-Tat、30 字背诵  
