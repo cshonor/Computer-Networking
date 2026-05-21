@@ -2,9 +2,10 @@
 
 ## 知识点速记
 
-- **eBGP / iBGP**；路径以**策略**为先，非纯最短跳。  
-- **AS-PATH**、**NEXT-HOP**、**LOCAL_PREF**、**MED**、热土豆等决策维度。  
-- **Anycast**：同前缀多入口，就近入流。
+- **定位**：[EGP/跨 AS](./study.md#ch5-3-bgp-basics) · [vs OSPF](./study.md#ch5-3-bgp-vs-ospf)  
+- **特性**：[TCP179 / AS-Path](./study.md#ch5-3-bgp-features) · [eBGP / iBGP](./study.md#ch5-3-bgp-neighbor)  
+- **选路**：[策略优先](./study.md#ch5-3-bgp-policy) · **背诵**：[口诀 / 30 字](./study.md#ch5-3-bgp-exam)  
+- 章级延伸：Anycast、LOCAL_PREF、MED → [§5.4](../study.md#ch5-4)
 
 ## 与后端开发的联系
 
