@@ -807,7 +807,7 @@ UDP 为 **QUIC** 提供「画布」：在用户态实现可靠性、拥塞控制
 
 ## 3.4 可靠数据传输原理（Principles of Reliable Data Transfer）
 
-> **背诵提纲** → [3.4 小节](./3.4_reliable_data_transfer_principle/study.md)（rdt 演化 · SW/GBN/SR 对比 · [50 字](./3.4_reliable_data_transfer_principle/study.md#ch3-4-exam) · [停等/GBN 读图](./3.4_reliable_data_transfer_principle/study.md#ch3-4-diagram-sw)）
+> **背诵提纲** → [3.4 小节](./3.4_reliable_data_transfer_principle/study.md)（[GBN 精读](./3.4_reliable_data_transfer_principle/study.md#ch3-4-gbn) · [GBN vs SR](./3.4_reliable_data_transfer_principle/study.md#ch3-4-compare) · [50 字](./3.4_reliable_data_transfer_principle/study.md#ch3-4-exam)）
 
 ### 战略背景
 
