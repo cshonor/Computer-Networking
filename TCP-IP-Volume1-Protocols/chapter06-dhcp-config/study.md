@@ -1,6 +1,8 @@
 # 第 6 章：系统配置 — DHCP 与自动配置
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
+> 按书节速记：[6.1](6.1-introduction/study.md) · [6.2](6.2-dhcp-protocol/study.md) · [6.3](6.3-slaac-autoconfig/study.md) · [6.4](6.4-dhcp-dns-ddns/study.md) · [6.5](6.5-pppoe/study.md) · [6.6](6.6-dhcp-security/study.md) · [6.7](6.7-summary/study.md) · [6.8](6.8-references/study.md) · [QUICKREF §6](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch06_dhcp.md)）  
 > 前置：[ch05 IP](../chapter05-ip-protocol/study.md) · [ch04 ARP](../chapter04-arp-protocol/study.md) · 自顶向下：[§4.3 DHCP](../../04_network_layer_data_plane/study.md#ch4-3)
 
 本章聚焦协议栈 **自举（Bootstrapping）**：主机如何从无到有获得 **IP、掩码、网关、DNS** 等参数 — 不仅是地址分配，更是**资源发现与策略下发**的纽带。

@@ -1,6 +1,8 @@
 # 第 4 章：地址解析协议（ARP）
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
+> 按书节速记：[4.1](4.1-introduction/study.md) · [4.2](4.2-arp-basic-operation/study.md) · [4.3](4.3-arp-cache/study.md) · [4.4](4.4-arp-packet-format/study.md) · [4.5](4.5-arp-tcpdump-example/study.md) · [4.6](4.6-arp-cache-timeout/study.md) · [4.7](4.7-proxy-arp/study.md) · [4.8](4.6-gratuitous-arp/study.md) · [4.9](4.9-arp-cli-commands/study.md) · [4.10](4.10-embedded-arp-setup/study.md) · [4.11](4.11-arp-spoof-defense/study.md) · [4.12](4.12-summary/study.md) · [4.13](4.13-references/study.md) · [QUICKREF §4](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch04_arp.md)）  
 > 链路层基础：[ch03 链路层](../chapter03-link-layer/study.md) · 自顶向下：[§6.4.1 ARP](../../06_link_layer_and_lan/study.md#ch6-4)
 
 **ARP** 是 **IPv4 ↔ 以太网 MAC** 的战略支点：IP 提供端到端逻辑标识，**L2 交付必须靠 48 位 MAC**；硬件不识别 IP 标签，同网段内不能直接“按 IP 发帧”。

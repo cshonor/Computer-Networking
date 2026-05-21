@@ -1,0 +1,32 @@
+# 6.3 无状态地址自动配置 (SLAAC)
+
+> 章级精读：[../study.md#ch06-3](../study.md#ch06-3) · ND/RA：[ch08](../../chapter08-icmpv4-icmpv6/study.md) · 免费 ARP：[ch04 §4.8](../../chapter04-arp-protocol/4.6-gratuitous-arp/study.md)
+
+## 本节核心目标
+
+掌握 **APIPA** 与 **IPv6 SLAAC** 的“无 DHCP 服务器”配址。
+
+---
+
+## IPv4 链路本地 (APIPA)
+
+- DHCP 失败后，主机自配 **`169.254.0.0/16`**。
+- 通过 **免费 ARP / ACD** 检测冲突 → [ch04](../../chapter04-arp-protocol/study.md)。
+
+---
+
+## IPv6 SLAAC
+
+| 步骤 | 说明 |
+|------|------|
+| **RS** | 主机发送路由器请求 |
+| **RA** | 路由器通告前缀、标志位 |
+| 地址生成 | 前缀 + **IID**（常 EUI-64）→ 全球单播地址 |
+
+- “**零配置**”接入（仍可能需要 RA 中的 **M/O 标志** 决定是否再用 DHCPv6 要 DNS）。
+
+---
+
+## 易混
+
+- **SLAAC** ≠ 一定有 DHCPv6；看 RA 的 **Managed/OtherConfig** 位。

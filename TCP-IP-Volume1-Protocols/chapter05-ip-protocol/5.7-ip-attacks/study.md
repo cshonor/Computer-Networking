@@ -1,0 +1,27 @@
+# 5.7 与 IP 相关的攻击
+
+> 章级精读：[../study.md#ch05-7](../study.md#ch05-7) · 链路层欺骗：[ch04 §4.11](../../chapter04-arp-protocol/4.11-arp-spoof-defense/study.md)
+
+## 本节核心目标
+
+认识 **IP 欺骗** 与 **分片攻击** 两类底层威胁。
+
+---
+
+## IP 欺骗 (Spoofing)
+
+- 包头**源 IP 可伪造** → 绕过基于 IP 的信任、发动反射 DDoS。
+- 缓解：**BCP 38 入站过滤**、uRPF → [ch02 §2.8](../../chapter02-ip-address-architecture/2.8-address-security-threat/study.md)
+
+---
+
+## 分片攻击
+
+- 畸形/重叠分片 → 重组模块 **内存耗尽或崩溃**（历史 **Teardrop** 等）。
+- 现代栈多 hardened；仍建议边界**限制分片**、优先 **PMTUD** → [ch03 §3.8](../../chapter03-link-layer/3.8-mtu/study.md)
+
+---
+
+## 原则
+
+- IP 层**无身份** → 安全靠上层 **TLS/IPsec** 与运维策略。
