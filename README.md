@@ -19,7 +19,8 @@ Computer-Networking/
 ├─ 99_socket_code_demo            # 网络编程实战代码（汇总）
 ├─ 99_practice_wireshark_lab      # 抓包实验笔记
 ├─ 99_review_exercises_notes      # 综合笔记 + 面试总结
-└─ tcpip_vol1_ed2_notes/          # TCP/IP 详解 卷1 第2版（18 章，见 QUICKREF.md）
+├─ TCP-IP-Volume1-Protocols/      # TCP/IP 详解 卷1 第2版（18 章 chapterXX/study.md）
+└─ tcpip_vol1_ed2_notes/          # 同上精读源稿（可同步至 TCP-IP-Volume1-Protocols）
 ```
 
 ---
@@ -27,7 +28,7 @@ Computer-Networking/
 ## 学习笔记导航（study.md）
 
 每章 **章级 `study.md`** = 完整精读；各小节 **`*/study.md`** = 精简背版（考点 + 易错点 + 心得留白）。  
-**双轨对照**：自顶向下（本仓库 01–08）↔ [TCP/IP 卷1 第2版笔记](tcpip_vol1_ed2_notes/QUICKREF.md)
+**双轨对照**：自顶向下（本仓库 01–08）↔ [TCP/IP 卷1 第2版](TCP-IP-Volume1-Protocols/QUICKREF.md)（源稿：[tcpip_vol1_ed2_notes](tcpip_vol1_ed2_notes/QUICKREF.md)）
 
 ### 第 1 章 · 网络基础 — [01_network_basics/study.md](01_network_basics/study.md)
 
