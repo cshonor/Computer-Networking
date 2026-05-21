@@ -1,6 +1,8 @@
 # 第 17 章：TCP 保活（Keepalive）
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
+> 按书节速记：[17.1](17.1-introduction/study.md) · [17.2](17.2-keepalive-description/study.md) · [17.3](17.3-keepalive-attacks/study.md) · [17.4](17.4-summary/study.md) · [17.5](17.5-references/study.md) · [QUICKREF §17](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch17_tcp_keepalive.md)）  
 > 半开连接：[ch13 §RST](../chapter13-tcp-connection-manage/study.md#ch13-6) · 零窗口探测：[ch15 Persist](../chapter15-tcp-flow-window/study.md#ch15-5) · NAT 超时：[ch07](../chapter07-firewall-nat/study.md)
 
 TCP 空闲时可**无限期静默** — 对端崩溃而本端仍 **ESTABLISHED** 会耗尽 **FD/TCB**。**Keepalive** 是可选补丁：空闲一段时间后发**探测段**，区分对端存活、崩溃、重启与路径故障。

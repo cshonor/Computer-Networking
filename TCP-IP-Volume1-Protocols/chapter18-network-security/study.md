@@ -1,6 +1,8 @@
 # 第 18 章：安全
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
+> 按书节速记：[18.1](18.1-introduction/study.md) · [18.2](18.2-security-principles/study.md) · [18.3](18.3-network-threats/study.md) · [18.4](18.4-cryptography-basics/study.md) · [18.5](18.5-pki-certificates/study.md) · [18.6](18.6-security-layering/study.md) · [18.7](18.7-eap-8021x/study.md) · [18.8](18.8-ipsec/study.md) · [18.9](18.9-tls-dtls/study.md) · [18.10](18.10-dnssec/study.md) · [18.11](18.11-dkim/study.md) · [18.12](18.12-protocol-attacks/study.md) · [18.13](18.13-summary/study.md) · [18.14](18.14-references/study.md) · [QUICKREF §18](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/05_application_security/ch18_security.md)）  
 > DNS：[ch11](../chapter11-dns-domain-resolve/study.md) · 防火墙/NAT：[ch07](../chapter07-firewall-nat/study.md) · 自顶向下：[08_network_security/study.md](../../08_network_security/study.md)
 
 从 ARPANET **受信模型** → 公共互联网的 **零信任**：安全不是补丁，而是**战略核心**。

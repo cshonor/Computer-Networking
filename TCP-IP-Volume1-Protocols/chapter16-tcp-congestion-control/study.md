@@ -1,6 +1,8 @@
 # 第 16 章：TCP 拥塞控制
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
+> 按书节速记：[16.1](16.1-introduction/study.md) · [16.2](16.2-classic-algorithms/study.md) · [16.3](16.3-algorithm-improvements/study.md) · [16.4](16.4-eifel-response/study.md) · [16.5](16.5-extended-example/study.md) · [16.6](16.6-shared-congestion-state/study.md) · [16.7](16.7-tcp-friendliness/study.md) · [16.8](16.8-high-speed-cubic/study.md) · [16.9](16.9-delay-based-cc/study.md) · [16.10](16.10-bufferbloat/study.md) · [16.11](16.11-aqm-ecn/study.md) · [16.12](16.12-congestion-attacks/study.md) · [16.13](16.13-summary/study.md) · [16.14](16.14-references/study.md) · [QUICKREF §16](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch16_tcp_congestion.md)）  
 > 流控：[ch15 rwnd](../chapter15-tcp-flow-window/study.md#ch15-5) · 重传：[ch14](../chapter14-tcp-timeout-retransmit/study.md) · 自顶向下：[§3.1 拥塞](../../03_transport_layer/study.md#ch3-1-tcp-cong)
 
 **流量控制** = 收发双方**私约**（不压垮接收缓冲）；**拥塞控制** = 维护**公共资源**的「最高法律」。TCP 在无路由器直接指令下，靠**端到端观测**推断路径容量。
