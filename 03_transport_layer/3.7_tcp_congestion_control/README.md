@@ -2,7 +2,8 @@
 
 ## 知识点速记
 
-- **cwnd=1**：[慢启动初值](./study.md#ch3-7-cwnd-1) · **一页表**：[四阶段](./study.md#ch3-7-cheat-sheet)
+- **cwnd=1**：[初值](./study.md#ch3-7-cwnd-1) · **ssthresh**：[初始大/来自上次事件](./study.md#ch3-7-ssthresh)
+- **三窗联动**：[cwnd/ssthresh/rwnd](./study.md#ch3-7-three-windows) · [四阶段表](./study.md#ch3-7-cheat-sheet)
 - **cwnd vs rwnd**：`min(cwnd, rwnd)` · [慢启动读图](./study.md#ch3-7-diagram-ss) · [背诵](./study.md#ch3-7-exam)
 - **超时** vs **3 dup ACK**：[对照表](./study.md#ch3-7-diagram-timeout)
 - **背诵**：[50 字](./study.md#ch3-7-exam)

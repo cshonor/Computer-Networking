@@ -1,6 +1,6 @@
 # 3.7 TCP 拥塞控制
 
-> 章级精读：[../study.md#ch3-6](../study.md#ch3-6) · [cwnd=1 MSS](#ch3-7-cwnd-1) · [四阶段一页表](#ch3-7-cheat-sheet) · [背诵](#ch3-7-exam) · rwnd：[3.6](../3.6_tcp_flow_control/study.md)
+> 章级精读：[../study.md#ch3-6](../study.md#ch3-6) · [cwnd=1](#ch3-7-cwnd-1) · [ssthresh 精读](#ch3-7-ssthresh) · [cwnd/ssthresh/rwnd 联动](#ch3-7-three-windows) · [四阶段表](#ch3-7-cheat-sheet) · [背诵](#ch3-7-exam)
 
 ## 本节核心目标
 
@@ -37,7 +37,135 @@ $$\text{发送窗口} = \min(\text{cwnd},\ \text{rwnd})$$
 
 发送速率同时受**网络能力（cwnd）**与**接收能力（rwnd）**限制。
 
-**ssthresh（slow start threshold）**：慢启动与拥塞避免的**分界阈值**。
+**ssthresh（slow start threshold）**：慢启动与拥塞避免的**分界阈值** → 详读 [#ch3-7-ssthresh](#ch3-7-ssthresh)。
+
+---
+
+<a id="ch3-7-ssthresh"></a>
+
+## 附、ssthresh 精读（初始较大 · 来自上次事件）
+
+### 1）是什么
+
+**ssthresh（slow start threshold，慢启动阈值）**
+
+| 条件 | 阶段 |
+|------|------|
+| **cwnd < ssthresh** | **慢启动**（指数增长） |
+| **cwnd ≥ ssthresh** | **拥塞避免**（线性 +1 MSS/RTT） |
+
+### 2）初始为什么「较大」（第一次建连）
+
+**RFC 5681**（考试按教材表述）：
+
+| 变量 | 初值 |
+|------|------|
+| **cwnd** | **1 MSS**（现代实现可能 2～4 MSS，考试常写 **1**） |
+| **ssthresh** | **很大**（传统如 **65535 字节**；Linux 等可视为「无穷大」/接收窗口上限） |
+
+**目的**
+
+- 建连时**不知带宽**，不能过早把 cwnd 挡在拥塞避免；
+- 让 cwnd **充分指数增长**，尽快探测网络承载能力；
+- **初始 ssthresh 很大** ≈ 前期**几乎不限制慢启动**，直到发生拥塞才更新。
+
+一句话：**初始 ssthresh 很大 → 前期一直慢启动，不轻易进拥塞避免。**
+
+### 3）「来自上次事件」— ssthresh 有记忆
+
+| 时机 | ssthresh |
+|------|----------|
+| **第一次** | 大初始值 |
+| **之后每次拥塞** | 由**超时**或 **3 dup ACK** 更新，**不再是**初始大值 |
+
+**RFC 5681 常用更新（记结论）**
+
+```text
+ssthresh = max(cwnd/2, 2×MSS)
+```
+
+#### 超时（严重拥塞）
+
+```text
+ssthresh = max(cwnd/2, 2 MSS)
+cwnd = 1 MSS
+```
+
+→ 把「上次能跑的一半」记为新阈值；再慢启动时 **ssthresh 来自上次拥塞**，非初始大值。
+
+#### 3 个重复 ACK（轻度 · Reno）
+
+```text
+ssthresh = max(cwnd/2, 2 MSS)
+cwnd = ssthresh   （快恢复，不回 1）
+```
+
+同样：**新 ssthresh = 事件前 cwnd 的一半**（有下限 2 MSS）。
+
+### 4）典型例题（考试最爱）
+
+**初始**：cwnd=**1**，ssthresh=**8**（较大初始）
+
+| RTT | cwnd | 阶段 |
+|-----|------|------|
+| 1 | 1 | 慢启动 |
+| 2 | 2 | 慢启动 |
+| 3 | 4 | 慢启动 |
+| 4 | **8** | 达到 ssthresh → **拥塞避免** |
+| 5 | 9 | 拥塞避免 |
+| 6 | **10** | 拥塞避免 → **超时** |
+
+**超时后**
+
+- **ssthresh = 10/2 = 5**（**来自上次事件**）
+- **cwnd = 1**
+
+**再慢启动**
+
+| RTT | cwnd |
+|-----|------|
+| 7 | 1 |
+| 8 | 2 |
+| 9 | 4 |
+| 10 | **5** → 达到新 ssthresh → 拥塞避免 |
+
+**要点**：第一次 ssthresh 是**大初值**；之后都来自**上次拥塞时 cwnd 的一半**。
+
+### 5）背诵两句
+
+- **初始 ssthresh 很大**：让慢启动充分探路，不提前线性增。  
+- **之后 ssthresh = 上次 cwnd/2**：超时或 3 dup ACK 后记住历史、保守恢复。
+
+---
+
+<a id="ch3-7-three-windows"></a>
+
+## 附、cwnd · ssthresh · rwnd 联动（一页）
+
+| 量 | 谁维护 | 限制什么 | 典型变化 |
+|----|--------|----------|----------|
+| **rwnd** | **接收方**通告 | 接收缓冲区还能收多少 | 随 ACK **Window** 字段变 |
+| **cwnd** | **发送方** | 网络还能扛多少未确认数据 | 慢启动指数 / 拥塞避免线性 / 事件后重置 |
+| **ssthresh** | **发送方** | cwnd 何时从指数改线性 | 初值**很大**；拥塞后 **max(cwnd/2, 2 MSS)** |
+
+**有效发送（字节）**
+
+$$\text{可发未确认量} \le \min(\text{cwnd},\ \text{rwnd})$$
+
+| 场景 | 谁主导 |
+|------|--------|
+| 建连初期 cwnd=1，rwnd 很大 | **cwnd**（网络探测） |
+| 高速链路，rwnd 变小 | **rwnd**（接收方满） |
+| 超时后 cwnd=1 | **cwnd**；**ssthresh** 已降为上次一半 |
+
+**计算题套路**
+
+1. 画 RTT 行，标 **cwnd** 每轮变化（慢启动 ×2 直到 ≥ ssthresh，再 +1/RTT）  
+2. 遇**超时**：ssthresh=事件前 cwnd/2，cwnd=1，重新表  
+3. 遇 **3 dup ACK**：ssthresh=事件前 cwnd/2，cwnd=ssthresh，进拥塞避免  
+4. 每轮可发量再与 **rwnd** 取 min（题目给 rwnd 时）
+
+→ 四阶段事件表：[#ch3-7-cheat-sheet](#ch3-7-cheat-sheet) · rwnd 详读：[3.6](../3.6_tcp_flow_control/study.md#ch3-6-exam)
 
 ---
 
@@ -94,13 +222,13 @@ $$\text{实际发送窗口} = \min(\text{cwnd},\ \text{rwnd})$$
 | **慢启动** | 建连 / 超时后 | 从 **1 MSS** 起；**每 ACK +1 MSS**（≈每 RTT **×2**） | 不变（直至事件） | cwnd **≥ ssthresh** → 拥塞避免 |
 | **拥塞避免** | cwnd ≥ ssthresh | **每 RTT +1 MSS**（**线性**） | 不变 | 丢包 → 下表 |
 | **快重传** | **3 个重复 ACK** | （立即**重传**丢失段，不等超时） | — | 触发快恢复 |
-| **快恢复** | 3 dup ACK 后 | **cwnd = ssthresh**（**不回 1**） | **= cwnd/2**（事件前） | **拥塞避免** |
-| **超时** | 计时器超时 | **cwnd = 1 MSS** | **= cwnd/2**（事件前） | **慢启动** |
+| **快恢复** | 3 dup ACK 后 | **cwnd = ssthresh**（**不回 1**） | **max(cwnd/2, 2 MSS)** | **拥塞避免** |
+| **超时** | 计时器超时 | **cwnd = 1 MSS** | **max(cwnd/2, 2 MSS)** | **慢启动** |
 
 ```text
 正常：慢启动(指数) ──≥ssthresh──► 拥塞避免(线性)
-轻度：3 dup ACK ──► ssthresh=cwnd/2, cwnd=ssthresh ──► 拥塞避免
-重度：超时 ──► ssthresh=cwnd/2, cwnd=1 ──► 慢启动
+轻度：3 dup ACK ──► ssthresh=max(cwnd/2,2MSS), cwnd=ssthresh ──► 拥塞避免
+重度：超时 ──► ssthresh=max(cwnd/2,2MSS), cwnd=1 ──► 慢启动
 ```
 
 **对比记忆**：**超时回 1**；**3 dup ACK 只减半到 ssthresh，不回 1**。
@@ -114,7 +242,7 @@ $$\text{实际发送窗口} = \min(\text{cwnd},\ \text{rwnd})$$
 | 项 | 内容 |
 |----|------|
 | 场景 | **连接刚建立** / **超时丢包后** |
-| 初值 | **cwnd = 1 MSS**；ssthresh 初始较大（或来自上次事件） |
+| 初值 | **cwnd = 1 MSS**；**ssthresh** 初值很大 / 拥塞后来自上次事件 → [#ch3-7-ssthresh](#ch3-7-ssthresh) |
 | 增长 | 每收到 **1 个 ACK**，cwnd **+1 MSS** → **每 RTT 约翻倍**（指数）：1→2→4→8… |
 | 结束 | cwnd **≥ ssthresh** → **拥塞避免**；中途**超时** → 见第四节 |
 
@@ -162,7 +290,7 @@ $$\text{实际发送窗口} = \min(\text{cwnd},\ \text{rwnd})$$
 | 项 | 内容 |
 |----|------|
 | 触发 | **3 个重复 ACK 之后**（**轻度拥塞**） |
-| 动作 | ① **ssthresh = cwnd / 2** ② **cwnd = ssthresh**（**不回 1**）③ 进入**拥塞避免** |
+| 动作 | ① **ssthresh = max(cwnd/2, 2 MSS)** ② **cwnd = ssthresh**（**不回 1**）③ 进入**拥塞避免** |
 | 逻辑 | 轻度丢包**不一刀切**，保留带宽、平稳恢复 |
 
 **易错**：快恢复后 cwnd **不是** 1；**超时**才会 cwnd=1。
@@ -180,7 +308,7 @@ $$\text{实际发送窗口} = \min(\text{cwnd},\ \text{rwnd})$$
 | 事件 | 处理 |
 |------|------|
 | cwnd=**12** 时**重传计时器超时** | 判定**可能重度拥塞** |
-| **ssthresh** | 更新为 **cwnd/2 = 6**（红虚线） |
+| **ssthresh** | 更新为 **max(cwnd/2, 2 MSS) = 6**（红虚线） |
 | **cwnd** | **重置为 1** |
 | 之后 | 重新**慢启动**（1→2→4…直至再遇 ssthresh=6） |
 
@@ -190,8 +318,8 @@ $$\text{实际发送窗口} = \min(\text{cwnd},\ \text{rwnd})$$
 
 | 信号 | 拥塞程度 | ssthresh | cwnd 之后 | 进入 |
 |------|----------|----------|-----------|------|
-| **超时丢包** | **重度** | cwnd/2 | **1 MSS** | **慢启动** |
-| **3 个重复 ACK** | **轻度** | cwnd/2 | **= ssthresh** | **快恢复 → 拥塞避免** |
+| **超时丢包** | **重度** | **max(cwnd/2, 2 MSS)** | **1 MSS** | **慢启动** |
+| **3 个重复 ACK** | **轻度** | **max(cwnd/2, 2 MSS)** | **= ssthresh** | **快恢复 → 拥塞避免** |
 
 ---
 
@@ -204,8 +332,9 @@ $$\text{实际发送窗口} = \min(\text{cwnd},\ \text{rwnd})$$
 | 公式 | **min(cwnd, rwnd)** |
 | 慢启动 | **指数**，至 **ssthresh** |
 | 拥塞避免 | **线性 +1/RTT** |
-| 超时 | **ssthresh=cwnd/2，cwnd=1** |
-| 3 dup ACK | **ssthresh=cwnd/2，cwnd=ssthresh**（快恢复） |
+| ssthresh | **初值很大**；事件后 **max(cwnd/2, 2 MSS)** |
+| 超时 | **ssthresh 减半阈，cwnd=1** |
+| 3 dup ACK | **ssthresh 减半阈，cwnd=ssthresh**（快恢复） |
 
 ### 50 字终极版
 

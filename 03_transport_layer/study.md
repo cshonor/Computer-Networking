@@ -907,7 +907,7 @@ TCP 解决单连接上的可靠与流控后，还需面对**网络整体拥塞**
 
 ## 3.7 TCP 拥塞控制（TCP Congestion Control）
 
-> **背诵提纲** → [3.7 小节](./3.7_tcp_congestion_control/study.md)（[cwnd=1](./3.7_tcp_congestion_control/study.md#ch3-7-cwnd-1) · [四阶段一页表](./3.7_tcp_congestion_control/study.md#ch3-7-cheat-sheet) · [50 字](./3.7_tcp_congestion_control/study.md#ch3-7-exam)）
+> **背诵提纲** → [3.7 小节](./3.7_tcp_congestion_control/study.md)（[ssthresh](./3.7_tcp_congestion_control/study.md#ch3-7-ssthresh) · [三窗联动](./3.7_tcp_congestion_control/study.md#ch3-7-three-windows) · [四阶段表](./3.7_tcp_congestion_control/study.md#ch3-7-cheat-sheet) · [50 字](./3.7_tcp_congestion_control/study.md#ch3-7-exam)）
 
 ### AIMD 与经典状态
 
