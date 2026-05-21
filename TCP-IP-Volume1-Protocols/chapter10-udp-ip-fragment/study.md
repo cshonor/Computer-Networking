@@ -1,8 +1,10 @@
 # 第 10 章：用户数据报协议（UDP）与 IP 分片
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
-> 前置：**IP/MSS/PMTUD** — [ch05 IP](../chapter05-ip-protocol/study.md) · **链路 MTU/以太帧** — [ch03 链路层](../chapter03-link-layer/study.md) · **ICMP Fragmentation Needed（PTB）** — [ch08 ICMP](../chapter08-icmpv4-icmpv6/study.md)  
-> **组播语境**：[ch09 广播与组播](../chapter09-broadcast-multicast/study.md)；自顶向下精读：[§3.3 UDP](../../03_transport_layer/study.md#ch3-3) · 首部图示：[udp_header_fields.png](../../03_transport_layer/assets/udp_header_fields.png)
+> 按书节速记：[10.1](10.1-introduction/study.md) · [10.2](10.2-udp-header-format/study.md) · [10.3](10.3-udp-checksum/study.md) · [10.4](10.4-udp-dns-example/study.md) · [10.5](10.5-udp-ipv6-teredo/study.md) · [10.6](10.6-udp-lite/study.md) · [10.7](10.7-ip-fragment-mechanism/study.md) · [10.8](10.8-udp-pmtud/study.md) · [10.9](10.9-fragment-arp-nd/study.md) · [10.10](10.10-udp-datagram-length/study.md) · [10.11](10.11-udp-server-design/study.md) · [10.12](10.12-udp-protocol-translation/study.md) · [10.13](10.13-udp-typical-application/study.md) · [10.14](10.14-udp-security/study.md) · [10.15](10.15-summary/study.md) · [10.16](10.16-references/study.md) · [QUICKREF §10](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch10_udp.md)）  
+> 前置：**IP/MSS/PMTUD** — [ch05 IP](../chapter05-ip-protocol/study.md) · **链路 MTU** — [ch03 链路层](../chapter03-link-layer/study.md) · **PTB** — [ch08 ICMP](../chapter08-icmpv4-icmpv6/study.md)  
+> **组播**：[ch09](../chapter09-broadcast-multicast/study.md) · 自顶向下：[§3.3 UDP](../../03_transport_layer/study.md#ch3-3)
 
 UDP 不提供可靠传输、不重排、不重传——它把 **端到端语义**裁剪到「**端口多路复用** + （可选）**数据完整性覆盖**」，从而成为 **DNS、SNMP、流媒体、VXLAN、QUIC 底层运载**的共同起点。本章后半说明：**一旦上层一次交付的字节序列超过链路 MTU，IPv4 会在中间路由器分片**；任一丢失都会让整「逻辑报文」在接收端被丢弃——这是 UDP 互联网上**隐藏的脆弱点**。[ch03](../chapter03-link-layer/study.md) MTU、[ch08](../chapter08-icmpv4-icmpv6/study.md) `PTB` 与本章一起记。
 
