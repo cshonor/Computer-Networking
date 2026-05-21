@@ -1,6 +1,8 @@
 # 第 3 章：链路层（Link Layer）
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
+> 按书节速记：[3.1](3.1-introduction/study.md) · [3.2](3.2-ethernet-ieee802-encapsulation/study.md) · [3.3](3.3-full-duplex-autoneg/study.md) · [3.4](3.4-bridge-switch-stp/study.md) · [3.5](3.5-wireless-80211/study.md) · [3.6](3.6-ppp-protocol/study.md) · [3.7](3.7-loopback-interface/study.md) · [3.8](3.8-mtu/study.md) · [3.9](3.9-tunnel-basics/study.md) · [3.10](3.10-link-layer-security/study.md) · [3.11](3.11-summary/study.md) · [3.12](3.12-references/study.md) · [QUICKREF §3](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/02_link_layer/ch03_link_layer.md)）  
 > 自顶向下对照：[06_link_layer_and_lan/study.md](../../06_link_layer_and_lan/study.md)
 
 链路层是协议栈**最底层**：在特定物理介质上收发比特流，为 **IP** 提供封装与分发，并支撑 **ARP/RARP**。
