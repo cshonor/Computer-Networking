@@ -3,7 +3,7 @@
 ## 知识点速记
 
 - **四块**：输入（LPM/TCAM）→ 交换结构（内存/总线/Crossbar）→ 输出（队列/调度）→ 控制 CPU。  
-- **三种交换**：[精读+对比表](./study.md#ch4-2-switching) · [总线图](./study.md#ch4-2-switch-diagram) · [背诵](./study.md#ch4-2-switch-exam)  
+- **三种交换**：[共享内存四步](./study.md#ch4-2-switch-memory) · [一页对比](./study.md#ch4-2-switch-compare) · [背诵](./study.md#ch4-2-switch-exam)  
 - **输入/输出排队**与 **HOL 阻塞**概念。  
 - **队列丢包**：[Tail Drop](./study.md#ch4-2-tail-drop) · [RED 曲线](./study.md#ch4-2-red-diagram) · [WRED](./study.md#ch4-2-wred-diagram) · [WFQ 读图](./study.md#ch4-2-wfq-diagram) · [速记卡](./study.md#ch4-2-queue-exam)  
 - **调度**：FIFO、优先级、**WFQ**（与 AQM 配合）。  
