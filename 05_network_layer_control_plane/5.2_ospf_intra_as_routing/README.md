@@ -2,9 +2,9 @@
 
 ## 知识点速记
 
-- **AS 内 IGP**；IP **协议号 89**；与 RIP/UDP、BGP/TCP 区分。  
-- **LSA + SPF**；**区域**与 **Area 0 骨干**；**ABR / ASBR**。  
-- 目的：扩展性、抑制泛洪、分层运维。
+- **定位**：[IGP/LS](./study.md#ch5-2-ospf-basics) · **IP 89** / Cost：[特点](./study.md#ch5-2-ospf-features)  
+- **Area 0**：[区域规划](./study.md#ch5-2-ospf-area) · **邻居五步**：[Hello→Full](./study.md#ch5-2-ospf-neighbor)  
+- **vs RIP**：[对比](./study.md#ch5-2-ospf-vs-rip) · **背诵**：[口诀 / 30 字](./study.md#ch5-2-ospf-exam)
 
 ## 与后端开发的联系
 
