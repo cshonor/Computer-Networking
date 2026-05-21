@@ -1,6 +1,8 @@
 # 第 15 章：TCP 数据流与窗口管理
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
+> 按书节速记：[15.1](15.1-introduction/study.md) · [15.2](15.2-interactive-communication/study.md) · [15.3](15.3-delayed-ack/study.md) · [15.4](15.4-nagle-algorithm/study.md) · [15.5](15.5-flow-control-window/study.md) · [15.6](15.6-urgent-pointer/study.md) · [15.7](15.7-window-attacks/study.md) · [15.8](15.8-summary/study.md) · [15.9](15.9-references/study.md) · [QUICKREF §15](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch15_tcp_dataflow_window.md)）  
 > 前置：[ch12 滑动窗口](../chapter12-tcp-basic/study.md#ch12-1-2) · [ch13 WSCALE](../chapter13-tcp-connection-manage/study.md#ch13-3) · 自顶向下：[§3.1 流控](../../03_transport_layer/study.md#ch3-1-tcp-flow)
 
 TCP 是**闭环反馈控制系统**：在交互式低延迟与成块高吞吐之间，用**窗口**、**Nagle**、**延迟 ACK** 等启发式算法找平衡。

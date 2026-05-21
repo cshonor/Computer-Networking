@@ -1,6 +1,8 @@
 # 第 14 章：TCP 超时与重传
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
+> 按书节速记：[14.1](14.1-introduction/study.md) · [14.2](14.2-simple-timeout-retransmit/study.md) · [14.3](14.3-rto-estimation/study.md) · [14.4](14.4-timer-based-retransmit/study.md) · [14.5](14.5-fast-retransmit/study.md) · [14.6](14.6-sack-retransmit/study.md) · [14.7](14.7-spurious-timeout/study.md) · [14.8](14.8-reorder-duplicate/study.md) · [14.9](14.9-destination-metrics/study.md) · [14.10](14.10-resegment-retransmit/study.md) · [14.11](14.11-retransmit-attacks/study.md) · [14.12](14.12-summary/study.md) · [14.13](14.13-references/study.md) · [QUICKREF §14](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch14_tcp_timeout_retransmit.md)）  
 > 前置：[ch12](../chapter12-tcp-basic/study.md#ch12-1-4) · [ch13 选项/时间戳](../chapter13-tcp-connection-manage/study.md#ch13-3) · 自顶向下：[§3.1 可靠/快速重传](../../03_transport_layer/study.md#ch3-1-tcp-reliable)
 
 **RTO** 是可靠性的**最后一道防线**：丢包、严重失序或延迟尖峰使**快速重传**失效时，靠计时器溢出强制恢复。RTT 估计、重传路径与**伪超时**修正，直接影响拥塞控制稳定性。
