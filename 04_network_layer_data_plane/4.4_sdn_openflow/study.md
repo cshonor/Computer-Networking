@@ -1,6 +1,6 @@
 # 4.4 SDN 软件定义网络 与 OpenFlow
 
-> 章级精读：[§4.4 Match+Action](../study.md#ch4-4) · 控制平面 SDN：[§5.5](../../05_network_layer_control_plane/study.md#ch5-5) · 控制器细节：[5.4](../../05_network_layer_control_plane/5.4_sdn_controller_plane/study.md) · 架构图：[../assets/sdn_controller_architecture.png](../assets/sdn_controller_architecture.png)
+> 章级精读：[§4.4 Match+Action](../study.md#ch4-4) · 控制平面：[5.4 控制器精读](../../05_network_layer_control_plane/5.4_sdn_controller_plane/study.md#ch5-4-exam) · [§5.5](../../05_network_layer_control_plane/study.md#ch5-5) · 架构图：[../assets/sdn_controller_architecture.png](../assets/sdn_controller_architecture.png)
 
 ## 本节核心目标
 

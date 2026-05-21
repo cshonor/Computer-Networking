@@ -2,9 +2,10 @@
 
 ## 知识点速记
 
-- **南向**：OpenFlow 等；**北向**：REST/gRPC 应用。  
-- **Packet-in / Flow-mod / Packet-out**：控制闭环。  
-- 控制器维护全局视图，下发第 4 章**流表**。
+- **核心**：[控数分离](./study.md#ch5-4-sdn-core) · [集中控制器](./study.md#ch5-4-controller)  
+- **接口**：[南向 OpenFlow / 北向 REST](./study.md#ch5-4-interfaces)  
+- **对比**：[传统 vs SDN](./study.md#ch5-4-vs-traditional) · **背诵**：[口诀 / 30 字](./study.md#ch5-4-exam)  
+- 数据平面流表 → [4.4 OpenFlow](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md)
 
 ## 与后端开发的联系
 

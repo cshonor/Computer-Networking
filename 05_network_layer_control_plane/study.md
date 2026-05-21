@@ -163,6 +163,8 @@ SDN 将分布式控制逻辑**上收**到可编程的软件栈，与第 4 章**�
 
 **So What?** 控制器直接驱动第 4 章讨论的**泛化转发/流表**，实现细粒度、可演进的流量控制。
 
+> **背诵提纲** → [5.4 SDN 控制器精读](./5.4_sdn_controller_plane/study.md)（[南北向](./5.4_sdn_controller_plane/study.md#ch5-4-interfaces) · [vs 传统](./5.4_sdn_controller_plane/study.md#ch5-4-vs-traditional) · [挑战](./5.4_sdn_controller_plane/study.md#ch5-4-challenges) · [30 字](./5.4_sdn_controller_plane/study.md#ch5-4-exam)）
+
 ---
 
 <a id="ch5-6"></a>
