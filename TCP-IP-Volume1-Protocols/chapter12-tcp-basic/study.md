@@ -1,6 +1,8 @@
 # 第 12 章：TCP 传输控制协议（初步）
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
+> 按书节速记：[12.1](12.1-introduction/study.md) · [12.2](12.2-tcp-service-feature/study.md) · [12.3](12.3-tcp-packet-header/study.md) · [12.4](12.4-summary/study.md) · [12.5](12.5-references/study.md) · [QUICKREF §12](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch12_tcp_intro.md)）  
 > 对照 UDP：[ch10](../chapter10-udp-ip-fragment/study.md) · 端到端：[ch01](../chapter01-overview/study.md#ch01-e2e) · 自顶向下：[§3.1 TCP](../../03_transport_layer/study.md#ch3-1-tcp-conn)
 
 **TCP** 在尽力而为的 IP 之上抽象出**可靠、全双工字节流** — 后续 ch13–16（连接、超时、窗口、拥塞）的理论基石。
