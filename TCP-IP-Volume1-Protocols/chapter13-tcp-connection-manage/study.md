@@ -1,6 +1,8 @@
 # 第 13 章：TCP 连接管理
 
-> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记  
+> 按书节速记：[13.1](13.1-introduction/study.md) · [13.2](13.2-tcp-connection-setup/study.md) · [13.3](13.3-tcp-options/study.md) · [13.4](13.4-tcp-pmtud/study.md) · [13.5](13.5-tcp-state-time-wait/study.md) · [13.6](13.6-tcp-rst/study.md) · [13.7](13.8-listen-queue-backlog/study.md) · [13.8](13.8-tcp-connection-attacks/study.md) · [13.9](13.9-summary/study.md) · [13.10](13.10-references/study.md) · [QUICKREF §13](../QUICKREF.md)
+
+> 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch13_tcp_connection.md)）  
 > 前置：[ch12 TCP 初步](../chapter12-tcp-basic/study.md) · PMTUD：[ch08](../chapter08-icmpv4-icmpv6/study.md#ch08-3) · 自顶向下：[§3.1 连接/状态机](../../03_transport_layer/study.md#ch3-1-tcp-conn)
 
 连接管理本质是**分布式状态一致性**：在不可靠 IP 上通过 **TCB** 维护有状态**虚拟电路**，支撑可靠重传、流控与拥塞控制。
