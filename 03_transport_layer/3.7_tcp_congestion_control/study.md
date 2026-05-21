@@ -165,7 +165,7 @@ $$\text{可发未确认量} \le \min(\text{cwnd},\ \text{rwnd})$$
 3. 遇 **3 dup ACK**：ssthresh=事件前 cwnd/2，cwnd=ssthresh，进拥塞避免  
 4. 每轮可发量再与 **rwnd** 取 min（题目给 rwnd 时）
 
-→ 四阶段事件表：[#ch3-7-cheat-sheet](#ch3-7-cheat-sheet) · rwnd 详读：[3.6](../3.6_tcp_flow_control/study.md#ch3-6-exam)
+→ 四阶段事件表：[#ch3-7-cheat-sheet](#ch3-7-cheat-sheet) · rwnd/零窗口：[3.6 流控一页](../3.6_tcp_flow_control/study.md#ch3-6-all-windows)
 
 ---
 
