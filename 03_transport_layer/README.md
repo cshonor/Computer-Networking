@@ -18,6 +18,7 @@
 | [gbn_error_retransmit.png](./assets/gbn_error_retransmit.png) | 3.4 GBN 丢包回退重传 |
 | [tcp_three_way_handshake.png](./assets/tcp_three_way_handshake.png) | 3.5 TCP 三次握手状态图 |
 | [tcp_four_way_handshake.png](./assets/tcp_four_way_handshake.png) | 3.5 TCP 四次挥手与 TIME_WAIT |
+| [tcp_zero_window_probe.png](./assets/tcp_zero_window_probe.png) | 3.6 零窗口 Probe（SEQ=UNA−1） |
 | [tcp_slow_start_packets.png](./assets/tcp_slow_start_packets.png) | 3.7 慢启动 ACK 驱动与指数增长 |
 | [tcp_slow_start_congestion_avoidance.png](./assets/tcp_slow_start_congestion_avoidance.png) | 3.7 ssthresh 拐点与拥塞避免 |
 | [tcp_congestion_timeout.png](./assets/tcp_congestion_timeout.png) | 3.7 超时后 ssthresh 减半、cwnd=1 |

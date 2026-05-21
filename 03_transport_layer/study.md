@@ -864,7 +864,7 @@ UDP 为 **QUIC** 提供「画布」：在用户态实现可靠性、拥塞控制
 
 ### 流量控制（Flow Control）
 
-> **背诵提纲** → [3.6 小节](./3.6_tcp_flow_control/study.md)（[零窗口/探测/更新](./3.6_tcp_flow_control/study.md#ch3-6-zero-window) · [rwnd+cwnd 一页](./3.6_tcp_flow_control/study.md#ch3-6-all-windows) · [口诀](./3.6_tcp_flow_control/study.md#ch3-6-exam)）
+> **背诵提纲** → [3.6 小节](./3.6_tcp_flow_control/study.md)（[零窗/探测/更新对比](./3.6_tcp_flow_control/study.md#ch3-6-compare) · [Probe 读图](./3.6_tcp_flow_control/study.md#ch3-6-persist-diagram) · [三窗一页](./3.6_tcp_flow_control/study.md#ch3-6-all-windows)）
 
 发送方尊重接收方公布的 **`rwnd`（接收窗口）** = TCP 首部 **Window** 字段（16 bit，可配合窗口扩大选项）：表示对端接收缓存**剩余空间**（字节）。
 

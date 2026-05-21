@@ -4,7 +4,7 @@
 
 - **定义**：接收方限发送速率，防**接收缓冲区**溢出
 - **rwnd** · **min(rwnd,cwnd)** · [三窗一页](./study.md#ch3-6-all-windows)（链 [3.7](../3.7_tcp_congestion_control/study.md#ch3-7-three-windows)）
-- **零窗口**：[停发](./study.md#ch3-6-zero-window) · [Persist 探测](./study.md#ch3-6-persist) · [窗口更新](./study.md#ch3-6-window-update)
+- **零窗口**：[对比表](./study.md#ch3-6-compare) · [Probe 图](./study.md#ch3-6-persist-diagram) · [死锁 4 步](./study.md#ch3-6-persist)
 - **背诵**：[3 行口诀](./study.md#ch3-6-exam) · 章级：[§3.5-flow](../study.md#ch3-5-flow)
 
 ## 与后端开发的联系
