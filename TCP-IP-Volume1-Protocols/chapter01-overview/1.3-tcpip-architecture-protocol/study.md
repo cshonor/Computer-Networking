@@ -40,3 +40,4 @@
 
 - OSI 更细（会话层、表示层独立）；TCP/IP **实用合并**到应用层。
 - 学习时以 **TCP/IP 四层** 抓包、读 Stevens 后续章节为准。
+- 新手详解 + 对照表 + ASCII 图 → [1.2 §OSI vs TCP/IP](../1.2-design-implementation/study.md#ch1-osi-tcpip)
