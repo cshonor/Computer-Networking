@@ -1,10 +1,24 @@
 # 7.3 网络地址转换 (NAT)
 
-> 章级精读：[../study.md#ch07-3](../study.md#ch07-3) · 精读：[04 §4.3 NAT](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat)
+> 章级精读：[../study.md#ch07-3](../study.md#ch07-3) · 基础五要点：[04 §4.3 NAT](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat) · 工作过程：[#ch4-3-nat-flow](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-flow)
 
 ## 本节核心目标
 
-掌握 **基本 NAT**、**NAPT**、**Hairpin**、**ALG** 与 **EIM/ADF** 类型（P2P 必考）。
+掌握 NAT **作用/本质/转换对象/执行位置/映射表**（见 04 精编）；本节延伸 **Hairpin、ALG、EIM/ADF**（P2P 必考）。
+
+---
+
+## NAT 基础五要点（速记）
+
+| # | 要点 |
+|---|------|
+| 1 | **作用**：私网复用公网 IP，隐藏内网 |
+| 2 | **本质**：改写 IP 首部 + **状态映射表** |
+| 3 | **对象**：基本 NAT 改 IP；**NAPT** 改 IP+端口 |
+| 4 | **位置**：边界网关；**数据平面改写**，控制平面**管表** |
+| 5 | **状态**：内网五元组 ↔ 公网五元组，**老化超时** |
+
+→ 出站/入站分步：[04 §4.3 工作过程](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-flow)
 
 ---
 
