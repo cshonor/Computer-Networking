@@ -369,6 +369,7 @@
 
 - 一条宽带下**所有设备共用 1 个公网 IP**，靠**端口**区分，互不干扰
 - NAT **隐藏内网 IP**，外网无法**主动**连内网电脑（需端口映射/DNAT）
+- **NAT 只改地址**，不切换 AS、不切换路由协议；AS 内转发仍靠 **IGP** → [5.1 同AS实景](../../05_network_layer_control_plane/5.1_routing_algorithm/study.md#ch5-1-same-as-scenario)
 - **IPv6** 地址极多，基本**不需要 NAT**，设备可直接公网可达
 
 ---

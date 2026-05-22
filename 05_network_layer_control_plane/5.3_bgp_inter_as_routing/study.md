@@ -77,6 +77,9 @@ BGP 专门管：**各家大型网络之间**互相通报路线、按规则选路
 4. **外网跨区域、按规则选路** → BGP  
 5. **TCP 179 + 路径向量 + 策略优先**
 
+**何时才用 BGP？** 数据需**跳出本 AS**（如移动访问电信/海外）→ AS **边界**才交换 BGP 路由。  
+同 AS 内互访（如移动→移动）→ 全程 **IGP**，**不用 BGP** → [5.1 同AS实景](../5.1_routing_algorithm/study.md#ch5-1-same-as-scenario)
+
 → 与 [5.1 AS≠IGP 城市口诀](../5.1_routing_algorithm/study.md#ch5-1-as-vs-igp) 对照：**城内 IGP，城城 BGP**
 
 ---

@@ -4,7 +4,7 @@
 
 | 块 | 锚点 |
 |----|------|
-| **IGP/EGP** | [框架](#ch5-1-igp-egp) · [AS≠IGP 通俗](#ch5-1-as-vs-igp) · [协议速记卡](#ch5-1-protocol-card) |
+| **IGP/EGP** | [框架](#ch5-1-igp-egp) · [AS≠IGP 通俗](#ch5-1-as-vs-igp) · [同AS实景](#ch5-1-same-as-scenario) · [协议速记卡](#ch5-1-protocol-card) |
 | 考点 LS/DV | [分类](#ch5-1-classify) · [LS](#ch5-1-ls) · [DV](#ch5-1-dv) · [协议对比](#ch5-1-compare) |
 | 手算专题 | [约定](#ch5-1-overview-abcde) · [Dijkstra](#ch5-1-dijkstra) · [BF](#ch5-1-bellman-ford) · [ABCD](#ch5-1-walkthrough) · [自练](#ch5-1-practice) |
 | SDN 算路 | [传统 vs SDN](#ch5-1-sdn-compute) → [5.4 精编](../5.4_sdn_controller_plane/study.md#ch5-4-routing-compute) |
@@ -88,6 +88,36 @@
 | AS = IGP？ | **否**；AS = **范围**，IGP/BGP = **协议** |
 | AS = 局域网？ | **否**；家用小局域网**不算**标准 AS；运营商/大型企业全网才是 |
 | AS ≠ 局域网 | 局域网是**小范围**；AS 是**大型自治管理域** |
+
+<a id="ch5-1-same-as-scenario"></a>
+
+#### 实景链路：同 AS 内互访（移动 → 移动）
+
+**场景**：手机/电脑（移动用户）访问**同属中国移动**的服务器  
+→ 站在 **AS 维度**：全程都在**移动这一个 AS 内部**，**用 IGP，用不到 BGP**
+
+| 步骤 | 发生什么 | 协议/动作 |
+|------|----------|-----------|
+| **① 用户主机** | 私网 IP 上网，经家/小区**网关** | 网关做 **NAT**（私网 → 移动公网 IP）→ [4.3 NAT 通俗](../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-simple) |
+| **② 进入移动骨干** | 包进入移动全网路由器集群（**同一 AS**） | 路由器间 **IGP（主流 OSPF）** 找**最短/最优**路径 |
+| **③ 抵达目标** | 服务器在移动机房，**同 AS** | 沿内网路由直达；返程原路 |
+
+```text
+手机(私网) → NAT网关 → 移动骨干(OSPF/IGP) → 移动机房服务器
+         └─ 全程移动 AS 内，无 BGP ─┘
+```
+
+**关键区分**
+
+| 点 | 说明 |
+|----|------|
+| 「上网」≠ 一定跨 AS | 访问**同运营商**服务器 → **没跑出移动 AS** → **全程 IGP** |
+| **NAT ≠ 换协议** | NAT 只**改 IP 地址**；不改变 AS 归属；AS 内寻址仍靠 **IGP** |
+| **何时用 BGP？** | 访问**电信/联通/海外**等 → 需**跳出移动 AS** → **AS 边界**才跑 **BGP** |
+
+**一句话**：**同运营商内部互访：NAT 做地址转换，AS 内靠 IGP 转发，全程不出本自治域；跨运营商才在边界调 BGP。**
+
+→ 何时用 BGP：[5.3 BGP 通俗](../5.3_bgp_inter_as_routing/study.md#ch5-3-bgp-courier)
 
 ---
 
@@ -463,6 +493,7 @@ dist下标0永远是起点；Dijkstra有S顺序，BF只有轮次无节点排序
 |------|------|
 | [#ch5-1-igp-egp](#ch5-1-igp-egp) | IGP/EGP/AS 框架 |
 | [#ch5-1-as-vs-igp](#ch5-1-as-vs-igp) | AS≠IGP 通俗+口诀 |
+| [#ch5-1-same-as-scenario](#ch5-1-same-as-scenario) | 同AS内互访实景链路 |
 | [#ch5-1-protocol-card](#ch5-1-protocol-card) | OSPF/BGP/RIP 速记卡 |
 | [#ch5-1-classify](#ch5-1-classify) | 分类 |
 | [#ch5-1-ls](#ch5-1-ls) · [#ch5-1-dv](#ch5-1-dv) | LS / DV |
