@@ -1,6 +1,6 @@
 # 2.4 CIDR 与聚合
 
-> 章级精读：[../study.md#ch02-4](../study.md#ch02-4) · 控制平面：[§5 路由](../../../05_network_layer_control_plane/study.md) · 精编：[04 §4.3 CIDR](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-cidr)
+> 章级精读：[../study.md#ch02-4](../study.md#ch02-4) · 控制平面：[§5 路由](../../../05_network_layer_control_plane/study.md) · 精编：[04 §4.3 逻辑链](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-cidr-chain)
 
 ## 本节核心目标
 

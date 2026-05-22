@@ -1,6 +1,6 @@
 # 5.4 IP 转发
 
-> 章级精读：[../study.md#ch05-4](../study.md#ch05-4) · ARP：[ch04](../../chapter04-arp-protocol/study.md) · 控制平面：[§5 路由](../../../05_network_layer_control_plane/study.md)
+> 章级精读：[../study.md#ch05-4](../study.md#ch05-4) · ARP：[ch04](../../chapter04-arp-protocol/study.md) · 精编：[04 §4.3 LPM](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-lpm) · 控制平面：[§5 路由](../../../05_network_layer_control_plane/study.md)
 
 ## 本节核心目标
 
@@ -11,6 +11,7 @@
 ## 最长前缀匹配 (LPM)
 
 - 目的 IP 与多条路由前缀匹配时，选**掩码最长（最具体）**的一条。
+- 查表五步、经典例题 → [04 §4.3 LPM 精编](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-lpm)
 - 路由器查 **FIB** 转发；主机查 **路由表** 决定本机发出还是交网关。
 
 ---
