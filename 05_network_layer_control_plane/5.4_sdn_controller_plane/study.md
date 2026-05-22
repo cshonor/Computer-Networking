@@ -1,10 +1,10 @@
 # 5.4 SDN 控制平面架构
 
-> 章级精读：[§5.5 SDN](../study.md#ch5-5) · 数据平面 OpenFlow/流表：[4.4](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md) · 架构图：[../../04_network_layer_data_plane/assets/sdn_controller_architecture.png](../../04_network_layer_data_plane/assets/sdn_controller_architecture.png)
+> 章级精读：[§5.5 SDN](../study.md#ch5-5) · **通俗版**：[4.4 新手易懂](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-simple) · **算路对比**：[#ch5-4-routing-compute](#ch5-4-routing-compute) · 精编：[4.4 OpenFlow/流表](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md) · 架构图：[../../04_network_layer_data_plane/assets/sdn_controller_architecture.png](../../04_network_layer_data_plane/assets/sdn_controller_architecture.png)
 
 ## 本节核心目标
 
-掌握 **控数分离**、**集中式控制器**、**南向 OpenFlow / 北向 REST**、与传统网络对比及**三大挑战**；能区分控制平面（本章）与数据平面（4.4）。
+掌握 **控数分离**、**集中式控制器**、**南向 OpenFlow / 北向 REST**、与传统网络对比及**三大挑战**；**新手先读** [4.4 交通类比](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-simple)；能区分控制平面（本章）与数据平面（4.4）。
 
 ---
 
@@ -19,7 +19,7 @@
 | **控制平面** | **集中化** — 算路、策略、下发流表 |
 | **数据平面** | 交换机/路由器**仅高速转发**（按流表 Match+Action） |
 
-一句话：**大脑在控制器，交换机只干活。**
+一句话：**大脑在控制器，交换机只干活。** → 通俗验证：[4.4 核心分界](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-core-verify)
 
 → 数据平面详解：[4.4 SDN/OpenFlow](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-sdn-core)
 
@@ -76,9 +76,95 @@
 
 ---
 
+<a id="ch5-4-routing-compute"></a>
+
+## 五、SDN 里怎么算路？（新手易懂 · 传统 vs SDN）
+
+> **算法公式没变，变的是「谁算、在哪算、能看见多大范围」。**
+
+### 核心区别（先背）
+
+| 模式 | 谁算 | 看见什么 | 起点 |
+|------|------|----------|------|
+| **传统** | **每台路由器各自**算 | 主要靠 LSA/邻居，**局部视野** | **只能以自己**为起点 |
+| **SDN** | **控制器统一**算 | **整张全网拓扑图** | **任意节点**都可作起点 |
+
+---
+
+### 1）控制器手里有完整全网地图
+
+控制器收集并汇总：
+
+- 所有**交换机/节点**
+- 节点间**链路**
+- 每条链路的**带宽、延迟、开销权重**
+
+→ 整张网络变成一张**节点连线图**，数据全在控制器这一台（或一组）里。
+
+---
+
+### 2）Dijkstra 在 SDN 里怎么跑
+
+**算法规则不变**，**运行主体和范围变了**：
+
+| | 传统路由器 | SDN 控制器 |
+|---|-----------|------------|
+| 拓扑 | 仅相邻节点，**看不到远处全貌** | **全量拓扑** |
+| 起点 | **只能以自己**为起点 | **任意节点**作起点 |
+| 输出 | 本机转发表 | **流表规则**下发给沿途交换机 |
+
+**实例（节点 A、B、C、D 四台交换机互联）**
+
+- 数据包要从 **A → D**
+- 控制器在**整张拓扑**上，**以 A 为起点**跑 Dijkstra
+- **一次性**算出 A→B、A→C、A→D 等最短路
+- 若要算 B 到其他点 → 切换起点为 B **重新算**即可
+
+→ Dijkstra 手算：[5.1 §八 Dijkstra](../5.1_routing_algorithm/study.md#ch5-1-dijkstra)
+
+---
+
+### 3）算完怎么下发
+
+1. 控制器算出最优路径：**A → C → D**
+2. 经 **OpenFlow** 给 **A、C** 下发对应**流表**
+3. 包到 A → 按表转给 C；C → 转给 D
+4. **交换机全程不算路**，只执行规则
+
+→ [未知流 4 步](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-flow)
+
+---
+
+### 4）通俗对比
+
+| | 传统 | SDN |
+|---|------|-----|
+| 比喻 | 每个路口交警，**只看见隔壁**，自己盘算怎么通车 | 指挥中心看**全城地图**，任意出发点算最优路，**指令下发**各路口 |
+| 算路 | 分散在各设备 | **集中在控制器** |
+| 转发 | 设备自己查路由表 | 设备**只查流表** |
+
+---
+
+### 5）Bellman-Ford 同理
+
+| | 传统 | SDN |
+|---|------|-----|
+| BF | 单台基于**自身周边链路**迭代 | 控制器拿**整张拓扑**统一迭代 |
+| 视野 | 受单设备限制 | **不受单设备视野限制** |
+
+→ BF 手算：[5.1 §九 Bellman-Ford](../5.1_routing_algorithm/study.md#ch5-1-bellman-ford)
+
+---
+
+### 背诵一句话
+
+**公式步骤不变；路径计算集中到拥有全网全景的控制器，任意起点算任意两点最短路，结果经 OpenFlow 下发，交换机只执行。**
+
+---
+
 <a id="ch5-4-controllers"></a>
 
-## 五、主流 SDN 控制器（记名）
+## 六、主流 SDN 控制器（记名）
 
 **Floodlight** · **OpenDaylight（ODL）** · **ONOS** · **Ryu**
 
@@ -88,7 +174,7 @@
 
 <a id="ch5-4-vs-traditional"></a>
 
-## 六、SDN 与传统网络对比（考试表）
+## 七、SDN 与传统网络对比（考试表）
 
 | 对比项 | 传统网络 | SDN 网络 |
 |--------|----------|----------|
@@ -103,7 +189,7 @@
 
 <a id="ch5-4-challenges"></a>
 
-## 七、SDN 现存挑战
+## 八、SDN 现存挑战
 
 | # | 挑战 |
 |---|------|
@@ -115,7 +201,7 @@
 
 <a id="ch5-4-exam"></a>
 
-## 八、考试背诵极简版
+## 九、考试背诵极简版
 
 ### 口诀
 
@@ -154,7 +240,7 @@ Floodlight ODL ONOS Ryu记
 
 <a id="ch5-4-practice"></a>
 
-## 九、学习实践
+## 十、学习实践
 
 > 搭建 **Ryu 控制器 + Mininet** 仿真环境：实操 **流表下发**、**Packet-in** 触发、流量转发；对照 [4.4 未知流流程](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-flow)。
 
@@ -162,6 +248,7 @@ Floodlight ODL ONOS Ryu记
 |------|------|
 | [#ch5-4-sdn-core](#ch5-4-sdn-core) | 控数分离 |
 | [#ch5-4-controller](#ch5-4-controller) | 集中控制器 |
+| [#ch5-4-routing-compute](#ch5-4-routing-compute) | 传统 vs SDN 算路 |
 | [#ch5-4-interfaces](#ch5-4-interfaces) | 南北向 |
 | [#ch5-4-vs-traditional](#ch5-4-vs-traditional) | 对比表 |
 | [#ch5-4-challenges](#ch5-4-challenges) | 三大挑战 |

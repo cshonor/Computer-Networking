@@ -6,6 +6,7 @@
 |----|------|
 | 考点 LS/DV | [分类](#ch5-1-classify) · [LS](#ch5-1-ls) · [DV](#ch5-1-dv) · [协议对比](#ch5-1-compare) |
 | 手算专题 | [约定](#ch5-1-overview-abcde) · [Dijkstra](#ch5-1-dijkstra) · [BF](#ch5-1-bellman-ford) · [ABCD](#ch5-1-walkthrough) · [自练](#ch5-1-practice) |
+| SDN 算路 | [传统 vs SDN](#ch5-1-sdn-compute) → [5.4 精编](../5.4_sdn_controller_plane/study.md#ch5-4-routing-compute) |
 | 背诵 | [考点速记](#ch5-1-exam) |
 
 ## 本节核心目标
@@ -299,6 +300,24 @@ dist下标0永远是起点；Dijkstra有S顺序，BF只有轮次无节点排序
 | LS 一定无环？ | **稳态**无环；DV 收敛中可有临时环 |
 | 算路在哪？ | **控制平面**；转发查 **FIB** |
 | dist 与 S | **S 顺序 ≠ 数组重排**；0 号位永远是起点 |
+| SDN 算路？ | **算法不变**；控制器**全网全景**算、**任意起点**；交换机**只执行流表** → [#ch5-1-sdn-compute](#ch5-1-sdn-compute) |
+
+---
+
+<a id="ch5-1-sdn-compute"></a>
+
+## SDN 与传统算路差异（通俗 · 跨节）
+
+| | 传统 | SDN |
+|---|------|-----|
+| **谁算** | 每台路由器**各自** | **控制器集中** |
+| **看见** | 局部（LSA/邻居） | **全网拓扑** |
+| **起点** | 只能**以自己** | **任意节点** |
+| **Dijkstra/BF** | 公式不变，**分散执行** | 公式不变，**集中执行**后 **OpenFlow 下发** |
+
+**一句**：算法步骤没变；算路从「每台各自算」变成「控制器全景算、交换机只转发」。
+
+→ 完整流程 + A→D 实例：[5.4 §五 SDN 算路](../5.4_sdn_controller_plane/study.md#ch5-4-routing-compute)
 
 ---
 
@@ -318,3 +337,4 @@ dist下标0永远是起点；Dijkstra有S顺序，BF只有轮次无节点排序
 | [#ch5-1-algo-compare](#ch5-1-algo-compare) | 算法对比 |
 | [#ch5-1-practice](#ch5-1-practice) | 自练 |
 | [#ch5-1-exam](#ch5-1-exam) | 背诵 |
+| [#ch5-1-sdn-compute](#ch5-1-sdn-compute) | SDN vs 传统算路 |
