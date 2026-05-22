@@ -1,10 +1,130 @@
 # 5.2 OSPF 自治系统内部路由
 
-> 章级精读：[§5.3 OSPF](../study.md#ch5-3) · [AS≠IGP 通俗](../5.1_routing_algorithm/study.md#ch5-1-as-vs-igp) · [IGP 框架](../5.1_routing_algorithm/study.md#ch5-1-igp-egp) · 域间：[5.3 BGP](../5.3_bgp_inter_as_routing/study.md)
+> 章级精读：[§5.3 OSPF](../study.md#ch5-3) · **三大概念通俗**：[#ch5-2-ospf-simple](#ch5-2-ospf-simple) · [组播≠CIDR](#ch5-2-multicast-vs-cidr) · [AS≠IGP](../5.1_routing_algorithm/study.md#ch5-1-as-vs-igp) · 域间：[5.3 BGP](../5.3_bgp_inter_as_routing/study.md)
 
 ## 本节核心目标
 
-掌握 **OSPF 定位（IGP/LS）**、**IP 89**、**Area 0**、**LSA 泛洪**、邻居建立五步与 **Full** 邻接；能区分 **OSPF vs RIP**。
+掌握 **OSPF 定位（IGP/LS）**、**IP 89**、**Area 0**、**LSA 泛洪**、邻居建立五步与 **Full** 邻接；能区分 **OSPF vs RIP**。**新手先读** [#ch5-2-ospf-simple](#ch5-2-ospf-simple)。
+
+---
+
+<a id="ch5-2-ospf-simple"></a>
+
+## 〇、新手易懂：三大核心概念
+
+> **89 识别 OSPF 包；Area 0 是主干道；LSA 泛洪同步同区域地图。**
+
+---
+
+<a id="ch5-2-ospf-ip89"></a>
+
+### 1）IP 协议号 89
+
+**通俗**：IP 首部有个**协议号**，告诉接收方「包里装的是哪种协议」。
+
+| 编号 | 协议 |
+|------|------|
+| **6** | TCP |
+| **17** | UDP |
+| **1** | ICMP |
+| **89** | **OSPF** |
+
+- 组播收发（**广播网/以太网**上 Hello、LSAck 等仍用组播，**至今标配**）：
+  - **224.0.0.5**（AllSPFRouters）— 所有 OSPF 路由器  
+  - **224.0.0.6** — 只发给 **DR、BDR**
+
+→ 考试精编：[#ch5-2-ospf-features](#ch5-2-ospf-features) · **224.0.0.5 与 CIDR 易混** → [#ch5-2-multicast-vs-cidr](#ch5-2-multicast-vs-cidr)
+
+---
+
+<a id="ch5-2-multicast-vs-cidr"></a>
+
+#### 易混澄清：224.0.0.5 还在，没被 CIDR 取代
+
+> **224.0.0.5 一直都在；CIDR 和组播是两回事，不是「有了 CIDR 就不用组播」。**
+
+| | **224.0.0.5** | **CIDR** |
+|---|---------------|----------|
+| 是什么 | **D 类组播地址**（OSPF 专用） | **单播地址的 /前缀 记法** |
+| 管什么 | **功能**：OSPF Hello/LSAck 发给所有路由器 | **记法**：如 `192.168.1.0/24` |
+| 关系 | 可写成 `224.0.0.5/32`，**只是写法**，本质仍是**组播** | 只管**普通上网单播 IP**，**不管组播段** |
+
+**224.0.0.0/4** 整段是**组播（D 类）**，与 CIDR 划分单播网段**各管各的、同时共存**。
+
+**极简关系图**
+
+```text
+┌─────────────────┐   ┌──────────────────────┐   ┌─────────────────┐
+│ 单播 + CIDR记法  │   │ 组播 224.0.0.5       │   │ OSPF 协议号 89  │
+│ 192.168.1.0/24  │   │ D类 · OSPF Hello     │   │ IP首部字段=89   │
+│ → 普通上网寻址   │   │ → 所有OSPF路由器听  │   │ → 识别OSPF报文  │
+└─────────────────┘   └──────────────────────┘   └─────────────────┘
+     记法/范围              组播功能                    封装识别
+              三者不冲突，现代网络同时用
+```
+
+→ D 类组播背景：[4.3 有类编址 §D类](../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-classful) · CIDR：[4.3 CIDR 逻辑链](../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-cidr-chain)
+
+---
+
+<a id="ch5-2-ospf-area0-simple"></a>
+
+### 2）Area 0 骨干区域
+
+**通俗**：超大网络划成一块块 **Area**，**Area 0 = 城市主干道 / 中心骨干**。
+
+| 规则 | 说明 |
+|------|------|
+| **必须直连** | 所有普通区域**必须连着 Area 0** |
+| **中转互通** | 不同区域之间**只能经 Area 0** 转发 |
+| **作用** | 防环路、缩小故障范围、减轻设备压力 |
+
+```text
+Area1 ──┐
+Area2 ──┼── Area 0（骨干）── 区域间只走这里
+Area3 ──┘
+（非骨干之间不能直接「串门」）
+```
+
+→ 考试精编：[#ch5-2-ospf-area](#ch5-2-ospf-area)
+
+---
+
+<a id="ch5-2-ospf-lsa-flood"></a>
+
+### 3）LSA 泛洪
+
+**通俗**：**LSA = 链路状态信息**（周边线路、网段、快慢开销）；**泛洪 = 把网络地图同步给同区域所有路由器**。
+
+| 步骤 | 动作 |
+|------|------|
+| 1 | 某路由器发现**线路变化** → 生成 LSA |
+| 2 | 发给**邻居** |
+| 3 | 邻居继续**转发**给其他邻居 |
+| 4 | 最终**同区域所有路由器**拿到**相同拓扑地图（LSDB）** |
+
+**关键特点**
+
+| 特点 | 说明 |
+|------|------|
+| **范围** | **只在本 Area 内**传播，不跨区大范围扩散 |
+| **触发** | **有变化才更新**，无变化不频繁发 |
+| **算路** | 大家地图一样 → **各自独立**跑 **Dijkstra** 算最短路 |
+
+→ 算法：[5.1 Dijkstra/LS](../5.1_routing_algorithm/study.md#ch5-1-ls) · 邻接五步：[#ch5-2-ospf-neighbor](#ch5-2-ospf-neighbor)
+
+---
+
+### 三者关联 + 组播（一句背）
+
+**协议号 89 识别 OSPF 包 → Area 0 规整大网 → LSA 泛洪同步地图；以太网上 Hello 用组播 224.0.0.5（与 CIDR 单播记法并存）。**
+
+| 点 | 记住 |
+|----|------|
+| **89** | IP 首部协议号，标识 OSPF |
+| **Area 0** | 骨干，非骨干必须连它 |
+| **LSA 泛洪** | 同区域同步 LSDB，各自 SPF |
+| **224.0.0.5** | OSPF 组播地址，**没被淘汰** |
 
 ---
 
@@ -131,6 +251,7 @@ Hello DBD LSR LSU，Full后Dijkstra算路
 | 易混 | 纠正 |
 |------|------|
 | OSPF 用 UDP？ | **否**；直接 **IP 89** |
+| 224.0.0.5 被 CIDR 取代？ | **否**；组播**功能** vs CIDR **单播记法**，**并存** → [#ch5-2-multicast-vs-cidr](#ch5-2-multicast-vs-cidr) |
 | OSPF = 距离矢量？ | **否**；**链路状态**，本地 **Dijkstra** |
 | 非骨干 Area 能直连？ | **否**；必须经 **Area 0** |
 | OSPF 靠邻居传路由表？ | **否**；靠 **LSA 泛洪拓扑**，本地算路 |
@@ -144,6 +265,11 @@ Hello DBD LSR LSU，Full后Dijkstra算路
 
 | 锚点 | 内容 |
 |------|------|
+| [#ch5-2-ospf-simple](#ch5-2-ospf-simple) | 三大概念通俗 |
+| [#ch5-2-ospf-ip89](#ch5-2-ospf-ip89) | IP 协议号 89 |
+| [#ch5-2-multicast-vs-cidr](#ch5-2-multicast-vs-cidr) | 224.0.0.5 vs CIDR |
+| [#ch5-2-ospf-area0-simple](#ch5-2-ospf-area0-simple) | Area 0 骨干 |
+| [#ch5-2-ospf-lsa-flood](#ch5-2-ospf-lsa-flood) | LSA 泛洪 |
 | [#ch5-2-ospf-basics](#ch5-2-ospf-basics) | 定位 |
 | [#ch5-2-ospf-features](#ch5-2-ospf-features) | 特点 / IP89 |
 | [#ch5-2-ospf-area](#ch5-2-ospf-area) | Area 0 |

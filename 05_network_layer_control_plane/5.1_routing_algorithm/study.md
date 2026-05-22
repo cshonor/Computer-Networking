@@ -99,7 +99,7 @@
 | 步骤 | 发生什么 | 协议/动作 |
 |------|----------|-----------|
 | **① 用户主机** | 私网 IP 上网，经家/小区**网关** | 网关做 **NAT**（私网 → 移动公网 IP）→ [4.3 NAT 通俗](../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-simple) |
-| **② 进入移动骨干** | 包进入移动全网路由器集群（**同一 AS**） | 路由器间 **IGP（主流 OSPF）** 找**最短/最优**路径 |
+| 移动骨干 | 包进入移动全网路由器集群（**同一 AS**） | 路由器间 **IGP（主流 OSPF）** 找**最短/最优**路径 → [5.2 OSPF 通俗](../5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-simple) |
 | **③ 抵达目标** | 服务器在移动机房，**同 AS** | 沿内网路由直达；返程原路 |
 
 ```text
@@ -171,7 +171,7 @@
 | 协议 | IGP/EGP | 算法 | 范围 | 封装 | 一句考点 |
 |------|---------|------|------|------|----------|
 | **RIP** | IGP | **DV** | AS 内 | **UDP 520** | 跳数度量、**最大 15 跳** |
-| **OSPF** | IGP | **LS** | AS 内 | **IP 89**（无 TCP/UDP） | **Area 0**、LSA 泛洪、Dijkstra |
+| **OSPF** | IGP | **LS** | AS 内 | **IP 89**（无 TCP/UDP） | **Area 0**、LSA 泛洪 → [5.2 通俗](../5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-simple) |
 | **IS-IS** | IGP | **LS** | AS 内 | 链路层 | 运营商骨干常用 |
 | **EIGRP** | IGP | 高级 **DV** | AS 内 | IP 88 | Cisco 私有→部分开放 |
 | **BGP** | **EGP** | 路径矢量/策略 | **AS 间** | **TCP 179** | **AS-Path 防环**、Local_Pref、前 6 选路 → [5.3](../5.3_bgp_inter_as_routing/study.md#ch5-3-bgp-selection) |
