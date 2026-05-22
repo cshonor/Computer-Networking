@@ -1,6 +1,6 @@
 # 4.4 SDN 软件定义网络 与 OpenFlow
 
-> 章级精读：[§4.4 Match+Action](../study.md#ch4-4) · **新手易懂**：[#ch4-4-simple](#ch4-4-simple) · [控数分离](#ch4-4-sdn-core) · [OpenFlow](#ch4-4-openflow) · [背诵](#ch4-4-exam) · 控制平面：[5.4 控制器精读](../../05_network_layer_control_plane/5.4_sdn_controller_plane/study.md#ch5-4-exam) · 架构图：[../assets/sdn_controller_architecture.png](../assets/sdn_controller_architecture.png)
+> 章级精读：[§4.4 Match+Action](../study.md#ch4-4) · **新手易懂**：[#ch4-4-simple](#ch4-4-simple) · [控数分离](#ch4-4-sdn-core) · [OpenFlow 南向](#ch4-4-openflow) · [5.4 南北向](../../05_network_layer_control_plane/5.4_sdn_controller_plane/study.md#ch5-4-interfaces-simple) · [背诵](#ch4-4-exam) · 控制平面：[5.4 控制器精读](../../05_network_layer_control_plane/5.4_sdn_controller_plane/study.md#ch5-4-exam) · 架构图：[../assets/sdn_controller_architecture.png](../assets/sdn_controller_architecture.png)
 
 ## 本节核心目标
 
@@ -175,7 +175,7 @@
 | 2 **控制层** | SDN **控制器** | OpenDaylight、**Floodlight**、**RYU**、ONOS |
 | 3 **数据层** | 可编程交换机 | 支持 **OpenFlow** 的硬件/软件交换机，**纯转发** |
 
-> **北向 API**（应用↔控制器）、控制器故障与多控协同 → [5.4 控制平面](../../05_network_layer_control_plane/5.4_sdn_controller_plane/study.md)
+> **北向 API**（应用↔控制器）→ [5.4 南北向通俗](../../05_network_layer_control_plane/5.4_sdn_controller_plane/study.md#ch5-4-interfaces-simple)；控制器故障与多控协同 → [5.4 控制平面](../../05_network_layer_control_plane/5.4_sdn_controller_plane/study.md)
 
 ![SDN 控制器架构（全栈参考）](../assets/sdn_controller_architecture.png)
 
@@ -303,7 +303,7 @@ OpenFlow：南向；流表=Match+计数器+Action
 | [#ch4-4-pain](#ch4-4-pain) | 传统四痛点 |
 | [#ch4-4-sdn-core](#ch4-4-sdn-core) | 控数分离 |
 | [#ch4-4-three-layer](#ch4-4-three-layer) | 三层架构 |
-| [#ch4-4-openflow](#ch4-4-openflow) | OpenFlow + 流表 |
+| [#ch4-4-openflow](#ch4-4-openflow) | OpenFlow **南向** + 流表 |
 | [#ch4-4-flow](#ch4-4-flow) | 未知流 4 步 |
 | [#ch4-4-vs-traditional](#ch4-4-vs-traditional) | 传统 vs SDN |
 | [#ch4-4-exam](#ch4-4-exam) | 口诀 / 30·50 字 / 易错 |

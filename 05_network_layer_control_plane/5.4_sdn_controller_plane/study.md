@@ -1,6 +1,6 @@
 # 5.4 SDN 控制平面架构
 
-> 章级精读：[§5.5 SDN](../study.md#ch5-5) · **通俗版**：[4.4 新手易懂](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-simple) · **算路对比**：[#ch5-4-routing-compute](#ch5-4-routing-compute) · 精编：[4.4 OpenFlow/流表](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md) · 架构图：[../../04_network_layer_data_plane/assets/sdn_controller_architecture.png](../../04_network_layer_data_plane/assets/sdn_controller_architecture.png)
+> 章级精读：[§5.5 SDN](../study.md#ch5-5) · **通俗版**：[4.4 新手易懂](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-simple) · **南北向**：[#ch5-4-interfaces-simple](#ch5-4-interfaces-simple) · **算路**：[#ch5-4-routing-compute](#ch5-4-routing-compute) · 精编：[4.4 OpenFlow/流表](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md) · 架构图：[../../04_network_layer_data_plane/assets/sdn_controller_architecture.png](../../04_network_layer_data_plane/assets/sdn_controller_architecture.png)
 
 ## 本节核心目标
 
@@ -50,6 +50,72 @@
 <a id="ch5-4-interfaces"></a>
 
 ## 三、南北向接口（必考）
+
+<a id="ch5-4-interfaces-simple"></a>
+
+### 新手易懂：分层视角（结合控转分离）
+
+**先记定位**：SDN 三层 **应用层 → 控制层 → 转发层**；接口 = 层与层之间的**沟通通道**。
+
+| 方向 | 往哪走 | 对接谁 |
+|------|--------|--------|
+| **北向** | **朝上** | 上层业务应用 ↔ 控制器 |
+| **南向** | **朝下** | 控制器 ↔ 下层交换机 |
+
+```text
+上层业务应用（LB / 防火墙 / 监控…）
+        ↑
+     北向接口（REST 等 API）
+        ↓
+   SDN 控制器（大脑）
+        ↑
+     南向接口（OpenFlow）
+        ↓
+ 交换机 / 路由器（纯转发）
+```
+
+---
+
+#### 南向接口（朝下 · 管硬件）
+
+| 项 | 说明 |
+|----|------|
+| 对接 | **控制器 ↔ 所有交换机** |
+| 作用 | **下发**转发规则（流表）、**收集**端口/流量/故障状态 |
+| 代表协议 | **OpenFlow**（最典型南向） |
+| 生活化 | 指挥大厅 ↔ 路口岗亭：**下发行车规矩**；岗亭**上报车流、故障** |
+| 日常场景 | 算好最短路 → **南向下发流表**；未知包/链路异常 → **南向上报**控制器 |
+
+→ OpenFlow 精编：[4.4 §四 OpenFlow](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-openflow)
+
+---
+
+#### 北向接口（朝上 · 管业务）
+
+| 项 | 说明 |
+|----|------|
+| 对接 | **上层应用 ↔ 控制器** |
+| 作用 | 让程序**调用网络能力**，不用管底层交换机细节 |
+| 常见形式 | **REST API**（亦常见 gRPC）；**无固定单一协议** |
+| 生活化 | 城市管理系统、安防、计费 ↔ 交通指挥大厅的**业务沟通通道** |
+| 日常场景 | LB 要求**分摊流量**；防火墙**下发禁行策略**；运维**拉拓扑/流量**监控 |
+
+---
+
+#### 一句话区分
+
+- **南向**：控制器**管下面硬件**，下达转发命令 → 代表 **OpenFlow**
+- **北向**：上层程序**调用控制器能力**，定制业务规则 → 代表 **REST API**
+
+#### 搭配算路理解（完整闭环）
+
+1. 负载均衡经**北向**告诉控制器：尽量**避开拥堵**
+2. 控制器**重新算**最优路径 → [#ch5-4-routing-compute](#ch5-4-routing-compute)
+3. 经**南向 OpenFlow** 把新流表**下发**给交换机执行
+
+---
+
+### 考试精编表
 
 | 接口 | 连接对象 | 主流协议/API | 作用 |
 |------|----------|--------------|------|
@@ -249,7 +315,8 @@ Floodlight ODL ONOS Ryu记
 | [#ch5-4-sdn-core](#ch5-4-sdn-core) | 控数分离 |
 | [#ch5-4-controller](#ch5-4-controller) | 集中控制器 |
 | [#ch5-4-routing-compute](#ch5-4-routing-compute) | 传统 vs SDN 算路 |
-| [#ch5-4-interfaces](#ch5-4-interfaces) | 南北向 |
+| [#ch5-4-interfaces-simple](#ch5-4-interfaces-simple) | 南北向分层通俗 |
+| [#ch5-4-interfaces](#ch5-4-interfaces) | 南北向考试表 |
 | [#ch5-4-vs-traditional](#ch5-4-vs-traditional) | 对比表 |
 | [#ch5-4-challenges](#ch5-4-challenges) | 三大挑战 |
 | [#ch5-4-exam](#ch5-4-exam) | 口诀 / 30 字 |
