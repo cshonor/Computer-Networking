@@ -1,6 +1,6 @@
 # 5.3 BGP 自治系统间路由
 
-> 章级精读：[§5.4 BGP](../study.md#ch5-4) · AS 内：[5.2 OSPF](../5.2_ospf_intra_as_routing/study.md) · [5.1 IGP/EGP 框架](../5.1_routing_algorithm/study.md#ch5-1-igp-egp) · [协议速记卡](../5.1_routing_algorithm/study.md#ch5-1-protocol-card)
+> 章级精读：[§5.4 BGP](../study.md#ch5-4) · AS 内：[5.2 OSPF](../5.2_ospf_intra_as_routing/study.md) · [AS≠IGP 通俗](../5.1_routing_algorithm/study.md#ch5-1-as-vs-igp) · [协议速记卡](../5.1_routing_algorithm/study.md#ch5-1-protocol-card)
 
 ## 本节核心目标
 

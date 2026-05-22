@@ -1,6 +1,6 @@
 # 5.2 OSPF 自治系统内部路由
 
-> 章级精读：[§5.3 OSPF](../study.md#ch5-3) · [5.1 IGP/AS 框架](../5.1_routing_algorithm/study.md#ch5-1-igp-egp) · 算法：[LS/Dijkstra](../5.1_routing_algorithm/study.md#ch5-1-ls) · 域间：[5.3 BGP](../5.3_bgp_inter_as_routing/study.md)
+> 章级精读：[§5.3 OSPF](../study.md#ch5-3) · [AS≠IGP 通俗](../5.1_routing_algorithm/study.md#ch5-1-as-vs-igp) · [IGP 框架](../5.1_routing_algorithm/study.md#ch5-1-igp-egp) · 域间：[5.3 BGP](../5.3_bgp_inter_as_routing/study.md)
 
 ## 本节核心目标
 
