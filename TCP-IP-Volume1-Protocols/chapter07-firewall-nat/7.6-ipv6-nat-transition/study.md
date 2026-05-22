@@ -1,6 +1,6 @@
 # 7.6 IPv4/IPv6 共存和过渡中的 NAT
 
-> 章级精读：[../study.md#ch07-6](../study.md#ch07-6) · DNS：[ch11](../../chapter11-dns-domain-resolve/study.md)
+> 章级精读：[../study.md#ch07-6](../study.md#ch07-6) · 精编：[04 §4.3 过渡技术](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-transition) · DNS：[ch11 §11.9](../../chapter11-dns-domain-resolve/11.9-dns-ipv6-transition/study.md)
 
 ## 本节核心目标
 
@@ -18,8 +18,9 @@
 ## NAT64 + DNS64
 
 - **纯 IPv6 客户端** 访问 **IPv4 服务器**：
-  - **DNS64** 合成 **AAAA**（指向 NAT64 前缀）
+  - **DNS64** 合成 **AAAA**（前缀 **64:ff9b::/96**）
   - **NAT64** 将 v6 包译为 v4 并转发
+- 完整流程与对比表 → [04 §4.3 过渡精编](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-transition)
 
 ---
 
