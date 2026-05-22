@@ -42,8 +42,9 @@
 | **Packet-in** | 交换机 → 控制器 | 未知流/需决策时**上送** |
 | **Flow-mod** | 控制器 → 交换机 | **增删改**流表项 |
 | **Packet-out** | 控制器 → 交换机 | 控制器主动注入报文 |
+| **Stats/Port 查询** | 控制器 ↔ 交换机 | 定时查端口流量、设备状态 |
 
-→ [未知流 4 步](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-flow)
+→ H1→H2 双向实景：[4.4 OpenFlow 双向案例](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-openflow-bidirectional) · [未知流 4 步](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-flow)
 
 ---
 
@@ -86,7 +87,7 @@
 | 生活化 | 指挥大厅 ↔ 路口岗亭：**下发行车规矩**；岗亭**上报车流、故障** |
 | 日常场景 | 算好最短路 → **南向下发流表**；未知包/链路异常 → **南向上报**控制器 |
 
-→ OpenFlow 精编：[4.4 §四 OpenFlow](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-openflow)
+→ OpenFlow 全流程：[4.4 通俗](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-openflow-simple) · **双向案例**：[H1→H2](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-openflow-bidirectional) · 考试精编：[4.4 §四](../../04_network_layer_data_plane/4.4_sdn_openflow/study.md#ch4-4-openflow)
 
 ---
 
