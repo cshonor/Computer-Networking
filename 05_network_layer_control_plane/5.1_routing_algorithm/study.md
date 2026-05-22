@@ -4,6 +4,7 @@
 
 | 块 | 锚点 |
 |----|------|
+| **IGP/EGP** | [框架](#ch5-1-igp-egp) · [协议速记卡](#ch5-1-protocol-card) |
 | 考点 LS/DV | [分类](#ch5-1-classify) · [LS](#ch5-1-ls) · [DV](#ch5-1-dv) · [协议对比](#ch5-1-compare) |
 | 手算专题 | [约定](#ch5-1-overview-abcde) · [Dijkstra](#ch5-1-dijkstra) · [BF](#ch5-1-bellman-ford) · [ABCD](#ch5-1-walkthrough) · [自练](#ch5-1-practice) |
 | SDN 算路 | [传统 vs SDN](#ch5-1-sdn-compute) → [5.4 精编](../5.4_sdn_controller_plane/study.md#ch5-4-routing-compute) |
@@ -19,9 +20,79 @@
 
 # 第一部分 · 路由算法与协议（考点）
 
+<a id="ch5-1-igp-egp"></a>
+
+## 〇、IGP / EGP 与 AS（路由协议框架 · 必背）
+
+> **路由协议 = 按「管理范围」分两大类：IGP、EGP**
+
+### 一、大分类
+
+| 类型 | 全称 | 范围 | 目标 | 典型 |
+|------|------|------|------|------|
+| **IGP** | Interior Gateway Protocol（**内部网关**） | **同一 AS 内** | 算内部最佳路径、**快收敛、无环** | **RIP、OSPF、IS-IS、EIGRP** |
+| **EGP** | Exterior Gateway Protocol（**外部网关**） | **不同 AS 之间** | 传**可达性 + 策略**（选路、商业） | 现网主流 **BGP** |
+
+---
+
+### 二、AS（自治系统）是什么
+
+**AS = 一个独立管理的网络整体**（像一个「国家」）
+
+| 项 | 说明 |
+|----|------|
+| 管理 | **一个机构/运营商**统一管理（电信、移动、大厂…） |
+| 对内 | 统一路由策略，跑 **IGP**（OSPF/RIP） |
+| 对外 | 唯一 **AS 号（ASN）**，跑 **BGP** 与其他 AS 互联 |
+
+**一句话**：**AS = 自治域；内部 IGP，外部 BGP。**
+
+---
+
+### 三、IGP 再细分（按算法 · 常考）
+
+| 类型 | 代表 | 特点 | 缺点/优点 |
+|------|------|------|-----------|
+| **距离矢量 DV** | **RIP**、EIGRP（高级 DV） | **邻居传路由信息**；只知方向，**不知全网拓扑** | 收敛慢、易环；RIP **最大 15 跳** |
+| **链路状态 LS** | **OSPF**、IS-IS | 传 **LSA**，全网同步 **LSDB 拓扑图** | 收敛快、无环、可划 **Area** |
+
+→ 算法层：[#ch5-1-classify](#ch5-1-classify) · OSPF：[5.2](../5.2_ospf_intra_as_routing/study.md) · BGP：[5.3](../5.3_bgp_inter_as_routing/study.md)
+
+---
+
+### 四、IGP vs EGP 背诵
+
+- **IGP（RIP/OSPF）**：AS **内**，选最佳路径，讲**「效率」**
+- **EGP（BGP）**：AS **间**，传可达性 + 策略，讲**「规则/商业」**
+
+**精准定义句**：**IGP — 仅用于同一 AS 内，负责 AS 内部路由计算与转发。**
+
+---
+
+<a id="ch5-1-protocol-card"></a>
+
+### 五、协议速记卡（一页背完）
+
+| 协议 | IGP/EGP | 算法 | 范围 | 封装 | 一句考点 |
+|------|---------|------|------|------|----------|
+| **RIP** | IGP | **DV** | AS 内 | **UDP 520** | 跳数度量、**最大 15 跳** |
+| **OSPF** | IGP | **LS** | AS 内 | **IP 89**（无 TCP/UDP） | **Area 0**、LSA 泛洪、Dijkstra |
+| **IS-IS** | IGP | **LS** | AS 内 | 链路层 | 运营商骨干常用 |
+| **EIGRP** | IGP | 高级 **DV** | AS 内 | IP 88 | Cisco 私有→部分开放 |
+| **BGP** | **EGP** | 路径矢量/策略 | **AS 间** | **TCP 179** | **AS-Path 防环**、eBGP/iBGP、策略选路 |
+
+```text
+AS 内：IGP（OSPF/RIP）算最短路
+AS 间：BGP 讲策略、传可达性
+```
+
+---
+
 <a id="ch5-1-classify"></a>
 
-## 一、路由算法分类
+## 一、路由算法分类（IGP 内部 · 按算法）
+
+> 在 **IGP** 框架下，再按算法分 **LS** 与 **DV**（见 [#ch5-1-igp-egp](#ch5-1-igp-egp)）。
 
 | 类型 | 别名 | 原理 |
 |------|------|------|
@@ -325,6 +396,8 @@ dist下标0永远是起点；Dijkstra有S顺序，BF只有轮次无节点排序
 
 | 锚点 | 内容 |
 |------|------|
+| [#ch5-1-igp-egp](#ch5-1-igp-egp) | IGP/EGP/AS 框架 |
+| [#ch5-1-protocol-card](#ch5-1-protocol-card) | OSPF/BGP/RIP 速记卡 |
 | [#ch5-1-classify](#ch5-1-classify) | 分类 |
 | [#ch5-1-ls](#ch5-1-ls) · [#ch5-1-dv](#ch5-1-dv) | LS / DV |
 | [#ch5-1-compare](#ch5-1-compare) | 协议对比 |
