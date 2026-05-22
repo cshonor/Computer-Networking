@@ -1,10 +1,10 @@
 # 7.3 网络地址转换 (NAT)
 
-> 章级精读：[../study.md#ch07-3](../study.md#ch07-3) · 基础五要点：[04 §4.3 NAT](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat) · 工作过程：[#ch4-3-nat-flow](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-flow)
+> 章级精读：[../study.md#ch07-3](../study.md#ch07-3) · **通俗版**：[04 §4.3 NAT 易懂](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-simple) · 精编：[#ch4-3-nat](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat) · 工作过程：[#ch4-3-nat-flow](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-flow)
 
 ## 本节核心目标
 
-掌握 NAT **作用/本质/转换对象/执行位置/映射表**（见 04 精编）；本节延伸 **Hairpin、ALG、EIM/ADF**（P2P 必考）。
+掌握 NAT **作用/本质/转换对象/执行位置/映射表**（见 04 精编）；**新手先读** [04 通俗版](../../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/study.md#ch4-3-nat-simple)；本节延伸 **Hairpin、ALG、EIM/ADF**（P2P 必考）。
 
 ---
 
