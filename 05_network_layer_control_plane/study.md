@@ -178,7 +178,7 @@ SDN 将分布式控制逻辑**上收**到可编程的软件栈，与第 4 章**�
   - 实际实现还有 **ICMP trace、TCP trace** 等变体。  
 - **工程现实**：企业防火墙常**过滤 ICMP**，导致 Ping/Traceroute 出现 `*` 或超时，**不等于**业务 TCP/HTTP 一定故障。
 
-> **背诵提纲** → [5.5 ICMP 精读](./5.5_icmp_snmp_network_manage/study.md)（[类型表](./5.5_icmp_snmp_network_manage/study.md#ch5-55-icmp) · [ping 排障](./5.5_icmp_snmp_network_manage/study.md#ch5-55-ping-troubleshoot) · [30 字](./5.5_icmp_snmp_network_manage/study.md#ch5-55-exam)）
+> **背诵提纲** → [5.5 ICMP 精读](./5.5_icmp_snmp_network_manage/study.md)（[通俗总览](./5.5_icmp_snmp_network_manage/study.md#ch5-55-simple) · [速记卡](./5.5_icmp_snmp_network_manage/study.md#ch5-55-flashcard) · [类型表](./5.5_icmp_snmp_network_manage/study.md#ch5-55-icmp) · [ping 排障](./5.5_icmp_snmp_network_manage/study.md#ch5-55-ping-troubleshoot) · [30 字](./5.5_icmp_snmp_network_manage/study.md#ch5-55-exam)）
 
 ---
 
@@ -194,7 +194,7 @@ SDN 将分布式控制逻辑**上收**到可编程的软件栈，与第 4 章**�
 - **常用操作**：**Get**、**GetNext**、**GetBulk**、**Set**；异步 **Trap**；**Inform**（带确认的通告，语义因部署而异）。  
 - **安全**：避免 **SNMPv1/v2c** 明文共同体串；生产应优先 **SNMPv3**（认证与加密）。
 
-> **SNMP 流程与版本** → [5.5 精读 §二](./5.5_icmp_snmp_network_manage/study.md#ch5-55-snmp-flow) · [NETCONF/Telemetry](./5.5_icmp_snmp_network_manage/study.md#ch5-55-other-mgmt)
+> **SNMP 流程与版本** → [5.5 通俗](./5.5_icmp_snmp_network_manage/study.md#ch5-55-snmp-simple) · [流程](./5.5_icmp_snmp_network_manage/study.md#ch5-55-snmp-flow) · [NETCONF/Telemetry](./5.5_icmp_snmp_network_manage/study.md#ch5-55-other-mgmt)
 
 ### NETCONF 与 YANG
 
