@@ -144,7 +144,7 @@
 | **OSPF** | IGP | **LS** | AS 内 | **IP 89**（无 TCP/UDP） | **Area 0**、LSA 泛洪、Dijkstra |
 | **IS-IS** | IGP | **LS** | AS 内 | 链路层 | 运营商骨干常用 |
 | **EIGRP** | IGP | 高级 **DV** | AS 内 | IP 88 | Cisco 私有→部分开放 |
-| **BGP** | **EGP** | 路径矢量/策略 | **AS 间** | **TCP 179** | **AS-Path 防环**、eBGP/iBGP、策略选路 |
+| **BGP** | **EGP** | 路径矢量/策略 | **AS 间** | **TCP 179** | **AS-Path 防环**、Local_Pref、前 6 选路 → [5.3](../5.3_bgp_inter_as_routing/study.md#ch5-3-bgp-selection) |
 
 ```text
 AS 内：IGP（OSPF/RIP）算最短路
