@@ -141,7 +141,7 @@
 - **典型决策维度（教材/实现排序略有差异）**：如 **LOCAL_PREF**、**AS-PATH 长度**、**MED**、eBGP 优于 iBGP、Router ID 等；**热土豆（Hot Potato）** 体现尽快将流量交给邻居 AS、减少本 AS 承载的意图。  
 - **Anycast**：不同站点通告**相同前缀**，由 BGP 将用户导向拓扑上较近或较优的入口（DNS 根、CDN 等常见）。
 
-> **背诵提纲** → [5.3 BGP 精读](./5.3_bgp_inter_as_routing/study.md)（[快递公司版](./5.3_bgp_inter_as_routing/study.md#ch5-3-bgp-courier) · [选路规则](./5.3_bgp_inter_as_routing/study.md#ch5-3-bgp-selection) · [路径向量](./5.3_bgp_inter_as_routing/study.md#ch5-3-path-vector) · [eBGP/iBGP](./5.3_bgp_inter_as_routing/study.md#ch5-3-bgp-neighbor) · [30 字](./5.3_bgp_inter_as_routing/study.md#ch5-3-bgp-exam)）
+> **背诵提纲** → [5.3 BGP 精读](./5.3_bgp_inter_as_routing/study.md)（[eBGP/iBGP](./5.3_bgp_inter_as_routing/study.md#ch5-3-ebgp-ibgp) · [陌生外网+默认路由](./5.3_bgp_inter_as_routing/study.md#ch5-3-unknown-prefix-forward) · [快递公司版](./5.3_bgp_inter_as_routing/study.md#ch5-3-bgp-courier) · [选路规则](./5.3_bgp_inter_as_routing/study.md#ch5-3-bgp-selection) · [路径向量](./5.3_bgp_inter_as_routing/study.md#ch5-3-path-vector) · [30 字](./5.3_bgp_inter_as_routing/study.md#ch5-3-bgp-exam)）
 
 ---
 
