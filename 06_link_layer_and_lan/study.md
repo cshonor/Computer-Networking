@@ -403,7 +403,7 @@ Address Resolution Protocol (reply)
 
 **举例**：`192.168.1.10` 访问 `192.168.1.20` → 缓存无 → 广播问 MAC → `.20` 单播回复 → 存表 → 封装帧发送
 
-→ 背版：[6.4 小节](./6.4_ethernet_arp_switch_vlan/study.md) · 精读：[TCP/IP ch04 ARP](../../tcpip_vol1_ed2_notes/03_network_layer/ch04_arp.md) · [逐跳转发 ARP](../../04_network_layer_data_plane/study.md#ch4-packet-walkthrough)
+→ 背版：[6.4 小节](./6.4_ethernet_arp_switch_vlan/study.md)（[VLAN](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-vlan) · [802.1Q](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-8021q) · [Access/Trunk](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-vlan-compare)）· ARP：[#ch6-arp](#ch6-arp)
 
 ### 6.4.2 交换机自学习
 
@@ -418,6 +418,8 @@ Address Resolution Protocol (reply)
 ### 6.4.3 虚拟局域网（VLAN）
 
 **802.1Q** 标签在逻辑上划分**广播域**，同一物理交换机上不同 VLAN 默认二层隔离，利于安全与广播范围控制。
+
+> **背诵提纲** → [6.4 VLAN 精读](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-vlan)（[802.1Q](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-8021q) · [Access/Trunk 对比](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-vlan-compare) · [默写段](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-vlan-exam)）
 
 ---
 

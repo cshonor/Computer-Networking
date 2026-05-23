@@ -1,6 +1,6 @@
 # 6.4 以太网、ARP、交换机与 VLAN
 
-> 章级精读：[§6.4](../study.md#ch6-4) · **ARP 专节**：[#ch6-arp](../study.md#ch6-arp) · [TCP/IP ch04 ARP](../../tcpip_vol1_ed2_notes/03_network_layer/ch04_arp.md)
+> 章级精读：[§6.4](../study.md#ch6-4) · **VLAN**：[#ch6-4-vlan](#ch6-4-vlan) · **ARP**：[#ch6-arp](../study.md#ch6-arp)
 
 ## 一、以太网（Ethernet）
 
@@ -89,16 +89,159 @@ ARP **不是** IP 包；装在以太网帧 **Payload** 里。
 
 ## 四、VLAN 虚拟局域网
 
-- 802.1Q 标签划分**广播域**
-- **Access**：单 VLAN，出帧不带标签  
-- **Trunk**：多 VLAN，帧带标签，交换机互联用
+<a id="ch6-4-vlan"></a>
+
+> **一个 VLAN = 一个广播域；802.1Q 用 4 字节 Tag（VID）标识；Access 接终端剥标，Trunk 交换机互联带标。**
+
+---
+
+<a id="ch6-4-vlan-def"></a>
+
+### 1. 什么是 VLAN
+
+**VLAN（Virtual Local Area Network，虚拟局域网）**：把**同一物理局域网**在**逻辑上**划成**多个独立广播域**。
+
+| 规则 | 说明 |
+|------|------|
+| **同 VLAN** | 可直接**二层互通** |
+| **不同 VLAN** | **二层隔离**；互通须 **三层设备**（路由器 / 三层交换机） |
+
+**作用（必背）**
+
+| | |
+|--|--|
+| ✅ **隔离广播域** | 广播只在本 VLAN 内，不扩散全网 |
+| ✅ **提高安全** | 不同部门默认隔离 |
+| ✅ **管理灵活** | 按部门/业务划分，**不受物理位置限制** |
+
+![VLAN 广播隔离：广播只在所属 VLAN 内泛洪](../assets/vlan_broadcast_isolation.png)
+
+**图上要点**：同一交换机物理相连，**VLAN2 的广播不会进 VLAN1/VLAN3** → **一个 VLAN = 一个广播域**。
+
+---
+
+<a id="ch6-4-8021q"></a>
+
+### 2. 802.1Q 标签（VLAN 核心）
+
+**802.1Q**：IEEE 标准，定义 VLAN **帧格式**与跨交换机转发。
+
+**在以太网帧 MAC 头后插入 4 字节 Tag**：
+
+| 字段 | 长度 | 说明 |
+|------|------|------|
+| **TPID** | 2B | 固定 **`0x8100`**，标识 802.1Q 帧 |
+| **TCI** | 2B | 含 **PCP**（3bit QoS）、**DEI**（1bit）、**VID**（12bit **VLAN ID**） |
+
+- **VID 范围**：**1–4094**（**0、4095 保留**）
+- **一句话**：交换机靠 **VID** 识别帧属于哪个 VLAN
+
+![802.1Q 帧：Dest MAC + Src MAC + VLAN Tag(4B) + Type + Payload + FCS](../assets/ieee_8021q_frame_access_trunk.png)
+
+| 图上要点 | 含义 |
+|----------|------|
+| **Tag 位置** | 插在**源 MAC 之后、Type 之前** |
+| **Access 口** | 收：**无标帧打 PVID**；发：**剥标**给终端 |
+| **Trunk 口** | 收/发：**带允许 VLAN 的标签**（Native VLAN 除外见下） |
+
+→ 以太网帧基础：[§6.1 帧≠IP](../study.md#ch6-frame-vs-ip)
+
+---
+
+<a id="ch6-4-access-trunk"></a>
+
+### 3. 端口类型：Access / Trunk
+
+#### Access 端口（接入端口）
+
+| 项 | 说明 |
+|----|------|
+| **连接** | **PC、打印机**等终端 |
+| **VLAN 数** | **只能 1 个 VLAN** |
+| **收帧** | 无标签 → 打上本端口 **PVID**（Port VLAN ID） |
+| **发帧** | **去掉标签**（终端不认 Tag） |
+
+**口诀**：**单 VLAN，进打标，出剥标**
+
+#### Trunk 端口（中继端口）
+
+| 项 | 说明 |
+|----|------|
+| **连接** | **交换机之间**、连路由器 Trunk 子接口 |
+| **VLAN 数** | **允许多个 VLAN** 通过 |
+| **收帧** | 带 Tag → **保留** |
+| **发帧** | **除 Native VLAN（常默认 VLAN 1）外都带 Tag** |
+
+**口诀**：**多 VLAN，带标签，交换机互联**
+
+![Trunk：核心交换机与多台接入交换机，VLAN1/2/3 跨 Trunk 传递](../assets/vlan_trunk_multi_switch.png)
+
+**图上要点**：各接入交换机下都有 VLAN1/2/3 云；**Trunk 口**在交换机间传**带 Tag 的多 VLAN 流量**。
+
+---
+
+<a id="ch6-4-vlan-compare"></a>
+
+### 4. Access vs Trunk 对比（考试常考）
+
+| 对比项 | **Access** | **Trunk** |
+|--------|------------|-----------|
+| 连接对象 | PC、终端 | **交换机**、路由器 |
+| 所属 VLAN | **1 个** | **多个** |
+| 发帧标签 | **不带标签** | **带标签**（Native VLAN 除外） |
+| 核心作用 | 接入终端 | **跨交换机传递 VLAN** |
+
+---
+
+<a id="ch6-4-vlan-exam"></a>
+
+### 5. 关键结论 · 易错点
+
+**必背 5 条**
+
+1. **一个 VLAN = 一个广播域**
+2. **802.1Q** 插 **4 字节 Tag**，**VID** 标识 VLAN（1–4094）
+3. **Access**：接终端，单 VLAN，**出帧无标签**
+4. **Trunk**：交换机互联，多 VLAN，**出帧带标签**
+5. **VLAN 间默认二层隔离**，互通需**三层转发**
+
+| 易混 | 纠正 |
+|------|------|
+| VLAN = 不同网段？ | **二层广播域**；同 VLAN 可同网段；跨 VLAN 要**路由** |
+| 终端能收带 Tag 帧？ | **一般不能**；Access **出帧剥标** |
+| Trunk 只传一个 VLAN？ | **否**；**多 VLAN** 带 Tag 同链路传 |
+| VID=0 能用？ | **0/4095 保留**；可用 **1–4094** |
+| VLAN 靠 IP 区分？ | **靠 802.1Q VID**；IP 是三层 |
+
+### 考试标准段落（可直接默写）
+
+> VLAN 将同一物理 LAN 逻辑划分为多个广播域。802.1Q 在以太网帧中插入 4 字节标签，TPID 为 0x8100，VID（12bit）标识 VLAN（1–4094）。Access 端口连接终端，只属于一个 VLAN，收帧打 PVID、发帧剥标签；Trunk 端口用于交换机互联，允许多 VLAN 通过，发帧带标签（Native VLAN 除外）。不同 VLAN 二层隔离，跨 VLAN 通信需三层设备转发。
+
+### 30 字
+
+**一 VLAN 一广播域；802.1Q 四字节 VID；Access 单 VLAN 剥标；Trunk 多 VLAN 带标跨交换机。**
+
+---
 
 ## 五、本节核心考点
 
 - ARP 流程、缓存、请求/应答、广播/单播
 - 同网段 vs 跨子网（网关 MAC）
-- 交换机自学习、VLAN
+- 交换机自学习、**VLAN / Access / Trunk / 802.1Q**
 
-## 六、个人学习心得与补充
+## 六、锚点索引
+
+| 锚点 | 内容 |
+|------|------|
+| [#ch6-4-vlan](#ch6-4-vlan) | VLAN 总览 |
+| [#ch6-4-vlan-def](#ch6-4-vlan-def) | 定义与作用 |
+| [#ch6-4-8021q](#ch6-4-8021q) | 802.1Q 帧 |
+| [#ch6-4-access-trunk](#ch6-4-access-trunk) | Access / Trunk |
+| [#ch6-4-vlan-compare](#ch6-4-vlan-compare) | 对比表 |
+| [#ch6-4-vlan-exam](#ch6-4-vlan-exam) | 易错 · 默写段 |
+
+---
+
+## 七、个人学习心得与补充
 
 > 可画带 VLAN 的组网图；`arp -a` 对照本机缓存
