@@ -186,6 +186,12 @@ Area3 ──┘
 | **Type 4** | **ASBR Summary** | **ABR** | 跨区域 | 怎么去 **ASBR**（引入外部路由的路由器）→ 「去外网先找 ASBR」 |
 | **Type 5** | **External LSA** | **ASBR** | **整个 OSPF 域**（Stub/NSSA 除外） | 从静态/BGP/RIP 等**重分发**进来的外部路由 |
 
+<a id="ch5-2-lsa-type1-img"></a>
+
+**Type 1 配图** — Router LSA **代表自己**，描述 Router ID 与所有宣告接口：
+
+![Type 1 Router LSA：Loop 0、GE 0/1～0/3 等，Router LSA 描述自身宣告的所有接口](../assets/ospf_type1_router_lsa.png)
+
 **口诀**：**1 自报家门 · 2 DR 报网段 · 3 ABR 报他区网段 · 4 ABR 指路 ASBR · 5 ASBR 报外网**
 
 → ABR/ASBR：[#ch5-2-ospf-area](#ch5-2-ospf-area) · 传递拓扑：[#ch5-2-lsa-types-diagram](#ch5-2-lsa-types-diagram)
@@ -270,6 +276,19 @@ A、B、C 把所有 LSA 存进 **LSDB** → **三张一模一样的地图**。
 ```
 
 **跨区域：Type 3（ABR 汇总）**
+
+> **3 类 LSA**：ABR 把**本区域（或骨干）内**由 1/2 类拼出的拓扑/网段信息**打包摘要**，发给**其他区域**的路由器 — **不传逐跳细节**，只传「前缀 + 掩码 + 到 ABR 的开销」。
+
+<a id="ch5-2-lsa-type3-img"></a>
+
+![Type 3 Summary LSA：Area 0 内 AR3–AR4 间泛洪 1/2 类；ABR 汇总后以 3 类 LSA 告知 Area 1 等非骨干区域](../assets/ospf_type3_lsa_abr_summary.png)
+
+| 图中 | 记住 |
+|------|------|
+| **Area 0（骨干）** | AR3–AR4 之间交换 **Type 1/2**，拼 Area 0 完整拓扑 |
+| **ABR（AR3）** | 把 Area 0 的网段信息**汇总**成 **Type 3**，发给 **Area 1** |
+| **Area 1 / Area 2** | 收到的是**摘要**，不是 Area 0 内部每一跳的 1/2 类细节 |
+| **RIP 域（AR1）** | 非 OSPF 域；与 OSPF 互联常经 **ASBR + 重分发**（Type 5 等） |
 
 ```text
   Area 1                          Area 0（骨干）
@@ -458,6 +477,8 @@ LSA通告LSDB库，12345类要分清
 |------|------|
 | [#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) | LSA/LSDB/Dijkstra 精编 |
 | [#ch5-2-lsa-types](#ch5-2-lsa-types) | 1～5 类 LSA |
+| [#ch5-2-lsa-type1-img](#ch5-2-lsa-type1-img) | Type 1 Router LSA 配图 |
+| [#ch5-2-lsa-type3-img](#ch5-2-lsa-type3-img) | Type 3 ABR 汇总配图 |
 | [#ch5-2-lsa-types-diagram](#ch5-2-lsa-types-diagram) | 1/2/3 类传递拓扑图 |
 | [#ch5-2-lsa-example](#ch5-2-lsa-example) | A/B/C 极简例题 |
 | [#ch5-2-ospf-simple](#ch5-2-ospf-simple) | 三大概念通俗 |
