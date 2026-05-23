@@ -1,10 +1,10 @@
 # 5.2 OSPF 自治系统内部路由
 
-> 章级精读：[§5.3 OSPF](../study.md#ch5-3) · **LSA/LSDB**：[#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · [1～5 类 LSA](#ch5-2-lsa-types) · **三大概念**：[#ch5-2-ospf-simple](#ch5-2-ospf-simple) · [组播≠CIDR](#ch5-2-multicast-vs-cidr) · 域间：[5.3 BGP](../5.3_bgp_inter_as_routing/study.md)
+> 章级精读：[§5.3 OSPF](../study.md#ch5-3) · **LSA/LSDB**：[#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · [LSDB+SPF 三结论](#ch5-2-lsdb-spf-core) · [1～5 类 LSA](#ch5-2-lsa-types) · **三大概念**：[#ch5-2-ospf-simple](#ch5-2-ospf-simple) · [组播≠CIDR](#ch5-2-multicast-vs-cidr) · 域间：[5.3 BGP](../5.3_bgp_inter_as_routing/study.md)
 
 ## 本节核心目标
 
-掌握 **LSA/LSDB 命名**、**1～5 类 LSA**、**OSPF = 发 LSA + 本地 Dijkstra**；以及 **IP 89**、**Area 0**、邻居五步与 **Full** 邻接；能区分 **OSPF vs RIP**。**新手先读** [#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · [#ch5-2-lsa-types](#ch5-2-lsa-types) · [#ch5-2-ospf-simple](#ch5-2-ospf-simple)。
+掌握 **LSA/LSDB 命名**、**LSDB 同图 + 本地 Dijkstra**、**OSPF≠SDN**、**1～5 类 LSA**；以及 **IP 89**、**Area 0**、邻居五步与 **Full** 邻接；能区分 **OSPF vs RIP**。**新手先读** [#ch5-2-lsdb-spf-core](#ch5-2-lsdb-spf-core) · [#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · [#ch5-2-lsa-types](#ch5-2-lsa-types) · [#ch5-2-ospf-simple](#ch5-2-ospf-simple)。
 
 ---
 
@@ -228,6 +228,86 @@ Area3 ──┘
 
 **小总结**：邻居**只交换 LSA**；**Dijkstra 只在本机跑**，靠统一 LSDB 出路由表。
 
+→ 三结论精编：[#ch5-2-lsdb-spf-core](#ch5-2-lsdb-spf-core)
+
+---
+
+<a id="ch5-2-lsdb-spf-core"></a>
+
+### 3·二、核心三结论（LSDB 共享 · 本地 SPF · 非 SDN）
+
+> **同 Area LSDB 一样 · Dijkstra 各算各的 · 标准 OSPF 是分布式，不是 SDN**
+
+| # | 结论 |
+|---|------|
+| **1** | 同 **Area** 内，收敛后每台路由器 **LSDB 内容完全一致** — 等价共享**同一套拓扑库** |
+| **2** | **Dijkstra 仅单设备本地独立运算**；设备间**不同步**计算过程、中间值与结果 |
+| **3** | **传统 OSPF = 分布式路由协议**；与 **SDN 控数分离架构机制本质不同**，**标准 OSPF 不属于 SDN** |
+
+---
+
+#### 1）LSDB 共享特性
+
+| 点 | 说明 |
+|----|------|
+| **怎么同步** | 路由器间 **LSA 泛洪**；正常收敛后，同 Area 每台设备 LSDB **一模一样** |
+| **比喻** | 全网共用**同一份拓扑图纸**；每台都拿到**完整全局链路信息**（本 Area 范围内） |
+| **变化时** | 链路状态变 → 触发 **LSA 更新** → 全网同步刷新 LSDB |
+
+> **多 Area 精确定义**：LSDB **按 Area 划分** — 同 Area 内一致；不同 Area 各自一份（本区 **Type 1/2** + 他区 **Type 3/4 摘要**），**不是**整个 OSPF 域所有路由器存完全相同的 LSDB。
+
+---
+
+#### 2）Dijkstra 的运行逻辑
+
+| 点 | 说明 |
+|----|------|
+| **数据源** | LSDB 是**公共**拓扑库（同 Area 内相同） |
+| **计算** | **计算动作各自独立** — 每台以**自身为根**单独跑 SPF |
+| **结果** | 起点不同 → **SPF 树、路由表各不相同**（同一地图，不同「我在哪」） |
+| **不同步** | 只同步**拓扑描述（LSA）**；**不传**计算步骤、运算中间值、算好的路由表 |
+
+---
+
+#### 3）与 SDN 的边界
+
+| | **传统 OSPF** | **SDN** |
+|---|---------------|---------|
+| **架构** | **分布式** — 每台路由器自主收拓扑、自主算路、自主转发 | **控数分离** — 控制器集中收集拓扑、集中算路 |
+| **算路位置** | **各设备本地** Dijkstra | **中心控制器**统一计算 |
+| **下发** | 本地生成**路由表/FIB** | 经 **OpenFlow** 等下发**流表**给转发设备 |
+| **关系** | **标准 OSPF 机制 ≠ SDN**；SDN 网里 OSPF 可作 underlay **协同**，但 OSPF 本身不是 SDN 范畴 |
+
+→ SDN 对比：[5.4 传统 vs SDN 算路](../5.4_sdn_controller_plane/study.md#ch5-4-routing-compute)
+
+---
+
+#### 通俗对照
+
+| 概念 | 比喻 |
+|------|------|
+| **LSDB** | **统一城市交通总图** — 同 Area 所有路口拿到**一模一样**的图纸 |
+| **Dijkstra** | 每个人站在**自己所在路口**，独自查表规划去各地的最短路线 |
+| **OSPF** | 大家**各自看图纸、自己规划** |
+| **SDN** | **统一调度中心**看完图纸，给每个路口**下发通行指令** |
+
+**5 行默写**
+
+```text
+同Area内LSDB一致，等价共享同一拓扑库；多Area各有一份LSDB。
+Dijkstra仅本地独立算，不同步计算过程与结果；起点不同路由表不同。
+只同步LSA拓扑，不传算好的路由表。
+传统OSPF=分布式，各机自主收拓扑自主算路。
+标准OSPF≠SDN；SDN=控制器集中算路下流表。
+```
+
+| 易混 | 纠正 |
+|------|------|
+| 全域 LSDB 都一样？ | **同 Area 内**一致；多 Area 时各 Area **LSDB 不同**（含不同摘要） |
+| Dijkstra 结果也同步？ | **否**；只同步 **LSA/LSDB**，路由表**各自算** |
+| OSPF 是 SDN？ | **否**；**分布式 IGP**；与 SDN **机制本质不同** |
+| SDN 里还能跑 OSPF？ | 可以作 **underlay**，但 **OSPF 协议本身 ≠ SDN** |
+
 ---
 
 <a id="ch5-2-lsa-example"></a>
@@ -436,6 +516,7 @@ LSA泛洪Area0骨干，Cost小带宽大
 Hello DBD LSR LSU，Full后Dijkstra算路
 链路状态非矢量，比RIP快无无穷
 LSA通告LSDB库，12345类要分清
+同Area LSDB同图，Dijkstra本地各算；OSPF分布式非SDN
 ```
 
 ### 30 字
@@ -452,6 +533,8 @@ LSA通告LSDB库，12345类要分清
 | 骨干 | **Area 0 必有**，非骨干经 ABR 连骨干 |
 | 邻接 | **Hello → DBD → LSR/LSU/LSAck → Full → SPF** |
 | LSA | **通告**拓扑；存 **LSDB**；**1 自报·2 DR·3 ABR 汇总·4 指 ASBR·5 外部** |
+| LSDB+SPF | **同 Area LSDB 一致**；**Dijkstra 本地各算**；**不同步**算路结果 |
+| vs SDN | **标准 OSPF = 分布式**；**≠ SDN** 集中控算 → [#ch5-2-lsdb-spf-core](#ch5-2-lsdb-spf-core) |
 | vs RIP | OSPF=**LS**；RIP=**DV** |
 
 ### 易错点
@@ -465,6 +548,8 @@ LSA通告LSDB库，12345类要分清
 | OSPF 靠邻居传路由表？ | **否**；靠 **LSA 泛洪拓扑**，本地算路 |
 | LSD 还是 LSDB？ | **LSDB**（Database，不是 LSD） |
 | Type 2 每台都发？ | **否**；广播网由 **DR** 发 |
+| 全域 LSDB 完全相同？ | **同 Area 内**一致；多 Area **各有一份** LSDB |
+| OSPF = SDN？ | **否**；**分布式 IGP**；SDN 是**集中控算+下流表** |
 | 目录 5.2 vs 章 §5.3 | 目录 **5.2=OSPF 精读**；章 **§5.3=OSPF** 概述 |
 
 ---
@@ -476,6 +561,7 @@ LSA通告LSDB库，12345类要分清
 | 锚点 | 内容 |
 |------|------|
 | [#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) | LSA/LSDB/Dijkstra 精编 |
+| [#ch5-2-lsdb-spf-core](#ch5-2-lsdb-spf-core) | LSDB 同图 + 本地 SPF + 非 SDN |
 | [#ch5-2-lsa-types](#ch5-2-lsa-types) | 1～5 类 LSA |
 | [#ch5-2-lsa-type1-img](#ch5-2-lsa-type1-img) | Type 1 Router LSA 配图 |
 | [#ch5-2-lsa-type3-img](#ch5-2-lsa-type3-img) | Type 3 ABR 汇总配图 |

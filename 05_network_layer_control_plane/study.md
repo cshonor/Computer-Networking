@@ -124,7 +124,7 @@
 
 **工程意义**：区域将内部拓扑细节对外隐藏，降低内存与 SPF 计算压力。
 
-> **背诵提纲** → [5.2 OSPF 精读](./5.2_ospf_intra_as_routing/study.md)（[LSA/LSDB](./5.2_ospf_intra_as_routing/study.md#ch5-2-lsa-dijkstra) · [1～5 类 LSA](./5.2_ospf_intra_as_routing/study.md#ch5-2-lsa-types) · [三大概念](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-simple) · [Area 0](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-area) · [邻居五步](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-neighbor) · [vs RIP](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-vs-rip) · [30 字](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-exam)）
+> **背诵提纲** → [5.2 OSPF 精读](./5.2_ospf_intra_as_routing/study.md)（[LSDB+SPF 三结论](./5.2_ospf_intra_as_routing/study.md#ch5-2-lsdb-spf-core) · [LSA/LSDB](./5.2_ospf_intra_as_routing/study.md#ch5-2-lsa-dijkstra) · [1～5 类 LSA](./5.2_ospf_intra_as_routing/study.md#ch5-2-lsa-types) · [三大概念](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-simple) · [Area 0](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-area) · [邻居五步](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-neighbor) · [vs RIP](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-vs-rip) · [30 字](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-exam)）
 
 ---
 
