@@ -51,7 +51,7 @@
 
 ## 1.2 网络边缘：端系统与接入技术
 
-> **背诵提纲** → [1.2 小节 study.md](./1.2_network_edge_and_access/study.md)（[通俗拆解](./1.2_network_edge_and_access/study.md#ch1-2-intuition) · [LAN/WAN 路径](./1.2_network_edge_and_access/study.md#ch1-2-lan-wan-path) · [WiFi/一体机](./1.2_network_edge_and_access/study.md#ch1-2-home-gateway) + 接入方式 + 易错表 + 配图）
+> **背诵提纲** → [1.2 小节 study.md](./1.2_network_edge_and_access/study.md)（[什么是 LAN/WAN](./1.2_network_edge_and_access/study.md#ch1-2-lan-wan-def) · [通俗拆解](./1.2_network_edge_and_access/study.md#ch1-2-intuition) · [完整路径](./1.2_network_edge_and_access/study.md#ch1-2-lan-wan-path) · [WiFi/一体机](./1.2_network_edge_and_access/study.md#ch1-2-home-gateway) + 接入方式 + 易错表 + 配图）
 
 ### 1.2.1 战略背景分析
 

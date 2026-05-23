@@ -1,6 +1,6 @@
 # 6.1 链路层服务与概述
 
-> 章级精读：[§6.1](../study.md#ch6-1) · 逐跳原理：[#ch6-hop-ip-frame](../study.md#ch6-hop-ip-frame) · **端到端路径**：[1.2 LAN/WAN 路径](../../01_network_basics/1.2_network_edge_and_access/study.md#ch1-2-lan-wan-path)
+> 章级精读：[§6.1](../study.md#ch6-1) · 逐跳原理：[#ch6-hop-ip-frame](../study.md#ch6-hop-ip-frame) · **LAN/WAN 定义**：[1.2](../../01_network_basics/1.2_network_edge_and_access/study.md#ch1-2-lan-wan-def) · [完整路径](../../01_network_basics/1.2_network_edge_and_access/study.md#ch1-2-lan-wan-path)
 
 ## 本节核心目标
 
