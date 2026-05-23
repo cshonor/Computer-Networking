@@ -276,7 +276,7 @@ CRC 是以太网等链路硬件的常见选择：用**生成多项式 G** 构造
 
 **工程补充**：早期 **Hub** 全网共享碰撞域 → 靠 CSMA/CD；**交换机**端口隔离 + 全双工 → 冲突大减，原理仍常考。
 
-→ 小节背版：[6.3 MAC 协议](./6.3_mac_protocol/study.md) · WiFi：[7.1](./7.1_wifi_802_11/study.md)
+→ 小节背版：[6.3 MAC 协议](./6.3_mac_protocol/study.md)（[三类对比](./6.3_mac_protocol/study.md#ch6-3-compare) · [CSMA](./6.3_mac_protocol/study.md#ch6-csma)） · WiFi：[7.1](./7.1_wifi_802_11/study.md)
 
 ---
 
