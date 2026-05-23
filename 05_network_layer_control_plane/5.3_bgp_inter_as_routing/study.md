@@ -1,6 +1,6 @@
 # 5.3 BGP 自治系统间路由
 
-> 章级精读：[§5.4 BGP](../study.md#ch5-4) · **eBGP/iBGP**：[#ch5-3-ebgp-ibgp](#ch5-3-ebgp-ibgp) · [陌生外网+默认路由](#ch5-3-unknown-prefix-forward) · **通俗版**：[#ch5-3-bgp-simple](#ch5-3-bgp-simple) · [快递公司版](#ch5-3-bgp-courier) · [选路规则](#ch5-3-bgp-selection) · AS 内：[5.2 OSPF](../5.2_ospf_intra_as_routing/study.md) · [AS≠IGP](../5.1_routing_algorithm/study.md#ch5-1-as-vs-igp)
+> 章级精读：[§5.4 BGP](../study.md#ch5-4) · **eBGP/iBGP**：[#ch5-3-ebgp-ibgp](#ch5-3-ebgp-ibgp) · [AS-Path 防环](#ch5-3-as-path-loop) · [陌生外网+默认路由](#ch5-3-unknown-prefix-forward) · **通俗版**：[#ch5-3-bgp-simple](#ch5-3-bgp-simple) · [快递公司版](#ch5-3-bgp-courier) · [选路规则](#ch5-3-bgp-selection) · AS 内：[5.2 OSPF](../5.2_ospf_intra_as_routing/study.md) · [AS≠IGP](../5.1_routing_algorithm/study.md#ch5-1-as-vs-igp)
 
 ## 本节核心目标
 
@@ -328,17 +328,89 @@ eBGP只传已知公网明细，未知网段不产生BGP条目。
 | **OSPF** | **链路状态 LS** | 全网拓扑图，算**最短路径** |
 | **BGP** | **路径向量 PV** | 不仅「我能到」，还带**整条经过的 AS 列表** |
 
-### AS-Path 例子
+→ **AS-Path 防环精编**：[#ch5-3-as-path-loop](#ch5-3-as-path-loop)
+
+---
+
+<a id="ch5-3-as-path-loop"></a>
+
+### AS-Path 防环（BGP 域间防环核心）
+
+#### 1）什么是 AS-Path
+
+**AS-Path** = BGP **公认强制属性**，记录路由从源 AS 出发**依次经过的所有 AS 号序列**（**不含**本地 AS）。
+
+格式：`[AS1, AS2, AS3, …]`
+
+| 传递 | 规则 |
+|------|------|
+| **eBGP 发给邻居** | 把**自己 AS 号加到最左边**（**prepend**） |
+| **iBGP 传递** | **AS-Path 不变** |
+
+---
+
+#### 2）防环核心规则（必背）
+
+**收到 eBGP 路由时：若 AS-Path 里已含本地 AS 号 → 直接丢弃，不接收、不转发。**
+
+**一句话：看到自己 → 拒收，防环。**
+
+---
+
+#### 3）例子（最常考）
+
+场景：**AS100 → AS200 → AS300 → 又发回 AS100**
+
+| 步 | 动作 | AS-Path |
+|----|------|---------|
+| 1 | AS100 发给 AS200 | `[100]` |
+| 2 | AS200 发给 AS300 | `[200, 100]` |
+| 3 | AS300 发回 AS100 | `[300, 200, 100]` |
+| 4 | **AS100 收到** | 发现含 **100（自己）** → **丢弃**，环路终止 |
 
 ```text
-AS100 → AS200 → AS300（目标）
-通告路由时 AS-Path = [100, 200]
+  AS100 ──► AS200 ──► AS300 ──► AS100
+  [100]     [200,100]  [300,200,100]  见100→丢
 ```
 
-| 规则 | 说明 |
+---
+
+#### 4）AS-Path 只防 AS 间（eBGP）环路
+
+| 范围 | 防环机制 |
+|------|----------|
+| ✅ **eBGP（AS 之间）** | **AS-Path** — 见己 AS 丢弃 |
+| ❌ **iBGP（AS 内部）** | AS-Path **不防环** → 靠 **水平分割**、**RR（路由反射器）**、**联盟（Confederation）** |
+
+→ iBGP 精编：[#ch5-3-ebgp-ibgp](#ch5-3-ebgp-ibgp) · 邻居速查：[#ch5-3-bgp-neighbor](#ch5-3-bgp-neighbor)
+
+---
+
+#### 5）两个作用（考试常一起问）
+
+| 作用 | 说明 |
 |------|------|
-| **防环** | 收到路由若 **AS-Path 含自己的 AS 号** → **丢弃** |
-| 结论 | **BGP 天然防 AS 级环路**（域内环靠 IGP） |
+| **防环** | eBGP 收到含**本地 AS** 的路由 → **丢弃** |
+| **选路** | **AS-Path 越短越优先**（第 4 条选路规则）；可人为 **prepend 加长** 做流量工程（TE） |
+
+→ 选路 13 条：[#ch5-3-bgp-selection](#ch5-3-bgp-selection)
+
+---
+
+#### 6）记忆口诀 · 3 行默写
+
+```text
+EBGP左加AS号prepend，iBGP传递AS-Path不变。
+收到eBGP见己AS直接丢：看到自己就放下。
+AS-Path防eBGP环+选路越短越优；iBGP防环靠水平分割/RR/联盟。
+```
+
+| 易混 | 纠正 |
+|------|------|
+| iBGP 也靠 AS-Path 防环？ | **否**；靠**水平分割 / RR / 联盟** |
+| AS-Path 含本地 AS 还收？ | **eBGP 拒收** |
+| prepend 加在哪边？ | **最左边**（eBGP 发出时） |
+| AS-Path 短 = 一定选？ | **否**；先比 **Weight/Local_Pref** 等策略 |
 
 ---
 
@@ -504,7 +576,7 @@ OSPF讲效率BGP讲策略，iBGP水平分割防环
 |----|------|
 | 定位 | **EGP**，**不同 AS** 间，**路径向量** |
 | vs OSPF | OSPF=**IGP/LS/最短**；BGP=**EGP/PV/策略** |
-| 防环 | **eBGP**：AS-Path 见己 AS 拒；**iBGP**：水平分割 |
+| 防环 | **eBGP**：AS-Path 见己 AS 拒；**iBGP**：水平分割/RR/联盟 → [#ch5-3-as-path-loop](#ch5-3-as-path-loop) |
 | 邻居 | **eBGP（E）** 跨 AS；**iBGP（I）** 同 AS 内传全外网路由 |
 | e/i 分工 | **e 出国 · i 国内通知 · IGP 国内导航** → [#ch5-3-ebgp-ibgp](#ch5-3-ebgp-ibgp) |
 | 未知网段 | **无 BGP 明细** → **默认路由**接力；发布后走 **BGP 精确路由** → [#ch5-3-unknown-prefix-forward](#ch5-3-unknown-prefix-forward) |
@@ -517,7 +589,8 @@ OSPF讲效率BGP讲策略，iBGP水平分割防环
 |------|------|
 | BGP 追求最短路径？ | **否**；**策略与商业关系**优先 |
 | BGP 用 UDP？ | **否**；**TCP 179** |
-| AS-Path 防什么环？ | **AS 级**环路；域内环路由靠 IGP |
+| AS-Path 防什么环？ | **AS 间 eBGP**；**iBGP 不靠 AS-Path** |
+| iBGP 靠 AS-Path 防环？ | **否**；**水平分割 / RR / 联盟** |
 | iBGP = 不同 AS？ | **否**；**同 AS 内**；跨 AS 是 **eBGP（E）** |
 | BGP 只管 AS 之间？ | **否**；还需 **iBGP** 在 AS 内同步，否则**黑洞** |
 | 没 BGP 路由外网不通？ | **否**；边界**默认路由**可兜底（无默认才丢） |
@@ -538,7 +611,8 @@ OSPF讲效率BGP讲策略，iBGP水平分割防环
 | [#ch5-3-ebgp-ibgp-topo](#ch5-3-ebgp-ibgp-topo) | eBGP+iBGP+IGP 拓扑 |
 | [#ch5-3-unknown-prefix-forward](#ch5-3-unknown-prefix-forward) | 陌生外网+默认路由 |
 | [#ch5-3-bgp-basics](#ch5-3-bgp-basics) | 定位 |
-| [#ch5-3-path-vector](#ch5-3-path-vector) | 路径向量 / AS-Path |
+| [#ch5-3-path-vector](#ch5-3-path-vector) | 路径向量 |
+| [#ch5-3-as-path-loop](#ch5-3-as-path-loop) | AS-Path 防环精编 |
 | [#ch5-3-bgp-vs-ospf](#ch5-3-bgp-vs-ospf) | vs OSPF |
 | [#ch5-3-bgp-features](#ch5-3-bgp-features) | TCP179 / 特性 |
 | [#ch5-3-bgp-neighbor](#ch5-3-bgp-neighbor) | eBGP / iBGP |
