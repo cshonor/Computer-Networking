@@ -14,7 +14,7 @@
 
 ![链路层在路径中的位置：逐跳封装，路由器内上送网络层再下封装](./assets/link_layer_position_hop_by_hop.png)
 
-→ 小节背版：[6.1 链路层服务](./6.1_link_layer_service/study.md)（[通俗](./6.1_link_layer_service/study.md#ch6-1-simple) · [逐跳原理](../study.md#ch6-hop-ip-frame)）  
+→ 小节背版：[6.1 链路层服务](./6.1_link_layer_service/study.md)（[通俗](./6.1_link_layer_service/study.md#ch6-1-simple) · [三类服务模型](./6.1_link_layer_service/study.md#ch6-1-service-models) · [全层对照](./6.1_link_layer_service/study.md#ch6-1-layer-compare)）  
 → 数据平面逐跳实例：[第 4 章 · 一包怎么走](../04_network_layer_data_plane/study.md#ch4-packet-walkthrough)
 
 <a id="ch6-hop-ip-frame"></a>
@@ -185,6 +185,8 @@
 | 帧里还能装啥 | — | — | 除 IP 外还可装 **ARP** 等（类型字段区分） |
 
 ### 6.1.1 链路层提供的服务
+
+> **三类服务模型（二层）** → [6.1 精读](./6.1_link_layer_service/study.md#ch6-1-service-models)（以太网 / WiFi / PPP·HDLC · [全层对照](./6.1_link_layer_service/study.md#ch6-1-layer-compare)）
 
 - **成帧（Framing）**：将网络层数据报封装入帧并加控制字段。  
 - **链路接入**：**MAC** 协议规定共享链路上的发送规则。  
