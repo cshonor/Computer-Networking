@@ -87,6 +87,8 @@
 - **复杂度**：与实现有关，常见教学表述为 **O(N²)** 或使用优先队列的 **O(E log N)** 量级。  
 - **工程风险（震荡）**：若链路权值与**瞬时负载**强耦合，流量迁移可能反复改变权值，引发**震荡**。实践中权值常相对平滑，或与负载解耦。
 
+> **LS 精编** → [5.1 链路状态](./5.1_routing_algorithm/study.md#ch5-1-ls)（[4 步流程](./5.1_routing_algorithm/study.md#ch5-1-ls) · [LS vs DV](./5.1_routing_algorithm/study.md#ch5-1-compare) · [5 行默写](./5.1_routing_algorithm/study.md#ch5-1-ls-exam)）
+
 ### 5.2.2 距离向量（DV）
 
 - **Bellman-Ford 方程（形式）**：  
@@ -122,7 +124,7 @@
 
 **工程意义**：区域将内部拓扑细节对外隐藏，降低内存与 SPF 计算压力。
 
-> **背诵提纲** → [5.2 OSPF 精读](./5.2_ospf_intra_as_routing/study.md)（[三大概念通俗](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-simple) · [Area 0](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-area) · [邻居五步](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-neighbor) · [vs RIP](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-vs-rip) · [30 字](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-exam)）
+> **背诵提纲** → [5.2 OSPF 精读](./5.2_ospf_intra_as_routing/study.md)（[LSA+Dijkstra](./5.2_ospf_intra_as_routing/study.md#ch5-2-lsa-dijkstra) · [三大概念](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-simple) · [Area 0](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-area) · [邻居五步](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-neighbor) · [vs RIP](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-vs-rip) · [30 字](./5.2_ospf_intra_as_routing/study.md#ch5-2-ospf-exam)）
 
 ---
 

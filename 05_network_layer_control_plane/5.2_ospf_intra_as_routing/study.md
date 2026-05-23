@@ -1,10 +1,10 @@
 # 5.2 OSPF 自治系统内部路由
 
-> 章级精读：[§5.3 OSPF](../study.md#ch5-3) · **三大概念通俗**：[#ch5-2-ospf-simple](#ch5-2-ospf-simple) · [组播≠CIDR](#ch5-2-multicast-vs-cidr) · [AS≠IGP](../5.1_routing_algorithm/study.md#ch5-1-as-vs-igp) · 域间：[5.3 BGP](../5.3_bgp_inter_as_routing/study.md)
+> 章级精读：[§5.3 OSPF](../study.md#ch5-3) · **LSA+Dijkstra**：[#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · **三大概念**：[#ch5-2-ospf-simple](#ch5-2-ospf-simple) · [组播≠CIDR](#ch5-2-multicast-vs-cidr) · 域间：[5.3 BGP](../5.3_bgp_inter_as_routing/study.md)
 
 ## 本节核心目标
 
-掌握 **OSPF 定位（IGP/LS）**、**IP 89**、**Area 0**、**LSA 泛洪**、邻居建立五步与 **Full** 邻接；能区分 **OSPF vs RIP**。**新手先读** [#ch5-2-ospf-simple](#ch5-2-ospf-simple)。
+掌握 **OSPF = 发 LSA + 本地 Dijkstra**；以及 **IP 89**、**Area 0**、邻居五步与 **Full** 邻接；能区分 **OSPF vs RIP**。**新手先读** [#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · [#ch5-2-ospf-simple](#ch5-2-ospf-simple)。
 
 ---
 
@@ -111,7 +111,7 @@ Area3 ──┘
 | **触发** | **有变化才更新**，无变化不频繁发 |
 | **算路** | 大家地图一样 → **各自独立**跑 **Dijkstra** 算最短路 |
 
-→ 算法：[5.1 Dijkstra/LS](../5.1_routing_algorithm/study.md#ch5-1-ls) · 邻接五步：[#ch5-2-ospf-neighbor](#ch5-2-ospf-neighbor)
+→ 算法：[5.1 Dijkstra/LS](../5.1_routing_algorithm/study.md#ch5-1-ls) · **LSA≠路由**：[#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · 邻接五步：[#ch5-2-ospf-neighbor](#ch5-2-ospf-neighbor)
 
 ---
 
@@ -128,6 +128,89 @@ Area3 ──┘
 
 ---
 
+<a id="ch5-2-lsa-dijkstra"></a>
+
+## 〇·二、一句话捋清：OSPF = **发 LSA** + **本地 Dijkstra**
+
+> **邻居之间不传路由，只传 LSA；每台路由器拿齐 LSA 后，本地用 Dijkstra 算最短路径。**
+
+### 1）先分清两个东西
+
+| | **LSA** | **Dijkstra** |
+|---|---------|--------------|
+| 是什么 | OSPF 路由器**互相发的报文** | **本机内部**跑的算路算法 |
+| 内容 | 我有哪些接口、连谁、带宽/开销 | **不写**在报文里 |
+| 作用 | 描述**链路状态** | 用全部 LSA 拼拓扑 → **算最短路** |
+
+**LSA 里只有「地图碎片」，没有「最终路由表」。**
+
+---
+
+### 2）完整流程（5 步）
+
+1. 每台路由器**只把直连链路**打包成 **LSA**
+2. **泛洪** LSA 给同区域所有 OSPF 邻居（经 LSU 等）
+3. 大家收到全部 LSA → 拼成**一模一样的 LSDB（全网拓扑地图）**
+4. **每台路由器单独跑 Dijkstra**，以自己为根，算到各网段最短路
+5. 结果写入**本地路由表**（再下发 FIB）
+
+---
+
+### 3）为啥不传路由、只传 LSA？
+
+| 传路由（DV 思路） | 传 LSA（OSPF/LS） |
+|-------------------|-------------------|
+| 易环路、信息失真 | 全网拓扑**一致** |
+| 震荡大 | **各自独立算路**，稳定 |
+
+---
+
+### 4）通俗比喻
+
+| 步骤 | 比喻 |
+|------|------|
+| LSA | 每人画**自家门口**道路图 |
+| 泛洪 | **交换地图碎片** |
+| LSDB | 集齐碎片 → **全城完整地图** |
+| Dijkstra | 站在自家门口，算去全城**怎么走最近** |
+
+---
+
+### 5）名词对应
+
+| 名词 | 记住 |
+|------|------|
+| 交换的数据 | **LSA** |
+| 存所有 LSA 的库 | **LSDB** |
+| 本机算路算法 | **Dijkstra（SPF）** |
+
+**小总结**：邻居**只交换 LSA**，不交换算法、不交换路由；**Dijkstra 只在本机跑**，靠统一 LSDB 出路由表。
+
+---
+
+### 6）极简示意图
+
+```text
+  R1 ──LSA──► R2 ──LSA──► R3        （泛洪：只传链路状态，不传路由表）
+   │           │           │
+   └─ LSDB ────┴─ LSDB ────┴─ LSDB   （同 Area 内：三张表内容一致）
+
+  R1 本地: LSDB + Dijkstra(根=R1) → R1 的路由表
+  R2 本地: LSDB + Dijkstra(根=R2) → R2 的路由表   ← 同一地图，不同起点
+  R3 本地: LSDB + Dijkstra(根=R3) → R3 的路由表
+```
+
+| 易混 | 纠正 |
+|------|------|
+| OSPF 邻居传路由表？ | **否**；传 **LSA**，路由**各自算** |
+| Dijkstra 在报文里跑？ | **否**；**本机 CPU** 跑 SPF |
+| LSDB 每台不一样？ | **同 Area 内应一致**（同步拓扑） |
+| 和 RIP 一样靠邻居跳数？ | **否**；RIP 是 **DV**，OSPF 是 **LS** |
+
+→ LS 原理：[5.1 链路状态](../5.1_routing_algorithm/study.md#ch5-1-ls) · Full 后 SPF：[#ch5-2-ospf-neighbor](#ch5-2-ospf-neighbor)
+
+---
+
 <a id="ch5-2-ospf-basics"></a>
 
 ## 一、基础定位（必背）
@@ -137,7 +220,7 @@ Area3 ──┘
 | 项 | 说明 |
 |----|------|
 | **协议类型** | **IGP 内部网关协议** — 仅用于**同一 AS（自治系统）**内 |
-| **底层算法** | **链路状态 LS**（非距离矢量） |
+| **底层算法** | **链路状态 LS**（非距离矢量）→ [5.1 LS 精编](../5.1_routing_algorithm/study.md#ch5-1-ls) |
 | **开放性** | 标准开放，**全厂商互通** |
 
 一句话：**AS 内用 LS 算最短路，开放标准，不靠邻居跳数传路由表。**
@@ -265,6 +348,7 @@ Hello DBD LSR LSU，Full后Dijkstra算路
 
 | 锚点 | 内容 |
 |------|------|
+| [#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) | LSA + 本地 Dijkstra |
 | [#ch5-2-ospf-simple](#ch5-2-ospf-simple) | 三大概念通俗 |
 | [#ch5-2-ospf-ip89](#ch5-2-ospf-ip89) | IP 协议号 89 |
 | [#ch5-2-multicast-vs-cidr](#ch5-2-multicast-vs-cidr) | 224.0.0.5 vs CIDR |
