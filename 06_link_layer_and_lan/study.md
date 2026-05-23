@@ -215,6 +215,8 @@
 
 物理信道存在干扰，需在**检测强度**与**计算/硬件成本**间权衡。
 
+> **背诵提纲** → [6.2 精读](./6.2_error_detection_correction/study.md)（[对比表](./6.2_error_detection_correction/study.md#ch6-2-compare) · [易错点](./6.2_error_detection_correction/study.md#ch6-2-exam) · [CRC 例题](./6.2_error_detection_correction/study.md#ch6-2-crc-example)）
+
 ### 6.2.1 奇偶校验与检验和
 
 - **奇偶校验**：一维仅能检单比特错误；二维可纠单比特，对长突发差错能力有限。  
