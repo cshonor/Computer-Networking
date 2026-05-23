@@ -1,10 +1,10 @@
 # 5.2 OSPF 自治系统内部路由
 
-> 章级精读：[§5.3 OSPF](../study.md#ch5-3) · **LSA+Dijkstra**：[#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · **三大概念**：[#ch5-2-ospf-simple](#ch5-2-ospf-simple) · [组播≠CIDR](#ch5-2-multicast-vs-cidr) · 域间：[5.3 BGP](../5.3_bgp_inter_as_routing/study.md)
+> 章级精读：[§5.3 OSPF](../study.md#ch5-3) · **LSA/LSDB**：[#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · [1～5 类 LSA](#ch5-2-lsa-types) · **三大概念**：[#ch5-2-ospf-simple](#ch5-2-ospf-simple) · [组播≠CIDR](#ch5-2-multicast-vs-cidr) · 域间：[5.3 BGP](../5.3_bgp_inter_as_routing/study.md)
 
 ## 本节核心目标
 
-掌握 **OSPF = 发 LSA + 本地 Dijkstra**；以及 **IP 89**、**Area 0**、邻居五步与 **Full** 邻接；能区分 **OSPF vs RIP**。**新手先读** [#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · [#ch5-2-ospf-simple](#ch5-2-ospf-simple)。
+掌握 **LSA/LSDB 命名**、**1～5 类 LSA**、**OSPF = 发 LSA + 本地 Dijkstra**；以及 **IP 89**、**Area 0**、邻居五步与 **Full** 邻接；能区分 **OSPF vs RIP**。**新手先读** [#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · [#ch5-2-lsa-types](#ch5-2-lsa-types) · [#ch5-2-ospf-simple](#ch5-2-ospf-simple)。
 
 ---
 
@@ -111,7 +111,7 @@ Area3 ──┘
 | **触发** | **有变化才更新**，无变化不频繁发 |
 | **算路** | 大家地图一样 → **各自独立**跑 **Dijkstra** 算最短路 |
 
-→ 算法：[5.1 Dijkstra/LS](../5.1_routing_algorithm/study.md#ch5-1-ls) · **LSA≠路由**：[#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · 邻接五步：[#ch5-2-ospf-neighbor](#ch5-2-ospf-neighbor)
+→ 算法：[5.1 Dijkstra/LS](../5.1_routing_algorithm/study.md#ch5-1-ls) · **LSA 精编**：[#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) · [1～5 类](#ch5-2-lsa-types) · 邻接五步：[#ch5-2-ospf-neighbor](#ch5-2-ospf-neighbor)
 
 ---
 
@@ -130,42 +130,88 @@ Area3 ──┘
 
 <a id="ch5-2-lsa-dijkstra"></a>
 
-## 〇·二、一句话捋清：OSPF = **发 LSA** + **本地 Dijkstra**
+## 〇·二、LSA / LSDB / Dijkstra（精编 · 先读）
 
-> **邻居之间不传路由，只传 LSA；每台路由器拿齐 LSA 后，本地用 Dijkstra 算最短路径。**
+> **LSA = Link State Advertisement（链路状态通告）**  
+> **LSDB = Link State Database（链路状态数据库）**  
+> 易写错：口语里的 **LSD** 应写 **LSDB**。
 
-### 1）先分清两个东西
+**一句话**：OSPF 邻居互发 **LSA** → 本地存 **LSDB** → **Dijkstra** 算路由。
 
-| | **LSA** | **Dijkstra** |
-|---|---------|--------------|
-| 是什么 | OSPF 路由器**互相发的报文** | **本机内部**跑的算路算法 |
-| 内容 | 我有哪些接口、连谁、带宽/开销 | **不写**在报文里 |
-| 作用 | 描述**链路状态** | 用全部 LSA 拼拓扑 → **算最短路** |
+| 角色 | 记住 |
+|------|------|
+| **LSA** | 传递拓扑的**消息**（地图碎片） |
+| **LSDB** | 所有 LSA 拼成的**全网地图** |
+| **Dijkstra** | 在地图上**算最短路径**的算法 |
+
+→ 1～5 类 LSA：[#ch5-2-lsa-types](#ch5-2-lsa-types) · 传递图：[#ch5-2-lsa-types-diagram](#ch5-2-lsa-types-diagram) · 例题：[#ch5-2-lsa-example](#ch5-2-lsa-example)
+
+---
+
+<a id="ch5-2-lsa-what"></a>
+
+### 1）LSA 到底是什么？
+
+**LSA = 一小段「自我介绍 / 拓扑描述」数据包。**
+
+每台路由器把自己的情况写成 LSA 并**泛洪给同区域所有人**：
+
+| 字段 | 内容 |
+|------|------|
+| 我是谁 | **Router ID** |
+| 我有哪些接口 | 接口列表 |
+| 连的是谁 | **邻居** Router ID |
+| 链路好坏 | **带宽 / Metric（开销）** |
+| 网段 | **前缀 + 掩码** |
 
 **LSA 里只有「地图碎片」，没有「最终路由表」。**
 
----
-
-### 2）完整流程（5 步）
-
-1. 每台路由器**只把直连链路**打包成 **LSA**
-2. **泛洪** LSA 给同区域所有 OSPF 邻居（经 LSU 等）
-3. 大家收到全部 LSA → 拼成**一模一样的 LSDB（全网拓扑地图）**
-4. **每台路由器单独跑 Dijkstra**，以自己为根，算到各网段最短路
-5. 结果写入**本地路由表**（再下发 FIB）
+| | **LSA** | **Dijkstra** |
+|---|---------|--------------|
+| 是什么 | 路由器**互相发的报文**（经 LSU 等） | **本机内部**跑的算路算法 |
+| 写在报文里？ | **是**（链路状态描述） | **否** |
+| 作用 | 描述**链路状态** | 用 LSDB 拼拓扑 → **算最短路** |
 
 ---
 
-### 3）为啥不传路由、只传 LSA？
+<a id="ch5-2-lsa-types"></a>
+
+### 2）最常用的 1～5 类 LSA（必懂）
+
+| 类型 | 名称 | 谁发 | 范围 | 内容 / 作用 |
+|------|------|------|------|-------------|
+| **Type 1** | **Router LSA** | **每台** OSPF 路由器 | **本区域** | 本机直连链路、接口、开销 → **区域内拓扑基础** |
+| **Type 2** | **Network LSA** | 广播网（以太网）的 **DR** | **本区域** | 该网段上有哪些路由器（Router ID）→ **多路访问网当一个节点** |
+| **Type 3** | **Summary LSA** | **ABR**（区域边界路由器） | **跨区域** | 其他区域的网段（前缀+掩码+开销）→ **区域间路由** |
+| **Type 4** | **ASBR Summary** | **ABR** | 跨区域 | 怎么去 **ASBR**（引入外部路由的路由器）→ 「去外网先找 ASBR」 |
+| **Type 5** | **External LSA** | **ASBR** | **整个 OSPF 域**（Stub/NSSA 除外） | 从静态/BGP/RIP 等**重分发**进来的外部路由 |
+
+**口诀**：**1 自报家门 · 2 DR 报网段 · 3 ABR 报他区网段 · 4 ABR 指路 ASBR · 5 ASBR 报外网**
+
+→ ABR/ASBR：[#ch5-2-ospf-area](#ch5-2-ospf-area) · 传递拓扑：[#ch5-2-lsa-types-diagram](#ch5-2-lsa-types-diagram)
+
+---
+
+<a id="ch5-2-lsa-flow"></a>
+
+### 3）LSA → LSDB → Dijkstra（核心链路）
+
+1. **邻居之间：只交换 LSA** — 不传路由表，不传算法，只发 LSA 数据包  
+2. **每台路由器：把收到的 LSA 存进 LSDB** — 同 Area 内 LSDB **内容完全一致**（同一版全网地图）  
+3. **每台路由器：本地跑 Dijkstra** — 以**自己为起点**，在 LSDB 上算到各网段最短路 → 写入**本地路由表**（再下发 FIB）
+
+**完整 5 步**
+
+1. 每台路由器把**直连链路**打包成 LSA（多为 **Type 1**）  
+2. **泛洪** LSA 给同区域所有邻居（经 **LSU** 等）  
+3. 收齐全部 LSA → 拼成**一模一样的 LSDB**  
+4. **各自独立**跑 **Dijkstra（SPF）**，以自己为根  
+5. 结果写入本地路由表
 
 | 传路由（DV 思路） | 传 LSA（OSPF/LS） |
 |-------------------|-------------------|
 | 易环路、信息失真 | 全网拓扑**一致** |
 | 震荡大 | **各自独立算路**，稳定 |
-
----
-
-### 4）通俗比喻
 
 | 步骤 | 比喻 |
 |------|------|
@@ -174,21 +220,76 @@ Area3 ──┘
 | LSDB | 集齐碎片 → **全城完整地图** |
 | Dijkstra | 站在自家门口，算去全城**怎么走最近** |
 
----
-
-### 5）名词对应
-
-| 名词 | 记住 |
-|------|------|
-| 交换的数据 | **LSA** |
-| 存所有 LSA 的库 | **LSDB** |
-| 本机算路算法 | **Dijkstra（SPF）** |
-
-**小总结**：邻居**只交换 LSA**，不交换算法、不交换路由；**Dijkstra 只在本机跑**，靠统一 LSDB 出路由表。
+**小总结**：邻居**只交换 LSA**；**Dijkstra 只在本机跑**，靠统一 LSDB 出路由表。
 
 ---
 
-### 6）极简示意图
+<a id="ch5-2-lsa-example"></a>
+
+### 4）极简例子：A、B、C 同在 Area 0
+
+| 路由器 | 发出的 LSA |
+|--------|------------|
+| **A** | **Type 1**：我连 B、连 **10.1.1.0/24** |
+| **B** | **Type 1**：我连 A、连 C |
+| **C** | **Type 1**：我连 B、连 **10.2.2.0/24** |
+| **DR**（以太网段） | **Type 2**：这个网段上有 A、B、C |
+
+A、B、C 把所有 LSA 存进 **LSDB** → **三张一模一样的地图**。
+
+各自跑 **Dijkstra**：
+
+| 路由器 | 算出的最短路 |
+|--------|--------------|
+| **A** | 到 10.2.2.0 → **A→B→C** |
+| **B** | 到 10.1.1.0 → **B→A**；到 10.2.2.0 → **B→C** |
+| **C** | 到 10.1.1.0 → **C→B→A** |
+
+---
+
+<a id="ch5-2-lsa-types-diagram"></a>
+
+### 5）1 / 2 / 3 类 LSA 传递拓扑图
+
+**同区域内：Type 1 + Type 2**
+
+```text
+              [ 以太网广播段 · DR = B ]
+             /         |         \
+            A          B          C
+            │          │          │
+   Type1 ◄──┴──► 泛洪 ◄─┴─► 泛洪 ◄─┴──► Type1
+   (各自发)              │
+                         └── Type2（DR=B 发：网段上有 A、B、C）
+                                    │
+                    ┌───────────────┼───────────────┐
+                    ▼               ▼               ▼
+                 LSDB(A)         LSDB(B)         LSDB(C)    ← 内容相同
+                    │               │               │
+                    └─ Dijkstra(根=A/B/C) → 各自路由表 ──┘
+```
+
+**跨区域：Type 3（ABR 汇总）**
+
+```text
+  Area 1                          Area 0（骨干）
+  ┌─────────┐                    ┌─────────┐
+  │ R1      │                    │         │
+  │10.1.0.0 │── Type1 区域内 ──► │  ABR    │── Type3 Summary ──► Area 0 内路由器
+  └─────────┘    泛洪             │ (边界)  │    「Area1 有 10.1.0.0/16，开销 x」
+                                  └─────────┘
+  Type3 不描述 Area1 内部逐跳拓扑，只传「前缀 + 到 ABR 的开销」
+```
+
+---
+
+### 6）一句话记牢 + 易错
+
+```text
+LSA = 我描述我自己
+LSDB = 所有人的描述拼成一张图
+Dijkstra = 我在图上算最短路径
+```
 
 ```text
   R1 ──LSA──► R2 ──LSA──► R3        （泛洪：只传链路状态，不传路由表）
@@ -202,9 +303,12 @@ Area3 ──┘
 
 | 易混 | 纠正 |
 |------|------|
+| **LSD**？ | 应写 **LSDB**（Link State **Database**） |
 | OSPF 邻居传路由表？ | **否**；传 **LSA**，路由**各自算** |
+| Type 2 谁发？ | 广播网的 **DR**，不是每台都发 |
+| Type 3 传完整拓扑？ | **否**；只传**网段摘要**（前缀+掩码+开销） |
 | Dijkstra 在报文里跑？ | **否**；**本机 CPU** 跑 SPF |
-| LSDB 每台不一样？ | **同 Area 内应一致**（同步拓扑） |
+| LSDB 每台不一样？ | **同 Area 内应一致** |
 | 和 RIP 一样靠邻居跳数？ | **否**；RIP 是 **DV**，OSPF 是 **LS** |
 
 → LS 原理：[5.1 链路状态](../5.1_routing_algorithm/study.md#ch5-1-ls) · Full 后 SPF：[#ch5-2-ospf-neighbor](#ch5-2-ospf-neighbor)
@@ -312,6 +416,7 @@ OSPF IGP同AS内，IP89不用TCP
 LSA泛洪Area0骨干，Cost小带宽大
 Hello DBD LSR LSU，Full后Dijkstra算路
 链路状态非矢量，比RIP快无无穷
+LSA通告LSDB库，12345类要分清
 ```
 
 ### 30 字
@@ -327,6 +432,7 @@ Hello DBD LSR LSU，Full后Dijkstra算路
 | 度量 | **Cost**（带宽↑ Cost↓） |
 | 骨干 | **Area 0 必有**，非骨干经 ABR 连骨干 |
 | 邻接 | **Hello → DBD → LSR/LSU/LSAck → Full → SPF** |
+| LSA | **通告**拓扑；存 **LSDB**；**1 自报·2 DR·3 ABR 汇总·4 指 ASBR·5 外部** |
 | vs RIP | OSPF=**LS**；RIP=**DV** |
 
 ### 易错点
@@ -338,6 +444,8 @@ Hello DBD LSR LSU，Full后Dijkstra算路
 | OSPF = 距离矢量？ | **否**；**链路状态**，本地 **Dijkstra** |
 | 非骨干 Area 能直连？ | **否**；必须经 **Area 0** |
 | OSPF 靠邻居传路由表？ | **否**；靠 **LSA 泛洪拓扑**，本地算路 |
+| LSD 还是 LSDB？ | **LSDB**（Database，不是 LSD） |
+| Type 2 每台都发？ | **否**；广播网由 **DR** 发 |
 | 目录 5.2 vs 章 §5.3 | 目录 **5.2=OSPF 精读**；章 **§5.3=OSPF** 概述 |
 
 ---
@@ -348,7 +456,10 @@ Hello DBD LSR LSU，Full后Dijkstra算路
 
 | 锚点 | 内容 |
 |------|------|
-| [#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) | LSA + 本地 Dijkstra |
+| [#ch5-2-lsa-dijkstra](#ch5-2-lsa-dijkstra) | LSA/LSDB/Dijkstra 精编 |
+| [#ch5-2-lsa-types](#ch5-2-lsa-types) | 1～5 类 LSA |
+| [#ch5-2-lsa-types-diagram](#ch5-2-lsa-types-diagram) | 1/2/3 类传递拓扑图 |
+| [#ch5-2-lsa-example](#ch5-2-lsa-example) | A/B/C 极简例题 |
 | [#ch5-2-ospf-simple](#ch5-2-ospf-simple) | 三大概念通俗 |
 | [#ch5-2-ospf-ip89](#ch5-2-ospf-ip89) | IP 协议号 89 |
 | [#ch5-2-multicast-vs-cidr](#ch5-2-multicast-vs-cidr) | 224.0.0.5 vs CIDR |
