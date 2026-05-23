@@ -14,7 +14,7 @@
 
 ![链路层在路径中的位置：逐跳封装，路由器内上送网络层再下封装](./assets/link_layer_position_hop_by_hop.png)
 
-→ 小节背版：[6.1 链路层服务](./6.1_link_layer_service/study.md)  
+→ 小节背版：[6.1 链路层服务](./6.1_link_layer_service/study.md)（[通俗](./6.1_link_layer_service/study.md#ch6-1-simple) · [逐跳原理](../study.md#ch6-hop-ip-frame)）  
 → 数据平面逐跳实例：[第 4 章 · 一包怎么走](../04_network_layer_data_plane/study.md#ch4-packet-walkthrough)
 
 <a id="ch6-hop-ip-frame"></a>
