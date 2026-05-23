@@ -298,6 +298,8 @@ CRC 是以太网等链路硬件的常见选择：用**生成多项式 G** 构造
 **全称**：Address Resolution Protocol · 工作在**链路层与网络层之间**  
 **作用**：**IP 地址 → MAC 地址**（同网段发帧前必做）
 
+> **6.4 背诵精编** → [工作流程](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-arp-flow) · [请求/应答](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-arp-format) · [跨子网](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-arp-cross-subnet) · [5 行默写](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-arp-exam)
+
 | 层 | 用什么 |
 |----|--------|
 | 网络层 | **IP** 跨网段寻路 |
@@ -403,7 +405,7 @@ Address Resolution Protocol (reply)
 
 **举例**：`192.168.1.10` 访问 `192.168.1.20` → 缓存无 → 广播问 MAC → `.20` 单播回复 → 存表 → 封装帧发送
 
-→ 背版：[6.4 小节](./6.4_ethernet_arp_switch_vlan/study.md)（[VLAN](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-vlan) · [802.1Q](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-8021q) · [Access/Trunk](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-vlan-compare)）· ARP：[#ch6-arp](#ch6-arp)
+→ 背版：[6.4 小节](./6.4_ethernet_arp_switch_vlan/study.md)（[ARP 默写](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-arp-exam) · [跨子网](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-arp-cross-subnet) · [VLAN](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-vlan) · [802.1Q](./6.4_ethernet_arp_switch_vlan/study.md#ch6-4-8021q)）· 章级 ARP：[#ch6-arp](#ch6-arp)
 
 ### 6.4.2 交换机自学习
 
