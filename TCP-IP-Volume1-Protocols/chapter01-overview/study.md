@@ -1,6 +1,6 @@
 # 第 1 章：概述（Introduction）
 
-> 按书节速记：[1.1](1.1-architecture-principles/study.md) · [1.2](1.2-design-implementation/study.md) · [1.3](1.3-tcpip-architecture-protocol/study.md) · [1.4](1.4-intranet-extranet/study.md) · [1.5](1.5-application-design/study.md) · [1.6](1.6-standard-process/study.md) · [1.7](1.7-implementation-release/study.md) · [1.8](1.8-architecture-threat/study.md) · [1.9](1.9-summary/study.md) · [1.10](1.10-references/study.md) · [QUICKREF §1](../QUICKREF.md)
+> 按书节速记：[1.1](1.1-architecture-principles.md) · [1.2](1.2-design-implementation.md) · [1.3](1.3-tcpip-architecture-protocol.md) · [1.4](1.4-intranet-extranet.md) · [1.5](1.5-application-design.md) · [1.6](1.6-standard-process.md) · [1.7](1.7-implementation-release.md) · [1.8](1.8-architecture-threat.md) · [1.9](1.9-summary.md) · [1.10](1.10-references.md) · [QUICKREF §1](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 深度学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/01_architecture/ch01_introduction.md)）  
 > 自顶向下对照：[01_network_basics/study.md](../../01_network_basics/study.md)（因特网构成、边缘与核心）

@@ -1,7 +1,7 @@
 # 第 7 章：套接字选项（厚版）
 
 > [Ch 6](../Chapter06_IO_Select_Poll/study.md) → **Ch 7** → [Ch 8](../Chapter08_BasicUDPSocket/study.md)  
-> 逐节：`7.x_*/notes.md`
+> 逐节：`7.x_*.md`
 
 ## 本章目标
 
@@ -13,18 +13,18 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 7.1 | [7.1_Overview](./7.1_Overview/notes.md) | 三大入口 |
-| 7.2 | [7.2_Getsockopt_Setsockopt](./7.2_Getsockopt_Setsockopt/notes.md) | API、两类选项 |
-| 7.3 | [7.3_Option_Check_DefaultValue](./7.3_Option_Check_DefaultValue/notes.md) | 探测支持 |
-| 7.4 | [7.4_Socket_State_Rule](./7.4_Socket_State_Rule/notes.md) | 继承、设置时机 |
-| 7.5 | [7.5_Common_Socket_Option](./7.5_Common_Socket_Option/notes.md) | **SOL_SOCKET 全集** |
-| 7.6 | [7.6_IPv4_Socket_Option](./7.6_IPv4_Socket_Option/notes.md) | IPPROTO_IP |
-| 7.7 | [7.7_ICMPv6_Socket_Option](./7.7_ICMPv6_Socket_Option/notes.md) | ICMP6_FILTER |
-| 7.8 | [7.8_IPv6_Socket_Option](./7.8_IPv6_Socket_Option/notes.md) | PATHMTU、V6ONLY |
-| 7.9 | [7.9_TCP_Socket_Option](./7.9_TCP_Socket_Option/notes.md) | MSS、**NODELAY** |
-| 7.10 | [7.10_SCTP_Socket_Option](./7.10_SCTP_Socket_Option/notes.md) | SCTP 选项 |
-| 7.11 | [7.11_Fcntl_Control_Func](./7.11_Fcntl_Control_Func/notes.md) | O_NONBLOCK |
-| 7.12 | [7.12_Summary](./7.12_Summary/notes.md) | 小结 |
+| 7.1 | [7.1_Overview](./7.1_Overview.md) | 三大入口 |
+| 7.2 | [7.2_Getsockopt_Setsockopt](./7.2_Getsockopt_Setsockopt.md) | API、两类选项 |
+| 7.3 | [7.3_Option_Check_DefaultValue](./7.3_Option_Check_DefaultValue.md) | 探测支持 |
+| 7.4 | [7.4_Socket_State_Rule](./7.4_Socket_State_Rule.md) | 继承、设置时机 |
+| 7.5 | [7.5_Common_Socket_Option](./7.5_Common_Socket_Option.md) | **SOL_SOCKET 全集** |
+| 7.6 | [7.6_IPv4_Socket_Option](./7.6_IPv4_Socket_Option.md) | IPPROTO_IP |
+| 7.7 | [7.7_ICMPv6_Socket_Option](./7.7_ICMPv6_Socket_Option.md) | ICMP6_FILTER |
+| 7.8 | [7.8_IPv6_Socket_Option](./7.8_IPv6_Socket_Option.md) | PATHMTU、V6ONLY |
+| 7.9 | [7.9_TCP_Socket_Option](./7.9_TCP_Socket_Option.md) | MSS、**NODELAY** |
+| 7.10 | [7.10_SCTP_Socket_Option](./7.10_SCTP_Socket_Option.md) | SCTP 选项 |
+| 7.11 | [7.11_Fcntl_Control_Func](./7.11_Fcntl_Control_Func.md) | O_NONBLOCK |
+| 7.12 | [7.12_Summary](./7.12_Summary.md) | 小结 |
 
 ---
 

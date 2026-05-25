@@ -1,7 +1,7 @@
 # 第 28 章：原始套接字（厚版）
 
 > [Ch 25](../Chapter25_SignalDriveIO/study.md) · **Ch 28** · [Ch 29](../Chapter29_DataLinkAccess/study.md)  
-> 逐节：`28.x_*/notes.md`
+> 逐节：`28.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 28 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,14 +15,14 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 28.1 | [28.1_Overview](./28.1_Overview/notes.md) | 应用场景 |
-| 28.2 | [28.2_RawSocket_Create](./28.2_RawSocket_Create/notes.md) | SOCK_RAW、IP_HDRINCL |
-| 28.3 | [28.3_RawSocket_Send_Data](./28.3_RawSocket_Send_Data/notes.md) | 输出、字节序 |
-| 28.4 | [28.4_RawSocket_Recv_Data](./28.4_RawSocket_Recv_Data/notes.md) | 输入、v4/v6 差异 |
-| 28.5 | [28.5_Ping_Program_Implement](./28.5_Ping_Program_Implement/notes.md) | ping |
-| 28.6 | [28.6_Traceroute_Program_Implement](./28.6_Traceroute_Program_Implement/notes.md) | TTL + ICMP |
-| 28.7 | [28.7_ICMP_Message_Daemon](./28.7_ICMP_Message_Daemon/notes.md) | icmpd |
-| 28.8 | [28.8_Summary](./28.8_Summary/notes.md) | 全章收束 |
+| 28.1 | [28.1_Overview](./28.1_Overview.md) | 应用场景 |
+| 28.2 | [28.2_RawSocket_Create](./28.2_RawSocket_Create.md) | SOCK_RAW、IP_HDRINCL |
+| 28.3 | [28.3_RawSocket_Send_Data](./28.3_RawSocket_Send_Data.md) | 输出、字节序 |
+| 28.4 | [28.4_RawSocket_Recv_Data](./28.4_RawSocket_Recv_Data.md) | 输入、v4/v6 差异 |
+| 28.5 | [28.5_Ping_Program_Implement](./28.5_Ping_Program_Implement.md) | ping |
+| 28.6 | [28.6_Traceroute_Program_Implement](./28.6_Traceroute_Program_Implement.md) | TTL + ICMP |
+| 28.7 | [28.7_ICMP_Message_Daemon](./28.7_ICMP_Message_Daemon.md) | icmpd |
+| 28.8 | [28.8_Summary](./28.8_Summary.md) | 全章收束 |
 
 ---
 

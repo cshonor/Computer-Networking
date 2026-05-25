@@ -1,7 +1,7 @@
 # 第 15 章：Unix 域协议（厚版）
 
 > [Ch 12](../Chapter12_IPv4_IPv6_Interop/study.md) · **Ch 15**（`4_ArchitectureDesign`）· [Ch 16](../../2_AdvancedSkill/Chapter16_NonBlockingIO/)（待笔记）  
-> 逐节：`15.x_*/notes.md`
+> 逐节：`15.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 15 章框架来自目录，细节按 UNP 第 3 版整理，请与全本对照验证。
 
@@ -15,15 +15,15 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 15.1 | [15.1_Overview](./15.1_Overview/notes.md) | IPC、三大优势 |
-| 15.2 | [15.2_UnixDomain_Socket_Addr](./15.2_UnixDomain_Socket_Addr/notes.md) | **sockaddr_un** |
-| 15.3 | [15.3_Socketpair_Func](./15.3_Socketpair_Func/notes.md) | **socketpair** |
-| 15.4 | [15.4_Socket_Basic_Func](./15.4_Socket_Basic_Func/notes.md) | bind/unlink/权限 |
-| 15.5 | [15.5_Unix_Stream_Client_Server](./15.5_Unix_Stream_Client_Server/notes.md) | 字节流 |
-| 15.6 | [15.6_Unix_Datagram_Client_Server](./15.6_Unix_Datagram_Client_Server/notes.md) | 数据报 |
-| 15.7 | [15.7_File_Descriptor_Transfer](./15.7_File_Descriptor_Transfer/notes.md) | **SCM_RIGHTS** |
-| 15.8 | [15.8_Sender_Credential_Receive](./15.8_Sender_Credential_Receive/notes.md) | UID/GID 凭证 |
-| 15.9 | [15.9_Summary](./15.9_Summary/notes.md) | 全章收束 |
+| 15.1 | [15.1_Overview](./15.1_Overview.md) | IPC、三大优势 |
+| 15.2 | [15.2_UnixDomain_Socket_Addr](./15.2_UnixDomain_Socket_Addr.md) | **sockaddr_un** |
+| 15.3 | [15.3_Socketpair_Func](./15.3_Socketpair_Func.md) | **socketpair** |
+| 15.4 | [15.4_Socket_Basic_Func](./15.4_Socket_Basic_Func.md) | bind/unlink/权限 |
+| 15.5 | [15.5_Unix_Stream_Client_Server](./15.5_Unix_Stream_Client_Server.md) | 字节流 |
+| 15.6 | [15.6_Unix_Datagram_Client_Server](./15.6_Unix_Datagram_Client_Server.md) | 数据报 |
+| 15.7 | [15.7_File_Descriptor_Transfer](./15.7_File_Descriptor_Transfer.md) | **SCM_RIGHTS** |
+| 15.8 | [15.8_Sender_Credential_Receive](./15.8_Sender_Credential_Receive.md) | UID/GID 凭证 |
+| 15.9 | [15.9_Summary](./15.9_Summary.md) | 全章收束 |
 
 ---
 

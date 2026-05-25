@@ -1,6 +1,6 @@
 # 第 18 章：安全
 
-> 按书节速记：[18.1](18.1-introduction/study.md) · [18.2](18.2-security-principles/study.md) · [18.3](18.3-network-threats/study.md) · [18.4](18.4-cryptography-basics/study.md) · [18.5](18.5-pki-certificates/study.md) · [18.6](18.6-security-layering/study.md) · [18.7](18.7-eap-8021x/study.md) · [18.8](18.8-ipsec/study.md) · [18.9](18.9-tls-dtls/study.md) · [18.10](18.10-dnssec/study.md) · [18.11](18.11-dkim/study.md) · [18.12](18.12-protocol-attacks/study.md) · [18.13](18.13-summary/study.md) · [18.14](18.14-references/study.md) · [QUICKREF §18](../QUICKREF.md)
+> 按书节速记：[18.1](18.1-introduction.md) · [18.2](18.2-security-principles.md) · [18.3](18.3-network-threats.md) · [18.4](18.4-cryptography-basics.md) · [18.5](18.5-pki-certificates.md) · [18.6](18.6-security-layering.md) · [18.7](18.7-eap-8021x.md) · [18.8](18.8-ipsec.md) · [18.9](18.9-tls-dtls.md) · [18.10](18.10-dnssec.md) · [18.11](18.11-dkim.md) · [18.12](18.12-protocol-attacks.md) · [18.13](18.13-summary.md) · [18.14](18.14-references.md) · [QUICKREF §18](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/05_application_security/ch18_security.md)）  
 > DNS：[ch11](../chapter11-dns-domain-resolve/study.md) · 防火墙/NAT：[ch07](../chapter07-firewall-nat/study.md) · 自顶向下：[08_network_security/study.md](../../08_network_security/study.md)
@@ -139,7 +139,7 @@ RFC 4301；**IKEv2** 协商密钥；**AH** / **ESP** 保护报文。
 
 **NAT-T**：路径有 NAT 时 ESP 封装在 **UDP 4500**。
 
-→ 自顶向下：[08 §8.4 IPsec](../../08_network_security/8.4_ipsec_vpn/study.md)
+→ 自顶向下：[08 §8.4 IPsec](../../08_network_security/8.4_ipsec_vpn.md)
 
 ---
 
@@ -156,7 +156,7 @@ RFC 4301；**IKEv2** 协商密钥；**AH** / **ESP** 保护报文。
 
 **TLS 1.3**：弱化算法移除；**1-RTT** 握手；**0-RTT** 恢复（注意重放风险）。
 
-→ [08 §8.3 TLS/HTTPS](../../08_network_security/8.3_tls_https/study.md)
+→ [08 §8.3 TLS/HTTPS](../../08_network_security/8.3_tls_https.md)
 
 ### DTLS
 

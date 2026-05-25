@@ -1,7 +1,7 @@
 # 第 31 章：流 STREAMS（厚版）
 
 > [Ch 30 服务器范式](../Chapter30_Client_Server_DesignMode/study.md) · **Ch 31**（`4_ArchitectureDesign`）· 全书架构层收束  
-> 逐节：`31.x_*/notes.md`
+> 逐节：`31.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 31 章框架来自目录（约第 14 页），细节按 UNP 第 3 版整理，请与全本对照验证。
 
@@ -15,13 +15,13 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 31.1 | [31.1_Overview](./31.1_Overview/notes.md) | SVR vs Berkeley |
-| 31.2 | [31.2_Stream_Structure_Profile](./31.2_Stream_Structure_Profile/notes.md) | 流头/模块/驱动、M_DATA |
-| 31.3 | [31.3_Getmsg_Putmsg_Func](./31.3_Getmsg_Putmsg_Func/notes.md) | **putmsg/getmsg** |
-| 31.4 | [31.4_Getpmsg_Putpmsg_Func](./31.4_Getpmsg_Putpmsg_Func/notes.md) | **putpmsg/getpmsg** |
-| 31.5 | [31.5_Ioctl_Stream_Control](./31.5_Ioctl_Stream_Control/notes.md) | **I_PUSH**、**SIGPOLL** |
-| 31.6 | [31.6_Transport_Provider_Interface](./31.6_Transport_Provider_Interface/notes.md) | **TPI**、socket 封装 |
-| 31.7 | [31.7_Summary](./31.7_Summary/notes.md) | 全章收束 |
+| 31.1 | [31.1_Overview](./31.1_Overview.md) | SVR vs Berkeley |
+| 31.2 | [31.2_Stream_Structure_Profile](./31.2_Stream_Structure_Profile.md) | 流头/模块/驱动、M_DATA |
+| 31.3 | [31.3_Getmsg_Putmsg_Func](./31.3_Getmsg_Putmsg_Func.md) | **putmsg/getmsg** |
+| 31.4 | [31.4_Getpmsg_Putpmsg_Func](./31.4_Getpmsg_Putpmsg_Func.md) | **putpmsg/getpmsg** |
+| 31.5 | [31.5_Ioctl_Stream_Control](./31.5_Ioctl_Stream_Control.md) | **I_PUSH**、**SIGPOLL** |
+| 31.6 | [31.6_Transport_Provider_Interface](./31.6_Transport_Provider_Interface.md) | **TPI**、socket 封装 |
+| 31.7 | [31.7_Summary](./31.7_Summary.md) | 全章收束 |
 
 ---
 

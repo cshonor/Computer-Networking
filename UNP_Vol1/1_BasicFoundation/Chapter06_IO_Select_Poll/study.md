@@ -1,7 +1,7 @@
 # 第 6 章：I/O 复用 — select 和 poll（厚版）
 
 > [Ch 5](../Chapter05_TCP_Client_Server_Demo/study.md) → **Ch 6** → [Ch 7](../Chapter07_SocketOption/study.md)  
-> 逐节：`6.x_*/notes.md`（与粘贴纪要同结构的厚版）
+> 逐节：`6.x_*.md`（与粘贴纪要同结构的厚版）
 
 ## 本章目标
 
@@ -13,18 +13,18 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 6.1 | [6.1_Overview](./6.1_Overview/notes.md) | Ch5 缺陷、多路复用场景 |
-| 6.2 | [6.2_IO_Model_Type](./6.2_IO_Model_Type/notes.md) | 五模型、同步/异步 |
-| 6.3 | [6.3_Select_Function](./6.3_Select_Function/notes.md) | select、就绪条件、1024 |
-| 6.4 | [6.4_Str_Cli_Revised](./6.4_Str_Cli_Revised/notes.md) | select 版客户 |
-| 6.5 | [6.5_Batch_Input_Process](./6.5_Batch_Input_Process/notes.md) | 重定向丢回射 |
-| 6.6 | [6.6_Shutdown_Function](./6.6_Shutdown_Function/notes.md) | SHUT_WR 半关闭 |
-| 6.7 | [6.7_Str_Cli_Final_Revised](./6.7_Str_Cli_Final_Revised/notes.md) | 终极客户 |
-| 6.8 | [6.8_TCP_Server_Revised](./6.8_TCP_Server_Revised/notes.md) | select 单进程服 |
-| 6.9 | [6.9_Pselect_Function](./6.9_Pselect_Function/notes.md) | pselect、sigmask |
-| 6.10 | [6.10_Poll_Function](./6.10_Poll_Function/notes.md) | poll、pollfd |
-| 6.11 | [6.11_TCP_Server_Poll_Revised](./6.11_TCP_Server_Poll_Revised/notes.md) | poll 服务器 |
-| 6.12 | [6.12_Summary](./6.12_Summary/notes.md) | 小结 |
+| 6.1 | [6.1_Overview](./6.1_Overview.md) | Ch5 缺陷、多路复用场景 |
+| 6.2 | [6.2_IO_Model_Type](./6.2_IO_Model_Type.md) | 五模型、同步/异步 |
+| 6.3 | [6.3_Select_Function](./6.3_Select_Function.md) | select、就绪条件、1024 |
+| 6.4 | [6.4_Str_Cli_Revised](./6.4_Str_Cli_Revised.md) | select 版客户 |
+| 6.5 | [6.5_Batch_Input_Process](./6.5_Batch_Input_Process.md) | 重定向丢回射 |
+| 6.6 | [6.6_Shutdown_Function](./6.6_Shutdown_Function.md) | SHUT_WR 半关闭 |
+| 6.7 | [6.7_Str_Cli_Final_Revised](./6.7_Str_Cli_Final_Revised.md) | 终极客户 |
+| 6.8 | [6.8_TCP_Server_Revised](./6.8_TCP_Server_Revised.md) | select 单进程服 |
+| 6.9 | [6.9_Pselect_Function](./6.9_Pselect_Function.md) | pselect、sigmask |
+| 6.10 | [6.10_Poll_Function](./6.10_Poll_Function.md) | poll、pollfd |
+| 6.11 | [6.11_TCP_Server_Poll_Revised](./6.11_TCP_Server_Poll_Revised.md) | poll 服务器 |
+| 6.12 | [6.12_Summary](./6.12_Summary.md) | 小结 |
 
 ---
 

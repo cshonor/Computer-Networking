@@ -1,7 +1,7 @@
 # 第 20 章：广播（厚版）
 
 > [Ch 17](../Chapter17_Ioctl_Operate/study.md) · **Ch 20** · [Ch 21](../Chapter21_Multicast/)（待笔记）  
-> 逐节：`20.x_*/notes.md`
+> 逐节：`20.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 20 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,12 +15,12 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 20.1 | [20.1_Overview](./20.1_Overview/notes.md) | UDP only；IPv6→多播 |
-| 20.2 | [20.2_Broadcast_Address](./20.2_Broadcast_Address/notes.md) | 四类广播地址 |
-| 20.3 | [20.3_Unicast_Broadcast_Compare](./20.3_Unicast_Broadcast_Compare/notes.md) | 接收路径与 CPU 代价 |
-| 20.4 | [20.4_Broadcast_Dg_Cli](./20.4_Broadcast_Dg_Cli/notes.md) | SO_BROADCAST、MTU |
-| 20.5 | [20.5_Race_Condition_Problem](./20.5_Race_Condition_Problem/notes.md) | pselect |
-| 20.6 | [20.6_Summary](./20.6_Summary/notes.md) | 全章收束 |
+| 20.1 | [20.1_Overview](./20.1_Overview.md) | UDP only；IPv6→多播 |
+| 20.2 | [20.2_Broadcast_Address](./20.2_Broadcast_Address.md) | 四类广播地址 |
+| 20.3 | [20.3_Unicast_Broadcast_Compare](./20.3_Unicast_Broadcast_Compare.md) | 接收路径与 CPU 代价 |
+| 20.4 | [20.4_Broadcast_Dg_Cli](./20.4_Broadcast_Dg_Cli.md) | SO_BROADCAST、MTU |
+| 20.5 | [20.5_Race_Condition_Problem](./20.5_Race_Condition_Problem.md) | pselect |
+| 20.6 | [20.6_Summary](./20.6_Summary.md) | 全章收束 |
 
 ---
 

@@ -1,7 +1,7 @@
 # 第 29 章：数据链路访问（厚版）
 
 > [Ch 28](../Chapter28_RawSocket/study.md) · **Ch 29** · 阶段三收束（DeepMaster 主线）  
-> 逐节：`29.x_*/notes.md`
+> 逐节：`29.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 29 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,14 +15,14 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 29.1 | [29.1_Overview](./29.1_Overview/notes.md) | 二层 vs Ch28 |
-| 29.2 | [29.2_BSD_Packet_Filter](./29.2_BSD_Packet_Filter/notes.md) | BPF、/dev/bpf |
-| 29.3 | [29.3_Datalink_Provider_Interface](./29.3_Datalink_Provider_Interface/notes.md) | DLPI、STREAMS |
-| 29.4 | [29.4_Linux_Packet_Socket](./29.4_Linux_Packet_Socket/notes.md) | PF_PACKET、LSF |
-| 29.5 | [29.5_Libpcap_Capture_Lib](./29.5_Libpcap_Capture_Lib/notes.md) | **libpcap** |
-| 29.6 | [29.6_Libnet_Packet_Build_Lib](./29.6_Libnet_Packet_Build_Lib/notes.md) | **libnet** |
-| 29.7 | [29.7_UDP_Checksum_Check](./29.7_UDP_Checksum_Check/notes.md) | 帧解析、校验和 |
-| 29.8 | [29.8_Summary](./29.8_Summary/notes.md) | 全章收束 |
+| 29.1 | [29.1_Overview](./29.1_Overview.md) | 二层 vs Ch28 |
+| 29.2 | [29.2_BSD_Packet_Filter](./29.2_BSD_Packet_Filter.md) | BPF、/dev/bpf |
+| 29.3 | [29.3_Datalink_Provider_Interface](./29.3_Datalink_Provider_Interface.md) | DLPI、STREAMS |
+| 29.4 | [29.4_Linux_Packet_Socket](./29.4_Linux_Packet_Socket.md) | PF_PACKET、LSF |
+| 29.5 | [29.5_Libpcap_Capture_Lib](./29.5_Libpcap_Capture_Lib.md) | **libpcap** |
+| 29.6 | [29.6_Libnet_Packet_Build_Lib](./29.6_Libnet_Packet_Build_Lib.md) | **libnet** |
+| 29.7 | [29.7_UDP_Checksum_Check](./29.7_UDP_Checksum_Check.md) | 帧解析、校验和 |
+| 29.8 | [29.8_Summary](./29.8_Summary.md) | 全章收束 |
 
 ---
 

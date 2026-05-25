@@ -1,7 +1,7 @@
 # 第 22 章：高级 UDP 套接字编程（厚版）
 
 > [Ch 8](../../1_BasicFoundation/Chapter08_BasicUDPSocket/study.md) · [Ch 21](../Chapter21_Multicast/study.md) · **Ch 22**  
-> 逐节：`22.x_*/notes.md`
+> 逐节：`22.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 22 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,16 +15,16 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 22.1 | [22.1_Overview](./22.1_Overview/notes.md) | 章概览 |
-| 22.2 | [22.2_Flag_DestIP_InterfaceIndex](./22.2_Flag_DestIP_InterfaceIndex/notes.md) | recvmsg 辅助数据 |
-| 22.3 | [22.3_Datagram_Truncation](./22.3_Datagram_Truncation/notes.md) | MSG_TRUNC |
-| 22.4 | [22.4_UDP_TCP_Scene_Choice](./22.4_UDP_TCP_Scene_Choice/notes.md) | 选型法则 |
-| 22.5 | [22.5_UDP_Reliable_Transform](./22.5_UDP_Reliable_Transform/notes.md) | RTO、序号 |
-| 22.6 | [22.6_Bind_Specified_Interface](./22.6_Bind_Specified_Interface/notes.md) | 具体 bind 优先 |
-| 22.7 | [22.7_Concurrent_UDP_Server](./22.7_Concurrent_UDP_Server/notes.md) | 并发困境 |
-| 22.8 | [22.8_IPv6_Packet_Info](./22.8_IPv6_Packet_Info/notes.md) | in6_pktinfo |
-| 22.9 | [22.9_IPv6_Path_MTU_Control](./22.9_IPv6_Path_MTU_Control/notes.md) | PMTU 选项 |
-| 22.10 | [22.10_Summary](./22.10_Summary/notes.md) | 全章收束 |
+| 22.1 | [22.1_Overview](./22.1_Overview.md) | 章概览 |
+| 22.2 | [22.2_Flag_DestIP_InterfaceIndex](./22.2_Flag_DestIP_InterfaceIndex.md) | recvmsg 辅助数据 |
+| 22.3 | [22.3_Datagram_Truncation](./22.3_Datagram_Truncation.md) | MSG_TRUNC |
+| 22.4 | [22.4_UDP_TCP_Scene_Choice](./22.4_UDP_TCP_Scene_Choice.md) | 选型法则 |
+| 22.5 | [22.5_UDP_Reliable_Transform](./22.5_UDP_Reliable_Transform.md) | RTO、序号 |
+| 22.6 | [22.6_Bind_Specified_Interface](./22.6_Bind_Specified_Interface.md) | 具体 bind 优先 |
+| 22.7 | [22.7_Concurrent_UDP_Server](./22.7_Concurrent_UDP_Server.md) | 并发困境 |
+| 22.8 | [22.8_IPv6_Packet_Info](./22.8_IPv6_Packet_Info.md) | in6_pktinfo |
+| 22.9 | [22.9_IPv6_Path_MTU_Control](./22.9_IPv6_Path_MTU_Control.md) | PMTU 选项 |
+| 22.10 | [22.10_Summary](./22.10_Summary.md) | 全章收束 |
 
 ---
 

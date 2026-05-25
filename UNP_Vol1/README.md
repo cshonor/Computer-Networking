@@ -1,7 +1,7 @@
 # UNP Vol1 — UNIX Network Programming 卷 1 学习目录
 
 > 基于 **UNIX Network Programming, Volume 1, 3rd Edition**（Stevens / Fenner / Rudoff）  
-> 四层结构：**阶段 → 章节 → 小节 → notes + code**
+> 三层浏览：**阶段 → 章节 → 小节 `.md` + `code/`**（节笔记平铺在章目录，少点两层）
 
 ## 目录层级
 
@@ -20,20 +20,23 @@ UNP_Vol1/
 | 一级 | `UNP_Vol1` | 根目录 |
 | 二级 | `{序号}_{阶段英文名}` | `1_BasicFoundation` |
 | 三级 | `Chapter{NN}_{章节英文名}` | `Chapter04_BasicTCPSocket` |
-| 四级 | `{小节号}_{小节英文名}` | `4.3_Connect_Function` |
+| 节笔记 | `{小节号}_{小节英文名}.md` | `4.3_Connect_Function.md` |
 
-## 单小节固定结构
+## 章目录结构
 
 ```
-xx小节/
-├─ notes.md              # 读书笔记（见下方模板）
+Chapter04_BasicTCPSocket/
+├─ study.md              # 章级导读 / 索引
+├─ 4.1_Overview.md       # 各节笔记（平铺，一眼扫全章）
+├─ 4.2_Socket_Function.md
 └─ code/
-   ├─ original_c/        # 书本原版 C 示例
-   ├─ rewrite_go/        # Go 改写
-   └─ rewrite_rust/      # Rust 改写
+   └─ 4.3_Connect_Function/
+      ├─ original_c/
+      ├─ rewrite_go/
+      └─ rewrite_rust/
 ```
 
-## notes.md 模板
+## 节笔记模板（`.md` 文件）
 
 ```markdown
 # 本节标题
@@ -57,6 +60,7 @@ xx小节/
 
 - 全书 **320** 个小节目录（Ch 1–31，不含 Exercises）
 - 全部小节英文名以 `scripts/generate_structure.py` 内 `SECTIONS` 字典为准（四阶段全覆盖）
-- 重新同步目录：`python scripts/generate_structure.py`（**不覆盖**已有 `notes.md`；自动迁移旧文件夹名并更新 `OUTLINE.md`）
+- 重新同步目录：`python scripts/generate_structure.py`（**不覆盖**已有节 `.md`；自动迁移旧小节文件夹并更新 `OUTLINE.md`）
+- 若从旧三层目录升级：`python scripts/flatten_section_notes.py`（一次性；已跑过可忽略）
 
 → 完整树形索引：[OUTLINE.md](./OUTLINE.md)

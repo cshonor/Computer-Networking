@@ -1,6 +1,6 @@
 # 第 2 章：Internet 地址结构
 
-> 按书节速记：[2.1](2.1-introduction/study.md) · [2.2](2.2-ip-address-representation/study.md) · [2.3](2.3-basic-ip-structure/study.md) · [2.4](2.4-cidr-aggregation/study.md) · [2.5](2.5-special-address/study.md) · [2.6](2.6-address-allocation/study.md) · [2.7](2.7-unicast-allocation/study.md) · [2.8](2.8-address-security-threat/study.md) · [2.9](2.9-summary/study.md) · [2.10](2.10-references/study.md) · [QUICKREF §2](../QUICKREF.md)
+> 按书节速记：[2.1](2.1-introduction.md) · [2.2](2.2-ip-address-representation.md) · [2.3](2.3-basic-ip-structure.md) · [2.4](2.4-cidr-aggregation.md) · [2.5](2.5-special-address.md) · [2.6](2.6-address-allocation.md) · [2.7](2.7-unicast-allocation.md) · [2.8](2.8-address-security-threat.md) · [2.9](2.9-summary.md) · [2.10](2.10-references.md) · [QUICKREF §2](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 深度学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/01_architecture/ch02_internet_addresses.md)）  
 > 自顶向下对照：[04_network_layer §4.3](../../04_network_layer_data_plane/study.md#ch4-3)（IPv4/IPv6、CIDR、NAT）

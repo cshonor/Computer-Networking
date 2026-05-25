@@ -1,7 +1,7 @@
 # 第 24 章：带外数据（厚版）
 
 > [Ch 22](../Chapter22_AdvancedUDPSocket/study.md) · **Ch 24** · [Ch 25](../Chapter25_SignalDriveIO/study.md)  
-> 逐节：`24.x_*/notes.md`
+> 逐节：`24.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 24 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,12 +15,12 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 24.1 | [24.1_Overview](./24.1_Overview/notes.md) | OOB vs TCP 紧急模式 |
-| 24.2 | [24.2_TCP_OutOfBand_Data](./24.2_TCP_OutOfBand_Data/notes.md) | 发送/接收、SIGURG |
-| 24.3 | [24.3_Sockatmark_Func](./24.3_Sockatmark_Func/notes.md) | 线内模式探测 |
-| 24.4 | [24.4_TCP_OutOfBand_Summary](./24.4_TCP_OutOfBand_Summary/notes.md) | RFC、覆盖陷阱 |
-| 24.5 | [24.5_Client_Server_Heartbeat](./24.5_Client_Server_Heartbeat/notes.md) | OOB 心搏 |
-| 24.6 | [24.6_Summary](./24.6_Summary/notes.md) | 全章收束 |
+| 24.1 | [24.1_Overview](./24.1_Overview.md) | OOB vs TCP 紧急模式 |
+| 24.2 | [24.2_TCP_OutOfBand_Data](./24.2_TCP_OutOfBand_Data.md) | 发送/接收、SIGURG |
+| 24.3 | [24.3_Sockatmark_Func](./24.3_Sockatmark_Func.md) | 线内模式探测 |
+| 24.4 | [24.4_TCP_OutOfBand_Summary](./24.4_TCP_OutOfBand_Summary.md) | RFC、覆盖陷阱 |
+| 24.5 | [24.5_Client_Server_Heartbeat](./24.5_Client_Server_Heartbeat.md) | OOB 心搏 |
+| 24.6 | [24.6_Summary](./24.6_Summary.md) | 全章收束 |
 
 ---
 

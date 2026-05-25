@@ -330,58 +330,64 @@ def is_template_notes(path: Path) -> bool:
     return text.strip() == NOTES_TEMPLATE.format(title=text.split("\n", 1)[0].removeprefix("# ").strip()).strip()
 
 
-def ensure_gitkeep(path: Path) -> None:
-    path.mkdir(parents=True, exist_ok=True)
-    (path / ".gitkeep").touch(exist_ok=True)
-
-
-def ensure_section(path: Path, title: str) -> None:
-    ensure_gitkeep(path)
-    notes = path / "notes.md"
+def ensure_section(chapter: Path, sec: str, title: str) -> None:
+    """Flat layout: ChapterXX/3.2_Foo.md and ChapterXX/code/3.2_Foo/{original_c,...}."""
+    chapter.mkdir(parents=True, exist_ok=True)
+    notes = chapter / f"{sec}.md"
     if not notes.exists():
         notes.write_text(NOTES_TEMPLATE.format(title=title), encoding="utf-8")
-    ensure_gitkeep(path / "code")
+    code_root = chapter / "code" / sec
     for sub in ("original_c", "rewrite_go", "rewrite_rust"):
-        ensure_gitkeep(path / "code" / sub)
+        (code_root / sub).mkdir(parents=True, exist_ok=True)
 
 
-def migrate_notes(old: Path, new: Path) -> None:
+def migrate_notes(old: Path, chapter: Path, sec: str) -> None:
+    """Migrate legacy section folder (notes.md + code/) to flat files."""
+    dest = chapter / f"{sec}.md"
     old_notes = old / "notes.md"
-    new_notes = new / "notes.md"
-    if not old_notes.exists():
-        return
-    if not new_notes.exists() or is_template_notes(new_notes):
+    if old_notes.exists() and (not dest.exists() or is_template_notes(dest)):
         if not is_template_notes(old_notes):
-            new.mkdir(parents=True, exist_ok=True)
-            shutil.copy2(old_notes, new_notes)
+            shutil.copy2(old_notes, dest)
     old_code = old / "code"
-    new_code = new / "code"
+    new_code = chapter / "code" / sec
     if old_code.exists():
         for sub in old_code.iterdir():
             if sub.is_dir():
-                dest = new_code / sub.name
-                dest.mkdir(parents=True, exist_ok=True)
+                dest_dir = new_code / sub.name
+                dest_dir.mkdir(parents=True, exist_ok=True)
                 for f in sub.iterdir():
-                    if f.name != ".gitkeep" or not any(dest.iterdir()):
-                        shutil.copy2(f, dest / f.name) if f.is_file() else None
+                    if f.is_file() and f.name != ".gitkeep":
+                        shutil.copy2(f, dest_dir / f.name)
 
 
 def remove_orphans() -> int:
     removed = 0
-    expected: set[Path] = set()
+    expected_dirs: set[Path] = set()
+    expected_mds: set[Path] = set()
     for phase, chapters in PHASES.items():
         for ch in chapters:
             ch_path = ROOT / phase / CHAPTER_DIRS[ch]
             for sec in SECTIONS[ch]:
-                expected.add(ch_path / sec)
+                expected_dirs.add(ch_path / sec)
+                expected_mds.add(ch_path / f"{sec}.md")
 
     for phase in ROOT.glob("[0-9]_*"):
         if not phase.is_dir():
             continue
         for ch_dir in phase.glob("Chapter*"):
-            for sec_dir in ch_dir.iterdir():
-                if sec_dir.is_dir() and sec_dir not in expected:
-                    shutil.rmtree(sec_dir)
+            for item in list(ch_dir.iterdir()):
+                if item.is_dir() and item.name == "code":
+                    continue
+                if item.is_dir() and item not in expected_dirs:
+                    shutil.rmtree(item)
+                    removed += 1
+                elif (
+                    item.is_file()
+                    and item.suffix == ".md"
+                    and item.name != "study.md"
+                    and item not in expected_mds
+                ):
+                    item.unlink()
                     removed += 1
     return removed
 
@@ -389,6 +395,8 @@ def remove_orphans() -> int:
 def find_old_section(ch: int, new_name: str) -> Path | None:
     phase = chapter_phase(ch)
     ch_path = ROOT / phase / CHAPTER_DIRS[ch]
+    if (ch_path / f"{new_name}.md").exists():
+        return None
     if (ch_path / new_name).exists():
         return None
     # direct rename map
@@ -423,29 +431,27 @@ def generate_outline() -> None:
             lines.append(f"### {ch_dir}/ ({len(secs)} sections)")
             lines.append("")
             for sec in secs:
-                lines.append(f"- `{sec}/`")
+                lines.append(f"- `{sec}.md`")
             lines.append("")
     lines.append(f"**Total: {total} sections**")
     (ROOT / "OUTLINE.md").write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
 def main() -> None:
-    ensure_gitkeep(ROOT)
     created = 0
     migrated = 0
     for phase, chapters in PHASES.items():
-        ensure_gitkeep(ROOT / phase)
+        (ROOT / phase).mkdir(parents=True, exist_ok=True)
         for ch in chapters:
             ch_path = ROOT / phase / CHAPTER_DIRS[ch]
-            ensure_gitkeep(ch_path)
+            ch_path.mkdir(parents=True, exist_ok=True)
             for sec in SECTIONS[ch]:
-                sec_path = ch_path / sec
                 old = find_old_section(ch, sec)
-                if old and old != sec_path:
-                    migrate_notes(old, sec_path)
+                if old and old.is_dir():
+                    migrate_notes(old, ch_path, sec)
                     migrated += 1
                 title = sec.replace("_", " ")
-                ensure_section(sec_path, title)
+                ensure_section(ch_path, sec, title)
                 created += 1
 
     orphans = remove_orphans()

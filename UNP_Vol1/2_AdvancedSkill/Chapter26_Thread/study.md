@@ -1,7 +1,7 @@
 # 第 26 章：线程（厚版）
 
 > [Ch 16](../Chapter16_NonBlockingIO/study.md) · **Ch 26** · 阶段二（`2_AdvancedSkill`）  
-> 逐节：`26.x_*/notes.md`
+> 逐节：`26.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 26 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,16 +15,16 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 26.1 | [26.1_Overview](./26.1_Overview/notes.md) | 线程 vs fork |
-| 26.2 | [26.2_Thread_Create_Exit](./26.2_Thread_Create_Exit/notes.md) | create/join/detach |
-| 26.3 | [26.3_Thread_Str_Cli](./26.3_Thread_Str_Cli/notes.md) | 双线程 str_cli |
-| 26.4 | [26.4_Thread_TCP_Server](./26.4_Thread_TCP_Server/notes.md) | 每连接一线程 |
-| 26.5 | [26.5_Thread_Private_Data](./26.5_Thread_Private_Data/notes.md) | TSD |
-| 26.6 | [26.6_Web_Client_Multi_Connect](./26.6_Web_Client_Multi_Connect/notes.md) | 并发上限 |
-| 26.7 | [26.7_Mutex_Lock](./26.7_Mutex_Lock/notes.md) | 互斥锁 |
-| 26.8 | [26.8_Condition_Variable](./26.8_Condition_Variable/notes.md) | cond_wait + while |
-| 26.9 | [26.9_Web_Client_Connect_Supplement](./26.9_Web_Client_Connect_Supplement/notes.md) | Mutex+cond 完整流 |
-| 26.10 | [26.10_Summary](./26.10_Summary/notes.md) | 全章收束 |
+| 26.1 | [26.1_Overview](./26.1_Overview.md) | 线程 vs fork |
+| 26.2 | [26.2_Thread_Create_Exit](./26.2_Thread_Create_Exit.md) | create/join/detach |
+| 26.3 | [26.3_Thread_Str_Cli](./26.3_Thread_Str_Cli.md) | 双线程 str_cli |
+| 26.4 | [26.4_Thread_TCP_Server](./26.4_Thread_TCP_Server.md) | 每连接一线程 |
+| 26.5 | [26.5_Thread_Private_Data](./26.5_Thread_Private_Data.md) | TSD |
+| 26.6 | [26.6_Web_Client_Multi_Connect](./26.6_Web_Client_Multi_Connect.md) | 并发上限 |
+| 26.7 | [26.7_Mutex_Lock](./26.7_Mutex_Lock.md) | 互斥锁 |
+| 26.8 | [26.8_Condition_Variable](./26.8_Condition_Variable.md) | cond_wait + while |
+| 26.9 | [26.9_Web_Client_Connect_Supplement](./26.9_Web_Client_Connect_Supplement.md) | Mutex+cond 完整流 |
+| 26.10 | [26.10_Summary](./26.10_Summary.md) | 全章收束 |
 
 ---
 

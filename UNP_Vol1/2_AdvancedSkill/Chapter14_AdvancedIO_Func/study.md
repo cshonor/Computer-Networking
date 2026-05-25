@@ -1,7 +1,7 @@
 # 第 14 章：高级 I/O 函数（厚版）
 
 > [Ch 13](../Chapter13_Daemon_Inetd/study.md) · **Ch 14** · [Ch 15](../../4_ArchitectureDesign/Chapter15_UnixDomainProtocol/)（待笔记）  
-> 逐节：`14.x_*/notes.md`
+> 逐节：`14.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 14 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,17 +15,17 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 14.1 | [14.1_Overview](./14.1_Overview/notes.md) | 章概览 |
-| 14.2 | [14.2_Socket_Timeout_Set](./14.2_Socket_Timeout_Set/notes.md) | alarm / select / SO_RCVTIMEO |
-| 14.3 | [14.3_Recv_Send_Func](./14.3_Recv_Send_Func/notes.md) | flags |
-| 14.4 | [14.4_Readv_Writev_Func](./14.4_Readv_Writev_Func/notes.md) | 聚集/分散 I/O |
-| 14.5 | [14.5_Recvmsg_Sendmsg_Func](./14.5_Recvmsg_Sendmsg_Func/notes.md) | msghdr |
-| 14.6 | [14.6_Auxiliary_Data](./14.6_Auxiliary_Data/notes.md) | cmsghdr 宏 |
-| 14.7 | [14.7_Pending_Data_Check](./14.7_Pending_Data_Check/notes.md) | FIONREAD 等 |
-| 14.8 | [14.8_Socket_StdIO_Mix](./14.8_Socket_StdIO_Mix/notes.md) | 勿混 stdio |
-| 14.9 | [14.9_Advanced_Poll_Method](./14.9_Advanced_Poll_Method/notes.md) | kqueue/devpoll/epoll |
-| 14.10 | [14.10_TCP_Transaction_Type](./14.10_TCP_Transaction_Type/notes.md) | T/TCP（历史） |
-| 14.11 | [14.11_Summary](./14.11_Summary/notes.md) | 全章收束 |
+| 14.1 | [14.1_Overview](./14.1_Overview.md) | 章概览 |
+| 14.2 | [14.2_Socket_Timeout_Set](./14.2_Socket_Timeout_Set.md) | alarm / select / SO_RCVTIMEO |
+| 14.3 | [14.3_Recv_Send_Func](./14.3_Recv_Send_Func.md) | flags |
+| 14.4 | [14.4_Readv_Writev_Func](./14.4_Readv_Writev_Func.md) | 聚集/分散 I/O |
+| 14.5 | [14.5_Recvmsg_Sendmsg_Func](./14.5_Recvmsg_Sendmsg_Func.md) | msghdr |
+| 14.6 | [14.6_Auxiliary_Data](./14.6_Auxiliary_Data.md) | cmsghdr 宏 |
+| 14.7 | [14.7_Pending_Data_Check](./14.7_Pending_Data_Check.md) | FIONREAD 等 |
+| 14.8 | [14.8_Socket_StdIO_Mix](./14.8_Socket_StdIO_Mix.md) | 勿混 stdio |
+| 14.9 | [14.9_Advanced_Poll_Method](./14.9_Advanced_Poll_Method.md) | kqueue/devpoll/epoll |
+| 14.10 | [14.10_TCP_Transaction_Type](./14.10_TCP_Transaction_Type.md) | T/TCP（历史） |
+| 14.11 | [14.11_Summary](./14.11_Summary.md) | 全章收束 |
 
 ---
 

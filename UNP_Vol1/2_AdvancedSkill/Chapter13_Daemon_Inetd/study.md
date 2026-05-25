@@ -1,7 +1,7 @@
 # 第 13 章：守护进程和 inetd 超级服务器（厚版）
 
 > [Ch 11](../Chapter11_Name_Address_Convert/study.md) · **Ch 13** · [Ch 14](../Chapter14_AdvancedIO_Func/)（待笔记）  
-> 逐节：`13.x_*/notes.md`
+> 逐节：`13.x_*.md`
 
 > **说明**：上传 PDF 可视内容截至第 8 章；第 13 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,13 +15,13 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 13.1 | [13.1_Overview](./13.1_Overview/notes.md) | 守护进程定义与启动方式 |
-| 13.2 | [13.2_syslogd_Daemon](./13.2_syslogd_Daemon/notes.md) | 中心化日志守护进程 |
-| 13.3 | [13.3_Syslog_Func](./13.3_Syslog_Func/notes.md) | syslog/openlog |
-| 13.4 | [13.4_Daemon_Init_Func](./13.4_Daemon_Init_Func/notes.md) | **daemon_init 六步** |
-| 13.5 | [13.5_inetd_Daemon](./13.5_inetd_Daemon/notes.md) | 超级服务器工作流 |
-| 13.6 | [13.6_Daemon_Inetd_Func](./13.6_Daemon_Inetd_Func/notes.md) | inetd 子服务规范 |
-| 13.7 | [13.7_Summary](./13.7_Summary/notes.md) | 全章收束 |
+| 13.1 | [13.1_Overview](./13.1_Overview.md) | 守护进程定义与启动方式 |
+| 13.2 | [13.2_syslogd_Daemon](./13.2_syslogd_Daemon.md) | 中心化日志守护进程 |
+| 13.3 | [13.3_Syslog_Func](./13.3_Syslog_Func.md) | syslog/openlog |
+| 13.4 | [13.4_Daemon_Init_Func](./13.4_Daemon_Init_Func.md) | **daemon_init 六步** |
+| 13.5 | [13.5_inetd_Daemon](./13.5_inetd_Daemon.md) | 超级服务器工作流 |
+| 13.6 | [13.6_Daemon_Inetd_Func](./13.6_Daemon_Inetd_Func.md) | inetd 子服务规范 |
+| 13.7 | [13.7_Summary](./13.7_Summary.md) | 全章收束 |
 
 ---
 

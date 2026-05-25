@@ -1,7 +1,7 @@
 # 第 11 章：名字与地址转换（厚版）
 
 > 阶段一：[Ch 8](../../1_BasicFoundation/Chapter08_BasicUDPSocket/study.md) · **Ch 11**（`2_AdvancedSkill`）  
-> 逐节：`11.x_*/notes.md`
+> 逐节：`11.x_*.md`
 
 > **说明**：上传资料正文截至第 8 章；第 11 章按目录与 UNP 第 3 版体系整理，请与教材对照验证。
 
@@ -15,28 +15,28 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 11.1 | [11.1_Overview](./11.1_Overview/notes.md) | 名字与协议无关 |
-| 11.2 | [11.2_DNS_System](./11.2_DNS_System/notes.md) | A/AAAA/PTR/MX/CNAME |
-| 11.3 | [11.3_Gethostbyname_Func](./11.3_Gethostbyname_Func/notes.md) | 旧 API（勿用） |
-| 11.4 | [11.4_Gethostbyaddr_Func](./11.4_Gethostbyaddr_Func/notes.md) | 反向解析（旧） |
-| 11.5 | [11.5_Getservbyname_Getservbyport](./11.5_Getservbyname_Getservbyport/notes.md) | /etc/services |
-| 11.6 | [11.6_Getaddrinfo_Func](./11.6_Getaddrinfo_Func/notes.md) | **核心 API** |
-| 11.7 | [11.7_Gai_strerror_Func](./11.7_Gai_strerror_Func/notes.md) | 错误串 |
-| 11.8 | [11.8_Freeaddrinfo_Func](./11.8_Freeaddrinfo_Func/notes.md) | 释放链表 |
-| 11.9 | [11.9_Getaddrinfo_IPv6](./11.9_Getaddrinfo_IPv6/notes.md) | AI_V4MAPPED/ALL |
-| 11.10 | [11.10_Getaddrinfo_CaseDemo](./11.10_Getaddrinfo_CaseDemo/notes.md) | 客户/服例子 |
-| 11.11 | [11.11_Host_Serv_Func](./11.11_Host_Serv_Func/notes.md) | hints 封装 |
-| 11.12 | [11.12_Tcp_Connect_Func](./11.12_Tcp_Connect_Func/notes.md) | TCP 客户 |
-| 11.13 | [11.13_Tcp_Listen_Func](./11.13_Tcp_Listen_Func/notes.md) | TCP 监听 |
-| 11.14 | [11.14_Udp_Client_Func](./11.14_Udp_Client_Func/notes.md) | UDP 客户 |
-| 11.15 | [11.15_Udp_Connect_Func](./11.15_Udp_Connect_Func/notes.md) | 已连接 UDP |
-| 11.16 | [11.16_Udp_Server_Func](./11.16_Udp_Server_Func/notes.md) | UDP 服 |
-| 11.17 | [11.17_Getnameinfo_Func](./11.17_Getnameinfo_Func/notes.md) | 反向（新） |
-| 11.18 | [11.18_Reentrant_Function](./11.18_Reentrant_Function/notes.md) | 可重入 |
-| 11.19 | [11.19_Gethostbyname_r_Gethostbyaddr_r](./11.19_Gethostbyname_r_Gethostbyaddr_r/notes.md) | _r 变体 |
-| 11.20 | [11.20_Old_IPv6_Convert_Func](./11.20_Old_IPv6_Convert_Func/notes.md) | 作废 API |
-| 11.21 | [11.21_Other_Network_Info](./11.21_Other_Network_Info/notes.md) | 网络/协议 DB |
-| 11.22 | [11.22_Summary](./11.22_Summary/notes.md) | 全章收束 |
+| 11.1 | [11.1_Overview](./11.1_Overview.md) | 名字与协议无关 |
+| 11.2 | [11.2_DNS_System](./11.2_DNS_System.md) | A/AAAA/PTR/MX/CNAME |
+| 11.3 | [11.3_Gethostbyname_Func](./11.3_Gethostbyname_Func.md) | 旧 API（勿用） |
+| 11.4 | [11.4_Gethostbyaddr_Func](./11.4_Gethostbyaddr_Func.md) | 反向解析（旧） |
+| 11.5 | [11.5_Getservbyname_Getservbyport](./11.5_Getservbyname_Getservbyport.md) | /etc/services |
+| 11.6 | [11.6_Getaddrinfo_Func](./11.6_Getaddrinfo_Func.md) | **核心 API** |
+| 11.7 | [11.7_Gai_strerror_Func](./11.7_Gai_strerror_Func.md) | 错误串 |
+| 11.8 | [11.8_Freeaddrinfo_Func](./11.8_Freeaddrinfo_Func.md) | 释放链表 |
+| 11.9 | [11.9_Getaddrinfo_IPv6](./11.9_Getaddrinfo_IPv6.md) | AI_V4MAPPED/ALL |
+| 11.10 | [11.10_Getaddrinfo_CaseDemo](./11.10_Getaddrinfo_CaseDemo.md) | 客户/服例子 |
+| 11.11 | [11.11_Host_Serv_Func](./11.11_Host_Serv_Func.md) | hints 封装 |
+| 11.12 | [11.12_Tcp_Connect_Func](./11.12_Tcp_Connect_Func.md) | TCP 客户 |
+| 11.13 | [11.13_Tcp_Listen_Func](./11.13_Tcp_Listen_Func.md) | TCP 监听 |
+| 11.14 | [11.14_Udp_Client_Func](./11.14_Udp_Client_Func.md) | UDP 客户 |
+| 11.15 | [11.15_Udp_Connect_Func](./11.15_Udp_Connect_Func.md) | 已连接 UDP |
+| 11.16 | [11.16_Udp_Server_Func](./11.16_Udp_Server_Func.md) | UDP 服 |
+| 11.17 | [11.17_Getnameinfo_Func](./11.17_Getnameinfo_Func.md) | 反向（新） |
+| 11.18 | [11.18_Reentrant_Function](./11.18_Reentrant_Function.md) | 可重入 |
+| 11.19 | [11.19_Gethostbyname_r_Gethostbyaddr_r](./11.19_Gethostbyname_r_Gethostbyaddr_r.md) | _r 变体 |
+| 11.20 | [11.20_Old_IPv6_Convert_Func](./11.20_Old_IPv6_Convert_Func.md) | 作废 API |
+| 11.21 | [11.21_Other_Network_Info](./11.21_Other_Network_Info.md) | 网络/协议 DB |
+| 11.22 | [11.22_Summary](./11.22_Summary.md) | 全章收束 |
 
 ---
 

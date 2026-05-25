@@ -1,7 +1,7 @@
 # 第 17 章：ioctl 操作（厚版）
 
 > [阶段二 Ch 26](../../2_AdvancedSkill/Chapter26_Thread/study.md) · **Ch 17**（`3_DeepMaster`）· [Ch 18](../../4_ArchitectureDesign/Chapter18_RoutingSocket/study.md)  
-> 逐节：`17.x_*/notes.md`
+> 逐节：`17.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 17 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,16 +15,16 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 17.1 | [17.1_Overview](./17.1_Overview/notes.md) | 四大领域与 POSIX 替代 |
-| 17.2 | [17.2_ioctl_Function](./17.2_ioctl_Function/notes.md) | 原型与 request |
-| 17.3 | [17.3_Socket_Ioctl_Operate](./17.3_Socket_Ioctl_Operate/notes.md) | SIOCATMARK、属主 |
-| 17.4 | [17.4_File_Ioctl_Operate](./17.4_File_Ioctl_Operate/notes.md) | FIONBIO、FIONREAD |
-| 17.5 | [17.5_Network_Interface_Config](./17.5_Network_Interface_Config/notes.md) | ifreq/ifconf、SIOCGIFCONF |
-| 17.6 | [17.6_Get_Ifi_Info_Func](./17.6_Get_Ifi_Info_Func/notes.md) | **get_ifi_info** |
-| 17.7 | [17.7_Interface_Control_Operate](./17.7_Interface_Control_Operate/notes.md) | SIOCGIF* / SIOCSIF* |
-| 17.8 | [17.8_ARP_Cache_Operate](./17.8_ARP_Cache_Operate/notes.md) | ARP 表 |
-| 17.9 | [17.9_Route_Table_Operate](./17.9_Route_Table_Operate/notes.md) | 勿用于新代码 |
-| 17.10 | [17.10_Summary](./17.10_Summary/notes.md) | 全章收束 |
+| 17.1 | [17.1_Overview](./17.1_Overview.md) | 四大领域与 POSIX 替代 |
+| 17.2 | [17.2_ioctl_Function](./17.2_ioctl_Function.md) | 原型与 request |
+| 17.3 | [17.3_Socket_Ioctl_Operate](./17.3_Socket_Ioctl_Operate.md) | SIOCATMARK、属主 |
+| 17.4 | [17.4_File_Ioctl_Operate](./17.4_File_Ioctl_Operate.md) | FIONBIO、FIONREAD |
+| 17.5 | [17.5_Network_Interface_Config](./17.5_Network_Interface_Config.md) | ifreq/ifconf、SIOCGIFCONF |
+| 17.6 | [17.6_Get_Ifi_Info_Func](./17.6_Get_Ifi_Info_Func.md) | **get_ifi_info** |
+| 17.7 | [17.7_Interface_Control_Operate](./17.7_Interface_Control_Operate.md) | SIOCGIF* / SIOCSIF* |
+| 17.8 | [17.8_ARP_Cache_Operate](./17.8_ARP_Cache_Operate.md) | ARP 表 |
+| 17.9 | [17.9_Route_Table_Operate](./17.9_Route_Table_Operate.md) | 勿用于新代码 |
+| 17.10 | [17.10_Summary](./17.10_Summary.md) | 全章收束 |
 
 ---
 

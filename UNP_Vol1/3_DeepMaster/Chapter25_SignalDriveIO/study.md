@@ -1,7 +1,7 @@
 # 第 25 章：信号驱动式 I/O（厚版）
 
 > [Ch 24](../Chapter24_OutOfBandData/study.md) · **Ch 25** · [Ch 26](../../2_AdvancedSkill/Chapter26_Thread/study.md)  
-> 逐节：`25.x_*/notes.md`
+> 逐节：`25.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 25 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,10 +15,10 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 25.1 | [25.1_Overview](./25.1_Overview/notes.md) | 信号驱动 I/O 模型 |
-| 25.2 | [25.2_Socket_Signal_Drive_IO](./25.2_Socket_Signal_Drive_IO/notes.md) | 三步骤；UDP/TCP |
-| 25.3 | [25.3_SIGIO_UDP_Echo_Server](./25.3_SIGIO_UDP_Echo_Server/notes.md) | 队列、临界区 |
-| 25.4 | [25.4_Summary](./25.4_Summary/notes.md) | 全章收束 |
+| 25.1 | [25.1_Overview](./25.1_Overview.md) | 信号驱动 I/O 模型 |
+| 25.2 | [25.2_Socket_Signal_Drive_IO](./25.2_Socket_Signal_Drive_IO.md) | 三步骤；UDP/TCP |
+| 25.3 | [25.3_SIGIO_UDP_Echo_Server](./25.3_SIGIO_UDP_Echo_Server.md) | 队列、临界区 |
+| 25.4 | [25.4_Summary](./25.4_Summary.md) | 全章收束 |
 
 ---
 

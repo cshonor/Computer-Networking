@@ -1,7 +1,7 @@
 # 第 16 章：非阻塞式 I/O（厚版）
 
 > [Ch 14](../Chapter14_AdvancedIO_Func/study.md) · **Ch 16** · 阶段二收束  
-> 逐节：`16.x_*/notes.md`
+> 逐节：`16.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 16 章按 UNP 第 3 版体系整理，请与全本对照验证。
 
@@ -15,13 +15,13 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 16.1 | [16.1_Overview](./16.1_Overview/notes.md) | 四类阻塞操作 |
-| 16.2 | [16.2_NonBlock_Read_Write](./16.2_NonBlock_Read_Write/notes.md) | to/fr 缓冲 + select |
-| 16.3 | [16.3_NonBlock_Connect](./16.3_NonBlock_Connect/notes.md) | EINPROGRESS 与三大优势 |
-| 16.4 | [16.4_NonBlock_Connect_TimeClient](./16.4_NonBlock_Connect_TimeClient/notes.md) | connect_nonb + SO_ERROR |
-| 16.5 | [16.5_NonBlock_Connect_WebClient](./16.5_NonBlock_Connect_WebClient/notes.md) | 并行 HTTP 客户 |
-| 16.6 | [16.6_NonBlock_Accept](./16.6_NonBlock_Accept/notes.md) | RST 竞态、强制非阻塞 |
-| 16.7 | [16.7_Summary](./16.7_Summary/notes.md) | 全章收束 |
+| 16.1 | [16.1_Overview](./16.1_Overview.md) | 四类阻塞操作 |
+| 16.2 | [16.2_NonBlock_Read_Write](./16.2_NonBlock_Read_Write.md) | to/fr 缓冲 + select |
+| 16.3 | [16.3_NonBlock_Connect](./16.3_NonBlock_Connect.md) | EINPROGRESS 与三大优势 |
+| 16.4 | [16.4_NonBlock_Connect_TimeClient](./16.4_NonBlock_Connect_TimeClient.md) | connect_nonb + SO_ERROR |
+| 16.5 | [16.5_NonBlock_Connect_WebClient](./16.5_NonBlock_Connect_WebClient.md) | 并行 HTTP 客户 |
+| 16.6 | [16.6_NonBlock_Accept](./16.6_NonBlock_Accept.md) | RST 竞态、强制非阻塞 |
+| 16.7 | [16.7_Summary](./16.7_Summary.md) | 全章收束 |
 
 ---
 

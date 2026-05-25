@@ -9,7 +9,9 @@
 | [OUTLINE.md](./OUTLINE.md) | 18 章目录与文件夹映射 |
 | [QUICKREF.md](./QUICKREF.md) | **每章考点 + Go/Rust 一页速览** |
 
-## 章节目录（`chapterXX-主题/study.md`）
+## 章节目录（`chapterXX-主题/study.md` + 平铺 `1.x-*.md`）
+
+各节笔记在**章文件夹根目录**（如 `1.1-architecture-principles.md`），与 `study.md` 同级，打开一章即可扫全节，无需再点进子文件夹。
 
 | 章 | 文件夹 | 笔记 |
 |----|--------|------|

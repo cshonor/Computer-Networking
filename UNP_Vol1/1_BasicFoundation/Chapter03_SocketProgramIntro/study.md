@@ -2,7 +2,7 @@
 
 > [Ch 2](../Chapter02_TCP_UDP_SCTP/study.md) → **Ch 3** → [Ch 4](../Chapter04_BasicTCPSocket/study.md)
 
-逐节见 `3.x_*/notes.md`（3.2、3.3、3.9 为最厚小节）。
+逐节见 `3.x_*.md`（3.2、3.3、3.9 为最厚小节）。
 
 ## 小节索引
 

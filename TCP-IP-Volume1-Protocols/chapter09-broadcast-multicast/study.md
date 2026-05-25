@@ -1,6 +1,6 @@
 # 第 9 章：广播与本地组播
 
-> 按书节速记：[9.1](9.1-broadcast-multicast-concept/study.md) · [9.2](9.2-ipv4-broadcast-address/study.md) · [9.3](9.3-multicast-mac-mapping/study.md) · [9.4](9.4-igmp-mld-snooping/study.md) · [9.5](9.5-igmp-mld-attacks/study.md) · [9.6](9.6-summary/study.md) · [9.7](9.7-references/study.md) · [QUICKREF §9](../QUICKREF.md)
+> 按书节速记：[9.1](9.1-broadcast-multicast-concept.md) · [9.2](9.2-ipv4-broadcast-address.md) · [9.3](9.3-multicast-mac-mapping.md) · [9.4](9.4-igmp-mld-snooping.md) · [9.5](9.5-igmp-mld-attacks.md) · [9.6](9.6-summary.md) · [9.7](9.7-references.md) · [QUICKREF §9](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷 1 第 2 版（Stevens & Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch09_broadcast_multicast.md)）  
 > **交叉引用**：[ch02 地址与子网语义](../chapter02-ip-address-architecture/study.md#ch02-3) · [ch08 ICMP/MLD](../chapter08-icmpv4-icmpv6/study.md) · [ch10 UDP 与一对多套接字](../chapter10-udp-ip-fragment/study.md) · 自顶向下 [§3.3 UDP](../../03_transport_layer/study.md#ch3-3)

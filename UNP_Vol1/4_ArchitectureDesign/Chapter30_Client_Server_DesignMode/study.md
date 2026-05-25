@@ -1,7 +1,7 @@
 # 第 30 章：客户/服务器程序设计范式（厚版）
 
 > [Ch 26 线程](../../2_AdvancedSkill/Chapter26_Thread/study.md) · [Ch 15 传 fd](../Chapter15_UnixDomainProtocol/study.md) · **Ch 30**（`4_ArchitectureDesign`）· [Ch 31](../Chapter31_Stream/study.md)  
-> 逐节：`30.x_*/notes.md`
+> 逐节：`30.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 30 章框架来自目录，细节按 UNP 第 3 版整理，请与全本对照验证。
 
@@ -15,19 +15,19 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 30.1 | [30.1_Overview](./30.1_Overview/notes.md) | 九范式总览 |
-| 30.2 | [30.2_TCP_Client_Design_Pattern](./30.2_TCP_Client_Design_Pattern/notes.md) | 压测客户范式 |
-| 30.3 | [30.3_TCP_Test_Client](./30.3_TCP_Test_Client/notes.md) | 测试程序 |
-| 30.4 | [30.4_TCP_Iterative_Server](./30.4_TCP_Iterative_Server/notes.md) | **迭代** |
-| 30.5 | [30.5_TCP_Fork_Concurrent_Server](./30.5_TCP_Fork_Concurrent_Server/notes.md) | **每连接 fork** |
-| 30.6 | [30.6_PreFork_Server_NoLock](./30.6_PreFork_Server_NoLock/notes.md) | Prefork、**惊群** |
-| 30.7 | [30.7_PreFork_Server_FileLock](./30.7_PreFork_Server_FileLock/notes.md) | 文件锁 accept |
-| 30.8 | [30.8_PreFork_Server_ThreadLock](./30.8_PreFork_Server_ThreadLock/notes.md) | **共享互斥锁** |
-| 30.9 | [30.9_PreFork_Server_Fd_Transfer](./30.9_PreFork_Server_Fd_Transfer/notes.md) | **SCM_RIGHTS** |
-| 30.10 | [30.10_TCP_Thread_Concurrent_Server](./30.10_TCP_Thread_Concurrent_Server/notes.md) | 每连接线程 |
-| 30.11 | [30.11_PreThread_Server_SingleAccept](./30.11_PreThread_Server_SingleAccept/notes.md) | 线程抢 accept |
-| 30.12 | [30.12_PreThread_Server_MainAccept](./30.12_PreThread_Server_MainAccept/notes.md) | 主 accept + 队列 |
-| 30.13 | [30.13_Summary](./30.13_Summary/notes.md) | 选型排名 |
+| 30.1 | [30.1_Overview](./30.1_Overview.md) | 九范式总览 |
+| 30.2 | [30.2_TCP_Client_Design_Pattern](./30.2_TCP_Client_Design_Pattern.md) | 压测客户范式 |
+| 30.3 | [30.3_TCP_Test_Client](./30.3_TCP_Test_Client.md) | 测试程序 |
+| 30.4 | [30.4_TCP_Iterative_Server](./30.4_TCP_Iterative_Server.md) | **迭代** |
+| 30.5 | [30.5_TCP_Fork_Concurrent_Server](./30.5_TCP_Fork_Concurrent_Server.md) | **每连接 fork** |
+| 30.6 | [30.6_PreFork_Server_NoLock](./30.6_PreFork_Server_NoLock.md) | Prefork、**惊群** |
+| 30.7 | [30.7_PreFork_Server_FileLock](./30.7_PreFork_Server_FileLock.md) | 文件锁 accept |
+| 30.8 | [30.8_PreFork_Server_ThreadLock](./30.8_PreFork_Server_ThreadLock.md) | **共享互斥锁** |
+| 30.9 | [30.9_PreFork_Server_Fd_Transfer](./30.9_PreFork_Server_Fd_Transfer.md) | **SCM_RIGHTS** |
+| 30.10 | [30.10_TCP_Thread_Concurrent_Server](./30.10_TCP_Thread_Concurrent_Server.md) | 每连接线程 |
+| 30.11 | [30.11_PreThread_Server_SingleAccept](./30.11_PreThread_Server_SingleAccept.md) | 线程抢 accept |
+| 30.12 | [30.12_PreThread_Server_MainAccept](./30.12_PreThread_Server_MainAccept.md) | 主 accept + 队列 |
+| 30.13 | [30.13_Summary](./30.13_Summary.md) | 选型排名 |
 
 ---
 

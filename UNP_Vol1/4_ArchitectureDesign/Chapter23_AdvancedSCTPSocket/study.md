@@ -1,7 +1,7 @@
 # 第 23 章：高级 SCTP 套接字编程（厚版）
 
 > [Ch 9](../Chapter09_BasicSCTPSocket/study.md) · [Ch 10](../Chapter10_SCTP_Client_Server_Demo/study.md) · **Ch 23**（`4_ArchitectureDesign`）  
-> 逐节：`23.x_*/notes.md`
+> 逐节：`23.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 23 章框架来自目录（约第 13 页），细节按 UNP 第 3 版整理，请与全本对照验证。
 
@@ -15,19 +15,19 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 23.1 | [23.1_Overview](./23.1_Overview/notes.md) | 高级特性总览 |
-| 23.2 | [23.2_AutoClose_OneToMany_Server](./23.2_AutoClose_OneToMany_Server/notes.md) | **SCTP_AUTOCLOSE** |
-| 23.3 | [23.3_Partial_Data_Deliver](./23.3_Partial_Data_Deliver/notes.md) | **MSG_EOR**、锁定 |
-| 23.4 | [23.4_SCTP_Notification_Msg](./23.4_SCTP_Notification_Msg/notes.md) | 高级通知 |
-| 23.5 | [23.5_Unordered_Data_Transfer](./23.5_Unordered_Data_Transfer/notes.md) | **SCTP_UNORDERED** |
-| 23.6 | [23.6_Bind_Address_Subset](./23.6_Bind_Address_Subset/notes.md) | **sctp_bindx** 子集 |
-| 23.7 | [23.7_Local_Remote_Addr_Query](./23.7_Local_Remote_Addr_Query/notes.md) | getpaddrs / getladdrs |
-| 23.8 | [23.8_IP_Association_ID_Match](./23.8_IP_Association_ID_Match/notes.md) | **assoc_id** |
-| 23.9 | [23.9_Heartbeat_Addr_Unreachable](./23.9_Heartbeat_Addr_Unreachable/notes.md) | 心搏、不可达 |
-| 23.10 | [23.10_Association_Split_Operate](./23.10_Association_Split_Operate/notes.md) | **sctp_peeloff** |
-| 23.11 | [23.11_Time_Parameter_Control](./23.11_Time_Parameter_Control/notes.md) | RTO、ASSOCINFO |
-| 23.12 | [23.12_SCTP_TCP_Scene_Choice](./23.12_SCTP_TCP_Scene_Choice/notes.md) | 选型指南 |
-| 23.13 | [23.13_Summary](./23.13_Summary/notes.md) | 全章收束 |
+| 23.1 | [23.1_Overview](./23.1_Overview.md) | 高级特性总览 |
+| 23.2 | [23.2_AutoClose_OneToMany_Server](./23.2_AutoClose_OneToMany_Server.md) | **SCTP_AUTOCLOSE** |
+| 23.3 | [23.3_Partial_Data_Deliver](./23.3_Partial_Data_Deliver.md) | **MSG_EOR**、锁定 |
+| 23.4 | [23.4_SCTP_Notification_Msg](./23.4_SCTP_Notification_Msg.md) | 高级通知 |
+| 23.5 | [23.5_Unordered_Data_Transfer](./23.5_Unordered_Data_Transfer.md) | **SCTP_UNORDERED** |
+| 23.6 | [23.6_Bind_Address_Subset](./23.6_Bind_Address_Subset.md) | **sctp_bindx** 子集 |
+| 23.7 | [23.7_Local_Remote_Addr_Query](./23.7_Local_Remote_Addr_Query.md) | getpaddrs / getladdrs |
+| 23.8 | [23.8_IP_Association_ID_Match](./23.8_IP_Association_ID_Match.md) | **assoc_id** |
+| 23.9 | [23.9_Heartbeat_Addr_Unreachable](./23.9_Heartbeat_Addr_Unreachable.md) | 心搏、不可达 |
+| 23.10 | [23.10_Association_Split_Operate](./23.10_Association_Split_Operate.md) | **sctp_peeloff** |
+| 23.11 | [23.11_Time_Parameter_Control](./23.11_Time_Parameter_Control.md) | RTO、ASSOCINFO |
+| 23.12 | [23.12_SCTP_TCP_Scene_Choice](./23.12_SCTP_TCP_Scene_Choice.md) | 选型指南 |
+| 23.13 | [23.13_Summary](./23.13_Summary.md) | 全章收束 |
 
 ---
 

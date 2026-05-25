@@ -1,7 +1,7 @@
 # 第 18 章：路由套接字（厚版）
 
 > [Ch 17 ioctl](../../3_DeepMaster/Chapter17_Ioctl_Operate/study.md) · **Ch 18**（`4_ArchitectureDesign`）· [Ch 19](../Chapter19_KeyManageSocket/study.md)  
-> 逐节：`18.x_*/notes.md`
+> 逐节：`18.x_*.md`
 
 > **说明**：上传资料截至第 8 章；第 18 章框架来自目录（约第 12 页），细节按 UNP 第 3 版整理，请与全本对照验证。
 
@@ -15,13 +15,13 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 18.1 | [18.1_Overview](./18.1_Overview/notes.md) | 三大能力、创建语法 |
-| 18.2 | [18.2_DataLink_Socket_Addr](./18.2_DataLink_Socket_Addr/notes.md) | **sockaddr_dl** |
-| 18.3 | [18.3_Socket_Read_Write](./18.3_Socket_Read_Write/notes.md) | **rt_msghdr**、rtm_addrs |
-| 18.4 | [18.4_Sysctl_Operate](./18.4_Sysctl_Operate/notes.md) | MIB、Two-Pass |
-| 18.5 | [18.5_Get_Ifi_Info_Func](./18.5_Get_Ifi_Info_Func/notes.md) | sysctl 版接口列表 |
-| 18.6 | [18.6_Interface_Name_Index_Func](./18.6_Interface_Name_Index_Func/notes.md) | if_nametoindex 等 |
-| 18.7 | [18.7_Summary](./18.7_Summary/notes.md) | 全章收束 |
+| 18.1 | [18.1_Overview](./18.1_Overview.md) | 三大能力、创建语法 |
+| 18.2 | [18.2_DataLink_Socket_Addr](./18.2_DataLink_Socket_Addr.md) | **sockaddr_dl** |
+| 18.3 | [18.3_Socket_Read_Write](./18.3_Socket_Read_Write.md) | **rt_msghdr**、rtm_addrs |
+| 18.4 | [18.4_Sysctl_Operate](./18.4_Sysctl_Operate.md) | MIB、Two-Pass |
+| 18.5 | [18.5_Get_Ifi_Info_Func](./18.5_Get_Ifi_Info_Func.md) | sysctl 版接口列表 |
+| 18.6 | [18.6_Interface_Name_Index_Func](./18.6_Interface_Name_Index_Func.md) | if_nametoindex 等 |
+| 18.7 | [18.7_Summary](./18.7_Summary.md) | 全章收束 |
 
 ---
 

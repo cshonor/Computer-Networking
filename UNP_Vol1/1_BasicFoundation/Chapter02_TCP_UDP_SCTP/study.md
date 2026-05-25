@@ -1,6 +1,6 @@
 # 第 2 章：传输层 — TCP、UDP 和 SCTP
 
-> 阶段一 [1_BasicFoundation](../) · 逐节 `notes.md` · 上一章：[Ch 1](../Chapter01_Introduction/study.md)
+> 阶段一 [1_BasicFoundation](../) · 逐节 `2.x_*.md` · 上一章：[Ch 1](../Chapter01_Introduction/study.md)
 
 ## 本章目标
 
@@ -12,20 +12,20 @@
 
 | 节 | 目录 | 主题 |
 |----|------|------|
-| 2.1 | [2.1_Overview](./2.1_Overview/notes.md) | 三协议定位 |
-| 2.2 | [2.2_GeneralGraph](./2.2_GeneralGraph/notes.md) | 协议栈总图 |
-| 2.3 | [2.3_UDP_Protocol](./2.3_UDP_Protocol/notes.md) | UDP 数据报 |
-| 2.4 | [2.4_TCP_Protocol](./2.4_TCP_Protocol/notes.md) | TCP 可靠字节流 |
-| 2.5 | [2.5_SCTP_Protocol](./2.5_SCTP_Protocol/notes.md) | SCTP 消息/多宿/多流 |
-| 2.6 | [2.6_TCP_Connect_Terminate](./2.6_TCP_Connect_Terminate/notes.md) | 三次握手、四次挥手、状态图 |
-| 2.7 | [2.7_TIME_WAIT_State](./2.7_TIME_WAIT_State/notes.md) | 2MSL、SO_REUSEADDR |
-| 2.8 | [2.8_SCTP_Connect_Terminate](./2.8_SCTP_Connect_Terminate/notes.md) | 四路握手、防 SYN 泛洪 |
-| 2.9 | [2.9_PortNumber](./2.9_PortNumber/notes.md) | 端口分类、套接字对 |
-| 2.10 | [2.10_TCP_Port_ConcurrentServer](./2.10_TCP_Port_ConcurrentServer/notes.md) | 四元组分路 |
-| 2.11 | [2.11_Buffer_Size_Limit](./2.11_Buffer_Size_Limit/notes.md) | MTU、MSS、TCP/UDP 输出 |
-| 2.12 | [2.12_StandardInternetService](./2.12_StandardInternetService/notes.md) | inetd 标准服务 |
-| 2.13 | [2.13_AppProtocolUsage](./2.13_AppProtocolUsage/notes.md) | 常见应用选协议 |
-| 2.14 | [2.14_Summary](./2.14_Summary/notes.md) | 小结 |
+| 2.1 | [2.1_Overview](./2.1_Overview.md) | 三协议定位 |
+| 2.2 | [2.2_GeneralGraph](./2.2_GeneralGraph.md) | 协议栈总图 |
+| 2.3 | [2.3_UDP_Protocol](./2.3_UDP_Protocol.md) | UDP 数据报 |
+| 2.4 | [2.4_TCP_Protocol](./2.4_TCP_Protocol.md) | TCP 可靠字节流 |
+| 2.5 | [2.5_SCTP_Protocol](./2.5_SCTP_Protocol.md) | SCTP 消息/多宿/多流 |
+| 2.6 | [2.6_TCP_Connect_Terminate](./2.6_TCP_Connect_Terminate.md) | 三次握手、四次挥手、状态图 |
+| 2.7 | [2.7_TIME_WAIT_State](./2.7_TIME_WAIT_State.md) | 2MSL、SO_REUSEADDR |
+| 2.8 | [2.8_SCTP_Connect_Terminate](./2.8_SCTP_Connect_Terminate.md) | 四路握手、防 SYN 泛洪 |
+| 2.9 | [2.9_PortNumber](./2.9_PortNumber.md) | 端口分类、套接字对 |
+| 2.10 | [2.10_TCP_Port_ConcurrentServer](./2.10_TCP_Port_ConcurrentServer.md) | 四元组分路 |
+| 2.11 | [2.11_Buffer_Size_Limit](./2.11_Buffer_Size_Limit.md) | MTU、MSS、TCP/UDP 输出 |
+| 2.12 | [2.12_StandardInternetService](./2.12_StandardInternetService.md) | inetd 标准服务 |
+| 2.13 | [2.13_AppProtocolUsage](./2.13_AppProtocolUsage.md) | 常见应用选协议 |
+| 2.14 | [2.14_Summary](./2.14_Summary.md) | 小结 |
 
 ---
 
