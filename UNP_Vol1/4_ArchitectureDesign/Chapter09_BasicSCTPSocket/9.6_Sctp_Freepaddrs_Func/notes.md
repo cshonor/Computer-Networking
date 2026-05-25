@@ -1,11 +1,21 @@
-# 9.6 Sctp Freepaddrs Func
+# 9.6 sctp_freepaddrs 函数
 
-## 核心知识点
+> [9.5 sctp_getpaddrs](../9.5_Sctp_Getpaddrs_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+释放 **`sctp_getpaddrs`** 分配的内存。
+
+---
+
+## 重点结论
+
+与 **`getpaddrs` 成对调用** — 不可省略。
+
+---
 
 ## 个人学习总结
+
+（待填）

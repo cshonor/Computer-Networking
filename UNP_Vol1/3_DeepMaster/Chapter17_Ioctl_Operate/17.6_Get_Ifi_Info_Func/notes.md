@@ -1,6 +1,6 @@
 # 17.6 get_ifi_info 函数
 
-> [17.5 SIOCGIFCONF](../17.5_Network_Interface_Config/notes.md) · [Ch 18.5](../Chapter18_RoutingSocket/18.5_Get_Ifi_Info_Func/notes.md)（路由套接字版）
+> [17.5 SIOCGIFCONF](../17.5_Network_Interface_Config/notes.md) · [Ch 18.5](../../4_ArchitectureDesign/Chapter18_RoutingSocket/18.5_Get_Ifi_Info_Func/notes.md)（路由套接字版）
 
 ---
 

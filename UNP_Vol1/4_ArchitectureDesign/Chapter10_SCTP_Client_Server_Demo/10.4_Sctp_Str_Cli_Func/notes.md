@@ -1,11 +1,25 @@
-# 10.4 Sctp Str Cli Func
+# 10.4 SCTP 流分回射客户程序：sctpstr_cli 函数
 
-## 核心知识点
+> [9.9 sendmsg](../Chapter09_BasicSCTPSocket/9.9_Sctp_Sendmsg_Func/notes.md) · [10.5 队头阻塞](../10.5_Head_Blocking_Problem/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心逻辑：多流轮询
 
-## 易错点与坑点
+```text
+fgets(stdin) → sctp_sendmsg(..., sinfo_stream = 计数器++)
+             → sctp_recvmsg → 打印 assoc / stream
+```
+
+| 策略 | 说明 |
+|------|------|
+| **流号 Round-Robin** | 非全部塞流 0；依次 0、1、2… |
+| 校验 | 从 **`sctp_sndrcvinfo`** 读回射的流与关联 |
+
+演示应用层**主动利用多流**。
+
+---
 
 ## 个人学习总结
+
+（待填）

@@ -1,11 +1,41 @@
-# 9.14 SCTP Notification
+# 9.14 通知 (Notifications)
 
-## 核心知识点
+> [9.10 sctp_recvmsg](../9.10_Sctp_Recvmsg_Func/notes.md) · [Ch 7 SCTP 选项](../../1_BasicFoundation/Chapter07_SocketOption/7.10_SCTP_Socket_Option/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+SCTP **事件通知**：订阅后作为**带内消息**与数据混在接收路径中（非信号）。
+
+---
+
+## 机制
+
+| 步 | 说明 |
+|----|------|
+| 订阅 | 套接字选项 **`SCTP_EVENTS`** 等 |
+| 读取 | `sctp_recvmsg` 且 **`MSG_NOTIFICATION`** → 解析**通知结构体**，非用户载荷 |
+
+---
+
+## 典型类型
+
+| 通知 | 含义 |
+|------|------|
+| **`SCTP_ASSOC_CHANGE`** | 关联建立/关闭/失败 |
+| **`SCTP_PEER_ADDR_CHANGE`** | 对端多宿地址可达性变化（路径切换） |
+| **`SCTP_SEND_FAILED`** | 指定消息最终未送达 |
+| **`SCTP_SHUTDOWN_EVENT`** | 对端关闭 |
+
+---
+
+## 重点结论
+
+主接收循环须区分 **数据 vs 通知** — 对拓扑动荡（网卡、多宿切换）做业务响应。
+
+---
 
 ## 个人学习总结
+
+（待填）

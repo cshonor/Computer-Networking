@@ -1,11 +1,44 @@
-# 12.4 IPv6 Address Macro
+# 12.4 IPv6 地址测试宏
 
-## 核心知识点
+> [12.2 混合连接](../12.2_IPv4_Client_IPv6_Server/notes.md) · [Ch 3.6 inet 系列](../../1_BasicFoundation/Chapter03_SocketProgramIntro/3.6_Inet_Addr_Series/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 为何需要
 
-## 易错点与坑点
+IPv6 服务器会同时收到：
+
+- 原生 IPv6 连接  
+- **IPv4-mapped** 的“伪 IPv6”连接  
+
+业务（黑名单、归属地、日志）常需知**底层真实协议**。
+
+---
+
+## 宏定义（`<netinet/in.h>`）
+
+```c
+IN6_IS_ADDR_V4MAPPED(const struct in6_addr *ap)
+```
+
+| 返回值 | 含义 |
+|--------|------|
+| 非 0 | 实为 IPv4 客户；前 96 位为 `::ffff:0:0` |
+| 0 | 真 IPv6 地址 |
+
+---
+
+## 用法
+
+`accept` 得到 `sockaddr_in6` 后：
+
+```text
+IN6_IS_ADDR_V4MAPPED(&addr6.sin6_addr) == true
+  → 取最后 32 位还原真实 IPv4
+```
+
+---
 
 ## 个人学习总结
+
+（待填）

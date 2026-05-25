@@ -1,6 +1,6 @@
 # 17.8 ARP 高速缓存操作
 
-> [Ch 18 路由套接字](../Chapter18_RoutingSocket/)（更现代的表遍历）
+> [Ch 18 路由套接字](../../4_ArchitectureDesign/Chapter18_RoutingSocket/study.md)
 
 ---
 

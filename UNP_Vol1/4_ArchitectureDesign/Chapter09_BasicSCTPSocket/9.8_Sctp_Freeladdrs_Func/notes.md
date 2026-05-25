@@ -1,11 +1,15 @@
-# 9.8 Sctp Freeladdrs Func
+# 9.8 sctp_freeladdrs 函数
 
-## 核心知识点
+> [9.7 sctp_getladdrs](../9.7_Sctp_Getladdrs_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+释放 **`sctp_getladdrs`** 动态分配的内存。
+
+---
 
 ## 个人学习总结
+
+（待填）

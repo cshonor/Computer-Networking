@@ -1,11 +1,41 @@
-# 15.2 UnixDomain Socket Addr
+# 15.2 Unix 域套接字地址结构
 
-## 核心知识点
+> [Ch 3.2 sockaddr](../../1_BasicFoundation/Chapter03_SocketProgramIntro/3.2_SocketAddressStructure/notes.md) · [15.4 bind 陷阱](../15.4_Socket_Basic_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## `struct sockaddr_un`（`<sys/un.h>`）
 
-## 易错点与坑点
+```c
+struct sockaddr_un {
+    sa_family_t sun_family; /* AF_LOCAL / AF_UNIX */
+    char        sun_path[]; /* 绝对或相对路径名 */
+};
+```
+
+| 项 | 说明 |
+|----|------|
+| 协议族 | **`AF_LOCAL`** ≡ **`AF_UNIX`** |
+| 标识 | **文件系统路径名**，非 TCP 端口号 |
+
+---
+
+## 文件系统介入
+
+`bind` 时在路径下创建类型为 **`s`（socket）** 的**真实文件**。
+
+| 对比 | 网络套接字 | Unix 域 |
+|------|------------|---------|
+| 地址 | IP:端口 | 路径名文件 |
+
+---
+
+## 路径长度
+
+`sun_path` 有最大长度（实现相关，常约 108 字节）— 过长路径 `bind` 失败。
+
+---
 
 ## 个人学习总结
+
+（待填）

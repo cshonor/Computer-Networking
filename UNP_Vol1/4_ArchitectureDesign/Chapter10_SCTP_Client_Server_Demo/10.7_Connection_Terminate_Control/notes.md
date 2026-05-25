@@ -1,11 +1,40 @@
-# 10.7 Connection Terminate Control
+# 10.7 控制终结
 
-## 核心知识点
+> [Ch 9.13 shutdown](../Chapter09_BasicSCTPSocket/9.13_Shutdown_Func/notes.md) · [9.9 SCTP_EOF](../Chapter09_BasicSCTPSocket/9.9_Sctp_Sendmsg_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 陷阱：一到多不能 `close` 杀全部
 
-## 易错点与坑点
+| TCP 一到一 | SCTP 一到多 |
+|------------|-------------|
+| `close(fd)` → 断开**该连接** | `close(fd)` → **所有关联**同时被关 |
+
+---
+
+## 优雅关闭单一关联
+
+```c
+sctp_sendmsg(sockfd, NULL, 0, &dest, ..., 
+             sinfo_flags = SCTP_EOF);
+```
+
+| 项 | 说明 |
+|----|------|
+| 长度 0 | 无用户数据 |
+| 目的地址 | 要断开的**该客户** |
+| **SCTP_EOF** | 触发 **SHUTDOWN**，仅关此关联 |
+
+其他关联**不受影响**。
+
+---
+
+## 强制中止
+
+**`SCTP_ABORT`** — 类似 TCP **RST** 的异常中止。
+
+---
 
 ## 个人学习总结
+
+（待填）

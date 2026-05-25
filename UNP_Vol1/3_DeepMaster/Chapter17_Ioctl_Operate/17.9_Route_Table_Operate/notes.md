@@ -1,6 +1,6 @@
 # 17.9 路由表操作
 
-> [Ch 18 路由套接字](../Chapter18_RoutingSocket/study.md)（待笔记）
+> [Ch 18 路由套接字](../../4_ArchitectureDesign/Chapter18_RoutingSocket/study.md)
 
 ---
 

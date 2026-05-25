@@ -72,3 +72,4 @@
 | Ch 4 | `connect`/`bind` → 对链表每一项尝试 |
 | Ch 7 | `tcp_listen` 中 SO_REUSEADDR |
 | Ch 8 | `udp_connect` 与 11.15 一致 |
+| Ch 12 | 双栈互操作、`AI_V4MAPPED`、mapped 地址 |

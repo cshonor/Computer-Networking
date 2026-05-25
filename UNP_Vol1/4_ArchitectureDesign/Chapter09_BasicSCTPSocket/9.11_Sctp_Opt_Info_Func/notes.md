@@ -1,11 +1,17 @@
-# 9.11 Sctp Opt Info Func
+# 9.11 sctp_opt_info 函数
 
-## 核心知识点
+> [Ch 7.2 getsockopt](../../1_BasicFoundation/Chapter07_SocketOption/7.2_Getsockopt_Setsockopt/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+一到多套接字上有**多个关联** — 通用 `getsockopt` 无法指定「哪一个关联」。
+
+**`sctp_opt_info`**：传入 **关联 ID（assoc_id）**，读取**该关联**的选项/状态（如 RTO）。
+
+---
 
 ## 个人学习总结
+
+（待填）

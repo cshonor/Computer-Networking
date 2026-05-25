@@ -1,11 +1,51 @@
-# 10.5 Head Blocking Problem
+# 10.5 探究头端阻塞（Head-of-Line Blocking）
 
-## 核心知识点
+> [Ch 2.4 TCP](../../1_BasicFoundation/Chapter02_TCP_UDP_SCTP/2.4_TCP_Protocol/notes.md) · [Ch 2.5 SCTP](../../1_BasicFoundation/Chapter02_TCP_UDP_SCTP/2.5_SCTP_Protocol/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 实验设置
 
-## 易错点与坑点
+客户/服务器间人为**丢包**（丢包路由器、`dummynet` 等），对比 TCP vs SCTP。
+
+---
+
+## TCP：字节流队头阻塞
+
+连续发消息 A、B、C（同一连接）：
+
+```text
+A 丢失 → 虽 B、C 已到内核缓冲
+       → 应用 read 仍阻塞，直到 A 重传成功
+```
+
+对**彼此独立**的消息（多图加载、信令）是性能浪费。
+
+---
+
+## SCTP：多流隔离（本章核心）
+
+| 消息 | 流 |
+|------|-----|
+| A | 0 |
+| B | 1 |
+| C | 2 |
+
+```text
+流 0 的 A 丢 → 仅流 0 等待重传
+流 1、2 的 B、C → 仍可 sctp_recvmsg 交付应用
+```
+
+**一条流丢包不阻塞其他流** — 逻辑流隔离。
+
+---
+
+## 重点结论
+
+差网络下 SCTP 多流可削减 TCP 式**延迟长尾** — 适合信令、多媒体调度。
+
+---
 
 ## 个人学习总结
+
+（待填）

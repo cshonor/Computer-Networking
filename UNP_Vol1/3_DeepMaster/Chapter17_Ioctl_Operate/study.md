@@ -1,6 +1,6 @@
 # 第 17 章：ioctl 操作（厚版）
 
-> [阶段二 Ch 26](../../2_AdvancedSkill/Chapter26_Thread/study.md) · **Ch 17**（`3_DeepMaster`）· [Ch 18](../Chapter18_RoutingSocket/)（待笔记）  
+> [阶段二 Ch 26](../../2_AdvancedSkill/Chapter26_Thread/study.md) · **Ch 17**（`3_DeepMaster`）· [Ch 18](../../4_ArchitectureDesign/Chapter18_RoutingSocket/study.md)  
 > 逐节：`17.x_*/notes.md`
 
 > **说明**：上传资料截至第 8 章；第 17 章按 UNP 第 3 版体系整理，请与全本对照验证。

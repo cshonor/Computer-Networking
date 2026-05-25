@@ -1,11 +1,27 @@
-# 10.3 SCTP OneToMany Client
+# 10.3 SCTP 一到多式流分回射客户程序：main 函数
 
-## 核心知识点
+> [10.4 sctpstr_cli](../10.4_Sctp_Str_Cli_Func/notes.md) · [Ch 8 客户模型](../../1_BasicFoundation/Chapter08_BasicUDPSocket/8.5_UDP_Client_Main/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+一到多客户 **不必 `connect`**。
+
+```text
+socket(SOCK_SEQPACKET, IPPROTO_SCTP)
+→ setsockopt SCTP_EVENTS（sctp_data_io_event）
+→ sctpstr_cli(sockfd, 服务器地址)
+```
+
+---
+
+## 与服务器对称
+
+同样依赖 **`sctp_sndrcvinfo`** 查验回射来自哪条**流**、哪个**关联**。
+
+---
 
 ## 个人学习总结
+
+（待填）

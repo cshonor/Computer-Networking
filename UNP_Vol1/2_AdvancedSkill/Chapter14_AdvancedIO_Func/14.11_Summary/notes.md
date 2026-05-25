@@ -12,7 +12,7 @@
 
 ### 2. 底层接口终点
 
-**`recvmsg`/`sendmsg`** + **`msghdr`** + **`cmsghdr` 宏** — 多播寻址、**fd 传递**、目的 IP 等高级能力。
+**`recvmsg`/`sendmsg`** + **`msghdr`** + **`cmsghdr` 宏** — 多播寻址、**fd 传递**（见 [Ch 15.7](../../4_ArchitectureDesign/Chapter15_UnixDomainProtocol/15.7_File_Descriptor_Transfer/notes.md)）、目的 IP 等高级能力。
 
 ### 3. 缓冲敬畏
 

@@ -1,11 +1,25 @@
-# 9.4 Sctp Connectx Func
+# 9.4 sctp_connectx 函数
 
-## 核心知识点
+> [Ch 4.3 connect](../../1_BasicFoundation/Chapter04_BasicTCPSocket/4.3_Connect_Function/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+向**多宿远端**发起关联。
+
+| | `connect` | `sctp_connectx` |
+|--|-----------|-----------------|
+| 目标 | **单个** IP | **IP 地址数组** |
+
+---
+
+## 底层行为
+
+内核按数组**顺序尝试**各地址，直至建立关联或全部失败 — 利用 SCTP 多宿路径选择。
+
+---
 
 ## 个人学习总结
+
+（待填）

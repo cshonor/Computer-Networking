@@ -1,11 +1,32 @@
-# 9.10 Sctp Recvmsg Func
+# 9.10 sctp_recvmsg 函数
 
-## 核心知识点
+> [9.9](../9.9_Sctp_Sendmsg_Func/notes.md) · [9.14 通知](../9.14_SCTP_Notification/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+SCTP **核心接收 API**；填充 **`sctp_sndrcvinfo`**。
+
+---
+
+## 可解析信息
+
+| 字段 | 含义 |
+|------|------|
+| **`sinfo_assoc_id`** | 来自哪个**关联**（一到多必备） |
+| **`sinfo_stream`** | **流号** |
+| 消息完整性 | 是否完整 SCTP 用户消息（分片已合并） |
+| **SSN** | 流序号 |
+
+---
+
+## 与通知
+
+`recvmsg` 标志 **`MSG_NOTIFICATION`** → 读到的是事件而非用户数据（见 9.14）。
+
+---
 
 ## 个人学习总结
+
+（待填）

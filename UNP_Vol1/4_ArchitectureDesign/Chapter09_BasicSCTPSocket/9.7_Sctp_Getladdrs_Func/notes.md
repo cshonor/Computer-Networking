@@ -1,11 +1,15 @@
-# 9.7 Sctp Getladdrs Func
+# 9.7 sctp_getladdrs 函数
 
-## 核心知识点
+> [9.8 sctp_freeladdrs](../9.8_Sctp_Freeladdrs_Func/notes.md) · [9.5 对端地址](../9.5_Sctp_Getpaddrs_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+获取指定关联中**本地（Local）**正在使用的全部绑定 IP 地址。
+
+---
 
 ## 个人学习总结
+
+（待填）

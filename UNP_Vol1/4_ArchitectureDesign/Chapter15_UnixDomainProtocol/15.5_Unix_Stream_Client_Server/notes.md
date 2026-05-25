@@ -1,11 +1,32 @@
-# 15.5 Unix Stream Client Server
+# 15.5 Unix 域字节流客户/服务器程序
 
-## 核心知识点
+> [Ch 4 TCP 回射](../../1_BasicFoundation/Chapter04_BasicTCPSocket/study.md) · [15.6 数据报对比](../15.6_Unix_Datagram_Client_Server/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## `SOCK_STREAM` 特性
 
-## 易错点与坑点
+与 TCP 类似：**全双工、无消息边界**的字节流。
+
+| 对比 | TCP 环回 | Unix 域流 |
+|------|----------|-----------|
+| 介质 | 仍走完整 TCP 栈 | 内核内存拷贝为主 |
+| 丢包/乱序 | 有 | **无**（同机） |
+| 拥塞/Nagle | 有 | **无** 网络拥塞语义 |
+
+---
+
+## 连接失败
+
+`connect` 到某路径时：
+
+| 情况 | 错误 |
+|------|------|
+| 路径存在但不是 socket 文件 | 失败 |
+| 无进程 `listen` | **`ECONNREFUSED`** |
+
+---
 
 ## 个人学习总结
+
+（待填）
