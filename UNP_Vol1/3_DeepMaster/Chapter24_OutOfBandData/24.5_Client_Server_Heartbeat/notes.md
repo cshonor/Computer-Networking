@@ -1,11 +1,44 @@
-# 24.5 Client Server Heartbeat
+# 24.5 客户/服务器心搏函数
 
-## 核心知识点
+> [Ch 7.5 SO_KEEPALIVE](../../1_BasicFoundation/Chapter07_SocketOption/7.5_Common_Socket_Option/notes.md) · [Ch 5 信号](../../1_BasicFoundation/Chapter05_TCP_Client_Server_Demo/5.8_POSIX_Signal/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 实战场景
 
-## 易错点与坑点
+工业界 OOB **主要实用场景**：应用层**心搏（Heartbeat）**。
+
+| 机制 | 局限 |
+|------|------|
+| **`SO_KEEPALIVE`** | 常 **~2 小时** 才探测 — 不适合秒级故障感知 |
+| **OOB 心搏** | 高频交易、集群监控等 |
+
+---
+
+## 为何用 OOB 而非普通 write？
+
+通告窗口为 **0**（对端接收缓冲满）时，**普通数据发不出**；紧急指针机制下 **OOB 仍可能发出**（绕过流量控制阻塞）。
+
+---
+
+## 客户端
+
+```text
+SIGALRM 每 1s → send(fd, "1", 1, MSG_OOB)
+```
+
+---
+
+## 服务端
+
+```text
+F_SETOWN → SIGURG
+→ recv(fd, &c, 1, MSG_OOB)
+→ 记录最后心跳时间；超时无普通数据且无 SIGURG → 判定客户端死亡，清理
+```
+
+---
 
 ## 个人学习总结
+
+（待填）

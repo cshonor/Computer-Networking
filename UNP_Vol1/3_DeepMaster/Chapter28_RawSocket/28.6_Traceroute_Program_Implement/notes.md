@@ -1,11 +1,43 @@
-# 28.6 Traceroute Program Implement
+# 28.6 traceroute 程序
 
-## 核心知识点
+> [Ch 7.6 IP 选项](../../1_BasicFoundation/Chapter07_SocketOption/7.6_IPv4_Socket_Option/notes.md) · [28.4 ICMP 接收](../28.4_RawSocket_Recv_Data/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心机制
 
-## 易错点与坑点
+利用 **TTL** + **ICMP 错误**，非专用协议。
+
+---
+
+## 流程（经典 UDP 探测版）
+
+```text
+1. 普通 UDP 套接字 → 目标高端口（33434+）
+2. setsockopt(IP_TTL, 1) → sendto
+3. 第一跳路由器：TTL→0 → ICMP Time Exceeded → raw ICMP 套接字收 → 源 IP = 第一跳
+4. TTL=2,3,4,... 重复
+5. 到达目标：端口无监听 → ICMP Port Unreachable → 追踪结束
+```
+
+| 组件 | 作用 |
+|------|------|
+| **UDP send** | 探测包 |
+| **ICMP raw recv** | 读 Time Exceeded / Port Unreachable |
+
+---
+
+## 现代变种
+
+防火墙常拦 UDP 探测 → **ICMP** 或 **TCP SYN** 探测（`tcptraceroute` 等）。
+
+---
+
+> 💡 **后续拓展留白**  
+> - tcptraceroute / Paris traceroute  
+
+---
 
 ## 个人学习总结
+
+（待填）

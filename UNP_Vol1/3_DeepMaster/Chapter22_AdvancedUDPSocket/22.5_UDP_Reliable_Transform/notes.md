@@ -1,11 +1,32 @@
-# 22.5 UDP Reliable Transform
+# 22.5 给 UDP 应用增加可靠性
 
-## 核心知识点
+> [Ch 8.7 丢包](../../1_BasicFoundation/Chapter08_BasicUDPSocket/8.7_Datagram_Loss_Problem/notes.md) · [14.2 超时](../../2_AdvancedSkill/Chapter14_AdvancedIO_Func/14.2_Socket_Timeout_Set/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+请求-应答型 UDP 须在**应用层**处理：丢包、乱序、重复。
+
+---
+
+## 1. 超时与 RTO（Jacobson）
+
+- 不能固定 2 秒 — LAN/WAN RTT 差 orders of magnitude  
+- **EWMA** 平滑 RTT、RTT 方差 → **RTO = SRTT + 4×RTTVAR**  
+- 超时重传：**指数退避**（RTO 翻倍），减轻拥塞时雪上加霜
+
+---
+
+## 2. 序列号
+
+| 端 | 作用 |
+|----|------|
+| 客户 | 请求带序号；匹配应答，丢**迟到旧应答** |
+| 服务器 | 识别**重复请求**；非幂等操作（扣款）须去重 |
+
+---
 
 ## 个人学习总结
+
+（待填）

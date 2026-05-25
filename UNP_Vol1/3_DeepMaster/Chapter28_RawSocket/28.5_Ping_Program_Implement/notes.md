@@ -1,11 +1,36 @@
-# 28.5 Ping Program Implement
+# 28.5 ping 程序
 
-## 核心知识点
+> [28.2](../28.2_RawSocket_Create/notes.md) · [28.4](../28.4_RawSocket_Recv_Data/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 机制
 
-## 易错点与坑点
+`ping` = **ICMP 原始套接字**应用。
+
+| 方向 | 类型 |
+|------|------|
+| 发送 | **ICMP Echo Request**（类型 8） |
+| 接收 | **ICMP Echo Reply**（类型 0） |
+
+---
+
+## 标识与序列号
+
+| 字段 | 用法 |
+|------|------|
+| **Identifier** | 常填 **PID**，区分同机多个 ping |
+| **Sequence** | 递增 |
+| **载荷** | 发送时写入**时间戳**，Reply 时算 **RTT** |
+
+---
+
+## 接收过滤
+
+原始套接字会收到**本机所有** ICMP Echo Reply → 须核对 **Identifier == 本进程 PID**，否则丢弃。
+
+---
 
 ## 个人学习总结
+
+（待填）

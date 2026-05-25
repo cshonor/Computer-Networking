@@ -1,11 +1,27 @@
-# 17.3 Socket Ioctl Operate
+# 17.3 套接字操作
 
-## 核心知识点
+> [Ch 7.11 fcntl](../../1_BasicFoundation/Chapter07_SocketOption/7.11_Fcntl_Control_Func/notes.md) · [Ch 24 带外](../Chapter24_OutOfBandData/)（待学）
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 套接字层级命令
 
-## 易错点与坑点
+| 命令 | 作用 |
+|------|------|
+| **`SIOCATMARK`** | 读指针是否在 **OOB 标记**上；arg 为 int*，1/0 |
+| **`SIOCGPGRP`** / **`SIOCSPGRP`** | 获取/设置套接字 **进程/进程组**（`SIGIO`、`SIGURG`） |
+
+---
+
+## POSIX 替代
+
+| ioctl | 推荐 |
+|-------|------|
+| `SIOCATMARK` | **`sockatmark(sockfd)`** |
+| `SIOCGPGRP` / `SIOCSPGRP` | **`fcntl` `F_GETOWN` / `F_SETOWN`** |
+
+---
 
 ## 个人学习总结
+
+（待填）

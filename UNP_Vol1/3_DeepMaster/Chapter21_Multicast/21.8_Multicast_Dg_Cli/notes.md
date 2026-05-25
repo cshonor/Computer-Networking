@@ -1,11 +1,25 @@
-# 21.8 Multicast Dg Cli
+# 21.8 使用多播的 dg_cli 函数
 
-## 核心知识点
+> [Ch 20.4 广播 dg_cli](../Chapter20_Broadcast/20.4_Broadcast_Dg_Cli/notes.md) · [Ch 8 UDP](../../1_BasicFoundation/Chapter08_BasicUDPSocket/study.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 发送端
 
-## 易错点与坑点
+与单播 UDP 客户几乎相同 — 目的地址改为 **D 类 / ff00::** 多播地址即可 `sendto`。
+
+---
+
+## 易错细节
+
+| 点 | 说明 |
+|----|------|
+| **发送方通常不必 Join** | 合法多播目的即可发出 |
+| **跨子网** | 可能需 **`mcast_set_ttl`** 增大跳数 |
+| 勿与广播混淆 | 不需要 **SO_BROADCAST** |
+
+---
 
 ## 个人学习总结
+
+（待填）

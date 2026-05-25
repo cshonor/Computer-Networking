@@ -1,11 +1,22 @@
-# 21.7 Mcast Join Related Func
+# 21.7 mcast_join 和相关函数
 
-## 核心知识点
+> [Ch 11 getaddrinfo](../../2_AdvancedSkill/Chapter11_Name_Address_Convert/11.6_Getaddrinfo_Func/notes.md) · [21.6](../21.6_Multicast_Socket_Option/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 协议无关封装
 
-## 易错点与坑点
+屏蔽 `ip_mreq` / `ipv6_mreq` 与选项宏差异：
+
+| 函数 | 作用 |
+|------|------|
+| **`mcast_join(sockfd, grp, grplen, ifname, ifindex)`** | 按 `sockaddr` 族自动 `setsockopt` 加入 |
+| **`mcast_leave`** | 离开组 |
+| **`mcast_set_loop`** | 回环 |
+| **`mcast_set_ttl`** | TTL/hops |
+
+---
 
 ## 个人学习总结
+
+（待填）

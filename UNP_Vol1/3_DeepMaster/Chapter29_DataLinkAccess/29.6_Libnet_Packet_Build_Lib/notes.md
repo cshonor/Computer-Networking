@@ -1,11 +1,38 @@
-# 29.6 Libnet Packet Build Lib
+# 29.6 libnet：分组构造与输出函数库
 
-## 核心知识点
+> [29.5 libpcap](../29.5_Libpcap_Capture_Lib/notes.md) · [Ch 28 发包](../Chapter28_RawSocket/28.3_RawSocket_Send_Data/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+**libpcap** = **读**；**libnet** = 跨平台**写（注入帧）**。
+
+---
+
+## 痛点
+
+原生 raw 发 SYN 等须手算校验和、对齐；**无法直接改以太网 MAC 头**。
+
+---
+
+## libnet 接口（分层构造）
+
+| 函数 | 层 |
+|------|-----|
+| `libnet_build_ethernet` | 以太网 |
+| `libnet_build_ipv4` | IP |
+| `libnet_build_tcp` | TCP（含校验和） |
+| `libnet_write` | 注入驱动栈 |
+
+---
+
+## 黄金法则
+
+链路层**发包** → 优先 **libnet**（与 libpcap 配对）。
+
+---
 
 ## 个人学习总结
+
+（待填）

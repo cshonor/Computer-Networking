@@ -1,11 +1,31 @@
-# 22.8 IPv6 Packet Info
+# 22.8 IPv6 分组信息
 
-## 核心知识点
+> [22.2](../22.2_Flag_DestIP_InterfaceIndex/notes.md) · [14.6 cmsghdr](../../2_AdvancedSkill/Chapter14_AdvancedIO_Func/14.6_Auxiliary_Data/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## IPV6_PKTINFO / RECVPKTINFO
 
-## 易错点与坑点
+通过 **`recvmsg` / `sendmsg`** 与 **`in6_pktinfo`** 辅助数据。
+
+---
+
+## 接收（recvmsg）
+
+- 目的 IPv6 地址  
+- 到达**接口索引**
+
+---
+
+## 发送（sendmsg 控制信息）
+
+可**覆盖**（在属于本机的前提下）：
+
+- **源 IPv6 地址**  
+- **外出接口索引**（覆盖默认路由选路）
+
+---
 
 ## 个人学习总结
+
+（待填）

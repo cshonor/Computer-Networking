@@ -1,11 +1,37 @@
-# 17.7 Interface Control Operate
+# 17.7 接口操作
 
-## 核心知识点
+> [17.5](../17.5_Network_Interface_Config/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 用法
 
-## 易错点与坑点
+`SIOCGIFCONF` 得到接口名 → 填入 **`ifreq.ifr_name`** → 针对**单个网卡** ioctl。
+
+---
+
+## Get 命令（常用）
+
+| 命令 | 获取 |
+|------|------|
+| **`SIOCGIFADDR`** | 单播 IP |
+| **`SIOCGIFBRDADDR`** | 广播地址 |
+| **`SIOCGIFNETMASK`** | 子网掩码 |
+| **`SIOCGIFDSTADDR`** | P2P 远端地址 |
+| **`SIOCGIFFLAGS`** | 标志位（**UP**、**LOOPBACK**、**MULTICAST** 等） |
+
+---
+
+## Set 命令
+
+如 **`SIOCSIFADDR`**、**`SIOCSIFFLAGS`** 等。
+
+| 限制 | 说明 |
+|------|------|
+| **权限** | 所有 **Set** 操作需 **root** |
+
+---
 
 ## 个人学习总结
+
+（待填）

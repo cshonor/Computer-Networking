@@ -1,11 +1,41 @@
-# 17.6 Get Ifi Info Func
+# 17.6 get_ifi_info 函数
 
-## 核心知识点
+> [17.5 SIOCGIFCONF](../17.5_Network_Interface_Config/notes.md) · [Ch 18.5](../Chapter18_RoutingSocket/18.5_Get_Ifi_Info_Func/notes.md)（路由套接字版）
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心封装
 
-## 易错点与坑点
+直接处理 `SIOCGIFCONF` 的缓冲区伸缩、解析、IPv4/IPv6 步长对齐**极其繁琐** — 书中 **`get_ifi_info`** 封装。
+
+---
+
+## 功能
+
+- 透明调用底层 `ioctl`  
+- 处理缓冲区加倍重试、对齐  
+- 返回 **`ifi_info` 链表**
+
+---
+
+## ifi_info 典型字段
+
+| 字段 | 内容 |
+|------|------|
+| 接口名 | `eth0`、`lo0` |
+| 索引 | 接口 index |
+| 单播 IP | `sockaddr` |
+| 掩码、广播地址 | |
+| 标志 | 广播/多播/P2P/UP 等 |
+
+---
+
+## 地位
+
+编写多播、底层协议、代理时的**基石**工具函数。
+
+---
 
 ## 个人学习总结
+
+（待填）

@@ -1,11 +1,40 @@
-# 28.2 RawSocket Create
+# 28.2 原始套接字创建
 
-## 核心知识点
+> [Ch 7.2 setsockopt](../../1_BasicFoundation/Chapter07_SocketOption/7.2_Getsockopt_Setsockopt/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 创建 API
 
-## 易错点与坑点
+```c
+int sockfd = socket(AF_INET, SOCK_RAW, protocol);
+/* 或 AF_INET6 */
+```
+
+| 参数 | 说明 |
+|------|------|
+| **`protocol`** | `IPPROTO_ICMP`、`IPPROTO_IGMP` 或自定义协议号 |
+
+---
+
+## 特权限制（极重要）
+
+**仅 root（超级用户）** 可创建 `SOCK_RAW` — 防伪造源 IP 等危险报文注入。
+
+---
+
+## IP_HDRINCL
+
+| 默认 | 内核自动拼接 **IP 首部** |
+|------|-------------------------|
+| **`IP_HDRINCL=1`** | 应用自供完整 IP 首部（`sendto` 数据含 IP 头） |
+
+```c
+setsockopt(sockfd, IPPROTO_IP, IP_HDRINCL, &on, sizeof(on));
+```
+
+---
 
 ## 个人学习总结
+
+（待填）

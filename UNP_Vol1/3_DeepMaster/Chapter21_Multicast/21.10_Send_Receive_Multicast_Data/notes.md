@@ -1,11 +1,26 @@
-# 21.10 Send Receive Multicast Data
+# 21.10 发送和接收
 
-## 核心知识点
+> [21.6 loop](../21.6_Multicast_Socket_Option/notes.md) · [21.8](../21.8_Multicast_Dg_Cli/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 同进程既发又收
 
-## 易错点与坑点
+- 常**共用一个** UDP 套接字  
+- **`mcast_join` 后** `sendto` 多播地址 → 内核组播发送  
+- 默认 **loop=1** → 本机 **`recvfrom` 也能收到自己发的包**
+
+---
+
+## 避免自己响应自己
+
+应用层处理：
+
+- 包头带 **UUID / 本机 IP**  
+- `recvfrom` 后若来源为自己 → **丢弃**
+
+---
 
 ## 个人学习总结
+
+（待填）
