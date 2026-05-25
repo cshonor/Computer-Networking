@@ -1,11 +1,30 @@
-# 11.16 Udp Server Func
+# 11.16 udp_server 函数
 
-## 核心知识点
+> [11.13 tcp_listen](../11.13_Tcp_Listen_Func/notes.md) · [Ch 8.4 dg_echo](../../1_BasicFoundation/Chapter08_BasicUDPSocket/8.4_UDP_Server_Dg_Echo/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## UDP 服务端封装
 
-## 易错点与坑点
+```text
+getaddrinfo（AI_PASSIVE, SOCK_DGRAM）→ for:
+    socket → bind
+    成功 → 返回 udpfd（无 listen）
+```
+
+绑定众所周知端口后供 **`recvfrom`** 使用。
+
+---
+
+## 与 TCP 对比
+
+| | TCP `tcp_listen` | UDP `udp_server` |
+|--|------------------|------------------|
+| 后续 | `listen` + `accept` | 直接 `recvfrom` 循环 |
+| 并发 | 常 fork | 常迭代 |
+
+---
 
 ## 个人学习总结
+
+（待填）

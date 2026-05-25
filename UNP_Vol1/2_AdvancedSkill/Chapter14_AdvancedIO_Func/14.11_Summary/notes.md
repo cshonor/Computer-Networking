@@ -1,11 +1,36 @@
-# 14.11 Summary
+# 14.11 小结
 
-## 核心知识点
+> [study.md](../study.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 章节核心提炼
 
-## 易错点与坑点
+### 1. 超时体系
+
+**select/poll + 超时** 最通用；`SO_RCVTIMEO` 简单读超时；`alarm` 慎用。
+
+### 2. 底层接口终点
+
+**`recvmsg`/`sendmsg`** + **`msghdr`** + **`cmsghdr` 宏** — 多播寻址、**fd 传递**、目的 IP 等高级能力。
+
+### 3. 缓冲敬畏
+
+- **`writev`** 聚集写，少拷贝、少 syscall  
+- **勿 stdio + select** — 亲手掌控字节流  
+- 高并发：**kqueue / epoll** 等事件驱动  
+
+---
+
+## 能力阶梯
+
+```text
+read/write → recv/send(flags) → readv/writev → recvmsg/sendmsg(+辅助数据)
+复用：select/poll → epoll/kqueue/devpoll
+```
+
+---
 
 ## 个人学习总结
+
+（待填）

@@ -1,11 +1,27 @@
-# 11.4 Gethostbyaddr Func
+# 11.4 gethostbyaddr 函数
 
-## 核心知识点
+> [11.3](../11.3_Gethostbyname_Func/notes.md) · 替代：[11.17 getnameinfo](../11.17_Getnameinfo_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心机制
 
-## 易错点与坑点
+与 `gethostbyname` **相反**：**IP 地址 → 主机名**（反向解析）。
+
+- DNS 查 **`in-addr.arpa`** 域下的 **PTR** 记录  
+
+---
+
+## 局限性
+
+| 点 | 说明 |
+|----|------|
+| IPv4 专有 | 同 gethostbyname |
+| 静态结构 | **不可重入**（见 11.18） |
+| 现代替代 | **`getnameinfo`** + `NI_NUMERICHOST` 等标志 |
+
+---
 
 ## 个人学习总结
+
+（待填）

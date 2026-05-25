@@ -1,11 +1,21 @@
-# 11.15 Udp Connect Func
+# 11.15 udp_connect 函数
 
-## 核心知识点
+> [Ch 8.11 UDP connect](../../1_BasicFoundation/Chapter08_BasicUDPSocket/8.11_UDP_Connect_Usage/notes.md) · [11.14](../11.14_Udp_Client_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+在 11.14 逻辑上增加 **`connect`** → **已连接 UDP 套接字**。
+
+| 收益 | 说明 |
+|------|------|
+| API | 后续 **`write`/`read`** |
+| 安全 | 内核过滤非绑定源 |
+| 错误 | **ICMP 异步错误**可上报（如 `ECONNREFUSED`） |
+
+---
 
 ## 个人学习总结
+
+（待填）

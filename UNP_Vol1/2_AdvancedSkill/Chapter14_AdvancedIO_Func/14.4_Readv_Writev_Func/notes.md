@@ -1,11 +1,35 @@
-# 14.4 Readv Writev Func
+# 14.4 readv 和 writev 函数
 
-## 核心知识点
+> [Ch 7.9 TCP_NODELAY](../../1_BasicFoundation/Chapter07_SocketOption/7.9_TCP_Socket_Option/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心机制
 
-## 易错点与坑点
+| 术语 | 含义 |
+|------|------|
+| **聚集写（Gather Write）** | 多缓冲区 → **一次**系统调用写出 |
+| **分散读（Scatter Read）** | 一次读入 → 填入多个缓冲区 |
+
+```c
+ssize_t readv(int filedes, const struct iovec *iov, int iovcnt);
+ssize_t writev(int filedes, const struct iovec *iov, int iovcnt);
+
+struct iovec { void *iov_base; size_t iov_len; };
+```
+
+---
+
+## 实用场景：HTTP 响应
+
+| 方案 | 问题 |
+|------|------|
+| 两次 `write` | 两次系统调用；Nagle 下可能多包延迟 |
+| memcpy 拼一大块再 write | CPU/内存拷贝浪费 |
+| **`writev`** | 内核组装进**同一 TCP 段**，**原子性**、开销小 |
+
+---
 
 ## 个人学习总结
+
+（待填）

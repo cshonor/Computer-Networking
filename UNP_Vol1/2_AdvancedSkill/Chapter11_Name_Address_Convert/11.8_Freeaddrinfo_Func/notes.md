@@ -1,11 +1,25 @@
-# 11.8 Freeaddrinfo Func
+# 11.8 freeaddrinfo 函数
 
-## 核心知识点
+> [11.6](../11.6_Getaddrinfo_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 内存管理规则
 
-## 易错点与坑点
+`getaddrinfo` 分配的 **`addrinfo` 链表**及其中 **`sockaddr`** 均为 **`malloc`**。
+
+```c
+void freeaddrinfo(struct addrinfo *ai);
+```
+
+---
+
+## 易错细节（内存泄漏）
+
+用完链表（已 `connect`/`bind` 成功或全部失败）后**必须** `freeaddrinfo`，否则长驻服务器会泄漏。
+
+---
 
 ## 个人学习总结
+
+（待填）

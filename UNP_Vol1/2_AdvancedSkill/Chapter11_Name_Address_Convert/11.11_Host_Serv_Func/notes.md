@@ -1,11 +1,21 @@
-# 11.11 Host Serv Func
+# 11.11 host_serv 函数
 
-## 核心知识点
+> [11.6](../11.6_Getaddrinfo_Func/notes.md) · [11.12](../11.12_Tcp_Connect_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 辅助封装
 
-## 易错点与坑点
+书中 **`host_serv`**：封装 `getaddrinfo` 的 **`hints` 初始化**。
+
+| 输入 | 输出 |
+|------|------|
+| 主机名、服务名、地址族 | 就绪的 **`addrinfo` 链表首指针** |
+
+减少每次手写 `memset` + `ai_family` + `ai_socktype` 的重复。
+
+---
 
 ## 个人学习总结
+
+（待填）

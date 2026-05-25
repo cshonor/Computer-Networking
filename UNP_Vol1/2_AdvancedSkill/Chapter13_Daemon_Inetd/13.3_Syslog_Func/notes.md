@@ -1,11 +1,53 @@
-# 13.3 Syslog Func
+# 13.3 syslog 函数
 
-## 核心知识点
+> [13.2 syslogd](../13.2_syslogd_Daemon/notes.md) · [13.6 daemon_inetd](../13.6_Daemon_Inetd_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心 API
 
-## 易错点与坑点
+```c
+void syslog(int priority, const char *message, ...);
+```
+
+应用通过 **`syslog`** 与 `syslogd` 通信。
+
+---
+
+## priority：facility | level
+
+### 设施（Facility）— 子系统分类
+
+| 示例 | 含义 |
+|------|------|
+| `LOG_AUTH` | 安全/授权 |
+| `LOG_DAEMON` | 系统守护进程 |
+| `LOG_MAIL` | 邮件 |
+| `LOG_USER` | 用户级（**默认**） |
+| `LOG_LOCAL0`～`LOG_LOCAL7` | 本地预留 |
+
+### 级别（Level）— 严重程度（高→低）
+
+`LOG_EMERG` → `LOG_ALERT` → `LOG_CRIT` → `LOG_ERR` → `LOG_WARNING` → `LOG_NOTICE` → `LOG_INFO` → `LOG_DEBUG`
+
+---
+
+## 辅助函数
+
+| 函数 | 作用 |
+|------|------|
+| **`openlog(ident, options, facility)`** | 设日志前缀（常为程序名）；`LOG_PID`、`LOG_CONS` 等 |
+| **`closelog()`** | 关闭与 syslogd 通信的描述符 |
+
+---
+
+## 易错细节
+
+- **inetd 子服务**：禁止 `printf`/`fprintf(stderr)` — 须用 **syslog**（见 13.6）  
+- `priority` 用 **`LOG_MAKEPRI`** 或 facility+level 宏组合，勿手写错位数  
+
+---
 
 ## 个人学习总结
+
+（待填）

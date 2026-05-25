@@ -1,11 +1,26 @@
-# 26.6 Web Client Multi Connect
+# 26.6 Web 客户与同时连接
 
-## 核心知识点
+> [Ch 16.5 Web 客户](../Chapter16_NonBlockingIO/16.5_NonBlock_Connect_WebClient/notes.md) · [26.7 互斥锁](../26.7_Mutex_Lock/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 应用场景
 
-## 易错点与坑点
+多线程 **Web 客户端**：并行下载，但限制**最大并发连接数**（如 5），防防火墙/服务器封禁。
+
+---
+
+## 架构需求
+
+```text
+主线程：扫描 URL 列表，活跃线程数 < MAX → pthread_create 新下载线程
+全局 active_count：主线程与子线程并发读写 → 数据竞争
+```
+
+→ 引出 **互斥锁**（26.7）与 **条件变量**（26.8）。
+
+---
 
 ## 个人学习总结
+
+（待填）

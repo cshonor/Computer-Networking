@@ -1,11 +1,38 @@
-# 11.12 Tcp Connect Func
+# 11.12 tcp_connect 函数
 
-## 核心知识点
+> [11.6](../11.6_Getaddrinfo_Func/notes.md) · TCP：[Ch 4](../../1_BasicFoundation/Chapter04_BasicTCPSocket/study.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+协议无关的 **TCP 客户端连接**封装。
+
+```text
+getaddrinfo → for 遍历链表:
+    socket → connect
+    成功 → break 返回 fd
+    失败 → close(fd)，试下一节点
+freeaddrinfo（在封装内或调用方）
+```
+
+---
+
+## 实用要点
+
+- 屏蔽目标 **多 IP / v4+v6 混合**  
+- 实现透明 **故障转移（Failover）**  
+- 第一个 `connect` 失败不致命，继续试链表  
+
+---
+
+## 易错细节
+
+- 循环内失败须 **close** 当前套接字，避免 fd 泄漏  
+- 全部失败后返回错误，勿返回未连接 fd  
+
+---
 
 ## 个人学习总结
+
+（待填）

@@ -1,11 +1,39 @@
-# 14.8 Socket StdIO Mix
+# 14.8 套接字和标准 I/O
 
-## 核心知识点
+> [Ch 6 select](../../1_BasicFoundation/Chapter06_IO_Select_Poll/study.md) · [Ch 4.9 close/shutdown](../../1_BasicFoundation/Chapter04_BasicTCPSocket/4.9_Close_Function/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+可用 **`fdopen`** 把套接字变成 **`FILE *`** 用 `printf`/`fgets` — 在套接字编程中**通常是灾难**。
+
+---
+
+## 四大死穴
+
+| # | 问题 |
+|---|------|
+| 1 | **读写转换**：同一 `FILE *` 上先读后写须 `fflush`/`fseek` 等 |
+| 2 | **缓冲不可见**：数据在用户态 stdio 缓冲里时，**select/poll 看不见** → 死锁 |
+| 3 | **全缓冲**：套接字默认全缓冲，未 `fflush` 则**不发往网络**，握手中断 |
+| 4 | **半关闭**：难精确 `shutdown`，缓冲残留丢数据 |
+
+---
+
+## 重点结论
+
+普通网络通信 + **select/poll 多路复用**：
+
+**严禁混用 stdio 与底层多路复用** — 用 **`read`/`write`/`recv`/`send`** 并自管用户缓冲。
+
+---
+
+> 💡 **后续拓展留白**  
+> - `setvbuf` 取消缓冲仍不如原生 API 的场景分析  
+
+---
 
 ## 个人学习总结
+
+（待填）

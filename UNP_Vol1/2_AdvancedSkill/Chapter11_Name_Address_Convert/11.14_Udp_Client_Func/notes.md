@@ -1,11 +1,21 @@
-# 11.14 Udp Client Func
+# 11.14 udp_client 函数
 
-## 核心知识点
+> [Ch 8 UDP](../1_BasicFoundation/Chapter08_BasicUDPSocket/study.md) · [11.15](../11.15_Udp_Connect_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## UDP 客户端封装
 
-## 易错点与坑点
+```text
+getaddrinfo → for:
+    socket（不 connect）
+    成功 → 返回 sockfd + 目标 sockaddr*（供 sendto）
+```
+
+与 TCP 版区别：**不调用 `connect`**，保留无连接 `sendto` 模型。
+
+---
 
 ## 个人学习总结
+
+（待填）

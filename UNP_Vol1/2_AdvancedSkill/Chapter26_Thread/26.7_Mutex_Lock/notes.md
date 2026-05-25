@@ -1,11 +1,35 @@
-# 26.7 Mutex Lock
+# 26.7 互斥锁
 
-## 核心知识点
+> [26.6](../26.6_Web_Client_Multi_Connect/notes.md) · [26.8 条件变量](../26.8_Condition_Variable/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心定义
 
-## 易错点与坑点
+**互斥锁（Mutex）**：保护多线程共享数据，避免并发读写不一致。
+
+```c
+pthread_mutex_t mutex;
+pthread_mutex_lock(&mutex);
+/* 临界区：读-改-写 active_count 等 */
+pthread_mutex_unlock(&mutex);
+```
+
+---
+
+## 行为
+
+- 锁已被占用 → `pthread_mutex_lock` **阻塞**直至释放  
+- 将多步操作变为不可分割的 **临界区**
+
+---
+
+## 局限
+
+仅 Mutex **无法**让线程在「条件未满足」时高效休眠 — 自旋 `lock→检查→unlock` 浪费 CPU（见 26.8）。
+
+---
 
 ## 个人学习总结
+
+（待填）
