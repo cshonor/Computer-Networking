@@ -1,11 +1,50 @@
-# 4.5 Listen Function
+# 4.5 listen 函数
 
-## 核心知识点
+> [4.6 accept](../4.6_Accept_Function/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨与关键论据
 
-## 易错点与坑点
+仅 **TCP 服务器**调用 **`listen`**：
+
+1. 套接字由主动变**被动**（`CLOSED` → **`LISTEN`**）  
+2. 规定内核为该监听套接字排队的**最大连接数**（`backlog`）
+
+```c
+int listen(int sockfd, int backlog);
+```
+
+---
+
+## 两个连接队列（必背）
+
+| 队列 | TCP 状态 | 含义 |
+|------|----------|------|
+| **未完成连接队列** | `SYN_RCVD` | 握手进行中 |
+| **已完成连接队列** | `ESTABLISHED` | 握手完成，等 **`accept`** |
+
+总长度受 **`backlog`** 影响（现代 OS 还与 `somaxconn` 等有关）。
+
+---
+
+## 队列满的容错（重点结论）
+
+新 SYN 到达且两队列总和已达 **backlog** 限制：
+
+- 内核**忽略 SYN，不发 RST**  
+- 客户 `connect` **超时重传** SYN；服务器可能已腾出队列  
+- 若回 RST → 客户立即 **ECONNREFUSED**（硬错误）
+
+**原因**：队列满多为瞬时高负载；RST 会使客户立刻失败，不利于恢复。
+
+---
+
+> 💡 **后续拓展留白**  
+> - Linux `tcp_max_syn_backlog`、`somaxconn`  
+
+---
 
 ## 个人学习总结
+
+（待填）

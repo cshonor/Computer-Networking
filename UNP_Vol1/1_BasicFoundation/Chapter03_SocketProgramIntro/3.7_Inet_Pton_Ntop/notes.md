@@ -1,11 +1,28 @@
-# Section 3.7 inet_pton and inet_ntop Functions
+# 3.7 inet_pton 和 inet_ntop
 
-## 核心知识点
+> [3.8 sock_ntop](../3.8_Sock_Ntop_RelatedFunc/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+**p** = presentation，**n** = numeric。支持 **AF_INET / AF_INET6**。
+
+```c
+int inet_pton(int family, const char *strptr, void *addrptr);
+const char *inet_ntop(int family, const void *addrptr, char *strptr, size_t len);
+```
+
+| inet_pton 返回 | 含义 |
+|----------------|------|
+| 1 | 成功 |
+| 0 | 非法格式 |
+| -1 | family 不支持，`errno` 如 EAFNOSUPPORT |
+
+`inet_ntop`：调用者提供缓冲 → **线程安全**。`INET_ADDRSTRLEN`(16)、`INET6_ADDRSTRLEN`(46)。
+
+---
 
 ## 个人学习总结
+
+（待填）

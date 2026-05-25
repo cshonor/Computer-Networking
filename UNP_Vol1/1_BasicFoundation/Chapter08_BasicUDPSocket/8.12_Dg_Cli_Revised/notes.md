@@ -1,11 +1,28 @@
-# 8.12 Dg Cli Revised
+# 8.12 dg_cli 函数（修订版）
 
-## 核心知识点
+> [8.11 connect](../8.11_UDP_Connect_Usage/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 代码重构
 
-## 易错点与坑点
+| 改动 | 效果 |
+|------|------|
+| **`main` 里 `Connect(servaddr)`** | 绑定对端 |
+| **`dg_cli` 用 `write`/`read`** | 替代 sendto/recvfrom |
+| 服务器未启动 | ICMP → **`read` 报错**，**不死锁** |
+
+---
+
+## 逻辑脉络
+
+```text
+Ch8.6 初版 → 丢包/假源/无 ICMP
+→ connect + read/write → 代码短 + 错误可达
+```
+
+---
 
 ## 个人学习总结
+
+（待填）

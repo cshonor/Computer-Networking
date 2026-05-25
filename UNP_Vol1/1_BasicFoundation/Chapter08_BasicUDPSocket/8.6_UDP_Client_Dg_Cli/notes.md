@@ -1,11 +1,37 @@
-# Section 8.6 UDP Echo Client: dg_cli Function
+# 8.6 UDP 回射客户程序：dg_cli 函数
 
-## 核心知识点
+> [8.8 验证响应](../8.8_Response_Data_Verify/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 数据流转
 
-## 易错点与坑点
+```text
+for (;;) {
+    Fgets(stdin) → Sendto(服务器地址) → Recvfrom → Fputs(stdout)
+}
+EOF(Ctrl+D) → 退出
+```
+
+| 步 | API |
+|----|-----|
+| 读键盘 | `fgets` |
+| 发送 | **`sendto`**（须带 `servaddr`） |
+| 等待 | **`recvfrom`**（初版常 `from=NULL`） |
+| 显示 | `fputs` |
+
+---
+
+## 与 TCP str_cli 对比
+
+| | TCP | UDP（初版） |
+|--|-----|-------------|
+| 发 | writen（已 connect） | **sendto + 地址** |
+| 收 | readline | **recvfrom** |
+| 边界 | 字节流 | **整报文**（通常一次收全） |
+
+---
 
 ## 个人学习总结
+
+（待填）

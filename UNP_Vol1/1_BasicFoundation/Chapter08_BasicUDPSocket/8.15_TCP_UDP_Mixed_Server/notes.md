@@ -1,11 +1,33 @@
-# 8.15 TCP UDP Mixed Server
+# 8.15 使用 select 的 TCP 和 UDP 回射服务器
 
-## 核心知识点
+> Ch 6 select：[6.8](../../Chapter06_IO_Select_Poll/6.8_TCP_Server_Revised/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 架构设计
 
-## 易错点与坑点
+**单主循环**同时服务 **TCP + UDP**（如 DNS 53 端口两协议独立 bind）。
+
+```text
+listenfd (TCP) + udpfd (UDP) → 都 FD_SET 进 select
+
+select 返回：
+  listenfd 就绪 → accept → fork → TCP 子进程
+  udpfd 就绪   → recvfrom → 计算 → sendto（主进程迭代，不 fork）
+```
+
+---
+
+## 重点结论
+
+| 点 | 说明 |
+|----|------|
+| **同端口不同协议** | 内核两套独立数据结构，可同端口 |
+| **select 是胶水** | 统一事件分发 |
+| UDP 仍迭代 | 避免 fork 开销 |
+
+---
 
 ## 个人学习总结
+
+（待填）

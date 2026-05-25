@@ -1,11 +1,19 @@
-# Section 8.5 UDP Echo Client: main Function
+# 8.5 UDP 回射客户程序：main 函数
 
-## 核心知识点
+> [8.6 dg_cli](../8.6_UDP_Client_Dg_Cli/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+- 校验命令行：**服务器 IP**  
+- **`inet_pton`** → 填入 `sockaddr_in`（网络字节序）  
+- **`socket`** → 将 `sockfd` 与地址交给 **`dg_cli`**
+
+与 TCP 客户 main 类似，但**无 `Connect`**（初版）。
+
+---
 
 ## 个人学习总结
+
+（待填）

@@ -1,39 +1,53 @@
 # 1.5 一个简单的时间获取服务器程序
 
-> 对应客户端：[1.2](../1.2_SimpleTimeClient/notes.md) · 并发演进：Ch 4 / Ch 5
+> [1.2 客户](../1.2_SimpleTimeClient/notes.md) · [Ch 4.5 listen](../../Chapter04_BasicTCPSocket/4.5_Listen_Function/notes.md)
 
-## 核心知识点
+---
 
-与 1.2 呼应的 TCP 时间服务器：**bind → listen → accept → 读写 → close**，展示被动接受连接的生命周期。
+## 核心主旨与关键论据
 
-## 关键函数与结构体
+时间服务器：**bind → listen → accept → 格式化时间 → write → close(connfd)**。比客户多 **bind/listen**；演示 **迭代服务器**（一次只服务一客）。
+
+---
+
+## 关键函数与代码拆解
 
 | API | 要点 |
 |-----|------|
-| `Bind(listenfd, (SA *)&servaddr, sizeof(servaddr))` | 绑定端口 **13** 与本地地址 **`INADDR_ANY`**（接受任意网卡上的连接） |
-| `Listen(listenfd, LISTENQ)` | 套接字变为**监听套接字**；`LISTENQ` = 内核排队最大连接数 |
-| `Accept(listenfd, NULL, NULL)` | 阻塞等待连接；三次握手完成后返回**已连接套接字 `connfd`** |
-| `time()` + `ctime()` + `snprintf()` | 秒数 → 可读时间字符串；**用 `snprintf` 而非 `sprintf`** |
-| `Write()` | 写入套接字发给客户 |
-| `close(connfd)` | 关闭当前连接，触发 TCP **四分组终止** |
+| **`Bind`** | 端口 **13** + **`INADDR_ANY`**（任意网卡） |
+| **`Listen`** | `LISTENQ` = 已完成+未完成队列上限相关 |
+| **`Accept`** | 阻塞；返回 **connfd**（已连接套接字） |
+| **`time`/`ctime`/`snprintf`** | 人类可读时间；**禁 sprintf** |
+| **`Write`** | 发给客户 |
+| **`close(connfd)`** | 触发对该客户的四次挥手 |
 
-## 执行流程原理
+---
+
+## 逻辑脉络
 
 ```text
-bind（定端口）→ listen（被动队列）→ accept（分水岭）
-  监听套接字 listenfd          已连接套接字 connfd
-→ 写时间 → close(connfd) → 循环再 accept
+bind 定端口 → listen 被动 → accept 分水岭（listenfd vs connfd）
+→ 写时间 → close(connfd) → 循环 accept（迭代）
 ```
 
-**迭代服务器（iterative server）**：外层死循环一次只服务一个客户；上一客户慢会**阻塞**后续 `accept`。
+---
 
-## 易错点与坑点
+## 易错细节
 
-| 陷阱 | 说明 |
+| 陷阱 | 纠正 |
 |------|------|
-| **`sprintf` / `gets` / `strcat`** | 可能缓冲区溢出；用 **`snprintf`** 等限长函数 |
-| **迭代服务器瓶颈** | 处理耗时须改**并发服务器**（`fork`、线程等，后续章节） |
+| **sprintf 溢出** | 用 **snprintf** |
+| 处理慢仍迭代 | 应 **fork** 并发（Ch 4/5） |
+| 在 listenfd 上 read | 只对 **connfd** 读写 |
+
+---
+
+> 💡 **后续拓展留白**  
+> - LISTENQ 与半连接队列  
+> - 守护进程化（Ch 13）  
+
+---
 
 ## 个人学习总结
 
-> 💡 可拓展：`LISTENQ` 与半连接/全连接队列（Linux）；守护进程化步骤。
+（待填）

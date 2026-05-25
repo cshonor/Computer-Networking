@@ -1,11 +1,36 @@
-# Section 8.3 UDP Echo Server: main Function
+# 8.3 UDP 回射服务器程序：main 函数
 
-## 核心知识点
+> [8.4 dg_echo](../8.4_UDP_Server_Dg_Echo/notes.md) · 对比 TCP：[Ch 5.2](../Chapter05_TCP_Client_Server_Demo/5.2_Server_Main/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心逻辑
 
-## 易错点与坑点
+UDP 服务器初始化**极简**：
+
+```text
+Socket(AF_INET, SOCK_DGRAM, 0)
+→ sockaddr_in(INADDR_ANY, 端口) → Bind
+→ dg_echo(sockfd)    /* 无 listen/accept */
+```
+
+| 步骤 | 说明 |
+|------|------|
+| **socket** | IPv4 **数据报**套接字 |
+| **bind** | 通配 IP + 业务端口（如 7 echo、13 daytime 等） |
+| **dg_echo** | 直接进入接收循环 |
+
+---
+
+## 与 TCP 服务器对比
+
+| TCP | UDP |
+|-----|-----|
+| bind → listen → accept 循环 | bind → **recvfrom 循环** |
+| 每连接一 connfd | **同一 sockfd** 服务所有客户 |
+
+---
 
 ## 个人学习总结
+
+（待填）
