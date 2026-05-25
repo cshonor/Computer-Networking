@@ -1,11 +1,32 @@
-# 23.11 Time Parameter Control
+# 23.11 定时控制（Timing Control）
 
-## 核心知识点
+> [Ch 7.10 SCTP 选项](../../1_BasicFoundation/Chapter07_SocketOption/7.10_SCTP_Socket_Option/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+电信级信令（如 SS7 over IP）等对延迟敏感 — 可深入内核调**重传与故障判定**定时器。
+
+---
+
+## 常用选项
+
+| 选项 | 调什么 |
+|------|--------|
+| **`SCTP_RTOINFO`** | 初始 RTO、最小/最大 RTO |
+| **`SCTP_ASSOCINFO`** | 关联级最大重传（超限则断关联）、INIT 阶段最大尝试次数等 |
+
+通过 `setsockopt` / **`sctp_opt_info`** 读写。
+
+---
+
+## 注意
+
+过激缩短 RTO → 误判断线；需结合 **`SCTP_PEER_ADDR_PARAMS`** 与网络 RTT 实测。
+
+---
 
 ## 个人学习总结
+
+（待填）

@@ -1,11 +1,33 @@
-# Section 30.4 TCP Iterative Server
+# 30.4 TCP 迭代服务器程序
 
-## 核心知识点
+> [Ch 4 基本模型](../../1_BasicFoundation/Chapter04_BasicTCPSocket/study.md) · [30.5 fork 并发](../30.5_TCP_Fork_Concurrent_Server/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 运作机制
 
-## 易错点与坑点
+单进程死循环：
+
+```text
+accept → 在同一线程 read/处理/write → close → 再 accept
+```
+
+---
+
+## 致命缺陷
+
+**无并发**：处理客户 1 秒 → 第 100 个客户可能多等 **99 秒**。
+
+---
+
+## 适用场景
+
+极轻量、极快（如 **daytime**）、内网、连接极少。
+
+压测中**性能垫底**。
+
+---
 
 ## 个人学习总结
+
+（待填）

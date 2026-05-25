@@ -53,4 +53,4 @@ getpaddrs/getladdrs 必须 free
 | Ch 4 | 一到一复用 listen/accept |
 | Ch 7.10 | SCTP 套接字选项 |
 | Ch 10 | 一到多回射与队头阻塞 |
-| Ch 23 | 高级 SCTP API |
+| [Ch 23](../Chapter23_AdvancedSCTPSocket/study.md) | 高级 SCTP |

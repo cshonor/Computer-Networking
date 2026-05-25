@@ -1,11 +1,30 @@
-# 27.4 IPv6 Extend Header
+# 27.4 IPv6 扩展首部
 
-## 核心知识点
+> [27.5 步跳/目的选项](../27.5_IPv6_Hop_Dest_Option/notes.md) · [Ch 12 IPv6](../../Chapter12_IPv4_IPv6_Interop/study.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 菊花链（Daisy-Chain）
 
-## 易错点与坑点
+IPv6 用 **Next Header** 串联扩展首部，典型顺序：
+
+```text
+IPv6 基本首部
+  → 步跳选项（Hop-by-Hop）     /* 必须第一个；路径上每跳都处理 */
+  → 目的选项（Destination）    /* 仅目的主机处理 */
+  → 路由首部（Routing）
+  → 分片（Fragment）
+  → AH / ESP（IPsec）
+  → TCP / UDP / …
+```
+
+| 首部 | 特点 |
+|------|------|
+| **Hop-by-Hop** | **唯一**要求路径上**每个路由器**检查的首部 |
+| **Destination** | 仅终点处理 |
+
+---
 
 ## 个人学习总结
+
+（待填）

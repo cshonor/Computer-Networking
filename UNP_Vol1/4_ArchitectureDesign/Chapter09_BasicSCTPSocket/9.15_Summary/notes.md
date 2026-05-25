@@ -1,6 +1,6 @@
 # 9.15 小结
 
-> [study.md](../study.md) · [Ch 10](../Chapter10_SCTP_Client_Server_Demo/study.md) · [Ch 23 高级 SCTP](../../3_DeepMaster/Chapter23_AdvancedSCTPSocket/)（待笔记）
+> [study.md](../study.md) · [Ch 10](../Chapter10_SCTP_Client_Server_Demo/study.md) · [Ch 23 高级 SCTP](../Chapter23_AdvancedSCTPSocket/study.md)
 
 ---
 

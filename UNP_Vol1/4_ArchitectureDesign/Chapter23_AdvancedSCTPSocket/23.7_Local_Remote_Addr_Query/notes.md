@@ -1,11 +1,32 @@
-# 23.7 Local Remote Addr Query
+# 23.7 确定本端与对端地址信息
 
-## 核心知识点
+> [Ch 9.5 getpaddrs](../Chapter09_BasicSCTPSocket/9.5_Sctp_Getpaddrs_Func/notes.md) · [Ch 9.7 getladdrs](../Chapter09_BasicSCTPSocket/9.7_Sctp_Getladdrs_Func/notes.md) · [23.8 assoc_id](../23.8_IP_Association_ID_Match/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心主旨
 
-## 易错点与坑点
+一到多模型单 fd 多关联 — 需随时查询某关联的**本端/对端 IP 列表**（多宿健康诊断）。
+
+---
+
+## API
+
+| 函数 | 作用 |
+|------|------|
+| **`sctp_getpaddrs`** | 某关联的**对端**地址列表 |
+| **`sctp_getladdrs`** | 某关联的**本端**地址列表 |
+
+用完须 **`sctp_freepaddrs` / `sctp_freeladdrs`**（Ch 9.6、9.8）。
+
+---
+
+## 用途
+
+路径监控、日志、与 **`SCTP_PEER_ADDR_CHANGE`** 通知联动。
+
+---
 
 ## 个人学习总结
+
+（待填）

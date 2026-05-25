@@ -1,11 +1,30 @@
-# 30.9 PreFork Server Fd Transfer
+# 30.9 预先派生子进程：传递描述符
 
-## 核心知识点
+> [Ch 15.7 传 fd](../Chapter15_UnixDomainProtocol/15.7_File_Descriptor_Transfer/notes.md) · [30.8 互斥锁](../30.8_PreFork_Server_ThreadLock/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 主从调度
 
-## 易错点与坑点
+子进程**不**抢 `accept`：
+
+```text
+主进程：独占 accept
+  → Unix 域 SCM_RIGHTS 将已连接 fd 派给空闲子进程
+子进程：只处理已连接套接字
+```
+
+---
+
+## 优缺点
+
+| 优 | 劣 |
+|----|-----|
+| 负载均衡清晰、架构优雅 | **`sendmsg`/`recvmsg` 传 fd 开销大** |
+| | 总体性能常**略逊于** 30.8 共享互斥锁 |
+
+---
 
 ## 个人学习总结
+
+（待填）

@@ -45,4 +45,4 @@ TCP：A 丢则 B/C 也堵；SCTP：不同流独立交付
 | Ch 9 | 全套 SCTP API |
 | Ch 2.4–2.5 | TCP 流 vs SCTP 多流 |
 | Ch 6–8 | 回射、select 客户对比 |
-| Ch 23 | 高级 SCTP 深化 |
+| [Ch 23](../Chapter23_AdvancedSCTPSocket/study.md) | 高级 SCTP 深化 |

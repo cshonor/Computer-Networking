@@ -1,11 +1,38 @@
-# 23.5 Unordered Data Transfer
+# 23.5 无序的数据（Unordered Data）
 
-## 核心知识点
+> [Ch 10.5 队头阻塞](../Chapter10_SCTP_Client_Server_Demo/10.5_Head_Blocking_Problem/notes.md) · [Ch 9.9 sctp_sendmsg](../Chapter09_BasicSCTPSocket/9.9_Sctp_Sendmsg_Func/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 核心场景
 
-## 易错点与坑点
+默认同流内**严格有序**（避免队头阻塞的另一面：慢消息挡后面）。
+
+部分业务（DNS、实时信令）要 **可靠重传** 但**不在乎顺序**。
+
+---
+
+## 机制
+
+`sctp_sendmsg` 的 **`sinfo_flags`** 设 **`SCTP_UNORDERED`**：
+
+| 发送 | 接收 |
+|------|------|
+| 消息标 “U” | 片段到齐即交付，**不**为等前面丢失消息而排队 |
+
+→ **可靠的 UDP 语义**：可靠 + 无序。
+
+---
+
+## 与多流区别
+
+| 手段 | 隔离粒度 |
+|------|----------|
+| 多流 | 流间独立；流内仍有序 |
+| **UNORDERED** | 同流内也可乱序交付 |
+
+---
 
 ## 个人学习总结
+
+（待填）

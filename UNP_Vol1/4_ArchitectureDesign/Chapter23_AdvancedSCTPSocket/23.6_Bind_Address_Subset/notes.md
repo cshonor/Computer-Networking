@@ -1,11 +1,27 @@
-# 23.6 Bind Address Subset
+# 23.6 捆绑地址子集
 
-## 核心知识点
+> [Ch 9.3 sctp_bindx](../Chapter09_BasicSCTPSocket/9.3_Sctp_Bindx_Func/notes.md) · [Ch 2.5 SCTP 多宿](../../1_BasicFoundation/Chapter02_TCP_UDP_SCTP/2.5_SCTP_Protocol/notes.md)
 
-## 关键函数与结构体
+---
 
-## 执行流程原理
+## 问题
 
-## 易错点与坑点
+`bind` **通配**（如 `INADDR_ANY` / `in6addr_any`）时，SCTP 可能把主机**所有活动网卡 IP** 都作为多宿地址通告给对端。
+
+---
+
+## 需求
+
+安全或路由策略：某些 IP（如内网 DB 专用）**不应**暴露给公网关联。
+
+---
+
+## 解决方案
+
+**`sctp_bindx`** 显式传入**允许公开的 IP 数组** — 控制多宿拓扑的**可见子集**。
+
+---
 
 ## 个人学习总结
+
+（待填）

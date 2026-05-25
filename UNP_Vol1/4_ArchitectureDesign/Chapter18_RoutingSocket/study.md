@@ -1,6 +1,6 @@
 # 第 18 章：路由套接字（厚版）
 
-> [Ch 17 ioctl](../../3_DeepMaster/Chapter17_Ioctl_Operate/study.md) · **Ch 18**（`4_ArchitectureDesign`）· [Ch 19](../Chapter19_KeyManageSocket/)（待笔记）  
+> [Ch 17 ioctl](../../3_DeepMaster/Chapter17_Ioctl_Operate/study.md) · **Ch 18**（`4_ArchitectureDesign`）· [Ch 19](../Chapter19_KeyManageSocket/study.md)  
 > 逐节：`18.x_*/notes.md`
 
 > **说明**：上传资料截至第 8 章；第 18 章框架来自目录（约第 12 页），细节按 UNP 第 3 版整理，请与全本对照验证。
