@@ -58,9 +58,9 @@
 
 **介质访问**：Hub + **CSMA/CD** + 一大冲突域 · Switch + MAC 表 + **每端口一域**  
 **帧**：Ethernet II · **MTU 1500** · `0x0800/0806/86DD` · **FCS 只检错不重传** · 64–1518B  
-**802.1**：**Q**=VLAN/广播域 · **p**=QoS · **AX**=LACP 聚合
+**802.1Q Tag**：`0x8100` · TCI=**PCP(3)+DEI(1)+VID(12)** · VID **1–4094** · PCP **0–7**（6=语音）· **AX**=LACP
 
-→ [帧+802.1](3.2-ethernet-ieee802-encapsulation.md#ch03-2-frame) · [演进](3.2-ethernet-ieee802-encapsulation.md#ch03-2-mac-evolution)
+→ [TCI 详解](3.2-ethernet-ieee802-encapsulation.md#ch03-2-vlan-tci) · [帧结构](3.2-ethernet-ieee802-encapsulation.md#ch03-2-frame)
 
 ### 定位
 
