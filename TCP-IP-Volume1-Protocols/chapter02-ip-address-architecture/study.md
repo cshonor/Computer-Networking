@@ -240,13 +240,14 @@ A) 随机分配（难聚合）              B) 拓扑敏感（易聚合）
 
 ## 2.6 全球分配与 WHOIS/RDAP
 
-**层级（必背）**：**IANA → RIR（APNIC/ARIN/RIPE/LACNIC/AFRINIC）→ LIR/ISP → 用户**；IANA **不直分用户**；**APNIC = 亚太含中国**。
+**层级（必背）**：**IANA → RIR → ISP → 用户**（和 **DNS 根→TLD→权威** 结构一样，都是从上往下分）
 
-**溯源**：**WHOIS**（文本）· **RDAP**（HTTPS+JSON，**优先**）→ 归属、abuse、**BGP Origin ASN**。
+**访问时不一样**：**敲 IP** → 直接 **BGP**，不经 IANA/根 · **敲域名** → 先 **DNS**（根只指路）→ 得 IP → 再 BGP  
+**IANA**：只管**发号**，不管**传包** · 根不易崩：**镜像多 + 缓存 + 只指路**
 
-**常考**：**分得前缀 ≠ 全球可达** → 须 ISP **BGP 宣告/聚合**。
+**溯源**：WHOIS / **RDAP**（优先）· **分得前缀 ≠ 全球可达** → 还要 **BGP 宣告**
 
-→ 展开 + 自测：[2.6-address-allocation.md](2.6-address-allocation.md)
+→ [IANA vs DNS + 流程图](2.6-address-allocation.md#ch02-6-vs-dns) · [2.6 全文](2.6-address-allocation.md)
 
 ---
 
