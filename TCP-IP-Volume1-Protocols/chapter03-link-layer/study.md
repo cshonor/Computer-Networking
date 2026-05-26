@@ -56,6 +56,10 @@
 
 ## 3.2 以太网与 IEEE 802
 
+**介质访问演进**：**Hub** = 半双工 + **CSMA/CD** + **1 个大冲突域** · **Switch** = 全双工 + MAC 表 + **每端口独立冲突域**（基本无经典冲突）
+
+→ [演进大白话](3.2-ethernet-ieee802-encapsulation.md#ch03-2-mac-evolution)
+
 ### 定位
 
 现代局域网物理封装：**Ethernet II** 与 **IEEE 802.3** 深度互操作。
