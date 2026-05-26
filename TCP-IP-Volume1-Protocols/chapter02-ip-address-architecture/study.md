@@ -38,7 +38,8 @@ IP 地址是网络层**全局标识符**，支撑可扩展路由；演进主线�
 
 ### IPv4：点分四组（Dotted-decimal）
 
-32 bit → 4 字节，每字节十进制 **0–255**。
+32 bit → 4 字节，每字节十进制 **0–255**。  
+→ 极简推导 + **3 道练习**：[2.2 §IPv4](./2.2-ip-address-representation.md#ch02-2-ipv4-dotted) · [练习](./2.2-ip-address-representation.md#ch02-2-ipv4-practice)
 
 | 点分四组 | 二进制（示意） |
 |----------|----------------|
@@ -50,7 +51,8 @@ IP 地址是网络层**全局标识符**，支撑可扩展路由；演进主线�
 
 ### IPv6：块/字段（Chunks）
 
-128 bit → **8 块 × 16 bit**，十六进制，冒号分隔。
+128 bit → **8 块 × 16 bit**，十六进制，冒号分隔。  
+→ 极简 + **4 道练习**：[2.2 §IPv6](./2.2-ip-address-representation.md#ch02-2-ipv6-chunks) · [练习](./2.2-ip-address-representation.md#ch02-2-ipv6-practice)
 
 ### IPv6 规范化（RFC 5952）
 
