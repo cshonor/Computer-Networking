@@ -6,7 +6,7 @@
 > 自顶向下对照：[04_network_layer §4.3](../../top_down/04_network_layer_data_plane/study.md#ch4-3)（IPv4/IPv6、CIDR、NAT）
 
 IP 地址是网络层**全局标识符**，支撑可扩展路由；演进主线：**分类寻址 → 子网/VLSM → CIDR/聚合**，并并行走向 **IPv6**。  
-→ **一页考试速记**：[编址演进 + 广播/IID](ip-addressing-evolution-cheatsheet.md)
+→ **编址演进 + 广播/IID**：[2.3-basic-ip-structure.md](2.3-basic-ip-structure.md)
 
 ---
 
@@ -81,7 +81,7 @@ IP 地址是网络层**全局标识符**，支撑可扩展路由；演进主线�
 
 ## 2.3 基本 IP 地址结构
 
-> 演进 + 广播/IID 背诵：[ip-addressing-evolution-cheatsheet.md](ip-addressing-evolution-cheatsheet.md)
+> 演进 + 广播/IID：[2.3-basic-ip-structure.md](2.3-basic-ip-structure.md#ch02-evolution)
 
 ### 2.3.1 分类寻址（Classful，历史）
 
