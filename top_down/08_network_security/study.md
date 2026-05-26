@@ -19,6 +19,8 @@
 
 可监听、注入、篡改、**重放**、**IP 欺骗**等；设计协议时按威胁模型假设对手能力。
 
+→ **分层典型攻击一页背诵**：[layer-attacks-cheatsheet.md](./layer-attacks-cheatsheet.md)（ARP/SYN/HTTP 劫持等与 [§6](../06_link_layer_and_lan/study.md)/[§3](../03_transport_layer/study.md)/[§2](../02_application_layer/study.md) 对齐）
+
 ### 3. 工程避坑：加密 ≠ 鉴别
 
 仅有加密不能防止**重放**：若捕获加密转账请求且无 **Nonce/时间窗/序号** 等鉴别，服务器可能重复执行。需**鉴别 + 防重放** 与机密性配合。

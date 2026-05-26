@@ -15,6 +15,7 @@
 ## 延伸阅读
 
 - 章级精读：[study.md § 1.1](../study.md#ch1-1)
+- 分层攻击总览（先建立威胁地图）：[§8 一页背诵](../../08_network_security/layer-attacks-cheatsheet.md)
 
 ## 本目录文件说明
 
