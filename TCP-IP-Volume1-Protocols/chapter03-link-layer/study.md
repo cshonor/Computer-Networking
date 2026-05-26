@@ -113,9 +113,13 @@
 **自动协商**：10/100/1000M + 双工；**千兆强制开**；优先级 **速率↑、全双工>半双工**  
 **双工不匹配**：一端强全双工 + 一端自协商 → 对端常变半双工 → **丢包** · **光纤需手动配**
 
-→ [完整版+10行背诵](3.3-full-duplex-autoneg.md#ch03-3-cheat) · [3.2 半/全双工与 CSMA/CD](3.2-ethernet-ieee802-encapsulation.md#ch03-2-mac-evolution)
+→ [双工+自协商](3.3-full-duplex-autoneg.md#ch03-3-cheat) · [魔术包流程](3.3-full-duplex-autoneg.md#ch03-3-magic-packet)
 
-**PAUSE（802.3x）**：类型 **0x8808** · **WoL**：魔术包唤醒
+**WoL**：关机网卡监听 · **102B**=6×FF+MAC×16 · 网卡硬件唤醒 · **同局域网广播** · 不认 IP  
+**EEE 802.3az**：空闲休眠、有流唤醒  
+**802.3x**：全双工**二层逐跳** PAUSE（`0x8808`，`01:80:C2:00:00:01`）≠ **TCP 端到端**拥塞控制
+
+→ [802.3x 完整版](3.3-full-duplex-autoneg.md#ch03-3-pause)
 
 ### 易混
 
