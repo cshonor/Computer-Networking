@@ -252,13 +252,18 @@ A) 随机分配（难聚合）              B) 拓扑敏感（易聚合）
 
 ## 2.8 与 IP 地址相关的攻击
 
-| 攻击 | 原理 |
+**IP 欺骗根因**：网络层**不验源 IP**；UDP/ICMP 易伪造，TCP 仍有 SYN/RST 类攻击。  
+**危害**：ACL 绕过、**反射放大 DDoS**（伪造受害者为源）、RST 劫持、难溯源。  
+**防护**：**BCP 38**（非本网段源入站丢弃）· **uRPF**（反向路径/入接口一致）· 应用层 **TLS/令牌，不信 IP**。
+
+→ 展开 + 自测：[2.8-address-security-threat.md](2.8-address-security-threat.md)
+
+| 其他 | 原理 |
 |------|------|
-| **IP 欺骗** | 路由器按**目的**转发，源地址可伪造 |
-| **DoS** | 伪造大量源 → 响应耗尽目标；溯源难 |
+| **DoS** | 海量伪造/半开连接耗尽资源 |
 | **扫描/嗅探** | ICMP、TCP/UDP 探测活跃主机 |
 
-**防御**：网络层无内在源认证 → **BCP 38 入站过滤**（uRPF 等）等补丁式方案。→ [ch18 安全](../chapter18-network-security/study.md)
+→ [ch18 安全](../chapter18-network-security/study.md) · [1.8 分层威胁](../chapter01-overview/1.8-architecture-threat.md)
 
 ---
 
@@ -282,6 +287,7 @@ A) 随机分配（难聚合）              B) 拓扑敏感（易聚合）
 | WHOIS/RDAP | 归属/abuse/路由；**RDAP 优先** |
 | 私有地址 | 10/8、172.16/12、192.168/16；v6 ULA fc00::/7 |
 | 特殊块 | 环回/链路本地/组播/任播/文档/过渡 → [2.5](2.5-special-address.md#ch02-5-table) |
+| IP 欺骗防护 | BCP38、uRPF → [2.8](2.8-address-security-threat.md#ch02-8-defense) |
 | 多宿主 | 高可用 vs 全球路由表膨胀 |
 
 ### 易混
