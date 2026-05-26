@@ -245,9 +245,10 @@ A) 随机分配（难聚合）              B) 拓扑敏感（易聚合）
 **访问时不一样**：**敲 IP** → 直接 **BGP**，不经 IANA/根 · **敲域名** → 先 **DNS**（根只指路）→ 得 IP → 再 BGP  
 **IANA**：只管**发号**，不管**传包** · 根不易崩：**镜像多 + 缓存 + 只指路**
 
-**溯源**：WHOIS / **RDAP**（优先）· **分得前缀 ≠ 全球可达** → 还要 **BGP 宣告**
+**溯源**：**WHOIS** = 查 IP 谁家 · **RDAP** = 新版 JSON · **curl** = 命令行访问 RDAP  
+**ISP** = 移动/电信/联通（从 APNIC 拿块再分给你）· **分得前缀 ≠ 全球可达** → 还要 **BGP**
 
-→ [IANA vs DNS + 流程图](2.6-address-allocation.md#ch02-6-vs-dns) · [2.6 全文](2.6-address-allocation.md)
+→ [IANA vs DNS](2.6-address-allocation.md#ch02-6-vs-dns) · [WHOIS/RDAP 大白话+三条命令](2.6-address-allocation.md#ch02-6-plain-query)
 
 ---
 
