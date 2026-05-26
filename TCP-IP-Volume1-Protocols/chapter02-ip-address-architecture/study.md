@@ -245,10 +245,14 @@ A) 随机分配（难聚合）              B) 拓扑敏感（易聚合）
 **访问时不一样**：**敲 IP** → 直接 **BGP**，不经 IANA/根 · **敲域名** → 先 **DNS**（根只指路）→ 得 IP → 再 BGP  
 **IANA**：只管**发号**，不管**传包** · 根不易崩：**镜像多 + 缓存 + 只指路**
 
-**溯源**：**WHOIS** = 查 IP 谁家 · **RDAP** = 新版 JSON · **curl** = 命令行访问 RDAP  
-**ISP** = 移动/电信/联通（从 APNIC 拿块再分给你）· **分得前缀 ≠ 全球可达** → 还要 **BGP**
+**WHOIS/RDAP vs BGP**：**查档案** vs **跑路线**（BGP **不广播**，点对点换路由）  
+**溯源三要素**：前缀归属 / abuse / 路由溯源（**全网 BGP + RDAP**，不只本地表）  
+**BGP 误区**：**无全球中心库**；AS **点对点**换路由；**各 AS 表不同**  
+**公开 BGP 库**（bgp.he.net 等）= **第三方收集**，溯源用，运营商不用  
+**AS‑PATH**：本地=**出去**；溯源=**RDAP + 公开 BGP 库**  
+**curl** 查 RDAP · **分得前缀 ≠ 全球可达** → 还要 **BGP 宣告**
 
-→ [IANA vs DNS](2.6-address-allocation.md#ch02-6-vs-dns) · [WHOIS/RDAP 大白话+三条命令](2.6-address-allocation.md#ch02-6-plain-query)
+→ [无中心库+公开BGP](2.6-address-allocation.md#ch02-6-bgp-global) · [AS‑PATH](2.6-address-allocation.md#ch02-6-aspath)
 
 ---
 
