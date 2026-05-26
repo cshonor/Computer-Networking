@@ -3,7 +3,7 @@
 > 按书节速记：[4.1](4.1-introduction.md) · [4.2](4.2-arp-basic-operation.md) · [4.3](4.3-arp-cache.md) · [4.4](4.4-arp-packet-format.md) · [4.5](4.5-arp-tcpdump-example.md) · [4.6](4.6-arp-cache-timeout.md) · [4.7](4.7-proxy-arp.md) · [4.8](4.6-gratuitous-arp.md) · [4.9](4.9-arp-cli-commands.md) · [4.10](4.10-embedded-arp-setup.md) · [4.11](4.11-arp-spoof-defense.md) · [4.12](4.12-summary.md) · [4.13](4.13-references.md) · [QUICKREF §4](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch04_arp.md)）  
-> 链路层基础：[ch03 链路层](../chapter03-link-layer/study.md) · 自顶向下：[§6.4.1 ARP](../../06_link_layer_and_lan/study.md#ch6-4)
+> 链路层基础：[ch03 链路层](../chapter03-link-layer/study.md) · 自顶向下：[§6.4.1 ARP](../../top_down/06_link_layer_and_lan/study.md#ch6-4)
 
 **ARP** 是 **IPv4 ↔ 以太网 MAC** 的战略支点：IP 提供端到端逻辑标识，**L2 交付必须靠 48 位 MAC**；硬件不识别 IP 标签，同网段内不能直接“按 IP 发帧”。
 
@@ -40,7 +40,7 @@
 | **直接交付** | 同一物理/广播域；掩码确认目标 IP 属本 subnet |
 | **间接交付** | 跨子网：IP 目的为远端主机，**以太网目的 MAC 常为默认网关** |
 
-→ 自顶向下必背：[§6.4.1](../../06_link_layer_and_lan/study.md#ch6-4)
+→ 自顶向下必背：[§6.4.1](../../top_down/06_link_layer_and_lan/study.md#ch6-4)
 
 ### ARP 请求/响应循环
 
@@ -214,8 +214,8 @@ ARP 是**链路层负载**（以太网类型 **0x0806**），**不**封装在 IP
 
 ## Top-Down
 
-- [06_link_layer_and_lan/study.md §6.4.1](../../06_link_layer_and_lan/study.md#ch6-4)  
-- [06 §6.7 Web 请求微观路径](../../06_link_layer_and_lan/study.md#ch6-7)（DNS 前常需 ARP 网关）
+- [06_link_layer_and_lan/study.md §6.4.1](../../top_down/06_link_layer_and_lan/study.md#ch6-4)  
+- [06 §6.7 Web 请求微观路径](../../top_down/06_link_layer_and_lan/study.md#ch6-7)（DNS 前常需 ARP 网关）
 
 ## Lab
 

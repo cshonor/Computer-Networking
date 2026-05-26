@@ -3,7 +3,7 @@
 > 按书节速记：[6.1](6.1-introduction.md) · [6.2](6.2-dhcp-protocol.md) · [6.3](6.3-slaac-autoconfig.md) · [6.4](6.4-dhcp-dns-ddns.md) · [6.5](6.5-pppoe.md) · [6.6](6.6-dhcp-security.md) · [6.7](6.7-summary.md) · [6.8](6.8-references.md) · [QUICKREF §6](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch06_dhcp.md)）  
-> 前置：[ch05 IP](../chapter05-ip-protocol/study.md) · [ch04 ARP](../chapter04-arp-protocol/study.md) · 自顶向下：[§4.3 DHCP](../../04_network_layer_data_plane/study.md#ch4-3)
+> 前置：[ch05 IP](../chapter05-ip-protocol/study.md) · [ch04 ARP](../chapter04-arp-protocol/study.md) · 自顶向下：[§4.3 DHCP](../../top_down/04_network_layer_data_plane/study.md#ch4-3)
 
 本章聚焦协议栈 **自举（Bootstrapping）**：主机如何从无到有获得 **IP、掩码、网关、DNS** 等参数 — 不仅是地址分配，更是**资源发现与策略下发**的纽带。
 
@@ -220,8 +220,8 @@ DHCP **无强认证**，默认信任**物理链路**。
 
 ## Top-Down
 
-- [04_network_layer_data_plane §4.3](../../04_network_layer_data_plane/study.md#ch4-3)  
-- [06_link_layer §6.7 Web 路径](../../06_link_layer_and_lan/study.md#ch6-7)（DHCP 获取地址）
+- [04_network_layer_data_plane §4.3](../../top_down/04_network_layer_data_plane/study.md#ch4-3)  
+- [06_link_layer §6.7 Web 路径](../../top_down/06_link_layer_and_lan/study.md#ch6-7)（DHCP 获取地址）
 
 ## Lab
 

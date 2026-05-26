@@ -3,7 +3,7 @@
 > 按书节速记：[7.1](7.1-introduction.md) · [7.2](7.2-packet-filter-firewall.md) · [7.3](7.3-nat-napt.md) · [7.4](7.7-nat-traversal.md) · [7.5](7.5-acl-port-control.md) · [7.6](7.6-ipv6-nat-transition.md) · [7.7](7.7-security-attacks.md) · [7.8](7.8-summary.md) · [7.9](7.9-references.md) · [QUICKREF §7](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch07_firewall_nat.md)）  
-> 前置：[ch05 IP](../chapter05-ip-protocol/study.md) · [ch01 端到端](../chapter01-overview/study.md#ch01-e2e) · 自顶向下：[§4.3 NAT](../../04_network_layer_data_plane/study.md#ch4-3)
+> 前置：[ch05 IP](../chapter05-ip-protocol/study.md) · [ch01 端到端](../chapter01-overview/study.md#ch01-e2e) · 自顶向下：[§4.3 NAT](../../top_down/04_network_layer_data_plane/study.md#ch4-3)
 
 **Middlebox** 打破早期 **端到端透明**：防火墙建立**受限连通**安全边界，**NAT** 在 IPv4 枯竭下实现地址复用 — 网络从「哑核心、智能边缘」转向**状态化边界**。
 
@@ -228,13 +228,13 @@ NAT 在 v6 时代常作**协议桥梁**，而非仅省地址。
 
 - [ch08 ICMP](../chapter08-icmpv4-icmpv6/study.md) — 不可达、PMTUD  
 - [ch11 DNS](../chapter11-dns-domain-resolve/study.md) — DNS64  
-- [04_network_layer §4.3 NAT](../../04_network_layer_data_plane/4.3_ipv4_ipv6_nat/README.md)
+- [04_network_layer §4.3 NAT](../../top_down/04_network_layer_data_plane/4.3_ipv4_ipv6_nat/README.md)
 
 ---
 
 ## Top-Down
 
-- [study.md §4.3](../../04_network_layer_data_plane/study.md#ch4-3) · [中间盒 §4.5](../../04_network_layer_data_plane/study.md#ch4-5)
+- [study.md §4.3](../../top_down/04_network_layer_data_plane/study.md#ch4-3) · [中间盒 §4.5](../../top_down/04_network_layer_data_plane/study.md#ch4-5)
 
 ## Lab
 

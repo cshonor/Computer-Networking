@@ -3,7 +3,7 @@
 > 按书节速记：[12.1](12.1-introduction.md) · [12.2](12.2-tcp-service-feature.md) · [12.3](12.3-tcp-packet-header.md) · [12.4](12.4-summary.md) · [12.5](12.5-references.md) · [QUICKREF §12](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch12_tcp_intro.md)）  
-> 对照 UDP：[ch10](../chapter10-udp-ip-fragment/study.md) · 端到端：[ch01](../chapter01-overview/study.md#ch01-e2e) · 自顶向下：[§3.1 TCP](../../03_transport_layer/study.md#ch3-1-tcp-conn)
+> 对照 UDP：[ch10](../chapter10-udp-ip-fragment/study.md) · 端到端：[ch01](../chapter01-overview/study.md#ch01-e2e) · 自顶向下：[§3.1 TCP](../../top_down/03_transport_layer/study.md#ch3-1-tcp-conn)
 
 **TCP** 在尽力而为的 IP 之上抽象出**可靠、全双工字节流** — 后续 ch13–16（连接、超时、窗口、拥塞）的理论基石。
 
@@ -35,7 +35,7 @@ IP 保持核心**简单快速**；**可靠性、流控、拥塞控制**推向边
 接收方 --[ACK 下一期望字节]--> 发送方
 ```
 
-→ 深入连接与序号：[ch13](../chapter13-tcp-connection-manage/study.md) · [§3.1 握手/SEQ/ACK](../../03_transport_layer/study.md#ch3-1-tcp-seq-full)
+→ 深入连接与序号：[ch13](../chapter13-tcp-connection-manage/study.md) · [§3.1 握手/SEQ/ACK](../../top_down/03_transport_layer/study.md#ch3-1-tcp-seq-full)
 
 ---
 
@@ -143,7 +143,7 @@ IP 保持核心**简单快速**；**可靠性、流控、拥塞控制**推向边
 
 ## 12.3 TCP 首部与封装
 
-标准首部 **20 字节**（含选项时可更长）。图示：[tcp_header.png](../../03_transport_layer/assets/tcp_header.png)
+标准首部 **20 字节**（含选项时可更长）。图示：[tcp_header.png](../../top_down/03_transport_layer/assets/tcp_header.png)
 
 | 字段 | 位宽 | 作用 |
 |------|------|------|
@@ -219,7 +219,7 @@ IP 保持核心**简单快速**；**可靠性、流控、拥塞控制**推向边
 
 ## Top-Down
 
-- [study.md §3.1](../../03_transport_layer/study.md#ch3-1) · [§3.2 四元组复用](../../03_transport_layer/study.md#ch3-2)
+- [study.md §3.1](../../top_down/03_transport_layer/study.md#ch3-1) · [§3.2 四元组复用](../../top_down/03_transport_layer/study.md#ch3-2)
 
 ## Lab
 

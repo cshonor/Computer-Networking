@@ -3,7 +3,7 @@
 > 按书节速记：[11.1](11.1-introduction.md) · [11.2](11.2-domain-space-structure.md) · [11.3](11.3-dns-server-hierarchy.md) · [11.4](11.4-dns-cache.md) · [11.5](11.5-dns-packet-structure.md) · [11.6](11.6-dns-traffic-practices.md) · [11.7](11.7-opendns-dyndns.md) · [11.8](11.8-dns-extensibility.md) · [11.9](11.9-dns-ipv6-transition.md) · [11.10](11.10-local-mdns.md) · [11.11](11.11-ldap-overview.md) · [11.12](11.12-dns-security-threat.md) · [11.13](11.13-summary.md) · [11.14](11.14-references.md) · [QUICKREF §11](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/05_application_security/ch11_dns.md)）  
-> 传输载体：[ch10 UDP/53](../chapter10-udp-ip-fragment/study.md) · 地址：[ch02](../chapter02-ip-address-architecture/study.md) · 自顶向下：[§2.4 DNS](../../02_application_layer/study.md#ch2-4)
+> 传输载体：[ch10 UDP/53](../chapter10-udp-ip-fragment/study.md) · 地址：[ch02](../chapter02-ip-address-architecture/study.md) · 自顶向下：[§2.4 DNS](../../top_down/02_application_layer/study.md#ch2-4)
 
 从静态 **hosts** 到分布式 **DNS**，是互联网**可扩展命名**的必然：无单点持有全球库；**解析器**与**名称服务器**协作，将人类可读名映射为 **IPv4/IPv6** 地址。
 
@@ -282,7 +282,7 @@ DNS = 最成功的**分布式数据库**：分层空间 + 缓存 + 紧凑二进�
 
 ## Top-Down
 
-- [02_application_layer/study.md §2.4](../../02_application_layer/study.md#ch2-4)
+- [02_application_layer/study.md §2.4](../../top_down/02_application_layer/study.md#ch2-4)
 
 ## Lab
 

@@ -3,7 +3,7 @@
 > 按书节速记：[1.1](1.1-architecture-principles.md)（含 [C/S→B/S](./1.1-architecture-principles.md#ch1-1-cs-bs)） · [1.2](1.2-design-implementation.md) · [1.3](1.3-tcpip-architecture-protocol.md) · [1.4](1.4-intranet-extranet.md) · [1.5](1.5-application-design.md) · [1.6](1.6-standard-process.md) · [1.7](1.7-implementation-release.md) · [1.8](1.8-architecture-threat.md) · [1.9](1.9-summary.md) · [1.10](1.10-references.md) · [QUICKREF §1](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 深度学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/01_architecture/ch01_introduction.md)）  
-> 自顶向下对照：[01_network_basics/study.md](../../01_network_basics/study.md)（因特网构成、边缘与核心）
+> 自顶向下对照：[01_network_basics/study.md](../../top_down/01_network_basics/study.md)（因特网构成、边缘与核心）
 本章是互联网大厦的**「宪法」**：每一条原则都是在有限资源下为全球化互联做的**权衡（Trade-off）**。
 
 ---
@@ -66,7 +66,7 @@
 | **不保留（合并）** | 3 次小写 | 1 次读得全部 | TCP 字节流 |
 | **不保留（拆分）** | 3 次写 | 6+ 次读才收齐 | TCP + MTU/缓冲限制 |
 
-**架构师点评**：**TCP = 字节流**，应用层须用**长度字段/协议帧**解决粘包、分帧。→ 精读 [§3.3 UDP 报文边界](../../03_transport_layer/study.md#ch3-3-features)
+**架构师点评**：**TCP = 字节流**，应用层须用**长度字段/协议帧**解决粘包、分帧。→ 精读 [§3.3 UDP 报文边界](../../top_down/03_transport_layer/study.md#ch3-3-features)
 
 ---
 
@@ -107,7 +107,7 @@
 | 网络层 | **Protocol 字段** | 1 ICMP，2 IGMP，**6 TCP**，**17 UDP** |
 | 运输层 | **目的端口号** | 交给对应进程 |
 
-→ 精读 [§3.2 多路复用/分用](../../03_transport_layer/study.md#ch3-2)
+→ 精读 [§3.2 多路复用/分用](../../top_down/03_transport_layer/study.md#ch3-2)
 
 ### 协议栈路径（图 1-4）
 
@@ -140,7 +140,7 @@
 - **1024–49151**：注册端口。
 - **49152–65535**：临时端口（客户端动态分配）。
 
-→ 与 [§3.2 端口划分](../../03_transport_layer/study.md#ch3-2-ports) 一致
+→ 与 [§3.2 端口划分](../../top_down/03_transport_layer/study.md#ch3-2-ports) 一致
 
 **DNS**：分布式「黄页」，主机名 → 可路由 IP（非必然 1:1，负载均衡/反向代理）。
 
@@ -168,7 +168,7 @@
 | **C/S** | **迭代服务器**：顺序处理；**并发服务器**：多线程/多进程/多路复用 |
 | **P2P** | 节点兼客户端与服务器；BitTorrent 等，对 ISP **非对称链路**压力大 |
 
-→ 自顶向下：[§2.1.2 C/S vs P2P](../../02_application_layer/study.md#ch2-1)
+→ 自顶向下：[§2.1.2 C/S vs P2P](../../top_down/02_application_layer/study.md#ch2-1)
 
 ---
 
@@ -197,7 +197,7 @@
 
 - 早期「哑网络」→ 核心**不校验源地址** → **IP 欺骗**。
 - **DoS** 利用对连接状态的信任。
-- 现代 **TLS、DNSSEC** 仍在**端到端**原则下于高层补齐安全。→ [ch18 安全](../chapter18-network-security/study.md) · [08_network_security](../../08_network_security/)
+- 现代 **TLS、DNSSEC** 仍在**端到端**原则下于高层补齐安全。→ [ch18 安全](../chapter18-network-security/study.md) · [08_network_security](../../top_down/08_network_security/)
 
 ---
 

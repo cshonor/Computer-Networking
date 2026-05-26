@@ -3,7 +3,7 @@
 > 按书节速记：[3.1](3.1-introduction.md) · [3.2](3.2-ethernet-ieee802-encapsulation.md) · [3.3](3.3-full-duplex-autoneg.md) · [3.4](3.4-bridge-switch-stp.md) · [3.5](3.5-wireless-80211.md) · [3.6](3.6-ppp-protocol.md) · [3.7](3.7-loopback-interface.md) · [3.8](3.8-mtu.md) · [3.9](3.9-tunnel-basics.md) · [3.10](3.10-link-layer-security.md) · [3.11](3.11-summary.md) · [3.12](3.12-references.md) · [QUICKREF §3](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/02_link_layer/ch03_link_layer.md)）  
-> 自顶向下对照：[06_link_layer_and_lan/study.md](../../06_link_layer_and_lan/study.md)
+> 自顶向下对照：[06_link_layer_and_lan/study.md](../../top_down/06_link_layer_and_lan/study.md)
 
 链路层是协议栈**最底层**：在特定物理介质上收发比特流，为 **IP** 提供封装与分发，并支撑 **ARP/RARP**。
 
@@ -153,7 +153,7 @@
 |--|--------|--------|
 | 层 | **L2 MAC** | **L3 IP**（改 TTL 等） |
 
-→ 自顶向下：[§6.4 交换局域网](../../06_link_layer_and_lan/study.md#ch6-4)
+→ 自顶向下：[§6.4 交换局域网](../../top_down/06_link_layer_and_lan/study.md#ch6-4)
 
 ---
 
@@ -196,7 +196,7 @@ WEP（不安全）→ **WPA2 (AES)** → **WPA3**
 
 **为何不用 CSMA/CD？** 发送时难以同时检测远端微弱冲突（**近端掩蔽**）。
 
-→ 自顶向下：[§6.3 多路访问](../../06_link_layer_and_lan/study.md#ch6-3)
+→ 自顶向下：[§6.3 多路访问](../../top_down/06_link_layer_and_lan/study.md#ch6-3)
 
 ---
 
@@ -276,7 +276,7 @@ WAN 常用；无介质争用。精读 → [3.6 专节](./3.6-ppp-protocol.md) ·
 
 **链路层分片 vs IP 分片**：链路层通常**不分片**（超大帧丢弃）；**分片在 IP 层**。
 
-→ 卷1 ch10 UDP + 本书 ch5：[ch10 UDP](../03_transport_layer/chapter10-udp-ip-fragment/study.md) · [§3.3 避免 IP 分片](../../03_transport_layer/study.md#ch3-3)
+→ 卷1 ch10 UDP + 本书 ch5：[ch10 UDP](../top_down/03_transport_layer/chapter10-udp-ip-fragment/study.md) · [§3.3 避免 IP 分片](../../top_down/03_transport_layer/study.md#ch3-3)
 
 **Go/Rust**：`net.Interface` MTU；UDP 发送 ≤ MTU−IP/UDP 头；TCP **MSS** 由路径 MTU 推导。
 

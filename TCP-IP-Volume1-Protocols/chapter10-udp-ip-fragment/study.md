@@ -4,7 +4,7 @@
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch10_udp.md)）  
 > 前置：**IP/MSS/PMTUD** — [ch05 IP](../chapter05-ip-protocol/study.md) · **链路 MTU** — [ch03 链路层](../chapter03-link-layer/study.md) · **PTB** — [ch08 ICMP](../chapter08-icmpv4-icmpv6/study.md)  
-> **组播**：[ch09](../chapter09-broadcast-multicast/study.md) · 自顶向下：[§3.3 UDP](../../03_transport_layer/study.md#ch3-3)
+> **组播**：[ch09](../chapter09-broadcast-multicast/study.md) · 自顶向下：[§3.3 UDP](../../top_down/03_transport_layer/study.md#ch3-3)
 
 UDP 不提供可靠传输、不重排、不重传——它把 **端到端语义**裁剪到「**端口多路复用** + （可选）**数据完整性覆盖**」，从而成为 **DNS、SNMP、流媒体、VXLAN、QUIC 底层运载**的共同起点。本章后半说明：**一旦上层一次交付的字节序列超过链路 MTU，IPv4 会在中间路由器分片**；任一丢失都会让整「逻辑报文」在接收端被丢弃——这是 UDP 互联网上**隐藏的脆弱点**。[ch03](../chapter03-link-layer/study.md) MTU、[ch08](../chapter08-icmpv4-icmpv6/study.md) `PTB` 与本章一起记。
 
@@ -30,7 +30,7 @@ UDP 不改变 IP TTL、ToS、`Don't Fragment`，这些仍由下层套接字/内�
 
 ## 10.2 UDP 首部与长度
 
-![UDP Header](../../03_transport_layer/assets/udp_header_fields.png)
+![UDP Header](../../top_down/03_transport_layer/assets/udp_header_fields.png)
 
 UDP 首部 **固定 8 字节**。字段表（建议与 Wireshark 「User Datagram Protocol」一起看）：
 
@@ -60,7 +60,7 @@ UDP 首部 Checksum **含伪首部 Pseudo Header**，把 **源/目的 IP、协�
         + UDP header + Payload  → one's complement sum → Checksum field
 ```
 
-图参考：[udp_header_pseudo.png](../../03_transport_layer/assets/udp_header_pseudo.png)
+图参考：[udp_header_pseudo.png](../../top_down/03_transport_layer/assets/udp_header_pseudo.png)
 
 ### IPv4 **vs IPv6**：伪首部结构与「是否允许关闭校验和」
 
@@ -166,7 +166,7 @@ UDP（无 handshake） ⇒ **易被伪造**。常见攻击范式：
 | **分片重装消耗**（Teardrop 变体、「最后一片永远不出现」） | 占满重装缓冲 ⇒ OOM/`nf_conntrack` | 入口滤片、补丁、限制并发重装 |
 | **Checksum offloading 与 spoofed inner** | SMARTNIC/TOE 可把坏包误判 | 开启硬件校验卸载与驱动一致性测试 |
 
-[ch05 IPv4 spoofing](../chapter05-ip-protocol/study.md)；应用上的加密与认证见自顶向下 [§8 网络安全](../../08_network_security/study.md)。
+[ch05 IPv4 spoofing](../chapter05-ip-protocol/study.md)；应用上的加密与认证见自顶向下 [§8 网络安全](../../top_down/08_network_security/study.md)。
 
 ---
 
@@ -197,7 +197,7 @@ UDP（无 handshake） ⇒ **易被伪造**。常见攻击范式：
 
 | 跳转 | |
 |------|---|
-| 下一章TCP | （卷一随后章节）序号/三次握手、[study §3 TCP](../../03_transport_layer/study.md) |
+| 下一章TCP | （卷一随后章节）序号/三次握手、[study §3 TCP](../../top_down/03_transport_layer/study.md) |
 | 组播 UDP | **[ch09](../chapter09-broadcast-multicast/study.md)** |
 | ICMP + ND | **[ch08](../chapter08-icmpv4-icmpv6/study.md)** |
 
@@ -205,8 +205,8 @@ UDP（无 handshake） ⇒ **易被伪造**。常见攻击范式：
 
 ## Top-Down
 
-- **[study.md §3.3 UDP](../../03_transport_layer/study.md#ch3-3)**（无连接语义、广播/组播）[· §3.3 考点](../../03_transport_layer/study.md#ch3-3-exam)
-- **[§3.2 多路复用与解复用](../../03_transport_layer/study.md#ch3-2)**：UDP 用 **目的 IP + 目的端口** 键解复用 — 与 TCP 四元组对比
+- **[study.md §3.3 UDP](../../top_down/03_transport_layer/study.md#ch3-3)**（无连接语义、广播/组播）[· §3.3 考点](../../top_down/03_transport_layer/study.md#ch3-3-exam)
+- **[§3.2 多路复用与解复用](../../top_down/03_transport_layer/study.md#ch3-2)**：UDP 用 **目的 IP + 目的端口** 键解复用 — 与 TCP 四元组对比
 
 ## Lab
 

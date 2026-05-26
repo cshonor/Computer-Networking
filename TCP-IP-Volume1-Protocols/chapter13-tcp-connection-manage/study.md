@@ -3,7 +3,7 @@
 > 按书节速记：[13.1](13.1-introduction.md) · [13.2](13.2-tcp-connection-setup.md) · [13.3](13.3-tcp-options.md) · [13.4](13.4-tcp-pmtud.md) · [13.5](13.5-tcp-state-time-wait.md) · [13.6](13.6-tcp-rst.md) · [13.7](13.8-listen-queue-backlog.md) · [13.8](13.8-tcp-connection-attacks.md) · [13.9](13.9-summary.md) · [13.10](13.10-references.md) · [QUICKREF §13](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch13_tcp_connection.md)）  
-> 前置：[ch12 TCP 初步](../chapter12-tcp-basic/study.md) · PMTUD：[ch08](../chapter08-icmpv4-icmpv6/study.md#ch08-3) · 自顶向下：[§3.1 连接/状态机](../../03_transport_layer/study.md#ch3-1-tcp-conn)
+> 前置：[ch12 TCP 初步](../chapter12-tcp-basic/study.md) · PMTUD：[ch08](../chapter08-icmpv4-icmpv6/study.md#ch08-3) · 自顶向下：[§3.1 连接/状态机](../../top_down/03_transport_layer/study.md#ch3-1-tcp-conn)
 
 连接管理本质是**分布式状态一致性**：在不可靠 IP 上通过 **TCB** 维护有状态**虚拟电路**，支撑可靠重传、流控与拥塞控制。
 
@@ -47,7 +47,7 @@ Client                          Server
 | 严格时延 | 建连 **1.5 RTT**（SYN → SYN-ACK → ACK） |
 | 考试简化 | 有时记 **1 RTT**（数据可随第三次捎带） |
 
-→ 图示：[tcp_three_way_handshake.png](../../03_transport_layer/assets/tcp_three_way_handshake.png)
+→ 图示：[tcp_three_way_handshake.png](../../top_down/03_transport_layer/assets/tcp_three_way_handshake.png)
 
 ### 四路挥手
 
@@ -60,7 +60,7 @@ Client                          Server
 
 **易混**：不必总是 4 个独立报文；被动方若同时关闭，可 **ACK+FIN 合并** → 类似 3 步。
 
-→ 图示：[tcp_four_way_handshake.png](../../03_transport_layer/assets/tcp_four_way_handshake.png)
+→ 图示：[tcp_four_way_handshake.png](../../top_down/03_transport_layer/assets/tcp_four_way_handshake.png)
 
 ### 13.2.x 要点
 
@@ -215,8 +215,8 @@ Client                          Server
 
 ## Top-Down
 
-- [study.md §3.1 连接](../../03_transport_layer/study.md#ch3-1-tcp-conn)  
-- [SEQ/ACK 全表](../../03_transport_layer/study.md#ch3-1-tcp-seq-full)
+- [study.md §3.1 连接](../../top_down/03_transport_layer/study.md#ch3-1-tcp-conn)  
+- [SEQ/ACK 全表](../../top_down/03_transport_layer/study.md#ch3-1-tcp-seq-full)
 
 ## Lab
 

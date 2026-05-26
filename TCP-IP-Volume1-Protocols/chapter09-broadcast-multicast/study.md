@@ -3,7 +3,7 @@
 > 按书节速记：[9.1](9.1-broadcast-multicast-concept.md) · [9.2](9.2-ipv4-broadcast-address.md) · [9.3](9.3-multicast-mac-mapping.md) · [9.4](9.4-igmp-mld-snooping.md) · [9.5](9.5-igmp-mld-attacks.md) · [9.6](9.6-summary.md) · [9.7](9.7-references.md) · [QUICKREF §9](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷 1 第 2 版（Stevens & Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch09_broadcast_multicast.md)）  
-> **交叉引用**：[ch02 地址与子网语义](../chapter02-ip-address-architecture/study.md#ch02-3) · [ch08 ICMP/MLD](../chapter08-icmpv4-icmpv6/study.md) · [ch10 UDP 与一对多套接字](../chapter10-udp-ip-fragment/study.md) · 自顶向下 [§3.3 UDP](../../03_transport_layer/study.md#ch3-3)
+> **交叉引用**：[ch02 地址与子网语义](../chapter02-ip-address-architecture/study.md#ch02-3) · [ch08 ICMP/MLD](../chapter08-icmpv4-icmpv6/study.md) · [ch10 UDP 与一对多套接字](../chapter10-udp-ip-fragment/study.md) · 自顶向下 [§3.3 UDP](../../top_down/03_transport_layer/study.md#ch3-3)
 
 继 [ch02 单播与编址](../chapter02-ip-address-architecture/study.md) 之后，本章把「**一个发送者 → 多个接收者**」在**同一条链路/子网**上的两种核心机制讲透：**广播（broadcast）** 与 **本地组播（local multicast）**。前者由**二层洪泛 + 主机全体收包**驱动；后者用 **D 类 / IPv6 组播前缀** 表达**逻辑组**，并用 **IGMP / MLD** 在路由器上维护**按需转发的软状态**。
 
@@ -267,9 +267,9 @@ IPv4  multicast: 1110xxxx  xxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ## Top-Down
 
-- [§3.3 UDP](../../03_transport_layer/study.md#ch3-3) · [考点](../../03_transport_layer/study.md#ch3-3-exam)（广播域、组播能力与 socket API）  
-- [链路层与 LAN · VLAN/广播域](../../06_link_layer_and_lan/study.md#ch6-4)  
-- 组播路由（PIM 等）常归入控制面笔记本：[routing / control-plane](../../05_network_layer_control_plane/study.md)
+- [§3.3 UDP](../../top_down/03_transport_layer/study.md#ch3-3) · [考点](../../top_down/03_transport_layer/study.md#ch3-3-exam)（广播域、组播能力与 socket API）  
+- [链路层与 LAN · VLAN/广播域](../../top_down/06_link_layer_and_lan/study.md#ch6-4)  
+- 组播路由（PIM 等）常归入控制面笔记本：[routing / control-plane](../../top_down/05_network_layer_control_plane/study.md)
 
 ## Lab
 

@@ -247,8 +247,8 @@ ICMP 是协议栈的**神经系统**：在不可靠 IP 之上建立**自反馈**
 
 ## Top-Down
 
-- [04_network_layer_data_plane/study.md](../../04_network_layer_data_plane/study.md)（PMTUD、NAT 与 MTU）  
-- [06_link_layer §6.7](../../06_link_layer_and_lan/study.md#ch6-7)（Traceroute 路径）
+- [04_network_layer_data_plane/study.md](../../top_down/04_network_layer_data_plane/study.md)（PMTUD、NAT 与 MTU）  
+- [06_link_layer §6.7](../../top_down/06_link_layer_and_lan/study.md#ch6-7)（Traceroute 路径）
 
 ## Lab
 

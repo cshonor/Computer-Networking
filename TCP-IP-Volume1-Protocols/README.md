@@ -27,4 +27,4 @@
 
 精读正文由 [`tcpip_vol1_ed2_notes/`](../tcpip_vol1_ed2_notes/) 同步至本仓库各章 `study.md`；后续可在任一侧编辑后再次同步。
 
-与 **[自顶向下](../README.md)** 并行；TCP/UDP 精读见 [03_transport_layer/study.md](../03_transport_layer/study.md)。
+与 **[自顶向下](../README.md)** 并行；TCP/UDP 精读见 [03_transport_layer/study.md](../top_down/03_transport_layer/study.md)。
