@@ -6,7 +6,7 @@
 > 自顶向下对照：[04_network_layer §4.3](../../top_down/04_network_layer_data_plane/study.md#ch4-3)（IPv4/IPv6、CIDR、NAT）
 
 IP 地址是网络层**全局标识符**，支撑可扩展路由；演进主线：**分类寻址 → 子网/VLSM → CIDR/聚合**，并并行走向 **IPv6**。  
-→ **编址演进 + 广播/IID**：[2.3-basic-ip-structure.md](2.3-basic-ip-structure.md)
+→ **编址演进 + 单播/广播/IID**：[2.3-basic-ip-structure.md](2.3-basic-ip-structure.md)（[单播 vs 广播](./2.3-basic-ip-structure.md#ch02-unicast-vs-broadcast)）
 
 ---
 
@@ -81,7 +81,7 @@ IP 地址是网络层**全局标识符**，支撑可扩展路由；演进主线�
 
 ## 2.3 基本 IP 地址结构
 
-> 演进 + 广播/IID：[2.3-basic-ip-structure.md](2.3-basic-ip-structure.md#ch02-evolution)
+> 演进 + 单播/广播/组播 + IID：[2.3-basic-ip-structure.md](2.3-basic-ip-structure.md#ch02-evolution) · [对比表](2.3-basic-ip-structure.md#ch02-unicast-vs-broadcast)
 
 ### 2.3.1 分类寻址（Classful，历史）
 
@@ -130,14 +130,28 @@ IP 地址是网络层**全局标识符**，支撑可扩展路由；演进主线�
 | 浪费 | 严重（点对点占 /24） | 低（点对点 /30、/31） |
 | 路由协议 | RIPv1 等 | **OSPF、IS-IS、BGP** 等无类别协议 |
 
-### 2.3.5 广播地址
+### 2.3.5 单播 vs 广播 vs 组播
+
+→ 厚版：[§二 完整对比](2.3-basic-ip-structure.md#ch02-unicast-vs-broadcast)
+
+| | 单播 | 广播 | 组播 |
+|---|------|------|------|
+| 模式 | 一对一 | 一对同子网全部 | 一对群组成员 |
+| v6 | ✅ | ❌ 无 | ✅ 替代广播 |
+| 跨路由 | ✅ | ❌ | ✅（IGMP/MLD） |
+| v4 特征 | 主机位非全 0/1 | 主机位全 1 | `224/4` |
+| v6 特征 | `2000::/3` | — | `ff00::/8` |
+
+口诀：单播到处走 · 广播不出网 · 组播一对群
+
+### 2.3.6 广播地址（计算）
 
 | 类型 | 形式 | 行为 |
 |------|------|------|
 | **定向广播** | 主机位全 1（如 x.x.x.255/24） | 子网内所有主机 |
 | **受限广播** | 255.255.255.255 | **仅本地链路**，路由器不转发 |
 
-### 2.3.6 IPv6 与接口标识符（IID）
+### 2.3.7 IPv6 与接口标识符（IID）
 
 单播地址常 **/64 前缀 + 64 bit IID**。
 
@@ -238,13 +252,18 @@ A) 随机分配（难聚合）              B) 拓扑敏感（易聚合）
 
 ## 2.7 单播地址分配与策略（站点/多宿主）
 
+**单播** = 一对一接口地址；**私有地址也是单播**（仅不能公网路由）。  
+**家庭**：RFC1918 + **NAT + DHCP** · **企业**：VLAN 子网 + 汇总 + DHCP 池。  
+**PA**：ISP 分配、可聚合、换 ISP 常重编址 · **PI**：RIR 分配、可携带、多宿主 + **BGP**。  
+**多宿主**：要**可用性/冗余**，不是自动双倍带宽。
+
+→ 展开 + 自测：[2.7-unicast-allocation.md](2.7-unicast-allocation.md)
+
 | 场景 | 连通性 | 地址来源 | 聚合与韧性 |
 |------|--------|----------|------------|
-| 单 ISP、单网络 | 单归属 | ISP 分配 | 聚合好，无冗余 |
+| 单 ISP、单网络 | 单归属 | ISP 分配（**PA**） | 聚合好，无冗余 |
 | 单 ISP、多网络 | 单归属 | ISP 地址块 | 聚合好，管理灵活 |
-| 多 ISP、多网络 | **多宿主** | PI 或多厂商地址 | 韧性高，**全球 BGP 表压力**大 |
-
-- **PI（Provider Independent）**：企业自有前缀进全球表 → 可用性↑、表项↑。
+| 多 ISP、多网络 | **多宿主** | **PI** + BGP | 韧性高，**全球表压力**大 |
 
 ---
 
@@ -288,6 +307,7 @@ A) 随机分配（难聚合）              B) 拓扑敏感（易聚合）
 | 私有地址 | 10/8、172.16/12、192.168/16；v6 ULA fc00::/7 |
 | 特殊块 | 环回/链路本地/组播/任播/文档/过渡 → [2.5](2.5-special-address.md#ch02-5-table) |
 | IP 欺骗防护 | BCP38、uRPF → [2.8](2.8-address-security-threat.md#ch02-8-defense) |
+| PA vs PI | 绑 ISP / 可携带多宿主 → [2.7](2.7-unicast-allocation.md#ch02-7-multihoming) |
 | 多宿主 | 高可用 vs 全球路由表膨胀 |
 
 ### 易混
