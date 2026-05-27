@@ -185,21 +185,19 @@
 
 ## 3.6 点到点协议（PPP）与 HDLC
 
-WAN 常用；无介质争用。精读 → [3.6 专节](./3.6-ppp-protocol.md) · [背诵清单](./3.6-ppp-protocol.md#ch03-6-exam)
+**PPP 未废止**：Modem 少 · **PPPoE 宽带/移动网/跨厂商 WAN** 仍主流
 
-| 协议 | 作用 |
-|------|------|
-| **LCP** | 链路参数（MRU、认证类型） |
-| **NCP / IPCP** | 网络层参数（如分配 IP） |
-
-**PPP 帧**：`7E | FF | 03 | 协议 2B | 载荷 | FCS | 7E`（**0x0021 = IP**）
+**顺序**：**LCP** → **PAP/CHAP** → **NCP(IPCP 分 IP)** → 数据
 
 | | PPP | HDLC |
 |--|-----|------|
-| 定位 | IETF、**异步+同步**、**PAP/CHAP**、无链路 ACK | ISO、**仅同步**、链路层**序号/确认**、无 IP 协商 |
-| 关系 | PPP 帧**基于 HDLC 改造**，增 **Protocol** 字段 |
+| 面向 | **字节** | **比特** |
+| 认证 | **PAP/CHAP** | 无 |
+| 场景 | **PPPoE**、跨厂商 | 同厂商串行专线 |
 
-**易混**：PPP **不要 MAC**；PPP **无链路层可靠**（靠 TCP）；CHAP **优于** PAP。
+→ [仍用在哪](3.6-ppp-protocol.md#ch03-6-ppp-alive) · [LCP/NCP](3.6-ppp-protocol.md#ch03-6-ppp) · [对比](3.6-ppp-protocol.md#ch03-6-compare) · [PPPoE](3.6-ppp-protocol.md#ch03-6-pppoe) · [背诵](3.6-ppp-protocol.md#ch03-6-exam)
+
+**易混**：PPP **无 MAC**、**无链路层可靠**；CHAP **优于** PAP。
 
 ---
 
@@ -207,20 +205,16 @@ WAN 常用；无介质争用。精读 → [3.6 专节](./3.6-ppp-protocol.md) ·
 
 ## 3.7 环回（Loopback）
 
-逻辑接口：数据**不经真实网卡**在协议栈内回流 — 排障与本地通信基础。
+**软件虚拟口** · **永远 Up** · 流量**不出物理链路** · **不可路由**
 
-- **环回地址**：IPv4 **127.0.0.1**，IPv6 **::1**  
-- 发往环回或本机 IP 的包可重定向到环回接口  
-- 环回驱动直接放入**输入队列**
+| 版本 | 考点 |
+|------|------|
+| IPv4 | **127.0.0.0/8**（非 /24），常用 **127.0.0.1** |
+| IPv6 | **::1/128**（非 **FE80::1**） |
 
-```text
-应用 send → IP 识别 localhost → 在进链路层前“转弯” → IP 输入 → 套接字 recv
-（无物理信号）
-```
+**用途**：本机测试 · **OSPF/BGP Router-ID** · 环回 IP 远程管理
 
-### 易混
-
-**127.0.0.1** = 地址；**localhost** = 常通过 hosts/DNS 解析到该地址的名字。
+→ [地址掩码](3.7-loopback-interface.md#ch03-7-addr) · [特性](3.7-loopback-interface.md#ch03-7-features) · [易混](3.7-loopback-interface.md#ch03-7-traps) · [五句背诵](3.7-loopback-interface.md#ch03-7-exam)
 
 ---
 
