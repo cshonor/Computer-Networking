@@ -205,16 +205,11 @@
 
 ## 3.7 环回（Loopback）
 
-**软件虚拟口** · **永远 Up** · 流量**不出物理链路** · **不可路由**
+**127/8、::1** 不可路由 · **Loopback 口** 永 Up · **Router-ID** 优先环回最大 IP
 
-| 版本 | 考点 |
-|------|------|
-| IPv4 | **127.0.0.0/8**（非 /24），常用 **127.0.0.1** |
-| IPv6 | **::1/128**（非 **FE80::1**） |
+**API**（程序接口）≠ **Loopback 口**（虚拟网络接口）
 
-**用途**：本机测试 · **OSPF/BGP Router-ID** · 环回 IP 远程管理
-
-→ [地址掩码](3.7-loopback-interface.md#ch03-7-addr) · [特性](3.7-loopback-interface.md#ch03-7-features) · [易混](3.7-loopback-interface.md#ch03-7-traps) · [五句背诵](3.7-loopback-interface.md#ch03-7-exam)
+→ [127/::1](3.7-loopback-interface.md#ch03-7-addr) · [Router-ID](3.7-loopback-interface.md#ch03-7-rid) · [远程管理](3.7-loopback-interface.md#ch03-7-mgmt) · [速记表](3.7-loopback-interface.md#ch03-7-exam)
 
 ---
 
