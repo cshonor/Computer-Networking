@@ -13,7 +13,7 @@
 | chapter-07-network-layer-proto | 4 |
 | chapter-08-transport-layer-tcp-udp | 4 |
 | chapter-09-application-layer-proto | 4 |
-| chapter-10-basic-scenario | 4 |
+| chapter-10-basic-scenario | 6 |
 | chapter-11-network-slow-fix | 5 |
 | chapter-12-security-analysis | 4 |
 | chapter-13-wifi-packet | 9 |

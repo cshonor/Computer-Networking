@@ -9,7 +9,12 @@
 | 某 IP | `ip.addr == 192.168.1.1` |
 | 某端口 | `tcp.port == 8080` |
 | HTTP | `http` |
+| HTTP 302 | `http.response.code == 302` |
 | DNS | `dns` |
+| DNS 查询 | `dns.flags.response == 0` |
+| DHCP | `bootp` 或 `dhcp` |
+| DHCP Discover | `dhcp.option.dhcp == 1` |
+| SMTP | `smtp` |
 | TCP 握手 | `tcp.flags.syn==1 && tcp.flags.ack==0` |
 | TCP 挥手 | `tcp.flags.fin==1` |
 | TCP RST | `tcp.flags.reset==1` |
