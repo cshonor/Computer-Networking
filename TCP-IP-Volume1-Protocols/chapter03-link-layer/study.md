@@ -145,7 +145,7 @@
 **STP/RSTP**：逻辑堵冗余口成树 · STP **30–50s** · RSTP **1–2s**  
 **L2 交换**：MAC · 局域网内 · **L3 路由**：IP · 跨 VLAN/外网/AS
 
-→ [环路例子](3.4-bridge-switch-stp.md#ch03-4-loop-hazards) · [L2/L3](3.4-bridge-switch-stp.md#ch03-4-router) · [STP 简答](3.4-bridge-switch-stp.md#ch03-4-stp-exam)
+→ [STP 四步+拓扑图](3.4-bridge-switch-stp.md#ch03-4-stp-plain) · [环路危害](3.4-bridge-switch-stp.md#ch03-4-loop-hazards) · [L2/L3](3.4-bridge-switch-stp.md#ch03-4-router)
 
 | | 交换机 | 路由器 |
 |--|--------|--------|
