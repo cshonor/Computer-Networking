@@ -1,0 +1,7 @@
+# Large capture files — keep locally or cloud, not in Git
+*.pcap
+*.pcapng
+*.cap
+
+# Allow tiny samples if needed (uncomment and add exception)
+# !sample-small.pcap

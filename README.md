@@ -14,6 +14,7 @@ Computer-Networking/
 ├─ TCP-IP-Volume1-Protocols/      # 《TCP/IP 详解》卷1 第2版（18 章，节笔记平铺在章目录）
 ├─ UNP_Vol1/                      # 《UNIX 网络编程》卷1（四阶段 Ch1–31，节笔记平铺）
 ├─ HTTP-The-Definitive-Guide/     # 《HTTP 权威指南》（按章 study.md）
+├─ wireshark-packet-analysis/     # Wireshark 抓包实战笔记（英文目录，NotebookLM 友好）
 └─ scripts/                       # 目录生成、链接修正等维护脚本
 ```
 
@@ -23,6 +24,7 @@ Computer-Networking/
 | **TCP/IP 卷1** | [QUICKREF.md](TCP-IP-Volume1-Protocols/QUICKREF.md) · [OUTLINE.md](TCP-IP-Volume1-Protocols/OUTLINE.md) | `chapterNN-主题/` 下 `x.y-*.md` 与 `study.md` 同级 |
 | **UNP 卷1** | [UNP_Vol1/README.md](UNP_Vol1/README.md) · [OUTLINE.md](UNP_Vol1/OUTLINE.md) | `ChapterNN_*/` 下 `x.y_*.md` 与 `study.md` 同级 |
 | **HTTP 指南** | [HTTP-The-Definitive-Guide/](HTTP-The-Definitive-Guide/) | 应用层 HTTP 深化 |
+| **Wireshark 实战** | [wireshark-packet-analysis/](wireshark-packet-analysis/) | 抓包笔记 · [study.md](wireshark-packet-analysis/study.md) · 配合 [99 实验](top_down/99_practice_wireshark_lab/) |
 
 **双轨对照**：自顶向下 ↔ TCP/IP 卷1（各章 `study.md` 内互链）；写 Socket 时 **UNP** 与 **top_down §2.7 / §3** 对照。
 
