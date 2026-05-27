@@ -14,6 +14,7 @@
 | 重传 | `tcp.analysis.retransmission` |
 | 零窗口 | `tcp.analysis.zero_window` |
 | ARP | `arp` |
+| 隐藏 ARP | `!arp` |
 | ICMP | `icmp` |
 
 ## 捕获过滤器（Capture / BPF）
@@ -23,6 +24,7 @@
 | 某主机 | `host 192.168.1.1` |
 | 某端口 | `port 443` |
 | 组合 | `host 10.0.0.1 and port 8080` |
+| 仅 TCP RST（BPF） | `tcp[13] & 4 != 0` 或 `tcp&4==4` |
 
 ## 排障口诀
 
