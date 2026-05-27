@@ -145,7 +145,7 @@
 **STP/RSTP**：四台环 S0 根 · S3 **RP→S1** · 链路 S2–S3 上 **S3 侧 BP** · STP **30–50s** / RSTP **1–2s**  
 **L2 交换**：MAC · 局域网内 · **L3 路由**：IP · 跨 VLAN/外网/AS
 
-→ [STP 两台](3.4-bridge-switch-stp.md#ch03-4-stp-plain) · [四台选举](3.4-bridge-switch-stp.md#ch03-4-stp-4switch) · [RP≠本机DP](3.4-bridge-switch-stp.md#ch03-4-stp-rp-dp)
+→ [STP 两台](3.4-bridge-switch-stp.md#ch03-4-stp-plain) · [四台选举](3.4-bridge-switch-stp.md#ch03-4-stp-4switch) · [根桥全DP·RP/DP](3.4-bridge-switch-stp.md#ch03-4-stp-rp-dp)
 
 | | 交换机 | 路由器 |
 |--|--------|--------|
@@ -159,42 +159,24 @@
 
 ## 3.5 无线局域网（IEEE 802.11 / Wi-Fi）
 
-### 定位
+**CSMA/CA**：先听 → 空闲 → **随机退避** → 发 → **ACK**（**避免**冲突，不 **CD**）  
+**为何不用 CD**：发时**听不到别人**（近端掩蔽）  
+**隐藏终端**：A、C 互不可闻，同时打 **AP** → AP 处撞车  
+**RTS/CTS**：CTS 让能听见 AP 的站**静音**；大包常用
 
-干扰与隐藏终端 → **CSMA/CA**（冲突**避免**，非 CD）。
+→ [教材句拆解](3.5-wireless-80211.md#ch03-5-csma-ca) · [CA vs CD](3.5-wireless-80211.md#ch03-5-cd-vs-ca) · [隐藏终端](3.5-wireless-80211.md#ch03-5-hidden-node) · [RTS/CTS 时间轴](3.5-wireless-80211.md#ch03-5-rts-cts) · [五句专抄](3.5-wireless-80211.md#ch03-5-summary)
 
 | 术语 | 说明 |
 |------|------|
-| **CSMA/CA** | 载波监听 + 冲突避免 |
-| **NAV** | 虚拟载波监听，预约信道占用时长 |
+| **CSMA/CA** | 载波监听 + **冲突避免**（Wi‑Fi） |
+| **CSMA/CD** | 载波监听 + **冲突检测**（有线 Hub 半双工） |
+| **NAV** | 虚拟载波监听，预约占用时长 |
+| **DIFS / SIFS** | 发数据前等待 / ACK 前短等待（SIFS 优先级高） |
 
-### MAC 要点
+**物理**：802.11a/b/g → **11n (MIMO)** → **11ac/ax**  
+**安全**：WEP ✕ → **WPA2(AES)** → **WPA3**
 
-- **DIFS**：发数据前最小空闲等待  
-- **SIFS**：ACK 前等待，**优先级最高**  
-- **二进制指数退避**：冲突后随机退避  
-
-### 物理演进
-
-802.11a/b/g → **11n (MIMO)** → **11ac/ax**
-
-### 安全
-
-WEP（不安全）→ **WPA2 (AES)** → **WPA3**
-
-### 交互（可选 RTS/CTS）
-
-空闲 → DIFS → **RTS** → **CTS** → **Data** → **ACK**
-
-### 四地址帧
-
-**To DS / From DS** 标志决定地址个数；WDS/Mesh（11）用四地址；普通 AP 场景常用三地址。
-
-### 易混
-
-**为何不用 CSMA/CD？** 发送时难以同时检测远端微弱冲突（**近端掩蔽**）。
-
-→ 自顶向下：[§6.3 多路访问](../../top_down/06_link_layer_and_lan/study.md#ch6-3)
+→ 自顶向下：[§6.3](../../top_down/06_link_layer_and_lan/study.md#ch6-3) · 有线：[3.2 CSMA/CD](3.2-ethernet-ieee802-encapsulation.md#ch03-2-mac-evolution)
 
 ---
 
