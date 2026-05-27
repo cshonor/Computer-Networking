@@ -11,11 +11,19 @@
 | HTTP | `http` |
 | DNS | `dns` |
 | TCP 握手 | `tcp.flags.syn==1 && tcp.flags.ack==0` |
+| TCP 挥手 | `tcp.flags.fin==1` |
+| TCP RST | `tcp.flags.reset==1` |
+| 某 TCP 流 | `tcp.stream eq 0` |
+| UDP / DNS | `udp.port == 53` 或 `dns` |
 | 重传 | `tcp.analysis.retransmission` |
 | 零窗口 | `tcp.analysis.zero_window` |
 | ARP | `arp` |
 | 隐藏 ARP | `!arp` |
 | ICMP | `icmp` |
+| Ping 请求 | `icmp.type == 8` |
+| TTL 超时 | `icmp.type == 11` |
+| IPv6 | `ipv6` |
+| NDP | `icmpv6.type == 135 or icmpv6.type == 136` |
 
 ## 捕获过滤器（Capture / BPF）
 
@@ -25,6 +33,20 @@
 | 某端口 | `port 443` |
 | 组合 | `host 10.0.0.1 and port 8080` |
 | 仅 TCP RST（BPF） | `tcp[13] & 4 != 0` 或 `tcp&4==4` |
+
+## 命令行（TShark / tcpdump）
+
+| 场景 | 命令 |
+|------|------|
+| 列网卡 | `tshark -D` |
+| 抓包写盘 | `tshark -ni 1 -w out.pcapng -f "host x"` |
+| 离线显示滤 | `tshark -r out.pcapng -Y "http" -n` |
+| 绝对时间 | `tshark -r out.pcapng -t ad` |
+| 协议分层 | `tshark -r out.pcapng -q -z io,phs` |
+| Follow TCP 0 | `tshark -r out.pcapng -q -z follow,tcp,ascii,0` |
+| tcpdump 抓 | `sudo tcpdump -nni eth0 -w out.pcap 'tcp port 443'` |
+
+详见 [第6章](../chapter-06-tshark-tcpdump/chapter-summary.md)。
 
 ## 排障口诀
 

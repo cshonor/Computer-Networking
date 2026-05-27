@@ -9,7 +9,7 @@
 | chapter-03-wireshark-intro | 4 |
 | chapter-04-capture-packet | 5 |
 | chapter-05-advanced-feature | 8 |
-| chapter-06-tshark-tcpdump | 4 |
+| chapter-06-tshark-tcpdump | 9 |
 | chapter-07-network-layer-proto | 4 |
 | chapter-08-transport-layer-tcp-udp | 4 |
 | chapter-09-application-layer-proto | 4 |
