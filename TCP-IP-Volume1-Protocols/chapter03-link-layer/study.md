@@ -164,7 +164,7 @@
 **隐藏终端**：A、C 互不可闻，同时打 **AP** → AP 处撞车  
 **RTS/CTS**：CTS 让能听见 AP 的站**静音**；大包常用
 
-→ [教材句拆解](3.5-wireless-80211.md#ch03-5-csma-ca) · [CA vs CD](3.5-wireless-80211.md#ch03-5-cd-vs-ca) · [隐藏终端](3.5-wireless-80211.md#ch03-5-hidden-node) · [RTS/CTS 时间轴](3.5-wireless-80211.md#ch03-5-rts-cts) · [五句专抄](3.5-wireless-80211.md#ch03-5-summary)
+→ [CA vs CD](3.5-wireless-80211.md#ch03-5-cd-vs-ca) · [RTS/CTS 四步时序](3.5-wireless-80211.md#ch03-5-rts-cts-timeline) · [五句专抄](3.5-wireless-80211.md#ch03-5-summary)
 
 | 术语 | 说明 |
 |------|------|
