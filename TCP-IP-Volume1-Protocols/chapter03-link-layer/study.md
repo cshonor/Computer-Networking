@@ -261,16 +261,11 @@
 
 ## 3.9 隧道基础
 
-在不支持某协议的网络里**嵌套承载**该协议（如 IPv6 over IPv4）。
+**外层过路 / 内层到点** · **IPIP=4** · **GRE=47**
 
-- **封装**：内层包作为外层载荷  
-- **单向链路**：卫星等场景  
-- **递归隧道**：首部叠加，易 **MTU 溢出**（内层有效载荷常少 **≥20 B**）
+**MTU**：1500−隧道头（GRE 例 **1476**）· **PMTUD** 靠 ICMP，被拦易丢大包
 
-```text
-隧道入口： [ 外层 IPv4 头 ] + [ 内层 IPv6 头 ] + [ 数据 ]
-         → 跨 IPv4 骨干 → 出口剥外层 → 还原 IPv6
-```
+→ [内外层头](3.9-tunnel-basics.md#ch03-9-encap) · [MTU/NAT/PMTUD](3.9-tunnel-basics.md#ch03-9-mtu-nat) · [IPIP/GRE](3.9-tunnel-basics.md#ch03-9-compare) · [口诀](3.9-tunnel-basics.md#ch03-9-exam)
 
 ---
 
