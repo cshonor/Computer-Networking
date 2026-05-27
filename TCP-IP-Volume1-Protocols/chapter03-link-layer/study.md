@@ -164,7 +164,7 @@
 **隐藏终端**：A、C 互不可闻，同时打 **AP** → AP 处撞车  
 **RTS/CTS**：CTS 让能听见 AP 的站**静音**；大包常用
 
-→ [CA vs CD](3.5-wireless-80211.md#ch03-5-cd-vs-ca) · [RTS/CTS 四步时序](3.5-wireless-80211.md#ch03-5-rts-cts-timeline) · [五句专抄](3.5-wireless-80211.md#ch03-5-summary)
+→ [CA vs CD](3.5-wireless-80211.md#ch03-5-cd-vs-ca) · [RTS/CTS 时序](3.5-wireless-80211.md#ch03-5-rts-cts-timeline) · [4 MAC 对照](3.5-wireless-80211.md#ch03-5-frame-mac) · [扫描/关联/认证](3.5-wireless-80211.md#ch03-5-bss-assoc)
 
 | 术语 | 说明 |
 |------|------|
@@ -173,8 +173,9 @@
 | **NAV** | 虚拟载波监听，预约占用时长 |
 | **DIFS / SIFS** | 发数据前等待 / ACK 前短等待（SIFS 优先级高） |
 
-**物理**：802.11a/b/g → **11n (MIMO)** → **11ac/ax**  
-**安全**：WEP ✕ → **WPA2(AES)** → **WPA3**
+**帧**：最多 **4 MAC**（手机↔AP 常 **3**）；**SSID 名 / BSSID=AP MAC**  
+**上线**：Beacon/Probe → **关联 AID** → **WPA 4 次握手**  
+**物理**：802.11a/b/g → **11n** → **11ac/ax** · **安全**：WEP ✕ → **WPA2** → **WPA3**
 
 → 自顶向下：[§6.3](../../top_down/06_link_layer_and_lan/study.md#ch6-3) · 有线：[3.2 CSMA/CD](3.2-ethernet-ieee802-encapsulation.md#ch03-2-mac-evolution)
 
