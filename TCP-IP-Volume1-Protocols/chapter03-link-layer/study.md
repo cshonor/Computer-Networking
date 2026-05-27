@@ -141,9 +141,11 @@
 
 → [核心总览](3.4-bridge-switch-stp.md#ch03-4-core-summary) · [端口双向](3.4-bridge-switch-stp.md#ch03-4-port-bidir) · [STP](3.4-bridge-switch-stp.md#ch03-4-stp)
 
-**STP 802.1D**：环路→泛洪/风暴 · **根桥→RP→DP→BP** · 慢 **30–50s** · **RSTP 802.1w** ≈ **1–2s**
+**环路危害**：S1↔S2 双链路例 → 帧转圈 · 广播风暴 · MAC 表震荡  
+**STP/RSTP**：逻辑堵冗余口成树 · STP **30–50s** · RSTP **1–2s**  
+**L2 交换**：MAC · 局域网内 · **L3 路由**：IP · 跨 VLAN/外网/AS
 
-→ [STP 简答](3.4-bridge-switch-stp.md#ch03-4-stp-exam)
+→ [环路例子](3.4-bridge-switch-stp.md#ch03-4-loop-hazards) · [L2/L3](3.4-bridge-switch-stp.md#ch03-4-router) · [STP 简答](3.4-bridge-switch-stp.md#ch03-4-stp-exam)
 
 | | 交换机 | 路由器 |
 |--|--------|--------|
