@@ -13,7 +13,8 @@ Computer-Networking/
 ├─ top_down/                      # 《自顶向下》Ch1–8 + 99 实践（01_–99_）
 ├─ TCP-IP-Volume1-Protocols/      # 《TCP/IP 详解》卷1 第2版（18 章，节笔记平铺在章目录）
 ├─ UNP_Vol1/                      # 《UNIX 网络编程》卷1（四阶段 Ch1–31，节笔记平铺）
-├─ HTTP-The-Definitive-Guide/     # 《HTTP 权威指南》（按章 study.md）
+├─ http-authoritative-guide/      # 《HTTP 权威指南》（chapter-summary + 01-小节英文名.md）
+├─ HTTP-The-Definitive-Guide/     # 旧结构（study.md），见该目录 README 迁移说明
 ├─ wireshark-packet-analysis/     # Wireshark：chapter-XX/chapter-summary + 01-小节英文名.md
 └─ scripts/                       # 目录生成、链接修正等维护脚本
 ```
@@ -23,7 +24,7 @@ Computer-Networking/
 | **自顶向下** | [top_down/README.md](top_down/README.md) | 章级 `study.md` + 小节 `*/study.md` |
 | **TCP/IP 卷1** | [QUICKREF.md](TCP-IP-Volume1-Protocols/QUICKREF.md) · [OUTLINE.md](TCP-IP-Volume1-Protocols/OUTLINE.md) | `chapterNN-主题/` 下 `x.y-*.md` 与 `study.md` 同级 |
 | **UNP 卷1** | [UNP_Vol1/README.md](UNP_Vol1/README.md) · [OUTLINE.md](UNP_Vol1/OUTLINE.md) | `ChapterNN_*/` 下 `x.y_*.md` 与 `study.md` 同级 |
-| **HTTP 指南** | [HTTP-The-Definitive-Guide/](HTTP-The-Definitive-Guide/) | 应用层 HTTP 深化 |
+| **HTTP 指南** | [http-authoritative-guide/](http-authoritative-guide/) · [OUTLINE](http-authoritative-guide/OUTLINE.md) | 21 章 · `chapter-summary` + 小节笔记 |
 | **Wireshark 实战** | [wireshark-packet-analysis/](wireshark-packet-analysis/) | 每章 `chapter-summary.md` + 小节 `01-xxx.md` · [速查](wireshark-packet-analysis/cheatsheet/notes.md) |
 
 **双轨对照**：自顶向下 ↔ TCP/IP 卷1（各章 `study.md` 内互链）；写 Socket 时 **UNP** 与 **top_down §2.7 / §3** 对照。

@@ -38,7 +38,7 @@
 
 - [计算机网络 自顶向下](../top_down/)
 - [TCP/IP 详解 卷一](../TCP-IP-Volume1-Protocols/)
-- [HTTP 权威指南](../HTTP-The-Definitive-Guide/)
+- [HTTP 权威指南](../http-authoritative-guide/)
 
 ## 使用工具
 
