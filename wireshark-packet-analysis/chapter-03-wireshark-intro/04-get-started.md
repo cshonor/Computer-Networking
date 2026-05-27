@@ -1,15 +1,104 @@
-﻿# get started
+﻿# 3.4 Wireshark 初步入门
 
-> 本章：[chapter-summary.md](./chapter-summary.md) · 全书：[../README.md](../README.md)
+> 本章：[chapter-summary.md](./chapter-summary.md) · 全书：[../README.md](../README.md) · 过滤器速查：[cheatsheet/notes.md](../cheatsheet/notes.md)
+
+**核心主旨**：首次抓包、三面板界面、首选项、着色规则、全局/个人配置与 **Configuration Profiles**。
 
 ## 核心知识点
 
-（待填）
+### 3.4.1 第一次捕获与基线思维
+
+**基线（Baseline）**：在**网络正常**时抓一段代表性流量，作为日后对比「异常时多了/少了什么」的参照。
+
+| 步骤 | 菜单/操作 |
+|------|-----------|
+| 1 | `Capture` → `Interfaces`（或主界面选接口） |
+| 2 | 选择要监听的**网卡**（有线/无线/虚拟适配器） |
+| 3 | `Start` 开始；运行典型业务一段时间后 `Stop` |
+| 4 | `File` → `Save As` 存为 `.pcapng` 作基线档案 |
+
+> 勿只在故障发生后才抓包——缺少正常对照难以判断异常。
+
+### 3.4.2 主窗口三大面板
+
+```text
+┌─ Packet List（包列表）────────────── 序号、时间、源/目的、协议、Info
+├─ Packet Details（包细节）────────── 协议树，可展开各层 Header/字段
+└─ Packet Bytes（包字节）────────── 十六进制 + ASCII；与细节面板联动高亮
+```
+
+| 面板 | 作用 |
+|------|------|
+| **Packet List** | 全局索引；单击选中一包 |
+| **Packet Details** | **分层结构化**解码；排障主战场 |
+| **Packet Bytes** | 链路上**原始形态**；点击字段→对应字节高亮 |
+
+### 3.4.3 首选项（Preferences）
+
+`Edit` → `Preferences`，常用六块：
+
+| 分类 | 典型调整 |
+|------|----------|
+| **Appearance** | 列、字体、配色 |
+| **Capture** | 默认接口、**混杂模式**、是否实时刷新列表 |
+| **Filter Expressions** | 保存常用显示/捕获过滤器 |
+| **Name Resolutions** | 是否把 IP→主机名、MAC→厂商、端口→服务名（排障时可关以免 DNS 干扰） |
+| **Protocols** | 各协议解码开关（如 TCP 相对序号） |
+| **Statistics** | 统计模块内部选项 |
+
+### 3.4.4 数据包彩色高亮（Coloring Rules）
+
+`View` → `Coloring Rules`：按规则为行着色（默认如 DNS 蓝、TCP 绿等）。
+
+| 场景 | 做法 |
+|------|------|
+| 快速区分协议 | 用默认规则 |
+| 盯特定 IP/协议 | 新建规则，背景设**高亮色**（如明黄） |
+| 恶意 DHCP 等 | 对 `bootp` / 指定 Server ID 定制颜色 |
+
+着色作用于**显示**，不改变捕获内容；与**显示过滤器**可配合使用。
+
+### 3.4.5 配置文件路径
+
+`Help` → `About Wireshark` → **Folders** 标签：
+
+| 类型 | 范围 |
+|------|------|
+| **Global configuration** | 全机所有用户默认 |
+| **Personal configuration** | 仅当前账户；**优先于**全局 |
+
+个人配置适合保存自己的列、着色、最近过滤器。
+
+### 3.4.6 配置方案（Configuration Profiles）
+
+将**列 + 过滤器 + 着色 + 首选项子集**存为命名方案，按场景切换：
+
+| 场景示例 | 方案可含 |
+|----------|----------|
+| 延迟分析 | 相对时间列、TCP 着色 |
+| 安全分析 | 可疑端口过滤器、告警色 |
+| 蓝牙 / 专网 | 专用列与 dissector 设置 |
+
+| 操作 | 路径 |
+|------|------|
+| 管理方案 | `Edit` → `Configuration Profiles` |
+| **快速切换** | 点击界面**右下角当前配置名**下拉 |
+
+每个方案对应**独立目录**，可打包备份或分享给团队。
 
 ## 抓包/实操记录
 
-（待填）
+| 练习 | 目标 |
+|------|------|
+| 基线 | 正常时段抓 5 分钟 Web + DNS，保存 `baseline-home.pcapng` |
+| 三面板 | 选中 HTTP 包，在 Details 展开 `Hypertext Transfer Protocol`，观察 Bytes 高亮 |
+| 着色 | 为 `ip.addr == 你的网关` 设黄色背景 |
+| Profile | 复制默认方案为 `lab`，增加「Delta Time」列 |
+
+**捕获选项**：`Capture` → `Options` → 确认 **Promiscuous**（与 [§2.1](../chapter-02-traffic-monitor/01-promiscuous-mode.md) 一致）。
 
 ## 疑问与总结
 
-（待填）
+- **显示过滤器**（抓完后筛）vs **捕获过滤器**（抓之前筛）——下章深入；初学先用显示过滤器即可。
+- 名称解析打开后 Info 列更易读，但可能引入 **DNS 查询包** 本身，分析纯 L3 时可关闭。
+- Profile 切换不会丢失已打开文件，但列与着色会随方案变。
