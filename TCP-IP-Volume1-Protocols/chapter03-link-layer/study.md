@@ -142,10 +142,10 @@
 → [核心总览](3.4-bridge-switch-stp.md#ch03-4-core-summary) · [端口双向](3.4-bridge-switch-stp.md#ch03-4-port-bidir) · [STP](3.4-bridge-switch-stp.md#ch03-4-stp)
 
 **环路危害**：S1↔S2 双链路例 → 帧转圈 · 广播风暴 · MAC 表震荡  
-**STP/RSTP**：逻辑堵冗余口成树 · STP **30–50s** · RSTP **1–2s**  
+**STP/RSTP**：四台环 S0 根 · S3 **RP→S1** · 链路 S2–S3 上 **S3 侧 BP** · STP **30–50s** / RSTP **1–2s**  
 **L2 交换**：MAC · 局域网内 · **L3 路由**：IP · 跨 VLAN/外网/AS
 
-→ [STP 四步+拓扑图](3.4-bridge-switch-stp.md#ch03-4-stp-plain) · [环路危害](3.4-bridge-switch-stp.md#ch03-4-loop-hazards) · [L2/L3](3.4-bridge-switch-stp.md#ch03-4-router)
+→ [STP 两台](3.4-bridge-switch-stp.md#ch03-4-stp-plain) · [四台选举](3.4-bridge-switch-stp.md#ch03-4-stp-4switch) · [RP≠本机DP](3.4-bridge-switch-stp.md#ch03-4-stp-rp-dp)
 
 | | 交换机 | 路由器 |
 |--|--------|--------|
