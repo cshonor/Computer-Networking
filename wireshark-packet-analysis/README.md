@@ -1,39 +1,49 @@
-# Wireshark 数据包分析实战 — 学习笔记
+# Wireshark 数据包分析 — 学习笔记
 
-> 英文目录结构，适配 **GitHub** + **NotebookLM** 上传精读。
+> **打开本文件夹**：下面每个 **`chapter-XX-*/`** 是一章，**笔记在文件夹里的 `study.md`**。
 
 ## 学习背景
 
 | 项 | 说明 |
 |----|------|
-| **前置** | [TCP/IP 详解 卷一](../TCP-IP-Volume1-Protocols/README.md) · [计算机网络 自顶向下](../top_down/README.md) |
-| **目标** | 把网络理论落地**真实抓包**，服务后端开发与线上排障 |
-| **实验** | [自顶向下 Wireshark 实验](../top_down/99_practice_wireshark_lab/README.md) |
+| 前置 | [TCP/IP 卷一](../TCP-IP-Volume1-Protocols/) · [自顶向下](../top_down/) |
+| 目标 | 理论落地抓包，服务后端排障 |
+| 实验 | [自顶向下 Wireshark 实验](../top_down/99_practice_wireshark_lab/) |
 
-## 目录结构
+## 章节目录
 
-| 目录 | 内容 | 优先级 |
-|------|------|--------|
-| [01-basic-foundation](./01-basic-foundation/) | 网络基础 + 抓包原理 | **必学** |
-| [02-wireshark-operation](./02-wireshark-operation/) | Wireshark 图形化操作 | **必学** |
-| [03-command-line-tool](./03-command-line-tool/) | TShark / tcpdump | **必学** |
-| [04-protocol-deep-dive](./04-protocol-deep-dive/) | 协议逐层抓包拆解 | **后端重点** |
-| [05-real-world-practice](./05-real-world-practice/) | 慢网、故障排障案例 | **必学** |
-| [06-extended-topic](./06-extended-topic/) | 安全、Wi‑Fi 抓包 | 选读 |
-| [07-pcap-lab-files](./07-pcap-lab-files/) | 实验 PCAP（勿提交大文件） | 配套 |
-| [08-cheat-sheet-summary](./08-cheat-sheet-summary/) | 过滤器速查、口诀 | 复习 |
-| [reference](./reference/) | 延伸阅读与工具 | 存档 |
+| 章 | 文件夹 | 笔记 |
+|----|--------|------|
+| 1 | [chapter-01-network-basics](./chapter-01-network-basics/) | [study.md](./chapter-01-network-basics/study.md) |
+| 2 | [chapter-02-traffic-monitor](./chapter-02-traffic-monitor/) | [study.md](./chapter-02-traffic-monitor/study.md) |
+| 3 | [chapter-03-wireshark-intro](./chapter-03-wireshark-intro/) | [study.md](./chapter-03-wireshark-intro/study.md) |
+| 4 | [chapter-04-capture-packet](./chapter-04-capture-packet/) | [study.md](./chapter-04-capture-packet/study.md) |
+| 5 | [chapter-05-advanced-feature](./chapter-05-advanced-feature/) | [study.md](./chapter-05-advanced-feature/study.md) |
+| 6 | [chapter-06-tshark-tcpdump](./chapter-06-tshark-tcpdump/) | [study.md](./chapter-06-tshark-tcpdump/study.md) |
+| 7 | [chapter-07-network-layer-proto](./chapter-07-network-layer-proto/) | [study.md](./chapter-07-network-layer-proto/study.md) |
+| 8 | [chapter-08-transport-layer-tcp-udp](./chapter-08-transport-layer-tcp-udp/) | [study.md](./chapter-08-transport-layer-tcp-udp/study.md) **重点** |
+| 9 | [chapter-09-application-layer-proto](./chapter-09-application-layer-proto/) | [study.md](./chapter-09-application-layer-proto/study.md) |
+| 10 | [chapter-10-basic-scenario](./chapter-10-basic-scenario/) | [study.md](./chapter-10-basic-scenario/study.md) |
+| 11 | [chapter-11-network-slow-fix](./chapter-11-network-slow-fix/) | [study.md](./chapter-11-network-slow-fix/study.md) |
+| 12 | [chapter-12-security-analysis](./chapter-12-security-analysis/) | [study.md](./chapter-12-security-analysis/study.md) 选读 |
+| 13 | [chapter-13-wifi-packet](./chapter-13-wifi-packet/) | [study.md](./chapter-13-wifi-packet/study.md) 选读 |
 
-→ 章节索引：[study.md](./study.md) · 章节目录：[OUTLINE.md](./OUTLINE.md)
+**速查**：[display-filters.md](./display-filters.md) · 导航：[study.md](./study.md)
 
-## 学习工具
+## 目录约定
 
-- **Wireshark** / **TShark**
-- **Docker** 实验环境（可选）
-- **NotebookLM**：按章上传 `chapter-*.md` 精读；PCAP 放 `07-pcap-lab-files/`
+```text
+wireshark-packet-analysis/
+├── README.md                 ← 你在这里
+├── study.md                  ← 全书导航
+├── display-filters.md        ← 过滤器速查
+├── chapter-01-network-basics/
+│   ├── README.md
+│   └── study.md              ← 第 1 章笔记（正文写这里）
+├── chapter-02-…/
+│   └── study.md
+└── …
+```
 
-## 使用说明
-
-1. 每章打开对应 `chapter-*.md`，按模板填**过滤器、截图说明、PCAP 文件名**。  
-2. 大体积 `.pcap` **不要进 Git**（见 `07-pcap-lab-files/.gitignore`），本地或网盘存放。  
-3. 与理论笔记交叉链接：协议细节以 TCP/IP / 自顶向下为准，本仓库侧重**抓包验证**。
+- **PCAP**：可放在对应章文件夹或本根目录（[.gitignore](./.gitignore) 已忽略 `*.pcap`）。  
+- **NotebookLM**：按章上传该章的 `study.md` 即可。
