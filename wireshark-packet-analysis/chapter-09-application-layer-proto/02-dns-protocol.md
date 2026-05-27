@@ -73,7 +73,7 @@
 
 **Wireshark**：`dns.flags.opcode == 0` 且 TCP 流上大量 Answer；或 `dns.axfr`（视版本）
 
-> **拓展**：DNS 欺骗/放大 → [第12章](../chapter-12-security-analysis/chapter-summary.md)；异常大 UDP 响应对 → 放大攻击特征。
+> **拓展**：DNS 欺骗/放大 → [第12章 安全分析](../chapter-12-security-analysis/chapter-summary.md)；异常大 UDP 响应对 → 放大攻击特征。
 
 ## 抓包/实操记录
 

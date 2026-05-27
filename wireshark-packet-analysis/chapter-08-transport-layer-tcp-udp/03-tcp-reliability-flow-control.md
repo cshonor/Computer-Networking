@@ -1,6 +1,6 @@
 ﻿# 8.1 延伸：可靠传输、重传与流量控制
 
-> 本章：[chapter-summary.md](./chapter-summary.md) · 全书：[../README.md](../README.md) · 详解：[第11章 网络性能](../chapter-11-network-slow-fix/chapter-summary.md) · Expert：[§5.8](../chapter-05-advanced-feature/08-expert-info.md)
+> 本章：[chapter-summary.md](./chapter-summary.md) · 全书：[../README.md](../README.md) · 详解：[第11章 让网络不再卡](../chapter-11-network-slow-fix/chapter-summary.md) · Expert：[§5.8](../chapter-05-advanced-feature/08-expert-info.md)
 
 **说明**：教材在 TCP 基础后于第 11 章展开**重传、滑动窗口、拥塞控制**；本节给出 Wireshark 读包入口，避免与握手/断开重复。
 
