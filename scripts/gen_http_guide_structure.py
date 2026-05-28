@@ -201,7 +201,6 @@ SUMMARY_TPL = """# {ch_title}
 
 def main():
     ROOT.mkdir(parents=True, exist_ok=True)
-    (ROOT / ".gitkeep").write_text("", encoding="utf-8")
 
     outline_lines = ["# 章节目录\n", "| 章 | 文件夹 | 小节数 |\n", "|----|--------|--------|\n"]
     readme_rows = []
@@ -209,7 +208,6 @@ def main():
     for folder, ch_title, sections in CHAPTERS:
         ch_dir = ROOT / folder
         ch_dir.mkdir(parents=True, exist_ok=True)
-        (ch_dir / ".gitkeep").write_text("", encoding="utf-8")
 
         index_lines = []
         for fname, sec_title in sections:
@@ -250,7 +248,6 @@ def main():
 - `chapter-xx-…/`：独立章节文件夹
 - `chapter-summary.md`：本章整体总结、知识梳理
 - `01-xxx.md`：对应小节独立笔记（见名知意，不用 section 通用名）
-- `.gitkeep`：Git 空目录追踪
 
 ## 章节目录
 

@@ -16,7 +16,6 @@
 - `chapter-xx-…/`：独立章节文件夹
 - `chapter-summary.md`：本章整体总结、知识梳理
 - `01-xxx.md`：对应小节独立笔记（见名知意，不用 section 通用名）
-- `.gitkeep`：Git 空目录追踪
 
 ## 章节目录
 
