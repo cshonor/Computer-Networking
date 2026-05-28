@@ -1,6 +1,6 @@
 # 第 3 章：链路层（Link Layer）
 
-> 按书节速记：[3.1](3.1-introduction.md) · [3.2](3.2-ethernet-ieee802-encapsulation.md) · [Hub](3.2-hub-core.md) · [3.3](3.3-full-duplex-autoneg.md) · [3.4](3.4-bridge-switch-stp.md) · [3.5](3.5-wireless-80211.md) · [3.6](3.6-ppp-protocol.md) · [3.7](3.7-loopback-interface.md) · [3.8](3.8-mtu.md) · [3.9](3.9-tunnel-basics.md) · [3.10](3.10-link-layer-security.md) · [3.11](3.11-summary.md) · [3.12](3.12-references.md) · [QUICKREF §3](../QUICKREF.md)
+> 按书节速记：[3.1](3.1-introduction.md) · [3.2](3.2-ethernet-ieee802-encapsulation.md)（含 [Hub](3.2-ethernet-ieee802-encapsulation.md#ch03-2-hub)） · [3.3](3.3-full-duplex-autoneg.md) · [3.4](3.4-bridge-switch-stp.md) · [3.5](3.5-wireless-80211.md) · [3.6](3.6-ppp-protocol.md) · [3.7](3.7-loopback-interface.md) · [3.8](3.8-mtu.md) · [3.9](3.9-tunnel-basics.md) · [3.10](3.10-link-layer-security.md) · [3.11](3.11-summary.md) · [3.12](3.12-references.md) · [QUICKREF §3](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/02_link_layer/ch03_link_layer.md)）  
 > 自顶向下对照：[06_link_layer_and_lan/study.md](../../top_down/06_link_layer_and_lan/study.md)
@@ -56,7 +56,7 @@
 
 ## 3.2 以太网与 IEEE 802
 
-**介质访问**：Hub + **CSMA/CD** + 一大冲突域（[Hub 精读](3.2-hub-core.md)）· Switch + MAC 表 + **每端口一域**  
+**介质访问**：Hub + **CSMA/CD** + 一大冲突域（[3.2 Hub](3.2-ethernet-ieee802-encapsulation.md#ch03-2-hub)）· Switch + MAC 表 + **每端口一域**  
 **帧**：Ethernet II · **MTU 1500** · `0x0800/0806/86DD` · **FCS 只检错不重传** · 64–1518B  
 **802.1Q Tag**：`0x8100` · TCI=**PCP(3)+DEI(1)+VID(12)** · VID **1–4094** · PCP **0–7**（6=语音）· **AX**=LACP
 
