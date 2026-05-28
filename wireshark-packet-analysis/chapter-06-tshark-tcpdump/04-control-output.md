@@ -1,6 +1,6 @@
 # 6.4 控制输出
 
-> 本章：[chapter-summary.md](./chapter-summary.md) · 全书：[../README.md](../README.md)
+> 本章：[chapter-summary.md](./chapter-summary.md) · 全书：[../README.md](../README.md) · 概念：[§1.1 转换 vs 分析](../chapter-01-network-basics/01-what-is-packet-analysis.md#tcpdump-止步在哪一层)
 
 **核心主旨**：控制终端输出的颗粒度；TShark 可到 L7，tcpdump 主要 L3/L4。
 

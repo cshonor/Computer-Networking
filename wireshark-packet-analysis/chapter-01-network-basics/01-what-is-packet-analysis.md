@@ -24,18 +24,49 @@
    - **正常模式**：硬件比对**目的 MAC** → 匹配本机才上传，不匹配则**硬件丢弃**（见 [网卡四功能](../../top_down/06_link_layer_and_lan/6.1_link_layer_service/nic-core-functions.md)）。
    - **混杂模式**：**仍读 MAC**，但关闭硬件丢弃规则 → 非本机帧也上交系统，再由 Wireshark 过滤/分析 → [§2.1](../chapter-02-traffic-monitor/01-promiscuous-mode.md)。
 2. **转换（Convert）**
-   - 把二进制变成人可读形式；命令行工具（如 tcpdump）常止步于此层——**基础解析**后交给人工继续读。
+   - 把**二进制**数据包转成**人可读**格式：解析各层协议头，把字段译成 IP、端口、TCP 标志位等。
+   - **tcpdump 等轻量命令行工具通常只做到传输层**：链路/网络/传输层可结构化输出；**应用层 payload 多为十六进制 + ASCII 原样**，不做 HTTP/DNS/TLS 等协议语义解码（见下节）。
 3. **分析（Analyze）**
-   - 识别、校验**各层协议**；提取字段（IP、端口、标志位等），形成排障结论。Wireshark 等 GUI 工具主要价值在这一步。
+   - 在「转换」之上做**全层、协议级**理解：HTTP 方法/路径、DNS 查询名、TLS 握手类型等，并支撑过滤器、统计、排障结论。
+   - **Wireshark / tshark** 强项在此；tcpdump 偏「抓到 + 读到 L4」，应用层靠人工看 hex 或离线交给 Wireshark。
 
-### 工具横向对比（速记）
+### 「转换」分层对应（TCP/IP）
 
-| 工具 | 强项 | 适用 |
-|------|------|------|
-| **Wireshark** | 图形化解码、过滤器、协议树、统计 | 日常排障、学习协议 |
-| **tcpdump / tshark** | 脚本化、服务器无 GUI、轻量抓包 | 生产机、自动化、先抓后分析 |
+| 层 | 典型协议 / 内容 | 人可读示例 |
+|----|-----------------|------------|
+| 应用层 | HTTP、HTTPS、FTP、DNS、SSH | URL、命令、文本 |
+| 传输层 | TCP、UDP | 端口、seq/ack、窗口、标志 `SYN/ACK` |
+| 网络层 | IP | 源/目的 IP、TTL、协议号 |
+| 链路层 | Ethernet | MAC、帧类型 |
+| 物理层 | 电/光信号 | 纯比特流（工具先拼成帧再往上解析） |
 
-> 跨平台：二者在 Linux / macOS / Windows 均可使用；大流量场景可先 tcpdump 落盘，再 Wireshark 离线打开 `.pcap`。
+网线里跑的是 **0/1**；嗅探器把比特流拼成帧/包，再逐层解析头部。
+
+### tcpdump 止步在哪一层
+
+**默认输出示例**（已结构化到 **IP + TCP**，即网络层 + 传输层）：
+
+```text
+12:34:56 IP 10.0.0.1.1234 > 10.0.0.2.80: Flags [P.], seq 1:100, ack 1, win 65535
+```
+
+| 层次 | tcpdump 典型能力 |
+|------|------------------|
+| 链路 / 网络 / 传输 | ✅ 结构化、人可读（IP、端口、TCP 标志、序号等） |
+| 应用层 | ❌ **不深度解析**；payload 多用 **hex + ASCII**（`-X` / `-xx` / `-A`），无「GET / HTTP/1.1」级字段拆解 |
+
+**一句话**：比特流 → 地址、端口、标志可读；**tcpdump 轻量止步 TCP/UDP，应用层 payload 原样呈现，不做协议级解码。**
+
+### 工具横向对比（解析深度）
+
+| 工具 | 解析深度 | 适用 |
+|------|----------|------|
+| **tcpdump** | 通常到 **传输层**；应用层 raw | 服务器脚本、轻量抓包、先落盘 |
+| **tshark** | 可到 **应用层**（HTTP、DNS、TLS 等字段） | 命令行全解析、自动化 |
+| **Wireshark** | **全层** + 协议树可视化 | 学习、日常排障 |
+
+> 跨平台：Linux / macOS / Windows（Windows 多用 **tshark** 代替 tcpdump）。大流量：**tcpdump 落盘** → Wireshark 离线打开 `.pcap`。  
+> 输出选项详解：[§6.4 控制输出](../chapter-06-tshark-tcpdump/04-control-output.md)
 
 ### 网卡在嗅探中的位置（与交换机无关）
 
@@ -58,9 +89,31 @@
 | 验证三步 | 抓一段浏览网页流量 → 看 **Frame**（收集）→ **协议树展开**（转换+分析） |
 | 过滤器入门 | 只看 HTTP：`http`；只看某 IP：`ip.addr == x.x.x.x` → 详见 [cheatsheet/notes.md](../cheatsheet/notes.md) |
 
+### 验证 tcpdump「止步传输层」（Linux / macOS）
+
+```bash
+# 默认：只见 IP/TCP 一行摘要
+sudo tcpdump -i eth0 -c 3 host 10.0.0.2 and port 80
+
+# 看链路层 MAC（-e）
+sudo tcpdump -i eth0 -c 3 -e
+
+# 应用层 payload：hex + ASCII，仍非 HTTP 字段解析（-X）
+sudo tcpdump -i eth0 -c 1 -X host 10.0.0.2 and port 80
+
+# 只要 ASCII 侧（-A）
+sudo tcpdump -i eth0 -c 1 -A host 10.0.0.2 and port 80
+
+# 对比：tshark 同一包可展开 http 树
+tshark -i eth0 -c 1 -Y "http" -V
+```
+
+同一 `.pcap` 用 Wireshark 打开 → 协议树可展开 **HTTP** 字段，与 tcpdump `-X` 对照。
+
 ## 疑问与总结
 
-- **嗅探 vs 分析**：嗅探强调「抓到」；分析强调「读懂协议与行为」——Wireshark 覆盖后两步，tcpdump 偏前两步。
+- **嗅探 vs 分析**：嗅探强调「抓到」；分析强调「读懂协议与行为」——Wireshark 覆盖转换+分析全层；**tcpdump 转换多止步 L4，分析靠人眼或离线 GUI**。
+- **转换 vs 分析**：转换 = 二进制 → 可读字段；分析 = 应用层语义 + 排障结论。tcpdump 默认只做前者到传输层为止。
 - **为何要开混杂**：默认**硬件丢弃**非本机 MAC 的帧；混杂后帧仍进系统，由工具筛选（且帧须能到达本端口）。
 - **易错**：混杂 ≠ 不检查 MAC；是**仍检查，但不硬件丢弃**。
 - **网卡 ≠ 交换机**：网卡只决定本机收不收；不会替别的设备转发帧。
