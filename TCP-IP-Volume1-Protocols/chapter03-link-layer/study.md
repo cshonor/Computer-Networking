@@ -164,7 +164,7 @@
 **隐藏终端**：A、C 互不可闻，同时打 **AP** → AP 处撞车  
 **RTS/CTS**：CTS 让能听见 AP 的站**静音**；大包常用
 
-→ [零基础导读](3.5-wireless-80211.md#ch03-5-beginner) · [A1～A4 / 背诵表](3.5-wireless-80211.md#ch03-5-frame-mac) · [SSID/BSSID/BSS](3.5-wireless-80211.md#ch03-5-bss-assoc) · [RTS/CTS](3.5-wireless-80211.md#ch03-5-rts-cts-timeline)
+→ [零基础导读](3.5-wireless-80211.md#ch03-5-beginner) · [A1～A4](3.5-wireless-80211.md#ch03-5-frame-mac) · [扫描/认证/关联/AID](3.5-wireless-80211.md#ch03-5-join-flow) · [AID≠A1](3.5-wireless-80211.md#ch03-5-aid-vs-mac) · [RTS/CTS](3.5-wireless-80211.md#ch03-5-rts-cts-timeline)
 
 | 术语 | 说明 |
 |------|------|
