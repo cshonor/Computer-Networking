@@ -1,6 +1,6 @@
-# 第 16 章：TCP 拥塞控制
+﻿# 第 16 章：TCP 拥塞控制
 
-> 按书节速记：[16.1](16.1-introduction.md) · [16.2](16.2-classic-algorithms.md) · [16.3](16.3-algorithm-improvements.md) · [16.4](16.4-eifel-response.md) · [16.5](16.5-extended-example.md) · [16.6](16.6-shared-congestion-state.md) · [16.7](16.7-tcp-friendliness.md) · [16.8](16.8-high-speed-cubic.md) · [16.9](16.9-delay-based-cc.md) · [16.10](16.10-bufferbloat.md) · [16.11](16.11-aqm-ecn.md) · [16.12](16.12-congestion-attacks.md) · [16.13](16.13-summary.md) · [16.14](16.14-references.md) · [QUICKREF §16](../QUICKREF.md)
+> 按书节速记：[16.1](16.1-introduction.md) · [16.2](16.2-classic-algorithms.md) · [16.3](16.3-algorithm-improvements.md) · [16.4](16.4-eifel-response.md) · [16.5](16.5-extended-example.md) · [16.6](16.6-shared-congestion-state.md) · [16.7](16.7-tcp-friendliness.md) · [16.8](16.8-high-speed-cubic.md) · [16.9](16.9-delay-based-cc.md) · [16.10](16.10-bufferbloat.md) · [16.11](16.11-aqm-ecn.md) · [16.12](16.12-congestion-attacks.md) · [16.13](16.13-summary.md) · [QUICKREF §16](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch16_tcp_congestion.md)）  
 > 流控：[ch15 rwnd](../chapter15-tcp-flow-window/study.md#ch15-5) · 重传：[ch14](../chapter14-tcp-timeout-retransmit/study.md) · 自顶向下：[§3.1 拥塞](../../top_down/03_transport_layer/study.md#ch3-1-tcp-cong)

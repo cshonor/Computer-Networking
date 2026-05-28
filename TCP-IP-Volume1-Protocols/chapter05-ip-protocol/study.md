@@ -1,6 +1,6 @@
-# 第 5 章：Internet 协议（IP）
+﻿# 第 5 章：Internet 协议（IP）
 
-> 按书节速记：[5.1](5.1-introduction.md) · [5.2](5.2-ipv4-header.md) · [5.3](5.3-ipv6-extension-headers.md) · [5.4](5.4-ip-routing-basic.md) · [5.5](5.8-mobile-ip-basic.md) · [5.6](5.6-host-ip-processing.md) · [5.7](5.7-ip-attacks.md) · [5.8](5.8-summary.md) · [5.9](5.9-references.md) · [QUICKREF §5](../QUICKREF.md)
+> 按书节速记：[5.1](5.1-introduction.md) · [5.2](5.2-ipv4-header.md) · [5.3](5.3-ipv6-extension-headers.md) · [5.4](5.4-ip-routing-basic.md) · [5.5](5.8-mobile-ip-basic.md) · [5.6](5.6-host-ip-processing.md) · [5.7](5.7-ip-attacks.md) · [5.8](5.8-summary.md) · [QUICKREF §5](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch05_ip.md)）  
 > 地址结构：[ch02](../chapter02-ip-address-architecture/study.md) · L2 交付：[ch04 ARP](../chapter04-arp-protocol/study.md) · 自顶向下：[§4.3 IPv4/IPv6](../../top_down/04_network_layer_data_plane/study.md#ch4-3)

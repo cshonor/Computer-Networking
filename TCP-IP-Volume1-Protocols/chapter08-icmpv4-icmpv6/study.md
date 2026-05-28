@@ -1,6 +1,6 @@
-# 第 8 章：ICMPv4 与 ICMPv6
+﻿# 第 8 章：ICMPv4 与 ICMPv6
 
-> 按书节速记：[8.1](8.1-introduction.md) · [8.2](8.2-icmp-packet-format.md) · [8.3](8.3-icmp-error-messages.md) · [8.4](8.4-icmp-query-ping.md) · [8.5](8.5-ipv6-ndp.md) · [8.6](8.6-icmpv4-v6-translation.md) · [8.7](8.7-icmp-attacks.md) · [8.8](8.8-summary.md) · [8.9](8.9-references.md) · [QUICKREF §8](../QUICKREF.md)
+> 按书节速记：[8.1](8.1-introduction.md) · [8.2](8.2-icmp-packet-format.md) · [8.3](8.3-icmp-error-messages.md) · [8.4](8.4-icmp-query-ping.md) · [8.5](8.5-ipv6-ndp.md) · [8.6](8.6-icmpv4-v6-translation.md) · [8.7](8.7-icmp-attacks.md) · [8.8](8.8-summary.md) · [QUICKREF §8](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch08_icmpv4_icmpv6.md)）  
 > 前置：[ch05 IP](../chapter05-ip-protocol/study.md) · [ch04 ARP](../chapter04-arp-protocol/study.md) · [ch06 SLAAC](../chapter06-dhcp-config/study.md#ch06-3) · [ch07 边界](../chapter07-firewall-nat/study.md)

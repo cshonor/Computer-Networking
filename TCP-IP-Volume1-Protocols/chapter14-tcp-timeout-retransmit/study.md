@@ -1,6 +1,6 @@
-# 第 14 章：TCP 超时与重传
+﻿# 第 14 章：TCP 超时与重传
 
-> 按书节速记：[14.1](14.1-introduction.md) · [14.2](14.2-simple-timeout-retransmit.md) · [14.3](14.3-rto-estimation.md) · [14.4](14.4-timer-based-retransmit.md) · [14.5](14.5-fast-retransmit.md) · [14.6](14.6-sack-retransmit.md) · [14.7](14.7-spurious-timeout.md) · [14.8](14.8-reorder-duplicate.md) · [14.9](14.9-destination-metrics.md) · [14.10](14.10-resegment-retransmit.md) · [14.11](14.11-retransmit-attacks.md) · [14.12](14.12-summary.md) · [14.13](14.13-references.md) · [QUICKREF §14](../QUICKREF.md)
+> 按书节速记：[14.1](14.1-introduction.md) · [14.2](14.2-simple-timeout-retransmit.md) · [14.3](14.3-rto-estimation.md) · [14.4](14.4-timer-based-retransmit.md) · [14.5](14.5-fast-retransmit.md) · [14.6](14.6-sack-retransmit.md) · [14.7](14.7-spurious-timeout.md) · [14.8](14.8-reorder-duplicate.md) · [14.9](14.9-destination-metrics.md) · [14.10](14.10-resegment-retransmit.md) · [14.11](14.11-retransmit-attacks.md) · [14.12](14.12-summary.md) · [QUICKREF §14](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch14_tcp_timeout_retransmit.md)）  
 > 前置：[ch12](../chapter12-tcp-basic/study.md#ch12-1-4) · [ch13 选项/时间戳](../chapter13-tcp-connection-manage/study.md#ch13-3) · 自顶向下：[§3.1 可靠/快速重传](../../top_down/03_transport_layer/study.md#ch3-1-tcp-reliable)

@@ -1,6 +1,6 @@
-# 第 12 章：TCP 传输控制协议（初步）
+﻿# 第 12 章：TCP 传输控制协议（初步）
 
-> 按书节速记：[12.1](12.1-introduction.md) · [12.2](12.2-tcp-service-feature.md) · [12.3](12.3-tcp-packet-header.md) · [12.4](12.4-summary.md) · [12.5](12.5-references.md) · [QUICKREF §12](../QUICKREF.md)
+> 按书节速记：[12.1](12.1-introduction.md) · [12.2](12.2-tcp-service-feature.md) · [12.3](12.3-tcp-packet-header.md) · [12.4](12.4-summary.md) · [QUICKREF §12](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch12_tcp_intro.md)）  
 > 对照 UDP：[ch10](../chapter10-udp-ip-fragment/study.md) · 端到端：[ch01](../chapter01-overview/study.md#ch01-e2e) · 自顶向下：[§3.1 TCP](../../top_down/03_transport_layer/study.md#ch3-1-tcp-conn)
