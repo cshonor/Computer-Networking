@@ -133,6 +133,10 @@ IPv4/IPv6 首部 · 扩展头链 · **LPM 转发** · Mobile IP · 主机处理�
 
 ## 5.4 IP 转发
 
+→ 精读：[5.4](5.4-ip-routing-basic.md) · [AS 边界 IGP/BGP](5.4-ip-routing-basic.md#ch05-4-as-boundary) · [AS100→AS200](5.4-ip-routing-basic.md#ch05-4-full-chain) · [背诵](5.4-ip-routing-basic.md#ch05-4-cheat)
+
+**AS 内 IGP、AS 门口 BGP**；终端侧 **ARP** 只到网关/每跳直连段。
+
 ### 控制面 vs 数据面
 
 | | 转发 (Forwarding) | 路由 (Routing) |
