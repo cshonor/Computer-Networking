@@ -10,15 +10,20 @@
 
 | 步 | 操作 |
 |----|------|
-| 1 | [wireshark.org/download](https://www.wireshark.org/download.html) → **Windows x64 Installer** |
-| 2 | 许可：同意 |
-| 3 | **务必勾选 Npcap**（必选）；USBPcap 可选；其余默认 |
-| 4 | Npcap 子安装一路默认 |
-| 5 | 开始菜单打开 Wireshark |
+| 1 | [wireshark.org/download](https://www.wireshark.org/download.html) → **Windows 64-bit Installer**（`.exe`） |
+| 2 | 许可协议：同意 |
+| 3 | **Choose Components**：Wireshark、TShark 默认勾选即可（Npcap 不在此页） |
+| 4 | **Packet Capture**：**务必勾选 Install Npcap**（必选） |
+| 5 | Npcap 子向导：许可 **I Agree**，其余一路默认 |
+| 6 | 安装路径：默认；等待安装结束 |
+| 7 | 开始菜单打开 **Wireshark** |
+
+带截图的逐步说明：[install-and-verify.md § Windows](../cheatsheet/install-and-verify.md#windowswin1011-64-位)
 
 | 组件 | 作用 |
 |------|------|
-| **Npcap** | 现行抓包驱动（教材旧称 WinPcap，角色相同） |
+| **Npcap** | 在 **Packet Capture** 页安装；无则无法抓本机实时流量。本机若仍为 **WinPcap**，安装时会提示卸载并由 Npcap 接替 |
+| **TShark** | 与 Wireshark 同装，命令行抓包 |
 | **USBPcap** | USB 抓包，以太网排障可不装 |
 
 **PATH（可选）**：将 `C:\Program Files\Wireshark` 加入环境变量 → 命令行可用 **tshark**。

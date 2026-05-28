@@ -10,14 +10,45 @@
 
 ### Windows（Win10/11 64 位）
 
-1. 打开 [https://www.wireshark.org/download.html](https://www.wireshark.org/download.html)
-2. 下载 **Windows x64 Installer**（`.exe`）
-3. 双击安装：
-   - 许可协议：同意
-   - **组件：务必勾选 Npcap**（必选，否则无法抓本机网卡实时流量）；USBPcap 可选；其余默认
-   - 安装路径：默认
-4. 等待 **Npcap** 子安装完成（Npcap 向导一路默认即可）
-5. 开始菜单打开 **Wireshark**
+1. 打开官网下载页：[https://www.wireshark.org/download.html](https://www.wireshark.org/download.html)
+2. 选择 **Windows 64-bit Installer**（`.exe`），下载后双击运行
+3. **许可协议**：阅读后点 **I Agree** / 同意
+4. **Choose Components（选择组件）**：保持默认即可（**Wireshark**、**TShark** 建议勾选；扩展抓包工具 extcap 可按需）
+
+   ![选择组件](./images/win-install/01-choose-components.png)
+
+   > **说明**：Npcap **不在**本页勾选，会在下一步 **Packet Capture** 单独安装。
+
+5. **Packet Capture（抓包驱动）**：务必勾选 **Install Npcap**（必选）。未装 Npcap 则无法抓本机网卡实时流量。版本号随安装包变化（如 1.79、1.88），以界面为准。
+
+   本机已有抓包驱动时，安装程序会提示先卸载再装，**属正常**，常见两种：
+
+   | 当前已装 | 界面提示（示例） |
+   |----------|------------------|
+   | 旧版 **Npcap** | “The currently installed Npcap x.xx will be uninstalled first.” |
+   | 旧版 **WinPcap** | “The currently installed WinPcap x.x.x may be uninstalled first.” → 由 Npcap 接替 |
+
+   ![升级已有 Npcap](./images/win-install/02-install-npcap.png)
+
+   ![从 WinPcap 迁移到 Npcap](./images/win-install/02-install-npcap-winpcap.png)
+
+   > 若此前安装 Wireshark 时系统崩溃过，需先以管理员运行 `net stop npcap` 再升级（安装程序界面有提示）。
+
+6. **Npcap 子安装向导**：弹出 Npcap 窗口 → 许可协议点 **I Agree** → 其余选项一路 **Next** / 默认即可，直到完成
+
+   ![Npcap 许可](./images/win-install/03-npcap-license.png)
+
+7. **安装路径**：Wireshark 主程序用默认路径（如 `C:\Program Files\Wireshark`）即可
+8. 等待 Wireshark 与 Npcap 均安装完成
+9. **开始菜单** 搜索并打开 **Wireshark**，进入主界面
+
+| 组件/步骤 | 是否必选 | 说明 |
+|-----------|----------|------|
+| **Wireshark** | 是 | 图形界面 |
+| **TShark** | 建议 | 命令行抓包/分析（同目录，可加 PATH） |
+| **Install Npcap** | **是** | 抓包驱动；旧教材称 WinPcap，现用 Npcap |
+| **USBPcap** | 否 | 仅 USB 抓包需要 |
+| extcap（Androiddump 等） | 否 | 特殊场景再装 |
 
 > 旧教材写 WinPcap；现行安装包为 **Npcap**，作用相同。
 
