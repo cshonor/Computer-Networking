@@ -209,7 +209,7 @@
 
 **API**（程序接口）≠ **Loopback 口**（虚拟网络接口）
 
-→ [127/::1](3.7-loopback-interface.md#ch03-7-addr) · [Router-ID](3.7-loopback-interface.md#ch03-7-rid) · [远程管理](3.7-loopback-interface.md#ch03-7-mgmt) · [速记表](3.7-loopback-interface.md#ch03-7-exam)
+→ [回环大白话/实操](3.7-loopback-interface.md#ch03-7-plain) · [127/::1](3.7-loopback-interface.md#ch03-7-addr) · [Router-ID](3.7-loopback-interface.md#ch03-7-rid) · [远程管理](3.7-loopback-interface.md#ch03-7-mgmt)
 
 ---
 
