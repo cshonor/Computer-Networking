@@ -217,7 +217,7 @@
 
 ## 3.8 MTU 与路径 MTU
 
-→ 精读：[3.8 MTU/PMTUD/MSS](3.8-mtu.md) · [PMTUD 流程图](3.8-mtu.md#ch03-8-pmtud)
+→ 精读：[3.8 MTU/PMTUD/MSS](3.8-mtu.md) · [DF=1](3.8-mtu.md#ch03-8-df) · [PMTUD 流程图](3.8-mtu.md#ch03-8-pmtud)
 
 ### 战略意义
 
