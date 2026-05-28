@@ -39,6 +39,8 @@
 
 ### 2.3.2 集线器输出（Hubbing Out）
 
+> Hub 原理（物理层、全网泛洪、半双工）：[TCP/IP §3.2 Hub](../../../TCP-IP-Volume1-Protocols/chapter03-link-layer/3.2-hub-core.md)
+
 ```text
 [交换机] —— [Hub] —— 目标主机
               └── 嗅探器

@@ -1,6 +1,6 @@
 # 第 3 章：链路层（Link Layer）
 
-> 按书节速记：[3.1](3.1-introduction.md) · [3.2](3.2-ethernet-ieee802-encapsulation.md) · [3.3](3.3-full-duplex-autoneg.md) · [3.4](3.4-bridge-switch-stp.md) · [3.5](3.5-wireless-80211.md) · [3.6](3.6-ppp-protocol.md) · [3.7](3.7-loopback-interface.md) · [3.8](3.8-mtu.md) · [3.9](3.9-tunnel-basics.md) · [3.10](3.10-link-layer-security.md) · [3.11](3.11-summary.md) · [3.12](3.12-references.md) · [QUICKREF §3](../QUICKREF.md)
+> 按书节速记：[3.1](3.1-introduction.md) · [3.2](3.2-ethernet-ieee802-encapsulation.md) · [Hub](3.2-hub-core.md) · [3.3](3.3-full-duplex-autoneg.md) · [3.4](3.4-bridge-switch-stp.md) · [3.5](3.5-wireless-80211.md) · [3.6](3.6-ppp-protocol.md) · [3.7](3.7-loopback-interface.md) · [3.8](3.8-mtu.md) · [3.9](3.9-tunnel-basics.md) · [3.10](3.10-link-layer-security.md) · [3.11](3.11-summary.md) · [3.12](3.12-references.md) · [QUICKREF §3](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/02_link_layer/ch03_link_layer.md)）  
 > 自顶向下对照：[06_link_layer_and_lan/study.md](../../top_down/06_link_layer_and_lan/study.md)
@@ -56,7 +56,7 @@
 
 ## 3.2 以太网与 IEEE 802
 
-**介质访问**：Hub + **CSMA/CD** + 一大冲突域 · Switch + MAC 表 + **每端口一域**  
+**介质访问**：Hub + **CSMA/CD** + 一大冲突域（[Hub 精读](3.2-hub-core.md)）· Switch + MAC 表 + **每端口一域**  
 **帧**：Ethernet II · **MTU 1500** · `0x0800/0806/86DD` · **FCS 只检错不重传** · 64–1518B  
 **802.1Q Tag**：`0x8100` · TCI=**PCP(3)+DEI(1)+VID(12)** · VID **1–4094** · PCP **0–7**（6=语音）· **AX**=LACP
 
@@ -272,9 +272,15 @@
 
 | 攻击 | 手段 |
 |------|------|
-| **MAC 泛洪** | 填满 MAC 表 → 交换机像集线器 → 嗅探 |
-| **VLAN 跳跃** | 双 802.1Q 标签跨 VLAN |
-| **STP 根劫持** | 高优先级 BPDU 夺根 → 截流 |
+| **MAC 泛洪** | 填满 CAM 表 → 交换机泛洪像 Hub → 嗅探 |
+| **STP 劫持** | 伪造优根 BPDU → 流量引到攻击者 |
+| **无线嗅探** | WEP/开放 WLAN → 见 [3.5](3.5-wireless-80211.md) |
+| **ARP 欺骗** | 伪造 ARP → MITM → [ch04](../chapter04-arp-protocol/study.md) |
+| **VLAN 跳跃** | DTP / 双 802.1Q 标签跨 VLAN |
+
+**防护**：端口安全、802.1X、VLAN、BPDU/Root Guard；**不能替代 TLS/IPsec**。
+
+→ 精读：[3.10](3.10-link-layer-security.md)（含 **5 条刷题对比表**）· [自顶向下 §8 分层攻击](../../top_down/08_network_security/layer-attacks-cheatsheet.md)
 
 ### 易混
 

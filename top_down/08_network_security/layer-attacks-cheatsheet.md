@@ -2,6 +2,7 @@
 
 > 与 [第 8 章 study.md](./study.md) · [TLS §8.5](./study.md#ch8-5) · [防火墙 §8.9](./study.md#ch8-9) 配合  
 > TCP/IP 卷1 第 1 章同主题：[§1.8 体系结构威胁](../../TCP-IP-Volume1-Protocols/chapter01-overview/1.8-architecture-threat.md)  
+> TCP/IP 卷1 第 3 章精读：[§3.10 链路层攻击](../../TCP-IP-Volume1-Protocols/chapter03-link-layer/3.10-link-layer-security.md)  
 > 协议栈对照：[§1.5 五层](../01_network_basics/1.5_protocol_layer_architecture/study.md#ch1-5) · [§6.4 ARP](../06_link_layer_and_lan/6.4_ethernet_arp_switch_vlan/study.md) · [§3.5 TCP](../03_transport_layer/3.5_tcp_connection_and_transmission/study.md) · [§2.2 HTTP](../02_application_layer/2.2_http_and_web/study.md)
 
 ---
