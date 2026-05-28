@@ -1,43 +1,59 @@
 # 6.2 安装 Tcpdump
 
-> 本章：[chapter-summary.md](./chapter-summary.md) · 全书：[../README.md](../README.md)
+> 本章：[chapter-summary.md](./chapter-summary.md) · 全书：[../README.md](../README.md) · 逐步安装：[../cheatsheet/install-and-verify.md](../cheatsheet/install-and-verify.md)
 
-**核心主旨**：UNIX/Linux 原生命令行嗅探器——轻量抓包探针。
+**核心主旨**：Linux/macOS 原生 CLI 抓包；Windows 用 **tshark** 或 **WSL**。
 
 ## 核心知识点
 
-| 项 | 说明 |
-|----|------|
-| **Tcpdump** | 最流行的 **原生** CLI 抓包工具；主要面向 **UNIX/Linux**（Windows 非官方主力） |
-| **安装** | 包管理器；多数服务器发行版**预装** |
+### Linux（最常用）
+
+**Ubuntu / Debian**
 
 ```bash
-# Debian / Ubuntu
-sudo apt install tcpdump
-
-# RHEL / Fedora
-sudo dnf install tcpdump
+sudo apt update
+sudo apt install tcpdump -y
+tcpdump --version
 ```
+
+**CentOS / RHEL**
+
+```bash
+sudo yum install tcpdump -y    # CentOS 7
+sudo dnf install tcpdump -y    # CentOS 8+ / Fedora
+```
+
+### macOS
+
+- 系统**常自带** `tcpdump`
+- 更新：`brew install tcpdump`
+
+### Windows
+
+| 方案 | 说明 |
+|------|------|
+| **tshark**（推荐） | 安装 Wireshark 后 PATH 加入 `C:\Program Files\Wireshark` |
+| **WSL** | Ubuntu 内按 Linux 安装 `tcpdump` |
 
 ### 权限（易错）
 
-| 要求 | 说明 |
-|------|------|
-| **Root / sudo** | 直接操作网卡；普通用户失败时**先查权限** |
-
 ```bash
-sudo tcpdump -h
-man tcpdump
+sudo tcpdump -i any -c 5    # 验证
 ```
+
+普通用户抓包失败 → 先 **sudo** 或查能力/组权限。
 
 ## 抓包/实操记录
 
 | 检查 | 命令 |
 |------|------|
 | 版本 | `tcpdump --version` |
-| 网卡 | `ip link` 或 `tcpdump -D`（视版本） |
+| 网卡 | `ip link` · `tcpdump -D` |
+| 落盘 | `sudo tcpdump -nni eth0 -c 100 -w /tmp/cap.pcap` |
+
+首次练习见 [install-and-verify.md](../cheatsheet/install-and-verify.md)。
 
 ## 疑问与总结
 
-- Tcpdump **解析深度**有限（约 L3/L4）；深度分析用 TShark 或 GUI 打开同一 pcap（见 [§6.9](./09-tshark-vs-tcpdump.md)）。
-- 生产机常用：**tcpdump 抓** → 下载 → **Wireshark 看**。
+- 深度解析用 Wireshark 打开同一 pcap（[§6.9](./09-tshark-vs-tcpdump.md)）。
+- 生产：**tcpdump 抓** → 下载 → **Wireshark 分析**。

@@ -11,7 +11,7 @@
 | `chapter-xx-…/` | 单章文件夹（附录用 `appendix-a` 等） |
 | `chapter-summary.md` | 本章整体总结 |
 | `01-xxx.md` | 对应独立小节，**见名知意**（不用 section 通用名） |
-| `cheatsheet/` | 过滤器速查、口诀 |
+| `cheatsheet/` | [核心一页纸](./cheatsheet/notes.md) · [安装与首次抓包](./cheatsheet/install-and-verify.md) |
 
 ## 章节目录
 
