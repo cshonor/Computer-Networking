@@ -66,7 +66,9 @@
 
 ## 4.3 ARP 缓存：效率优化的核心
 
-避免反复广播（**广播风暴**）与重复解析开销。
+→ 精读：[4.3](4.3-arp-cache.md) · [是什么](4.3-arp-cache.md#ch04-3-what) · [ip neigh 状态](4.3-arp-cache.md#ch04-3-states) · [老化](4.3-arp-cache.md#ch04-3-timeout) · [三行背诵](4.3-arp-cache.md#ch04-3-cheat)
+
+避免反复广播；**命中缓存**则不发 ARP。
 
 ### 条目字段
 
