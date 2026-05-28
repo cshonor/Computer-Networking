@@ -27,7 +27,7 @@
 
 ## 4.2 工作实例：直接交付与协议交互
 
-→ 精读：[4.2](4.2-arp-basic-operation.md) · [每台设备 ARP 表不同](4.2-arp-basic-operation.md#ch04-2-per-device) · [路由表+ARP](4.2-arp-basic-operation.md#ch04-2-route-arp) · [端到端流程](4.2-arp-basic-operation.md#ch04-2-end-to-end)
+→ 精读：[4.2](4.2-arp-basic-operation.md) · [广播域/跨网段](4.2-arp-basic-operation.md#ch04-2-broadcast-boundary) · [每台 ARP 表](4.2-arp-basic-operation.md#ch04-2-per-device) · [路由+ARP](4.2-arp-basic-operation.md#ch04-2-route-arp)
 
 ### 何时走 ARP
 
