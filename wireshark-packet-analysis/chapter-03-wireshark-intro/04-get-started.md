@@ -15,9 +15,29 @@
 | 1 | `Capture` → `Interfaces`（或主界面选接口） |
 | 2 | 选择要监听的**网卡**（有线/无线/虚拟适配器） |
 | 3 | `Start` 开始；运行典型业务一段时间后 `Stop` |
-| 4 | `File` → `Save As` 存为 `.pcapng` 作基线档案 |
+| 4 | `File` → `Save As…`（**保存捕获文件为**）存为 `.pcapng` 作基线档案 |
 
 > 勿只在故障发生后才抓包——缺少正常对照难以判断异常。
+
+#### 保存捕获文件（Save As）
+
+`File` → `Save As…` 打开保存对话框：
+
+![保存捕获文件为](./images/save-capture-as.png)
+
+| 项 | 说明 |
+|----|------|
+| **文件名** | 必填（如 `baseline-home.pcapng`）；未填时 **保存** 按钮为灰 |
+| **保存类型** | 默认 **Wireshark/… - pcapng**（推荐）：支持多接口、注释、选项等元数据；旧版 **pcap** 兼容性更好但功能少 |
+| **压缩** | **Uncompressed**（默认，打开最快）· **gzip**（体积小）· **LZ4**（压缩/解压快，适合大文件归档） |
+
+| 格式 | 何时用 |
+|------|--------|
+| **pcapng** | 日常、基线、交给他人用 Wireshark 分析 |
+| **pcap** | 需给只认旧格式的工具 |
+| **gzip / LZ4** | 长期存档、邮件传输；分析前 Wireshark 可直接打开压缩包 |
+
+保存后可用 `File` → `Open` 离线分析；大流量也可先 [tcpdump 落盘](../chapter-06-tshark-tcpdump/03-capture-save-read.md) 再 GUI 打开。
 
 ### 3.4.2 主窗口三大面板
 
@@ -90,7 +110,8 @@
 
 | 练习 | 目标 |
 |------|------|
-| 基线 | 正常时段抓 5 分钟 Web + DNS，保存 `baseline-home.pcapng` |
+| 基线 | 正常时段抓 5 分钟 Web + DNS → `Save As` → `baseline-home.pcapng`（类型选 pcapng，先不压缩） |
+| 保存 | 试一次 **gzip** 与 **Uncompressed** 体积对比；`File` → `Open` 确认都能打开 |
 | 三面板 | 选中 HTTP 包，在 Details 展开 `Hypertext Transfer Protocol`，观察 Bytes 高亮 |
 | 着色 | 为 `ip.addr == 你的网关` 设黄色背景 |
 | Profile | 复制默认方案为 `lab`，增加「Delta Time」列 |
