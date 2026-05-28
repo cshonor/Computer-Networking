@@ -258,11 +258,11 @@
 
 ## 3.9 隧道基础
 
-**外层过路 / 内层到点** · **IPIP=4** · **GRE=47**
+**IPID≠IPIP** · **IPIP/GRE=三层 VPN 隧道** · **4/47** · **无加密→+IPsec**
 
 **MTU**：1500−隧道头（GRE 例 **1476**）· **PMTUD** 靠 ICMP，被拦易丢大包
 
-→ [内外层头](3.9-tunnel-basics.md#ch03-9-encap) · [MTU/NAT/PMTUD](3.9-tunnel-basics.md#ch03-9-mtu-nat) · [IPIP/GRE](3.9-tunnel-basics.md#ch03-9-compare) · [口诀](3.9-tunnel-basics.md#ch03-9-exam)
+→ [名词与层级](3.9-tunnel-basics.md#ch03-9-layer) · [三种报文结构](3.9-tunnel-basics.md#ch03-9-packet-compare) · [协议号位置](3.9-tunnel-basics.md#ch03-9-eth-ip-proto) · [VPN](3.9-tunnel-basics.md#ch03-9-vpn) · [GRE结构](3.9-tunnel-basics.md#ch03-9-gre) · [GRE首部](3.9-tunnel-basics.md#ch03-9-gre-header) · [内外层头](3.9-tunnel-basics.md#ch03-9-encap) · [MTU/NAT/PMTUD](3.9-tunnel-basics.md#ch03-9-mtu-nat) · [IPIP/GRE](3.9-tunnel-basics.md#ch03-9-compare) · [口诀](3.9-tunnel-basics.md#ch03-9-exam)
 
 ---
 
@@ -275,9 +275,9 @@
 | 攻击 | 手段 |
 |------|------|
 | **MAC 泛洪** | 填满 CAM 表 → 交换机泛洪像 Hub → 嗅探 |
-| **STP 劫持** | 伪造优根 BPDU → 流量引到攻击者 |
+| **STP 劫持** | [BPDU 大白话](3.10-link-layer-security.md#ch03-10-bpdu) · [劫持+图](3.10-link-layer-security.md#ch03-10-stp-hijack) |
 | **无线嗅探** | WEP/开放 WLAN → 见 [3.5](3.5-wireless-80211.md) |
-| **ARP 欺骗** | 伪造 ARP → MITM → [ch04](../chapter04-arp-protocol/study.md) |
+| **ARP 欺骗** | [3.10 大白话](3.10-link-layer-security.md#ch03-10-arp) · [ch04](../chapter04-arp-protocol/study.md) |
 | **VLAN 跳跃** | DTP / 双 802.1Q 标签跨 VLAN |
 
 **防护**：端口安全、802.1X、VLAN、BPDU/Root Guard；**不能替代 TLS/IPsec**。
@@ -286,7 +286,7 @@
 
 ### 易混
 
-**二层攻击**多在**同一广播域**；**三层**（如 BGP 劫持）可波及全球。
+**二层攻击**多在**同一广播域**（ARP 靠广播、[不能跨路由器](3.10-link-layer-security.md#ch03-10-arp-lan)）；**三层**（如 BGP 劫持）可波及全球。
 
 ---
 
