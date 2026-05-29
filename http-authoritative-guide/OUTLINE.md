@@ -17,8 +17,8 @@
 | 第14章 | `chapter-14-secure-http/` | 5 |
 | 第15章 | `chapter-15-entity-encoding/` | 5 |
 | 第16章 | `chapter-16-internationalization/` | 4 |
-| 第17章 | `chapter-17-content-negotiation-transcode/` | 4 |
-| 第18章 | `chapter-18-web-hosting/` | 4 |
-| 第19章 | `chapter-19-publishing-system/` | 4 |
-| 第20章 | `chapter-20-redirect-load-balance/` | 4 |
+| 第17章 | `chapter-17-content-negotiation-transcode/` | 7 |
+| 第18章 | `chapter-18-web-hosting/` | 5 |
+| 第19章 | `chapter-19-publishing-system/` | 3 |
+| 第20章 | `chapter-20-redirect-load-balance/` | 9 |
 | 第21章 | `chapter-21-log-tracking/` | 4 |
