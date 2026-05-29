@@ -16,7 +16,7 @@ HTTP 报文如何在应用之间**流动**（3.1），**长什么样**（3.2）�
 3.3 方法：GET/HEAD/PUT/POST/TRACE/OPTIONS/DELETE + 扩展
 3.4 状态码：1xx～5xx · 304/301/302 · 100 Continue 陷阱
 3.5 首部：通用/请求/响应/实体/扩展
-3.6 实体：（待厚填）
+3.6 实体：实体首部 + body → 详 ch15
 ```
 
 ---
@@ -49,7 +49,7 @@ HTTP 报文如何在应用之间**流动**（3.1），**长什么样**（3.2）�
 | <a id="ch03-3"></a> **3.3 方法** | [03-method.md](./03-method.md) |
 | <a id="ch03-4"></a> **3.4 状态码** | [04-status-code.md](./04-status-code.md) · [五大类](./04-status-code.md#ch03-4-classes) |
 | <a id="ch03-5"></a> **3.5 首部** | [05-header.md](./05-header.md) · [五类](./05-header.md#ch03-5-classes) |
-| **3.6 实体** | [06-entity.md](./06-entity.md)（待填） |
+| <a id="ch03-6"></a> **3.6 实体** | [06-entity.md](./06-entity.md) · [ch15 详](../chapter-15-entity-encoding/chapter-summary.md) |
 
 ---
 
