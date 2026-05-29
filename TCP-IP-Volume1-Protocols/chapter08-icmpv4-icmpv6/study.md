@@ -26,6 +26,8 @@
 
 ICMP 作为 IP **载荷** 发送，依赖 IP 路由；生存受 **TTL/Hop Limit** 约束。栈解析 IP 后按协议号 **1/58** 分发给 ICMP 模块。
 
+**分两步识别**（非以太网直接标 ICMP）：`EtherType 0x0800` → IPv4 → `Protocol=1` → ICMP → [8.1 §demux](8.1-introduction.md#ch08-1-demux) · [ch01](../chapter01-overview/study.md#ch01-layering-icmp)
+
 ### 公共首部（前 4 字节）
 
 | 偏移 | 字段 | 职能 |
