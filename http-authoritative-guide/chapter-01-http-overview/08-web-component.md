@@ -48,7 +48,7 @@
 - 两条连接间**盲转发**（不解析内容）  
 - 典型：**HTTP CONNECT** 穿防火墙传 **TLS**  
 
-→ [ch08](../chapter-08-gateway/chapter-summary.md) · 对比 [TCP/IP ch03 隧道](../../TCP-IP-Volume1-Protocols/chapter03-link-layer/3.9-tunnel-basics.md)（网络层封装，概念不同层）
+→ [ch08 隧道](../chapter-08-gateway-tunnel-relay/05-tunnel.md) · 对比 [TCP/IP ch03 隧道](../../TCP-IP-Volume1-Protocols/chapter03-link-layer/3.9-tunnel-basics.md)（网络层封装，概念不同层）
 
 ---
 

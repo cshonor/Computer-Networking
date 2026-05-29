@@ -31,7 +31,7 @@
 
 ## 拓展（预留）
 
-- **HTTPS CONNECT** 隧道：在明文 CONNECT 阶段带 `Proxy-Authorization` → [ch08 隧道](../chapter-08-gateway-tunnel-relay/02-tunnel.md)
+- **HTTPS CONNECT** 隧道：在明文 CONNECT 阶段带 `Proxy-Authorization` → [ch08 隧道](../chapter-08-gateway-tunnel-relay/05-tunnel.md#ch08-5-connect)
 
 ---
 
