@@ -170,18 +170,37 @@ ARP 是**链路层负载**（以太网类型 **0x0806**），**不**封装在 IP
 | `arp`（Windows/旧 Unix） | 查看/增删静态映射 |
 | `ip neigh`（Linux） | 邻居表：ARP + 状态（REACHABLE/STALE…） |
 
-### 嵌入式配置（§4.10 思路）
+<a id="ch04-10"></a>
 
-设备**尚无 IP**、无 DHCP 时：对已知 **MAC** 配置**静态 ARP**，并发送特定 **ICMP** 等诱导 → 辅助绑定固定 IPv4 — 体现 ARP 在**引导阶段**的配置能力（具体帧长/实现因设备而异）。
+### 4.10 嵌入式设备 IP 配置（ARP-Ping）
 
-### ARP 欺骗 / 中毒（Spoofing）
+→ 精读：[4.10-embedded-arp-setup.md](4.10-embedded-arp-setup.md)
 
-| 根因 | 后果 |
+无屏、无 DHCP 设备（串口服务器、IoT）：**静态 ARP**（`arp -s IP MAC`）+ **Ping/arping 诱导** → 设备栈**采纳目标 IP**（厂商实现，非标准）。
+
+| 要点 | 说明 |
 |------|------|
-| **无状态、无认证** | 内核倾向接受**最新** ARP 应答，即使非对应请求 |
-| 伪造应答 | **MITM**、嗅探、篡改局域网流量 |
+| 场景 | 产测 / 首次配置 |
+| 命令 | `arp -s` → `ping` / `arping` |
+| 局限 | **重启丢失**；不可替代 DHCP；仅可信内网 |
 
-缓解（工程侧，非本书重点）：**DAI**、**静态绑定**、**802.1X**、主机 **静态邻居**、加密上层（TLS）等。
+长期：DHCP 保留、串口/Web 写 Flash → [ch06](../chapter06-dhcp-config/study.md)
+
+<a id="ch04-11"></a>
+
+### 4.11 与 ARP 相关的攻击
+
+→ 精读：[4.11-arp-spoof-defense.md](4.11-arp-spoof-defense.md) · [ch18 安全](../chapter18-network-security/study.md)
+
+**根因**：无认证；**最新 ARP 应答覆盖**表项。**范围**：仅**同一广播域**。
+
+| 攻击 | 后果 |
+|------|------|
+| 单向/双向欺骗 → **MITM** | 窃听、篡改、会话劫持；可组合 **DHCP 劫持** |
+
+**缓解**：**DAI** + DHCP Snooping、**静态 ARP**、**802.1X**、**TLS/IPsec**。  
+**开发**：勿信任局域网；敏感通道强制 TLS。  
+**家用**：静态 ARP + HTTPS；防火墙（L3）**拦不住** ARP（L2）。
 
 ---
 
