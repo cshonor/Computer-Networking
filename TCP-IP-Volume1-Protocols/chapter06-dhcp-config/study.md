@@ -196,15 +196,27 @@ L2 接通 → L3（DHCP / SLAAC+DHCPv6）→ DNS → 应用
 
 → DNS：[ch11](../chapter11-dns-domain-resolve/study.md)
 
-### 6.5 PPPoE（同章下一节）
-
-宽带接入：带认证的 **PPP** 封装以太网；发现 + 会话阶段分发 IP → [6.5](6.5-pppoe.md) · [ch03 PPP](../chapter03-link-layer/study.md#ch03-6)
-
 ---
 
 <a id="ch06-5"></a>
 
+## 6.5 以太网上的 PPP（PPPoE）
+
+→ 精读：[6.5-pppoe.md](6.5-pppoe.md) · [本质](6.5-pppoe.md#ch06-5-role) · [流程](6.5-pppoe.md#ch06-5-flow) · [考点](6.5-pppoe.md#ch06-5-cheat)
+
+**本质**：以太网承载 PPP — 宽带**认证 + 公网 IP**。
+
+**三阶段**：**PADI/PADO/PADR/PADS 发现** → **LCP + PAP/CHAP** → **IPCP 配 IP/DNS**
+
+**双层**：外网 **PPPoE 拨号**（公网）+ 内网 **DHCP**（私网）→ [ch03 PPP](../chapter03-link-layer/3.6-ppp-protocol.md#ch03-6-pppoe)
+
+---
+
+<a id="ch06-6"></a>
+
 ## 6.6 与系统配置相关的攻击
+
+→ 精读：[6.6-dhcp-security.md](6.6-dhcp-security.md)
 
 DHCP **无强认证**，默认信任**物理链路**。
 
@@ -239,6 +251,8 @@ DHCP **无强认证**，默认信任**物理链路**。
 | M / O 标志 | **M=有状态地址**；**O=仅 DNS，地址仍 SLAAC** → [6.3 M/O](6.3-slaac-autoconfig.md#ch06-3-mo) |
 | SLAAC 必配 DHCPv6 | **否** — 看 RA **M/O** |
 | DDNS | DHCP 换 IP → 刷 **A/AAAA**；须 **TSIG** → [6.4](6.4-dhcp-dns-ddns.md#ch06-4-cheat) |
+| PPPoE 三阶段 | **发现 → LCP+认证 → IPCP** → [6.5](6.5-pppoe.md#ch06-5-cheat) |
+| PPPoE vs DHCP | **外网 PPPoE + 内网 DHCP**，不同层级 |
 
 从 **DHCP 的行政管理** 到 **SLAAC 的协作发现** — 按业务在**可控性**与**灵活性**之间选型（云/数据中心常仍重度依赖 DHCP/DHCPv6）。
 
