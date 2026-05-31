@@ -107,7 +107,11 @@ IPv4 枯竭 + 经济边界防护 → **现实折中**（非理想端到端）。
 
 ## 7.3 网络地址转换（NAT）
 
+→ 精读：[7.3-nat-napt.md](7.3-nat-napt.md) · [速记卡](7.3-nat-napt.md#ch07-3-cheat) · [工作过程](../../../top_down/04_network_layer_data_plane/4.3_ipv4_ipv6_nat.md#ch4-3-nat-flow)
+
 缓解地址短缺，但使中间节点维护映射状态，**端到端透明性**受损。
+
+**五要点**：隐藏内网 · **改 IP 头+状态表** · **NAPT** 多对一 · 边界网关 · 五元组**老化**
 
 ### 7.3.1 基本 NAT 与 NAPT
 
@@ -148,6 +152,8 @@ IPv4 枯竭 + 经济边界防护 → **现实折中**（非理想端到端）。
 | **CGN (NAT444)** | ISP 侧多层 NAT；额外延迟、**端口配额**更紧 |
 
 → FTP/ALG 属边界盒行为，非链路层协议本身。
+
+→ 厚版：[7.3 Hairpin/ALG/四类 NAT](7.3-nat-napt.md) · [§速记卡](7.3-nat-napt.md#ch07-3-cheat)
 
 ---
 
@@ -251,10 +257,11 @@ NAT 在 v6 时代常作**协议桥梁**，而非仅省地址。
 
 | 问题 | 要点 |
 |------|------|
-| NAPT vs 基本 NAT | 是否改**端口**、多对一 |
-| EIM vs ADM | 映射是否随**外部目标**变化 |
-| EIF vs ADF | 外向内是否只允许**曾通信过的 IP** |
-| Hairpin | 内网访问**本 NAT 公网 IP** 的回环 |
+| NAPT vs 基本 NAT | 是否改**端口**、多对一 → [7.3](7.3-nat-napt.md#ch07-3-napt-compare) |
+| NAT 四类 / P2P | **全锥易、对称靠 TURN** → [7.3](7.3-nat-napt.md#ch07-3-mapping-types) |
+| EIM vs ADM / EIF vs ADF | **Mapping** 是否随目的变；**Filtering** 决定谁能打入 → [study §7.3.2–3](#ch07-3) |
+| Hairpin | 内网访问**本 NAT 公网 IP** → **DNAT+SNAT 发夹** → [7.3](7.3-nat-napt.md#ch07-3-hairpin) |
+| ALG vs 代理 | ALG 改**载荷 IP**；TLS 下失效 → [7.3](7.3-nat-napt.md#ch07-3-alg) |
 | 过滤 vs NAT 顺序 | **先过滤后 NAT** |
 
 ### 下一章
