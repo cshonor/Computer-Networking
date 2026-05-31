@@ -27,11 +27,22 @@
 
 ## 4.2 工作实例：直接交付与协议交互
 
-→ 精读：[4.2](4.2-arp-basic-operation.md) · [广播域/跨网段](4.2-arp-basic-operation.md#ch04-2-broadcast-boundary) · [每台 ARP 表](4.2-arp-basic-operation.md#ch04-2-per-device) · [路由+ARP](4.2-arp-basic-operation.md#ch04-2-route-arp)
+→ 精读：[4.2-arp-basic-operation.md](4.2-arp-basic-operation.md) · [交换机/路由器分工](4.2-arp-basic-operation.md#ch04-2-switch-router) · [路由+ARP 全流程](4.2-arp-basic-operation.md#ch04-2-route-arp)
 
-### 何时走 ARP
+### 交换机 vs 路由器
 
-主机判定目标 **B 与本机同一子网**（**IP + 掩码**匹配）→ **直接交付** → 必须先解析 **B 的 MAC** 再封装以太网帧。
+| 场景 | 设备 |
+|------|------|
+| 同广播域、同网段 | **交换机**（MAC 转发，不看 IP） |
+| 跨网段 / 外网 | **路由器**（网关，隔离广播域） |
+
+### 路由表 + ARP 联动
+
+**路由表**：目标 IP → **下一跳 IP** + **出接口**（条目自带网口）  
+**ARP 表**：下一跳 IP → **下一跳 MAC**  
+**封装**：IP 目的 = 最终接收方（不变）；帧 MAC 目的 = 直连下一跳（每跳重写）
+
+→ 多跳实例：[4.2 §零附二](4.2-arp-basic-operation.md#ch04-2-end-to-end)
 
 | 概念 | 说明 |
 |------|------|
