@@ -1,6 +1,6 @@
 ﻿# 第 7 章：防火墙与网络地址转换（NAT）
 
-> 按书节速记：[7.1](7.1-introduction.md) · [7.2](7.2-packet-filter-firewall.md) · [7.3](7.3-nat-napt.md) · [7.4](7.7-nat-traversal.md) · [7.5](7.5-acl-port-control.md) · [7.6](7.6-ipv6-nat-transition.md) · [7.7](7.7-security-attacks.md) · [7.8](7.8-summary.md) · [QUICKREF §7](../QUICKREF.md)
+> 按书节速记：[7.1](7.1-introduction.md) · [7.2](7.2-packet-filter-firewall.md) · [7.3](7.3-nat-napt.md) · [7.4](7.4-nat-traversal.md) · [7.5](7.5-acl-port-control.md) · [7.6](7.6-ipv6-nat-transition.md) · [7.7](7.7-security-attacks.md) · [7.8](7.8-summary.md) · [QUICKREF §7](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch07_firewall_nat.md)）  
 > 前置：[ch05 IP](../chapter05-ip-protocol/study.md) · [ch01 端到端](../chapter01-overview/study.md#ch01-e2e) · 自顶向下：[§4.3 NAT](../../top_down/04_network_layer_data_plane/study.md#ch4-3)
@@ -154,6 +154,8 @@ IPv4 枯竭 + 经济边界防护 → **现实折中**（非理想端到端）。
 
 ## 7.4 NAT 穿越
 
+→ 精读：[7.4-nat-traversal.md](7.4-nat-traversal.md)
+
 在受限环境下恢复 **P2P**。
 
 ### 打孔 (Hole Punching)
@@ -215,6 +217,8 @@ NAT 在 v6 时代常作**协议桥梁**，而非仅省地址。
 <a id="ch07-7"></a>
 
 ## 7.7 相关攻击
+
+→ 精读：[7.7-security-attacks.md](7.7-security-attacks.md)
 
 状态化中间件引入新攻击面。
 
