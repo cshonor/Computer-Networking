@@ -104,10 +104,12 @@
 
 ### 状态与超时
 
+→ 超时精读：[4.6](4.6-arp-cache-timeout.md#ch04-6-timeout)
+
 | 状态 | 说明 |
 |------|------|
 | **完整条目** | 解析成功；常见存活约 **20 分钟**（因内核而异） |
-| **Incomplete** | 已发请求、未收到应答的临时项 |
+| **Incomplete** | 已发请求、未收到应答；约 **3 分钟**清理 |
 | **自愈** | 超时删除陈旧映射 → 网卡更换 / IP 变更后可重新学习 |
 
 ### 风险
@@ -172,19 +174,44 @@ ARP 是**链路层负载**（EtherType **0x0806**），**不**封装在 IP 数�
 
 ---
 
+<a id="ch04-6-timeout"></a>
+
+## 4.6 ARP 缓存超时
+
+→ 精读：[4.6-arp-cache-timeout.md](4.6-arp-cache-timeout.md)
+
+| 类型 | 超时 | 机制 |
+|------|------|------|
+| **完整条目** | ~**20 min**（Linux/macOS；Windows 可更短） | 闲置倒计时；通信**刷新**；可先 **STALE → 探测** |
+| **INCOMPLETE** | ~**3 min** | 无应答快速清理；常伴 **3 次** ARP 重试 |
+
+ARP 缓存 = **软状态**（非永久；静态 `arp -s` 除外）→ 适配上下线、换网卡、IP 变更。
+
+验证：`ip neigh` · `arp -a`
+
+---
+
+<a id="ch04-7-proxy"></a>
+
+## 4.7 代理 ARP（Proxy ARP）
+
+→ 精读：[4.7-proxy-arp.md](4.7-proxy-arp.md)
+
+路由器收到**跨网段** ARP 广播 → **冒充目标**，用**自身接口 MAC** 代答 → 主机 ARP 表出现 **远端 IP → 网关 MAC**。
+
+| 前提 | 利 | 弊 |
+|------|-----|-----|
+| 开代理 ARP + 有目标路由 | 主机**无需默认网关** | 排障难、ARP 风暴、安全风险 |
+
+**必考区分**：代理 ARP **代答目标 IP**；正常路由 **仅 ARP 网关 IP**（帧 MAC 目的同为网关，看 ARP 表键）。
+
+---
+
 <a id="ch04-5"></a>
 
-## 4.7 / 4.8 特殊场景：代理 ARP 与免费 ARP
+## 4.8 免费 ARP（Gratuitous ARP）
 
-### 代理 ARP（Proxy ARP）
-
-路由器在条件下**代答** ARP，使主机以为目标在**同一链路**。
-
-| 利 | 弊 |
-|----|-----|
-| 简化“无默认路由”的主机配置 | **隐藏真实拓扑**；排障困难 |
-
-### 免费 ARP（Gratuitous ARP）
+→ 精读：[4.6-gratuitous-arp.md](4.6-gratuitous-arp.md)
 
 主机**广播**“自己的 IP → 自己的 MAC”的 ARP（常表现为 **请求** 形态，目标 IP = 本机 IP）。
 
@@ -261,7 +288,7 @@ ARP 是**链路层负载**（EtherType **0x0806**），**不**封装在 IP 数�
 | ARP vs RARP | ARP：IP→MAC；RARP：MAC→IP（少见，DHCP 取代） |
 | ARP vs ND | **IPv4/ARP**；**IPv6/ND（ICMPv6）** |
 | 请求 vs 应答 | 广播 vs 单播 |
-| 代理 ARP vs 默认网关 | 代理“假装同网段”；正常跨网段用**网关 MAC** |
+| 代理 ARP vs 默认网关 | 代理**代答目标 IP** → 表项「远端 IP→网关 MAC」；正常跨网段 **ARP 网关 IP** → [4.7](4.7-proxy-arp.md#ch04-7-compare) |
 | ARP 失败 vs ICMP | ARP 超时静默；路由/防火墙可能再报 **Host Unreachable** |
 
 ### 下一章
