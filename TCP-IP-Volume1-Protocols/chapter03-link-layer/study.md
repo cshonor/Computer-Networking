@@ -1,6 +1,6 @@
 ﻿# 第 3 章：链路层（Link Layer）
 
-> 按书节速记：[3.1](3.1-introduction.md) · [3.2](3.2-ethernet-ieee802-encapsulation.md)（含 [Hub](3.2-ethernet-ieee802-encapsulation.md#ch03-2-hub)） · [3.3](3.3-full-duplex-autoneg.md) · [3.4](3.4-bridge-switch-stp.md) · [3.5](3.5-wireless-80211.md) · [3.6](3.6-ppp-protocol.md) · [3.7](3.7-loopback-interface.md) · [3.8](3.8-mtu.md) · [3.9](3.9-tunnel-basics.md) · [3.10](3.10-link-layer-security.md) · [3.11](3.11-summary.md) · [QUICKREF §3](../QUICKREF.md)
+> 按书节速记：[3.1](3.1-introduction.md) · [3.2](3.2-ethernet-ieee802-encapsulation.md)（含 [Hub](3.2-ethernet-ieee802-encapsulation.md#ch03-2-hub)） · [3.3](3.3-full-duplex-autoneg.md) · [3.4](3.4-bridge-switch-stp.md) · [3.5](3.5-wireless-80211.md) · [3.6](3.6-ppp-protocol.md) · [3.7](3.7-loopback-interface.md) · [3.8](3.8-mtu.md) · [3.9](3.9-tunnel-basics.md) · [3.10](3.10-link-layer-security.md) · [3.11](3.11-summary.md) · [3.12 硬件转发](3.12-switch-router-hardware.md) · [QUICKREF §3](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/02_link_layer/ch03_link_layer.md)）  
 > 自顶向下对照：[06_link_layer_and_lan/study.md](../../top_down/06_link_layer_and_lan/study.md)
@@ -151,7 +151,7 @@
 |--|--------|--------|
 | 层 | **L2 MAC** | **L3 IP** |
 
-→ 自顶向下：[§6.4](../../top_down/06_link_layer_and_lan/study.md#ch6-4)
+→ 硬件/表项/MAC表vs路由表：[3.12 实战](3.12-switch-router-hardware.md#ch03-12-cheat) · 组播转发：[ch09 §9.7](../chapter09-broadcast-multicast/9.7-lan-switch-router-multicast.md)
 
 ---
 
@@ -287,6 +287,22 @@
 ### 易混
 
 **二层攻击**多在**同一广播域**（ARP 靠广播、[不能跨路由器](3.10-link-layer-security.md#ch03-10-arp-lan)）；**三层**（如 BGP 劫持）可波及全球。
+
+---
+
+<a id="ch03-12"></a>
+
+## 3.12 实战：交换机、路由器与转发硬件
+
+→ 精读：[3.12-switch-router-hardware.md](3.12-switch-router-hardware.md) · [交换机](3.12-switch-router-hardware.md#ch03-12-switch) · [路由器](3.12-switch-router-hardware.md#ch03-12-router) · [口诀](3.12-switch-router-hardware.md#ch03-12-cheat)
+
+| 组件 | 归属 | 作用 |
+|------|------|------|
+| **交换矩阵/芯片** | 交换机、高端路由器 | **硬件搬数据**（通路） |
+| **MAC 表** | 二层交换机 | **MAC → 端口**，管内网 |
+| **路由表** | 路由器/三层交换机 | **网段 → 下一跳**，跨网段 |
+
+**同网段**只走交换机+MAC表；**上网**交换机送网关+路由表。
 
 ---
 
