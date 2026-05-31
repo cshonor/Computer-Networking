@@ -207,7 +207,7 @@ IPv4/IPv6 首部 · 扩展头链 · **LPM 转发** · Mobile IP · 主机处理�
 
 ## 5.5 移动 IP（Mobile IP）
 
-→ 精读：[5.5-mobile-ip-basic.md](5.5-mobile-ip-basic.md) · [在家/外地](5.5-mobile-ip-basic.md#ch05-5-home-away) · [蜂窝实例](5.5-mobile-ip-basic.md#ch05-5-cellular)
+→ 精读：[5.5-mobile-ip-basic.md](5.5-mobile-ip-basic.md) · [在家/外地](5.5-mobile-ip-basic.md#ch05-5-home-away) · [HoA 绑定](5.5-mobile-ip-basic.md#ch05-5-hoa-bind) · [蜂窝实例](5.5-mobile-ip-basic.md#ch05-5-cellular)
 
 设备跨网漫游时，**上层仍用家乡地址** — **间接寻址（indirection）** + **IP 隧道**。
 
@@ -219,7 +219,9 @@ IPv4/IPv6 首部 · 扩展头链 · **LPM 转发** · Mobile IP · 主机处理�
 
 **在家 vs 外地**：在家 **无 CoA**，HA 当普通网关，**直连**；外出注册 CoA → HA 映射 `10.0.0.2→CoA` → **隧道**转发。
 
-**实例**：湖北卡出省 ≈ MN+HA+CoA；**全国通用流量**统一扣费、无额外漫游费；公网 IP 常显**当前省**，**资费归属**不变。
+**实例**：湖北卡出省 ≈ MN+HA+CoA；**HoA 首次在家绑定、漫游不变**；全国通用流量统一扣费。
+
+**三句**：① 首次家乡入网分配 **HoA** 写网卡，卡不变则不变 · ② 漫游只加 **CoA**，APP 仍见 HoA · ③ **系统绑定**，非 APP 记地址。
 
 **现代**：LTE / **PMIPv6**；本节为**基础概念模型**。
 
