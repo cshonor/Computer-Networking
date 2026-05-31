@@ -1,6 +1,6 @@
 ﻿# 第 6 章：系统配置 — DHCP 与自动配置
 
-> 按书节速记：[6.1](6.1-introduction.md) · [6.2](6.2-dhcp-protocol.md) · [6.3](6.3-slaac-autoconfig.md) · [6.4](6.4-dhcp-dns-ddns.md) · [6.5](6.5-pppoe.md) · [6.6](6.6-dhcp-security.md) · [6.7](6.7-summary.md) · [QUICKREF §6](../QUICKREF.md)
+> 按书节速记：[6.1](6.1-introduction.md) · [6.2](6.2-dhcp-protocol.md) · [6.3](6.3-slaac-autoconfig.md) · [6.4](6.4-dhcp-dns-ddns.md) · [6.5](6.5-pppoe.md) · [6.6](6.6-dhcp-security.md) · [6.7](6.7-summary.md) · [6.8 实战](6.8-practical-dhcp-bridge-nat-vm.md) · [QUICKREF §6](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch06_dhcp.md)）  
 > 前置：[ch05 IP](../chapter05-ip-protocol/study.md) · [ch04 ARP](../chapter04-arp-protocol/study.md) · 自顶向下：[§4.3 DHCP](../../top_down/04_network_layer_data_plane/study.md#ch4-3)
@@ -13,7 +13,13 @@
 
 ## 6.1 引言
 
-→ 精读：[6.1-introduction.md](6.1-introduction.md)
+→ 精读：[6.1-introduction.md](6.1-introduction.md) · [DHCP 通俗](6.1-introduction.md#ch06-1-dhcp-plain)
+
+### DHCP 是什么（通俗）
+
+**DHCP = 自动给内网设备配 IP** — 下发 IP/掩码/网关/DNS；**租期**续租防冲突；路由器默认开启，Wi‑Fi/有线设备全靠它。
+
+→ [6.1 详述](6.1-introduction.md#ch06-1-dhcp-plain) · 协议：[6.2](#ch06-2) · **DHCP vs 桥接 vs NAT**：[6.8 虚拟机实战](6.8-practical-dhcp-bridge-nat-vm.md#ch06-8)
 
 ### 为何不能一直手动配
 
@@ -229,6 +235,24 @@ DHCP **无强认证**，默认信任**物理链路**。
 
 ---
 
+<a id="ch06-8"></a>
+
+## 6.8 实战：DHCP、桥接、NAT 与虚拟机
+
+→ 精读：[6.8-practical-dhcp-bridge-nat-vm.md](6.8-practical-dhcp-bridge-nat-vm.md) · [物理 NAT](6.8-practical-dhcp-bridge-nat-vm.md#ch06-8-nat-physical) · [两层 NAT](6.8-practical-dhcp-bridge-nat-vm.md#ch06-8-nat-vm-layers) · [地址举例](6.8-practical-dhcp-bridge-nat-vm.md#ch06-8-address-example) · [记忆](6.8-practical-dhcp-bridge-nat-vm.md#ch06-8-cheat)
+
+**NAT**（网络地址转换）= 内网↔公网**翻译官**；**DHCP** = 自动发 IP；**桥接/NAT** = VM **网络模式**。
+
+| 场景 | NAT 层数 | VM IP 示例 |
+|------|----------|------------|
+| **物理上网** | 路由器 **1 层 NAT** | 手机 `192.168.1.x` |
+| **VM 桥接** | 仍 **1 层**（无虚拟 NAT） | `192.168.1.11` 同网段 |
+| **VM NAT** | **虚拟 NAT + 路由 NAT** 两层 | `192.168.122.20` → 真机 → 公网 |
+
+**DHCP** 只管发 IP/掩码/网关 — 桥接、NAT **都能用**。互访→**桥接**；隔离→**NAT**。
+
+---
+
 <a id="ch06-exam"></a>
 
 ## 6.7–6.8 总结与考点
@@ -253,6 +277,8 @@ DHCP **无强认证**，默认信任**物理链路**。
 | DDNS | DHCP 换 IP → 刷 **A/AAAA**；须 **TSIG** → [6.4](6.4-dhcp-dns-ddns.md#ch06-4-cheat) |
 | PPPoE 三阶段 | **发现 → LCP+认证 → IPCP** → [6.5](6.5-pppoe.md#ch06-5-cheat) |
 | PPPoE vs DHCP | **外网 PPPoE + 内网 DHCP**，不同层级 |
+| DHCP vs 桥接/NAT | **DHCP=服务**；**桥接/NAT=VM 模式** → [6.8](6.8-practical-dhcp-bridge-nat-vm.md#ch06-8-cheat) |
+| VM 桥接 vs NAT | 桥接**同网段一层NAT**；NAT**122.x+两层NAT** → [6.8](6.8-practical-dhcp-bridge-nat-vm.md#ch06-8-nat-vm-layers) |
 
 从 **DHCP 的行政管理** 到 **SLAAC 的协作发现** — 按业务在**可控性**与**灵活性**之间选型（云/数据中心常仍重度依赖 DHCP/DHCPv6）。
 

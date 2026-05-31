@@ -155,7 +155,7 @@ IPv4 枯竭 + 经济边界防护 → **现实折中**（非理想端到端）。
 
 → 厚版：[7.3 Hairpin/ALG/四类 NAT](7.3-nat-napt.md) · [§速记卡](7.3-nat-napt.md#ch07-3-cheat)
 
----
+**通俗对照**：家用/虚拟机 **NAT 模式** — **虚拟 NAT + 路由器 NAT 两层** → [ch06 §6.8 实战](../chapter06-dhcp-config/6.8-practical-dhcp-bridge-nat-vm.md#ch06-8-nat-vm-layers)
 
 <a id="ch07-4"></a>
 
