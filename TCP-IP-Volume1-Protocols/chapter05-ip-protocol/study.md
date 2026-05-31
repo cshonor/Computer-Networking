@@ -207,7 +207,16 @@ IPv4/IPv6 首部 · 扩展头链 · **LPM 转发** · Mobile IP · 主机处理�
 
 ## 5.5 移动 IP（Mobile IP）
 
-→ 精读：[5.5-mobile-ip-basic.md](5.5-mobile-ip-basic.md) · [在家/外地](5.5-mobile-ip-basic.md#ch05-5-home-away) · [HoA 绑定](5.5-mobile-ip-basic.md#ch05-5-hoa-bind) · [蜂窝实例](5.5-mobile-ip-basic.md#ch05-5-cellular)
+→ 精读：[5.5-mobile-ip-basic.md](5.5-mobile-ip-basic.md) · [**住宅IP≠HoA**](5.5-mobile-ip-basic.md#ch05-5-residential) · [在家/外地](5.5-mobile-ip-basic.md#ch05-5-home-away) · [HoA 绑定](5.5-mobile-ip-basic.md#ch05-5-hoa-bind) · [蜂窝实例](5.5-mobile-ip-basic.md#ch05-5-cellular)
+
+### 住宅 IP ≠ 家乡地址 HoA（必先分清）
+
+| | **住宅 IP（日常）** | **HoA（移动 IP）** |
+|---|---------------------|---------------------|
+| 体系 | 家宽**公网 IP 类型** | **MN 永久逻辑身份** |
+| 关系 | 与 Mobile IP **无关** | MN+HA+CoA 协议核心 |
+
+**住宅 IP** = 运营商分给家宽的公网出口；**HoA** = 设备对外不变的「身份证号」，可内网可公网，≠ 家宽 IP。
 
 设备跨网漫游时，**上层仍用家乡地址** — **间接寻址（indirection）** + **IP 隧道**。
 
@@ -297,7 +306,7 @@ IP 设计于互信环境 → **源地址无内置认证**。
 | v4 vs v6 头 | 变长+校验和 vs 40B 固定+无首部校验和 |
 | v6 分片 | **路由器不分片** → Packet Too Big |
 | 转发 | **LPM** + 直接/间接交付 |
-| Mobile IP | **MN+HA+CoA**；隧道+indirection；**蜂窝漫游**≈工程实现 → [5.5](5.5-mobile-ip-basic.md#ch05-5-cheat) · [§实例](5.5-mobile-ip-basic.md#ch05-5-cellular) |
+| Mobile IP | **MN+HA+CoA**；隧道+indirection；**住宅IP≠HoA** → [5.5 §零](5.5-mobile-ip-basic.md#ch05-5-residential) · [§考点](5.5-mobile-ip-basic.md#ch05-5-cheat) |
 | 主机模型 | **强**=接口绑定（Linux/IPv6 默认）；**弱**=本机全局 → [5.6](5.6-host-ip-processing.md#ch05-6-strong-weak) |
 | IPv6 源选 | RFC **6724** 八条；开发 **bind** → [5.6](5.6-host-ip-processing.md#ch05-6-rfc6724) |
 | 安全 | 源 IP 不可信；**BCP38/uRPF**；分片 **Teardrop** → [5.7](5.7-ip-attacks.md#ch05-7-cheat) |
