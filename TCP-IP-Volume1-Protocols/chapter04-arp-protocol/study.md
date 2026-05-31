@@ -1,6 +1,6 @@
 ﻿# 第 4 章：地址解析协议（ARP）
 
-> 按书节速记：[4.1](4.1-introduction.md) · [4.2](4.2-arp-basic-operation.md) · [4.3](4.3-arp-cache.md) · [4.4](4.4-arp-packet-format.md) · [4.5](4.5-arp-tcpdump-example.md) · [4.6](4.6-arp-cache-timeout.md) · [4.7](4.7-proxy-arp.md) · [4.8](4.6-gratuitous-arp.md) · [4.9](4.9-arp-cli-commands.md) · [4.10](4.10-embedded-arp-setup.md) · [4.11](4.11-arp-spoof-defense.md) · [4.12](4.12-summary.md) · [QUICKREF §4](../QUICKREF.md)
+> 按书节速记：[4.1](4.1-introduction.md) · [4.2](4.2-arp-basic-operation.md) · [4.3](4.3-arp-cache.md) · [4.4](4.4-arp-packet-format.md) · [4.5](4.5-arp-tcpdump-example.md) · [4.6](4.6-arp-cache-timeout.md) · [4.7](4.7-proxy-arp.md) · [4.8](4.8-gratuitous-arp.md) · [4.9](4.9-arp-cli-commands.md) · [4.10](4.10-embedded-arp-setup.md) · [4.11](4.11-arp-spoof-defense.md) · [4.12](4.12-summary.md) · [QUICKREF §4](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch04_arp.md)）  
 > 链路层基础：[ch03 链路层](../chapter03-link-layer/study.md) · 自顶向下：[§6.4.1 ARP](../../top_down/06_link_layer_and_lan/study.md#ch6-4)
@@ -217,11 +217,11 @@ ARP 缓存 = **软状态**（非永久；静态 `arp -s` 除外）→ 适配上�
 
 ---
 
-<a id="ch04-5"></a>
+<a id="ch04-8"></a>
 
 ## 4.8 免费 ARP（Gratuitous ARP）
 
-→ 精读：[4.6-gratuitous-arp.md](4.6-gratuitous-arp.md)
+→ 精读：[4.8-gratuitous-arp.md](4.8-gratuitous-arp.md)
 
 主机**广播**“自己的 IP → 自己的 MAC”的 ARP（常表现为 **请求** 形态，目标 IP = 本机 IP）。
 
@@ -236,20 +236,22 @@ ARP 缓存 = **软状态**（非永久；静态 `arp -s` 除外）→ 适配上�
 
 ---
 
-<a id="ch04-6"></a>
+<a id="ch04-9"></a>
 
-## 4.6 管理工具、安全威胁与本质总结
+## 4.9 arp 命令
 
-### 管理
+→ 精读：[4.9-arp-cli-commands.md](4.9-arp-cli-commands.md)
 
 | 工具 | 用途 |
 |------|------|
-| `arp`（Windows/旧 Unix） | 查看/增删静态映射 |
-| `ip neigh`（Linux） | 邻居表：ARP + 状态（REACHABLE/STALE…） |
+| `arp -a` / `arp -d` / `arp -s` | 查看 / 删除 / **静态绑定**（Windows / 旧 Unix） |
+| `ip neigh show` / `flush` | Linux 邻居表（含 REACHABLE/STALE 等状态） |
+
+---
 
 <a id="ch04-10"></a>
 
-### 4.10 嵌入式设备 IP 配置（ARP-Ping）
+## 4.10 嵌入式设备 IP 配置（ARP-Ping）
 
 → 精读：[4.10-embedded-arp-setup.md](4.10-embedded-arp-setup.md)
 
@@ -265,7 +267,7 @@ ARP 缓存 = **软状态**（非永久；静态 `arp -s` 除外）→ 适配上�
 
 <a id="ch04-11"></a>
 
-### 4.11 与 ARP 相关的攻击
+## 4.11 与 ARP 相关的攻击
 
 → 精读：[4.11-arp-spoof-defense.md](4.11-arp-spoof-defense.md) · [ch18 安全](../chapter18-network-security/study.md)
 
@@ -290,7 +292,7 @@ ARP 缓存 = **软状态**（非永久；静态 `arp -s` 除外）→ 适配上�
 | **请求 vs 应答** | 请求=**广播+目标MAC全0+Opcode1**；应答=**单播+填充+Opcode2** | 应答**不广播** |
 | **缓存超时** [4.6](4.6-arp-cache-timeout.md) | **软状态**；完整 **~20 min**；**INCOMPLETE ~3 min** | INCOMPLETE 不会存 20 min |
 | **代理 ARP** [4.7](4.7-proxy-arp.md) | 路由器**代答目标 IP**，表项「远端 IP→网关 MAC」 | ≠ 正常路由（只 ARP **网关 IP**） |
-| **免费 ARP** [4.8](4.6-gratuitous-arp.md) | 广播「本机 IP→本机 MAC」；**ACD** 冲突检测 | **收到回复=冲突**，非握手成功 |
+| **免费 ARP** [4.8](4.8-gratuitous-arp.md) | 广播「本机 IP→本机 MAC」；**ACD** 冲突检测 | **收到回复=冲突**，非握手成功 |
 | **帧格式** [4.4](4.4-arp-packet-format.md) | **28 B**、帧头 **0x0806**、**不进 IP** | ARP 不是 IP 层协议 |
 | **抓包** [4.5](4.5-arp-tcpdump-example.md) | 无主机：**3 次** who-has → Incomplete | 失败链路层常**静默** |
 

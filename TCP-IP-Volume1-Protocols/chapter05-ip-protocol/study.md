@@ -1,6 +1,6 @@
 ﻿# 第 5 章：Internet 协议（IP）
 
-> 按书节速记：[5.1](5.1-introduction.md) · [5.2](5.2-ipv4-header.md) · [5.3](5.3-ipv6-extension-headers.md) · [5.4](5.4-ip-routing-basic.md) · [5.5](5.8-mobile-ip-basic.md) · [5.6](5.6-host-ip-processing.md) · [5.7](5.7-ip-attacks.md) · [5.8](5.8-summary.md) · [QUICKREF §5](../QUICKREF.md)
+> 按书节速记：[5.1](5.1-introduction.md) · [5.2](5.2-ipv4-header.md) · [5.3](5.3-ipv6-extension-headers.md) · [5.4](5.4-ip-routing-basic.md) · [5.5](5.5-mobile-ip-basic.md) · [5.6](5.6-host-ip-processing.md) · [5.7](5.7-ip-attacks.md) · [5.8](5.8-summary.md) · [QUICKREF §5](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷1 第 2 版（Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/03_network_layer/ch05_ip.md)）  
 > 地址结构：[ch02](../chapter02-ip-address-architecture/study.md) · L2 交付：[ch04 ARP](../chapter04-arp-protocol/study.md) · 自顶向下：[§4.3 IPv4/IPv6](../../top_down/04_network_layer_data_plane/study.md#ch4-3)
@@ -207,26 +207,21 @@ IPv4/IPv6 首部 · 扩展头链 · **LPM 转发** · Mobile IP · 主机处理�
 
 ## 5.5 移动 IP（Mobile IP）
 
-### 战略背景
+→ 精读：[5.5-mobile-ip-basic.md](5.5-mobile-ip-basic.md) · [角色](5.5-mobile-ip-basic.md#ch05-5-roles) · [工作流程](5.5-mobile-ip-basic.md#ch05-5-flow)
 
-设备跨网（5G ↔ Wi-Fi）时，希望**上层 TCP 仍用原归属 IP**，会话不中断。
+设备跨网漫游时，**上层仍用家乡地址** — **间接寻址（indirection）** + **IP 隧道**。
 
-| 术语 | 说明 |
+| 角色 | 作用 |
 |------|------|
-| **HA（归属代理）** | 原网络“锚点”路由器 |
-| **CoA（转交地址）** | 外地网络临时地址 |
+| **MN** | 漫游终端；对外固定**家乡地址** |
+| **HA** | 家乡网络锚点；维护 **家乡地址 ↔ CoA** |
+| **CoA** | 外地网络**临时 IP**（当前位置） |
 
-### 咖啡馆案例（MN 离开公司）
+**流程**：MN 注册 CoA → HA 截获发往家乡地址的包 → **隧道**转发至 CoA → 回程可直连。
 
-1. MN 在外地通过 DHCP 获 **CoA**，向 **HA** 注册  
-2. 外部仍发往 MN **原 IP** 的包被 **HA** 拦截  
-3. HA **IP-in-IP 隧道** 封装，外层目的 = **CoA**
+**现代**：LTE / **PMIPv6**；本节为**基础概念模型**。
 
-### 易混
-
-| | Wi-Fi 漫游 | Mobile IP |
-|--|--------------|-----------|
-| 层 | 常 **L2** | **L3** 无缝（跨运营商/技术） |
+→ 速记：[5.5 §考点](5.5-mobile-ip-basic.md#ch05-5-cheat) · 易混：Wi-Fi **L2** 漫游 vs Mobile IP **L3**
 
 ---
 
@@ -298,7 +293,7 @@ IP 设计于互信环境 → **源地址无内置认证**。
 | v4 vs v6 头 | 变长+校验和 vs 40B 固定+无首部校验和 |
 | v6 分片 | **路由器不分片** → Packet Too Big |
 | 转发 | **LPM** + 直接/间接交付 |
-| Mobile IP | HA + CoA + 隧道 |
+| Mobile IP | **MN+HA+CoA**；家乡地址不变；**隧道+indirection** → [5.5](5.5-mobile-ip-basic.md#ch05-5-cheat) |
 | 主机模型 | **强**=接口绑定（Linux/IPv6 默认）；**弱**=本机全局 → [5.6](5.6-host-ip-processing.md#ch05-6-strong-weak) |
 | IPv6 源选 | RFC **6724** 八条；开发 **bind** → [5.6](5.6-host-ip-processing.md#ch05-6-rfc6724) |
 | 安全 | 源 IP 不可信；**BCP38/uRPF**；分片 **Teardrop** → [5.7](5.7-ip-attacks.md#ch05-7-cheat) |

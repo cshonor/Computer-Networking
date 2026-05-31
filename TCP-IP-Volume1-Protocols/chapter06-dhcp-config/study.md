@@ -143,7 +143,7 @@ L2 接通 → L3（DHCP / SLAAC+DHCPv6）→ DNS → 应用
 
 租约异常中止 · 中继路径 **MTU** 截断 · 未 Probe 导致 **IP 冲突**
 
-→ 免费 ARP/ACD：[ch04 §4.5](../chapter04-arp-protocol/study.md#ch04-5)
+→ 免费 ARP/ACD：[ch04 §4.8](../chapter04-arp-protocol/study.md#ch04-8)
 
 ---
 
