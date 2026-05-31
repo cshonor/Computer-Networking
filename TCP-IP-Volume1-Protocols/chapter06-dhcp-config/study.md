@@ -60,7 +60,9 @@ L2 接通 → L3（DHCP / SLAAC+DHCPv6）→ DNS → 应用
 
 ## 6.2 动态主机配置协议（DHCP）
 
-**DHCP** 本质是 **应用层（UDP）** 协议，却在 **网络层初始化** 中起决定性作用。
+→ 精读：[6.2-dhcp-protocol.md](6.2-dhcp-protocol.md) · [DORA](6.2-dhcp-protocol.md#ch06-2-dora) · [租期](6.2-dhcp-protocol.md#ch06-2-lease) · [DHCPv6](6.2-dhcp-protocol.md#ch06-2-v6)
+
+**DHCP** 本质是 **应用层（UDP 67/68）** 协议，却在 **网络层初始化** 中起决定性作用。
 
 ### 为何放在应用层？
 
@@ -81,6 +83,8 @@ L2 接通 → L3（DHCP / SLAAC+DHCPv6）→ DNS → 应用
 |--------|------|------|
 | **T1（续租）** | 租约 **50%** | 向**原服务器**单播 **Renew** |
 | **T2（重绑定）** | 租约 **87.5%** | 原服务器无响应 → **广播**找任意可用服务器 |
+
+→ 详：[6.2 §租期](6.2-dhcp-protocol.md#ch06-2-lease)
 
 ---
 
@@ -125,6 +129,8 @@ L2 接通 → L3（DHCP / SLAAC+DHCPv6）→ DNS → 应用
 | **ACK** | 租约生效 | Server → Client | Server → 255.255.255.255 等 |
 
 **Request 广播的原因**：让网内**所有**曾 Offer 的服务器知晓客户端选择，释放未中标地址。
+
+→ 厚版：[6.2 §三 DORA](6.2-dhcp-protocol.md#ch06-2-dora) · 易混：[6.2 §考点](6.2-dhcp-protocol.md#ch06-2-cheat)
 
 ---
 
