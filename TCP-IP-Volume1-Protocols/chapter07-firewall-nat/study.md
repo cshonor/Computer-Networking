@@ -57,13 +57,14 @@ IPv4 枯竭 + 经济边界防护 → **现实折中**（非理想端到端）。
 
 ## 7.2 防火墙
 
-→ 精读：[7.2-packet-filter-firewall.md](7.2-packet-filter-firewall.md)
+→ 精读：[7.2-packet-filter-firewall.md](7.2-packet-filter-firewall.md) · [三条规则+iptables](7.2-packet-filter-firewall.md#ch07-2-rules)
 
 部署于**可信内网**与**不可信外网**边界，按规则管控往来流量 — 阻止未授权访问、放行合法通信。
 
 ### 包过滤（L3/L4）
 
 - **转发前**匹配 IP/TCP/UDP 首部（地址、协议号、端口、TCP 标志）  
+- **三条基础规则**：① 外网纯 **SYN** DROP · ② 出站仅 **80/443** · ③ **黑名单 IP** 最前 → [§背诵](7.2-packet-filter-firewall.md#ch07-2-rules-cheat)  
 - **无状态**：逐包独立判决，快但易被伪造包绕过  
 - **有状态**：**五元组状态表**跟踪会话，回程匹配表项放行 → 主流方案  
 
