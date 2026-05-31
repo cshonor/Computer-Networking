@@ -157,44 +157,48 @@ L2 接通 → L3（DHCP / SLAAC+DHCPv6）→ DNS → 应用
 
 ## 6.3 无状态地址自动配置（SLAAC）
 
-IPv6 哲学：可**不依赖中心化 DHCP** 合成地址。
+→ 精读：[6.3-slaac-autoconfig.md](6.3-slaac-autoconfig.md) · [APIPA](6.3-slaac-autoconfig.md#ch06-3-apipa) · [SLAAC 流程](6.3-slaac-autoconfig.md#ch06-3-slaac) · [M/O](6.3-slaac-autoconfig.md#ch06-3-mo) · [考点](6.3-slaac-autoconfig.md#ch06-3-cheat)
 
-### 6.3.1 IPv4 链路本地
+### 一、IPv4 APIPA
 
-DHCP 不可用时 → **169.254.0.0/16**（APIPA）；经 **ARP** 冲突检测，仅本地链路有效。
+**DHCP 不可达** → 自动 **`169.254.0.0/16`**；**免费 ARP/ACD** 冲突检测；仅链路本地。
 
-→ RFC 3927
+### 二、IPv6 SLAAC
 
-### 6.3.2 IPv6 SLAAC（ICMPv6 NDP）
+**RS** 问前缀 → **RA** 回前缀 + **M/O** → 地址 = **前缀 + IID**（默认 **EUI-64**）
 
-```text
-主机 --[ RS 组播 ]--> 路由器
-主机 <--[ RA 带 Prefix ]-- 路由器
-```
+### 三、M/O 标志
 
-1. **合成**：**网络前缀（RA）** + **接口标识符 IID**  
-2. **EUI-64**：48b MAC 中间插 **0xFFFE**；翻转 **U/L 位（第 7 位）** 0→1 表示全局唯一（IEEE MAC 场景）  
-3. **隐私扩展 (RFC 4941)**：随机、定期更换 IID，避免长期 MAC 映射被追踪
+| 位 | 置 1 |
+|----|------|
+| **M** | **有状态 DHCPv6** 分配地址 |
+| **O** | 地址仍 SLAAC；仅 DHCPv6 要 **DNS** 等 |
 
-→ ND/ICMPv6：[ch08](../chapter08-icmpv4-icmpv6/study.md)
+**SLAAC 不强制 DHCPv6** — 看 RA 标志 → [6.2](6.2-dhcp-protocol.md)
+
+### 补充：EUI-64 · 隐私扩展
+
+48b MAC 插 **0xFFFE**、翻 U/L 位；RFC 4941 随机 IID 防追踪 → [ch08 ND](../chapter08-icmpv4-icmpv6/study.md)
 
 ---
 
 <a id="ch06-4"></a>
 
-## 6.4–6.5 DHCP 与 DNS、以太网 PPP
+## 6.4 DHCP 与 DNS 交互
 
-### DDNS
+→ 精读：[6.4-dhcp-dns-ddns.md](6.4-dhcp-dns-ddns.md) · [痛点](6.4-dhcp-dns-ddns.md#ch06-4-pain) · [DDNS](6.4-dhcp-dns-ddns.md#ch06-4-ddns) · [考点](6.4-dhcp-dns-ddns.md#ch06-4-cheat)
 
-DHCP 地址变更时，客户端或服务器**动态更新 DNS**（A/AAAA），维持对公服务连续性。
+**痛点**：DHCP 动态 IP → 域名–IP 映射失效，主机名无法访问。
 
-→ [ch11 DNS](../chapter11-dns-domain-resolve/study.md)
+**DDNS**：IP 变更时自动更新 **A/AAAA**；**DHCP 服务器或客户端**发起；须 **TSIG** 等认证防篡改。
 
-### PPPoE
+**应用**：企业 **AD 域**、家用路由器主机名自动注册。
 
-宽带接入：将带**认证**的 **PPP** 封装进以太网；**发现阶段 + 会话阶段** 分发 IP — 运营商拨号常见。
+→ DNS：[ch11](../chapter11-dns-domain-resolve/study.md)
 
-→ [ch03 §PPP](../chapter03-link-layer/study.md#ch03-6)（PPP 帧格式见链路层章）
+### 6.5 PPPoE（同章下一节）
+
+宽带接入：带认证的 **PPP** 封装以太网；发现 + 会话阶段分发 IP → [6.5](6.5-pppoe.md) · [ch03 PPP](../chapter03-link-layer/study.md#ch03-6)
 
 ---
 
@@ -227,7 +231,14 @@ DHCP **无强认证**，默认信任**物理链路**。
 | 优势 | 选项丰富、策略可控 | Rapid Commit 等 | 极简、去中心化 |
 | 回退/本地 | **169.254.0.0/16** | — | **fe80::/10** 链路本地 |
 
-### 架构视角（一句话）
+### 易混速记
+
+| 问题 | 要点 |
+|------|------|
+| APIPA vs SLAAC | v4 **169.254/16** vs v6 **RA 拼地址** → [6.3](6.3-slaac-autoconfig.md#ch06-3-cheat) |
+| M / O 标志 | **M=有状态地址**；**O=仅 DNS，地址仍 SLAAC** → [6.3 M/O](6.3-slaac-autoconfig.md#ch06-3-mo) |
+| SLAAC 必配 DHCPv6 | **否** — 看 RA **M/O** |
+| DDNS | DHCP 换 IP → 刷 **A/AAAA**；须 **TSIG** → [6.4](6.4-dhcp-dns-ddns.md#ch06-4-cheat) |
 
 从 **DHCP 的行政管理** 到 **SLAAC 的协作发现** — 按业务在**可控性**与**灵活性**之间选型（云/数据中心常仍重度依赖 DHCP/DHCPv6）。
 
