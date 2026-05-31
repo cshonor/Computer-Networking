@@ -122,7 +122,7 @@
 
 ## 4.4 ARP 帧格式详解
 
-→ 精读：[4.4-arp-packet-format.md](4.4-arp-packet-format.md)
+→ 精读：[4.4-arp-packet-format.md](4.4-arp-packet-format.md) · [请求 vs 应答](4.4-arp-packet-format.md#ch04-4-request-reply)
 
 ARP 是**链路层负载**（EtherType **0x0806**），**不**封装在 IP 数据报内。
 
@@ -134,6 +134,16 @@ ARP 是**链路层负载**（EtherType **0x0806**），**不**封装在 IP 数�
 | 地址长度 | **6** / **4**（MAC / IPv4） |
 | **Opcode** | **1** 请求，**2** 应答 |
 | 发送方 / 目标 | MAC + IP；**请求时目标 MAC 全 0** |
+
+### 请求 vs 应答（必背）
+
+| | **请求（1）** | **应答（2）** |
+|---|-------------|-------------|
+| 以太网目的 MAC | **广播** `FF:FF:…` | **单播** 请求方 MAC |
+| ARP 目标 MAC | **全 0** | 请求方真实 MAC |
+| 一句 | 广播 + 全 0 + Opcode=1 | 单播 + 填充 + Opcode=2 |
+
+→ 字段级详解：[4.4 §三](4.4-arp-packet-format.md#ch04-4-request-reply) · 抓包：[4.5](4.5-arp-tcpdump-example.md#ch04-5-normal)
 
 ### 以太网帧
 
@@ -271,6 +281,23 @@ ARP 缓存 = **软状态**（非永久；静态 `arp -s` 除外）→ 适配上�
 
 ---
 
+<a id="ch04-onepager"></a>
+
+## 一页纸速记 + 易错对比
+
+| 主题 | 一句 | 易错 |
+|------|------|------|
+| **请求 vs 应答** | 请求=**广播+目标MAC全0+Opcode1**；应答=**单播+填充+Opcode2** | 应答**不广播** |
+| **缓存超时** [4.6](4.6-arp-cache-timeout.md) | **软状态**；完整 **~20 min**；**INCOMPLETE ~3 min** | INCOMPLETE 不会存 20 min |
+| **代理 ARP** [4.7](4.7-proxy-arp.md) | 路由器**代答目标 IP**，表项「远端 IP→网关 MAC」 | ≠ 正常路由（只 ARP **网关 IP**） |
+| **免费 ARP** [4.8](4.6-gratuitous-arp.md) | 广播「本机 IP→本机 MAC」；**ACD** 冲突检测 | **收到回复=冲突**，非握手成功 |
+| **帧格式** [4.4](4.4-arp-packet-format.md) | **28 B**、帧头 **0x0806**、**不进 IP** | ARP 不是 IP 层协议 |
+| **抓包** [4.5](4.5-arp-tcpdump-example.md) | 无主机：**3 次** who-has → Incomplete | 失败链路层常**静默** |
+
+过滤器：`arp` · `arp.opcode == 1/2` · `eth.type == 0x0806` · 验证：`ip neigh` / `arp -a`
+
+---
+
 <a id="ch04-exam"></a>
 
 ## 考点复盘
@@ -287,7 +314,7 @@ ARP 缓存 = **软状态**（非永久；静态 `arp -s` 除外）→ 适配上�
 |------|------|
 | ARP vs RARP | ARP：IP→MAC；RARP：MAC→IP（少见，DHCP 取代） |
 | ARP vs ND | **IPv4/ARP**；**IPv6/ND（ICMPv6）** |
-| 请求 vs 应答 | 广播 vs 单播 |
+| 请求 vs 应答 | **广播+全0+Op1** vs **单播+填充+Op2**；应答绝不广播 → [4.4 §三](4.4-arp-packet-format.md#ch04-4-request-reply) |
 | 代理 ARP vs 默认网关 | 代理**代答目标 IP** → 表项「远端 IP→网关 MAC」；正常跨网段 **ARP 网关 IP** → [4.7](4.7-proxy-arp.md#ch04-7-compare) |
 | ARP 失败 vs ICMP | ARP 超时静默；路由/防火墙可能再报 **Host Unreachable** |
 
