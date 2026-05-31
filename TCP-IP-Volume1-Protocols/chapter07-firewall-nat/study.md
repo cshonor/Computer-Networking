@@ -161,40 +161,54 @@ IPv4 枯竭 + 经济边界防护 → **现实折中**（非理想端到端）。
 
 ## 7.4 NAT 穿越
 
-→ 精读：[7.4-nat-traversal.md](7.4-nat-traversal.md)
+→ 精读：[7.4-nat-traversal.md](7.4-nat-traversal.md) · [打洞](7.4-nat-traversal.md#ch07-4-hole-punch) · [STUN/TURN/ICE](7.4-nat-traversal.md#ch07-4-stun-turn-ice) · [考点](7.4-nat-traversal.md#ch07-4-cheat)
 
-在受限环境下恢复 **P2P**。
+### 一、UDP 打洞
 
-### 打孔 (Hole Punching)
+内网**主动外发包** → NAT 建**外向映射** → 对端经 **公网 IP:Port** 反向打入。成败看 **NAT 类型**（**全锥易，对称最难**）→ [7.3](7.3-nat-napt.md#ch07-3-mapping-types)
 
-经**信令服务器**协调，A、B **同时**向对方发探测包 → NAT 视为**由内向外**合法流 → 状态表开**针孔**允许反向报文。
+### 二、三剑客
 
-### STUN / TURN / ICE
+| 协议 | 作用 |
+|------|------|
+| **STUN** | 查 **公网 IP:Port**（纯查询） |
+| **TURN** | 打洞失败 **中继**（兜底） |
+| **ICE** | 候选收集 + 探测，**择优路径** |
 
-| 协议 | 机制 | 核心 | 限制 |
-|------|------|------|------|
-| **STUN** | 反射寻址 | 获知自身公网 **IP:Port** | 轻量；难穿 **对称型 NAT** |
-| **TURN** | 中继 | 公网服务器转发全部流量 | 成功率高；带宽/成本高 |
-| **ICE** | 交互式连接 | 组合 STUN/TURN，选最优路径 | WebRTC 等标配 |
+### 三、实战 · 四、保活
+
+Go `pion/*` · Rust `webrtc-rs`/`libp2p`；降级 TURN → 查**对称 NAT** / UDP 拦截 / 超时。  
+**STUN 刷新 / 心跳** 防映射空闲清除。
 
 ---
 
 <a id="ch07-5"></a>
 
-## 7.5 配置实践与协议交互
+## 7.5 配置包过滤防火墙和 NAT
 
-### 处理顺序（架构要点）
+→ 精读：[7.5-acl-port-control.md](7.5-acl-port-control.md) · [ACL](7.5-acl-port-control.md#ch07-5-acl) · [Open NAT](7.5-acl-port-control.md#ch07-5-upnp) · [考点](7.5-acl-port-control.md#ch07-5-cheat)
 
-**过滤规则应先于 NAT 转换**。
+### 架构：过滤先于 NAT
 
-先 NAT 会让攻击/无效流量占满**状态表/端口映射** → 合法流 **DoS**；应先 Drop 黑名单再建映射。
+**过滤规则应先于 NAT 转换** — 先 NAT 会让攻击/无效流量占满**状态表/端口映射** → 合法流 DoS。
 
-### UPnP / NAT-PMP / PCP
+### ACL
 
-| 协议 | 场景 |
+**自上而下**，**First Match**；细规则在前，**默认 DROP** 收尾。  
+标准顺序：**黑名单 → 拒外网 SYN → 80/443 → 默认丢弃** → [7.2 iptables](7.2-packet-filter-firewall.md#ch07-2-rules-order)
+
+### 动态端口映射（Open NAT）
+
+| 协议 | 说明 |
 |------|------|
-| **UPnP / NAT-PMP** | 家用网关；主机动态申请端口映射；**认证弱** |
-| **PCP** | 现代 IETF 标准；映射生命周期等；CGN 环境更规范 |
+| **UPnP IGD** | 传统主流；游戏/P2P/VoIP |
+| **NAT-PMP / PCP** | 新一代；更安全规范 |
+
+家用常开；**企业一般禁用**（防端口暴露）。
+
+### 运维
+
+`conntrack` 满 → **无法新建连接** → [7.7 状态耗尽](7.7-security-attacks.md)
 
 ---
 
@@ -202,22 +216,31 @@ IPv4 枯竭 + 经济边界防护 → **现实折中**（非理想端到端）。
 
 ## 7.6 IPv4/IPv6 共存与过渡
 
-NAT 在 v6 时代常作**协议桥梁**，而非仅省地址。
+→ 精读：[7.6-ipv6-nat-transition.md](7.6-ipv6-nat-transition.md) · [DS-Lite](7.6-ipv6-nat-transition.md#ch07-6-dslite) · [NAT64](7.6-ipv6-nat-transition.md#ch07-6-nat64) · [考点](7.6-ipv6-nat-transition.md#ch07-6-cheat)
 
-### 7.6.1 DS-Lite
+**过渡技术** — 最终目标：**全原生 IPv6 端到端**。
 
-内网仍跑 **IPv4**，CPE **B4** 将 IPv4 封装进 **IPv6 隧道** → 运营商 **AFTR** 解封装并 **NAT44**。
+### DS-Lite
 
-### 7.6.2 NAT64 与 DNS64
+内网仍 **IPv4 私网** → CPE **B4** 封装进 **IPv6 隧道** → 运营商 **AFTR/CGN** 解封装 + **NAPT** → 省公网 v4。
 
-仅 **IPv6 客户端** 访问仅 **IPv4 服务器** 的闭环：
+### NAT64 + DNS64
+
+**纯 IPv6 终端** 访问 **IPv4 服务**：
 
 | 组件 | 作用 |
 |------|------|
-| **DNS64** | 无 AAAA 时**合成**含 IPv4 的伪 AAAA |
-| **NAT64** | 将 **IPv4-Embedded IPv6**（如 **64:ff9b::/96**）译为 IPv4 首部 |
+| **DNS64** | 无 AAAA 时合成 AAAA，前缀 **`64:ff9b::/96`** |
+| **NAT64** | **IPv6 ↔ IPv4** 双向协议翻译 |
 
-→ DNS 细节：[ch11 DNS](../chapter11-dns-domain-resolve/study.md)
+→ DNS：[ch11 §11.9](../chapter11-dns-domain-resolve/11.9-dns-ipv6-transition.md)
+
+### 区分
+
+| | DS-Lite | NAT64 |
+|---|---------|-------|
+| 用户 | **仍用 IPv4** | **仅 IPv6** |
+| 机制 | v4 **over v6 隧道** + CGN | **协议翻译** + DNS64 |
 
 ---
 
@@ -225,19 +248,49 @@ NAT 在 v6 时代常作**协议桥梁**，而非仅省地址。
 
 ## 7.7 相关攻击
 
-→ 精读：[7.7-security-attacks.md](7.7-security-attacks.md)
+→ 精读：[7.7-security-attacks.md](7.7-security-attacks.md) · [隧道绕过](7.7-security-attacks.md#ch07-7-tunnel) · [状态耗尽](7.7-security-attacks.md#ch07-7-state-exhaustion) · [考点](7.7-security-attacks.md#ch07-7-cheat)
 
-状态化中间件引入新攻击面。
+### 一、应用层隧道绕过
+
+恶意流量封装在 **80/443** 放行端口内（HTTPS 藏 C2）→ 规避端口过滤。  
+防护：**TLS 检测**、**正向代理**、**行为分析**。
+
+### 二、NAT 状态耗尽
+
+大量新建/半开连接 → **`conntrack` 满** → 新连接失败、内网断网。NAT **非专业安全设备**，易成可用性瓶颈 → [7.5](7.5-acl-port-control.md#ch07-5-ops)
+
+### 三、缓解
+
+**限流**（单 IP 新建速率）· **调优**（缩短超时、扩表）· **架构**（DMZ / 原生 **IPv6**）
+
+### 补充攻击面
 
 | 攻击 | 说明 |
 |------|------|
-| **状态表溢出 DoS** | 大量伪造 SYN 占满防火墙/NAT 表 |
-| **分片绕过** | 操纵分片偏移，使非法 L4 信息在首包审查后于内网**重组** |
+| **分片绕过** | 首包审查后内网重组非法 L4 |
 | **状态注入** | 伪造 ACK/序列号误导状态表 |
 
-**缓解**：每源地址映射上限、**TCP MSS** 限制、**uRPF**、严格碎片策略。
+→ [ch05 §5.7](../chapter05-ip-protocol/study.md#ch05-7)
 
-→ 源 IP 不可信：[ch05 §5.7](../chapter05-ip-protocol/study.md#ch05-7)
+---
+
+---
+
+<a id="ch07-nat-onpager"></a>
+
+## NAT 一页纸（背诵版）
+
+→ 完整版：[7.3 §速记卡](7.3-nat-napt.md#ch07-3-cheat)
+
+| 块 | 一句 |
+|----|------|
+| **基础** | 改 IP/端口 + **状态表** + 老化；**边界网关** |
+| **NAPT** | **IP+端口** 多对一；对外服务 **静态映射** |
+| **Hairpin** | 内网访**公网 IP** → **SNAT+DNAT** 发夹 |
+| **ALG** | 改**载荷**私网地址；**TLS 失效** |
+| **四类** | **全锥易 → 对称靠 TURN** |
+
+易错：NAPT 靠**端口** · ALG 仅明文 · 内网公网 IP 互访要 **Hairpin** · 对称 NAT **无固定映射**
 
 ---
 
@@ -258,11 +311,17 @@ NAT 在 v6 时代常作**协议桥梁**，而非仅省地址。
 | 问题 | 要点 |
 |------|------|
 | NAPT vs 基本 NAT | 是否改**端口**、多对一 → [7.3](7.3-nat-napt.md#ch07-3-napt-compare) |
-| NAT 四类 / P2P | **全锥易、对称靠 TURN** → [7.3](7.3-nat-napt.md#ch07-3-mapping-types) |
+| NAT 四类 / P2P | **全锥易、对称靠 TURN** → [7.3](7.3-nat-napt.md#ch07-3-mapping-types) · [7.4 打洞](7.4-nat-traversal.md#ch07-4-hole-punch) |
+| STUN/TURN/ICE | **STUN 查、TURN 中继、ICE 优选** → [7.4](7.4-nat-traversal.md#ch07-4-cheat) |
 | EIM vs ADM / EIF vs ADF | **Mapping** 是否随目的变；**Filtering** 决定谁能打入 → [study §7.3.2–3](#ch07-3) |
 | Hairpin | 内网访问**本 NAT 公网 IP** → **DNAT+SNAT 发夹** → [7.3](7.3-nat-napt.md#ch07-3-hairpin) |
 | ALG vs 代理 | ALG 改**载荷 IP**；TLS 下失效 → [7.3](7.3-nat-napt.md#ch07-3-alg) |
-| 过滤 vs NAT 顺序 | **先过滤后 NAT** |
+| 过滤 vs NAT 顺序 | **先过滤后 NAT** → [7.5](7.5-acl-port-control.md#ch07-5-acl) |
+| ACL 顺序 | **黑→SYN→80/443→DROP** → [7.5](7.5-acl-port-control.md#ch07-5-cheat) |
+| NAT64/DNS64 | 纯 v6 访 v4；前缀 **64:ff9b::/96** → [7.6](7.6-ipv6-nat-transition.md#ch07-6-nat64) |
+| DS-Lite vs NAT64 | 用户仍 v4 **隧道** vs 用户仅 v6 **翻译** → [7.6 对比](7.6-ipv6-nat-transition.md#ch07-6-compare) |
+| 隧道 bypass | **80/443** 藏恶意流 → [7.7](7.7-security-attacks.md#ch07-7-tunnel) |
+| 状态耗尽 | 打满 **conntrack** → 断新连 → [7.7](7.7-security-attacks.md#ch07-7-state-exhaustion) |
 
 ### 下一章
 
