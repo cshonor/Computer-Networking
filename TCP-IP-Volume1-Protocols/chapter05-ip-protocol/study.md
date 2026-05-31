@@ -267,19 +267,20 @@ IPv4/IPv6 首部 · 扩展头链 · **LPM 转发** · Mobile IP · 主机处理�
 
 ## 5.7 与 IP 相关的攻击
 
-IP 设计于互信环境 → **源地址无内置认证** → 长期“身份危机”。
+→ 精读：[5.7-ip-attacks.md](5.7-ip-attacks.md) · [IP 欺骗](5.7-ip-attacks.md#ch05-7-spoof) · [分片攻击](5.7-ip-attacks.md#ch05-7-fragment)
 
-| 攻击 | 说明 |
-|------|------|
-| **IP 欺骗** | 伪造源 IP 为受信主机 |
-| **反射/放大 DDoS** | 虚假源 IP 海量流量；受害者难追踪 |
+IP 设计于互信环境 → **源地址无内置认证**。
 
-```text
-攻击者 1.1.1.1 --(源 IP 伪造为 2.2.2.2)--> 防火墙 --> 受害者
-受害者误以为来自 2.2.2.2，可能开放特权服务
-```
+| 攻击 | 原理 | 防护 |
+|------|------|------|
+| **IP 欺骗** | 伪造**源 IP** → 白名单绕过、**反射 DDoS** | **BCP 38** 入站过滤、**uRPF**（严格/松散） |
+| **分片攻击** | **畸形/重叠分片** → 重组崩溃（**Teardrop**） | 边界滤片、栈已加固、**PMTUD** 减分片 |
 
-缓解方向：**uRPF**、入口过滤（BCP38）、**TLS**、不依赖源 IP 的认证等。
+**原则**：IP 无身份/加密 → **TLS / IPsec** + 运维策略；**勿依赖源 IP**。
+
+**联动**：常与 [ch04 ARP 欺骗](../chapter04-arp-protocol/4.11-arp-spoof-defense.md) 组合（L2+L3）。
+
+→ 速记：[5.7 §考点](5.7-ip-attacks.md#ch05-7-cheat) · [ch02 §2.8](../chapter02-ip-address-architecture/2.8-address-security-threat.md)
 
 ---
 
@@ -300,7 +301,7 @@ IP 设计于互信环境 → **源地址无内置认证** → 长期“身份危
 | Mobile IP | HA + CoA + 隧道 |
 | 主机模型 | **强**=接口绑定（Linux/IPv6 默认）；**弱**=本机全局 → [5.6](5.6-host-ip-processing.md#ch05-6-strong-weak) |
 | IPv6 源选 | RFC **6724** 八条；开发 **bind** → [5.6](5.6-host-ip-processing.md#ch05-6-rfc6724) |
-| 安全 | 源 IP 不可信 |
+| 安全 | 源 IP 不可信；**BCP38/uRPF**；分片 **Teardrop** → [5.7](5.7-ip-attacks.md#ch05-7-cheat) |
 
 ### 建议后续章节
 
