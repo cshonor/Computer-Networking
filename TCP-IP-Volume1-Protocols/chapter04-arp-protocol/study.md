@@ -19,6 +19,7 @@
 
 - **功能**：**IPv4 → 以太网 MAC**（**RFC 826**）；**IPv6 用 ND**，不用 ARP。
 - **范围**：**同一广播域**；跨网段 **ARP 网关**，不 ARP 远端主机。
+- **铁律**：ARP **绝不跨路由器**；路由器是**换网卡、换 LAN 再 ARP** → [4.2 §零附 C](4.2-arp-basic-operation.md#ch04-2-iron-rules)
 - **L3/L2**：路由最终要坍缩成**下一跳 MAC**；ARP 是 IPv4 在以太网上的主要动态机制。
 
 ---
@@ -42,9 +43,9 @@
 **ARP 表**：下一跳 IP → **下一跳 MAC**  
 **封装**：IP 目的 = 最终接收方（不变）；帧 MAC 目的 = 直连下一跳（每跳重写）
 
-**路由器发 ARP**：路由表定 **出接口** → **只从该网口**发二层广播（`FF:FF:FF:FF:FF:FF`）；广播**不过**其他接口 → [§零附 A](4.2-arp-basic-operation.md#ch04-2-router-arp-egress)
+**路由器发 ARP**：路由表定 **出接口** → **只从该网口**发二层广播；广播**不过**其他接口 → [§零附 A](4.2-arp-basic-operation.md#ch04-2-router-arp-egress)
 
-→ 多跳实例：[4.2 §零附二](4.2-arp-basic-operation.md#ch04-2-end-to-end) · [路由器跨接口 ARP](4.2-arp-basic-operation.md#ch04-2-router-arp-egress)
+→ **双路由器三网段走读**：[§零附 B](4.2-arp-basic-operation.md#ch04-2-dual-router) · **ARP 铁律**：[§零附 C](4.2-arp-basic-operation.md#ch04-2-iron-rules)
 
 | 概念 | 说明 |
 |------|------|
