@@ -1,6 +1,6 @@
 ﻿# 第 9 章：广播与本地组播
 
-> 按书节速记：[9.1](9.1-broadcast-multicast-concept.md) · [9.2](9.2-ipv4-broadcast-address.md) · [9.3](9.3-multicast-mac-mapping.md) · [9.4](9.4-igmp-mld-snooping.md) · [9.5](9.5-igmp-mld-attacks.md) · [9.6](9.6-summary.md) · [QUICKREF §9](../QUICKREF.md)
+> 按书节速记：[9.1](9.1-broadcast-multicast-concept.md) · [9.2](9.2-ipv4-broadcast-address.md) · [9.3](9.3-multicast-mac-mapping.md) · [9.4](9.4-igmp-mld-snooping.md) · [9.5](9.5-igmp-mld-attacks.md) · [9.6](9.6-summary.md) · [9.7 实战](9.7-lan-switch-router-multicast.md) · [QUICKREF §9](../QUICKREF.md)
 
 > 《TCP/IP 详解》卷 1 第 2 版（Stevens & Fall, 2016）· 精细化学习笔记（同步自 [tcpip_vol1_ed2_notes](../../tcpip_vol1_ed2_notes/04_transport_layer/ch09_broadcast_multicast.md)）  
 > **交叉引用**：[ch02 地址与子网语义](../chapter02-ip-address-architecture/study.md#ch02-3) · [ch08 ICMP/MLD](../chapter08-icmpv4-icmpv6/study.md) · [ch10 UDP 与一对多套接字](../chapter10-udp-ip-fragment/study.md) · 自顶向下 [§3.3 UDP](../../top_down/03_transport_layer/study.md#ch3-3)
@@ -19,7 +19,21 @@
 
 <a id="ch09-1"></a>
 
-## 9.1 章节导读与 IPv4 广播
+## 9.1 引言：广播 vs 组播
+
+→ 精读：[9.1-broadcast-multicast-concept.md](9.1-broadcast-multicast-concept.md) · [定义](9.1-broadcast-multicast-concept.md#ch09-1-def) · [LAN 区别](9.1-broadcast-multicast-concept.md#ch09-1-lan-diff) · [误区](9.1-broadcast-multicast-concept.md#ch09-1-myth) · [考点](9.1-broadcast-multicast-concept.md#ch09-1-cheat)
+
+**核心**：LAN 里**观感可似**，**本质不同** — 广播=一对**全部**强制收；组播=一对**订户**加组才收。
+
+| | 广播 | 组播 |
+|---|------|------|
+| MAC | `FF:FF:FF:FF:FF:FF` | `01:00:5E…` |
+| 跨路由 | **否** | **可**（PIM） |
+| 无 Snooping | 泛洪 | **表现像**广播，主机逻辑仍不同 |
+
+→ 广播详 [9.2](#ch09-2) · 组播段 [9.3](#ch09-3) · IGMP Snooping [9.4](#ch09-4)
+
+### 9.1.x 章节导读与 IPv4 广播（扩展）
 
 ### 9.1.1 为什么需要「非单播」
 
@@ -107,13 +121,20 @@
 
 ## 9.3 组播基本概念与二层映射（IPv4 为重点）
 
-→ **MAC / IPv4 单播·组播·广播对照 + PAUSE 与 IP 组播区别**：[9.3 精读](9.3-multicast-mac-mapping.md)
+→ **MAC / IPv4 单播·组播·广播对照 + PAUSE 与 IP 组播区别**：[9.3 精读](9.3-multicast-mac-mapping.md) · [**组播地址段/传播**](9.3-multicast-mac-mapping.md#ch09-3-scope)
 
-### 9.3.1 IPv4 组播地址范围
+### 9.3.1 IPv4 组播地址范围与传播
 
-- **D 类**：**`224.0.0.0/4`**（`224.0.0.0`–`239.255.255.255`）。  
-- **`224.0.0.0/24`**（约 `224.0.0.x`）：**链路局部控制**——**路由器不转发**（TTL 常为 1 的实务习惯与此一致），用于 **OSPF、HSRP、mDNS（部分实现）** 等。  
-- **`239.x.x.x`（admin-scope）**：**管理域界限**语义，适于**组织内**，由 **PIM-SSM/PIM-SM + 静态域边界**等在广域切段（本章仅占位）。
+**核心**：**224.0.0.0/4** — 大部分**默认仅 LAN**；跨网段需 **PIM**。
+
+| 段 | 传播 |
+|----|------|
+| **`224.0.0.0/24`** | **不跨路由** — `224.0.0.1`/`224.0.0.5` OSPF 等 |
+| **`224.0.1.0/24`** | 默认可跨网/公网 |
+| **`224.0.2.0`~`238.x`** | 需 **PIM**；家用默认不转发 |
+| **`239.0.0.0/8`** | **私有组播**，不进公网 |
+
+→ 详：[9.3 §传播范围](9.3-multicast-mac-mapping.md#ch09-3-scope) · [考点](9.3-multicast-mac-mapping.md#ch09-3-cheat)
 
 ### 9.3.2 IPv4 → 以太网 MAC：IANA `01:00:5E` 与「丢 9 位」
 
@@ -155,7 +176,21 @@ IPv4  multicast: 1110xxxx  xxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 <a id="ch09-4"></a>
 
-## 9.4 IGMP（IPv4）与 MLD（IPv6）：软状态、抑制与 SSM
+## 9.4 IGMP / MLD：加入组播组
+
+→ 精读：[9.4-igmp-mld-snooping.md](9.4-igmp-mld-snooping.md) · [原理](9.4-igmp-mld-snooping.md#ch09-4-join-principle) · [Win/Linux](9.4-igmp-mld-snooping.md#ch09-4-join-linux) · [程序](9.4-igmp-mld-snooping.md#ch09-4-join-code) · [考点](9.4-igmp-mld-snooping.md#ch09-4-cheat)
+
+**一句**：**加组 = 告诉系统/网卡要收该组流量** → 内核发 **IGMP Join** → 路由器记录。
+
+| 方式 | 命令/API |
+|------|----------|
+| **Windows** | `netsh interface ipv4 add joinmulticastgroup …` |
+| **Linux** | `ip maddr add 239.x.x.x dev eth0` |
+| **程序** | **`IP_ADD_MEMBERSHIP`** → 自动 IGMP Report |
+
+**vs 广播**：组播**只有加组才收**；广播**强制全员**。
+
+### 9.4.x IGMP 软状态、版本与 Snooping（扩展）
 
 ### 9.4.1 为何要 IGMP / MLD
 
@@ -244,6 +279,21 @@ IPv4  multicast: 1110xxxx  xxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
 ---
 
+<a id="ch09-7"></a>
+
+## 9.7 实战：交换机、路由器与组播转发
+
+→ 精读：[9.7-lan-switch-router-multicast.md](9.7-lan-switch-router-multicast.md) · [交换机/网关](9.7-lan-switch-router-multicast.md#ch09-7-switch-router) · [Snooping](9.7-lan-switch-router-multicast.md#ch09-7-igmp-snooping) · [IP→MAC 流程](9.7-lan-switch-router-multicast.md#ch09-7-ip-mac)
+
+| 设备 | 层次 | 组播相关 |
+|------|------|----------|
+| **交换机** | L2 / MAC | 无 Snooping → 组播**泛洪**；有 Snooping → **精准端口** |
+| **路由器/三层** | L3 / IP | **IGMP** 记录谁订阅哪个组 |
+
+**同网段** → 交换机，**不经网关**；**224/x → 01:00:5E**；主机**加组才收**。
+
+---
+
 <a id="ch09-exam"></a>
 
 ## 9.6 总结与考点
@@ -268,6 +318,10 @@ IPv4  multicast: 1110xxxx  xxxxxxxxx  xxxxxxxxxxxxxxxxxxxxxxxxxxxx
 | IPv6 「广播 Ping」为何不存在 | IPv6 **无广播** → 用 **`ff02::1`**（全体节点链路组播 ICMPv6 Echo）一类替代 |
 | 广播类型 | **受限 255.255.255.255** vs **定向 x.x.x.255** → [9.2](9.2-ipv4-broadcast-address.md#ch09-2-cheat) |
 | 广播 vs 组播 v6 | v6 **取消广播**；**FF02::1** 替代子网广播 → [9.2 §IPv6](9.2-ipv4-broadcast-address.md#ch09-2-v6) |
+| 组播地址传播 | **224.0.0/24 不跨路由**；**239.x 私有**；跨网需 **PIM** → [9.3 §传播](9.3-multicast-mac-mapping.md#ch09-3-scope) |
+| 广播 vs 组播 LAN | 全员强制 vs 加组才收；无 Snooping **表现像**但逻辑不同 → [9.1](9.1-broadcast-multicast-concept.md#ch09-1-compare) |
+| 加入组播组 | **IGMP Join** / **`IP_ADD_MEMBERSHIP`** → [9.4](9.4-igmp-mld-snooping.md#ch09-4-join-principle) |
+| 交换机 vs 路由器 | 同网段**交换机MAC**；跨网段**网关IP**；**IGMP**三层 · **Snooping**二层 → [9.7](9.7-lan-switch-router-multicast.md#ch09-7-cheat) |
 | 32:1 | **32** 个不同 **IPv4 组播 IP**→ 可能共享**同一以太网 MAC** → **三层再过滤** |
 | 三层过滤的顺序 | **硬件/MC 哈希 →（驱动）二层目的筛选 → IP 订阅匹配** |
 | **报告抑制 vs IGMPv3** | **v1/v2** 可降低重复报告 **；v3/SSM 源状态个人化一般不靠「同人代报」** |
