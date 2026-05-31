@@ -207,17 +207,17 @@ IPv4/IPv6 首部 · 扩展头链 · **LPM 转发** · Mobile IP · 主机处理�
 
 ## 5.5 移动 IP（Mobile IP）
 
-→ 精读：[5.5-mobile-ip-basic.md](5.5-mobile-ip-basic.md) · [角色](5.5-mobile-ip-basic.md#ch05-5-roles) · [工作流程](5.5-mobile-ip-basic.md#ch05-5-flow) · [蜂窝漫游实例](5.5-mobile-ip-basic.md#ch05-5-cellular)
+→ 精读：[5.5-mobile-ip-basic.md](5.5-mobile-ip-basic.md) · [在家/外地](5.5-mobile-ip-basic.md#ch05-5-home-away) · [蜂窝实例](5.5-mobile-ip-basic.md#ch05-5-cellular)
 
 设备跨网漫游时，**上层仍用家乡地址** — **间接寻址（indirection）** + **IP 隧道**。
 
 | 角色 | 作用 |
 |------|------|
-| **MN** | 漫游终端；对外固定**家乡地址** |
+| **MN** | 漫游终端；对外固定**家乡地址**（如 `10.0.0.2`） |
 | **HA** | 家乡网络锚点；维护 **家乡地址 ↔ CoA** |
-| **CoA** | 外地网络**临时 IP**（当前位置） |
+| **CoA** | **仅在外地**时的临时 IP（如 `20.1.1.3`） |
 
-**流程**：MN 注册 CoA → HA 截获发往家乡地址的包 → **隧道**转发至 CoA → 回程可直连。
+**在家 vs 外地**：在家 **无 CoA**，HA 当普通网关，**直连**；外出注册 CoA → HA 映射 `10.0.0.2→CoA` → **隧道**转发。
 
 **实例**：湖北卡出省 ≈ MN+HA+CoA；**全国通用流量**统一扣费、无额外漫游费；公网 IP 常显**当前省**，**资费归属**不变。
 
