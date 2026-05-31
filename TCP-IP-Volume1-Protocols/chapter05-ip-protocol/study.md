@@ -207,7 +207,7 @@ IPv4/IPv6 首部 · 扩展头链 · **LPM 转发** · Mobile IP · 主机处理�
 
 ## 5.5 移动 IP（Mobile IP）
 
-→ 精读：[5.5-mobile-ip-basic.md](5.5-mobile-ip-basic.md) · [角色](5.5-mobile-ip-basic.md#ch05-5-roles) · [工作流程](5.5-mobile-ip-basic.md#ch05-5-flow)
+→ 精读：[5.5-mobile-ip-basic.md](5.5-mobile-ip-basic.md) · [角色](5.5-mobile-ip-basic.md#ch05-5-roles) · [工作流程](5.5-mobile-ip-basic.md#ch05-5-flow) · [蜂窝漫游实例](5.5-mobile-ip-basic.md#ch05-5-cellular)
 
 设备跨网漫游时，**上层仍用家乡地址** — **间接寻址（indirection）** + **IP 隧道**。
 
@@ -218,6 +218,8 @@ IPv4/IPv6 首部 · 扩展头链 · **LPM 转发** · Mobile IP · 主机处理�
 | **CoA** | 外地网络**临时 IP**（当前位置） |
 
 **流程**：MN 注册 CoA → HA 截获发往家乡地址的包 → **隧道**转发至 CoA → 回程可直连。
+
+**实例**：湖北卡出省 ≈ MN+HA+CoA；**全国通用流量**统一扣费、无额外漫游费；公网 IP 常显**当前省**，**资费归属**不变。
 
 **现代**：LTE / **PMIPv6**；本节为**基础概念模型**。
 
@@ -293,7 +295,7 @@ IP 设计于互信环境 → **源地址无内置认证**。
 | v4 vs v6 头 | 变长+校验和 vs 40B 固定+无首部校验和 |
 | v6 分片 | **路由器不分片** → Packet Too Big |
 | 转发 | **LPM** + 直接/间接交付 |
-| Mobile IP | **MN+HA+CoA**；家乡地址不变；**隧道+indirection** → [5.5](5.5-mobile-ip-basic.md#ch05-5-cheat) |
+| Mobile IP | **MN+HA+CoA**；隧道+indirection；**蜂窝漫游**≈工程实现 → [5.5](5.5-mobile-ip-basic.md#ch05-5-cheat) · [§实例](5.5-mobile-ip-basic.md#ch05-5-cellular) |
 | 主机模型 | **强**=接口绑定（Linux/IPv6 默认）；**弱**=本机全局 → [5.6](5.6-host-ip-processing.md#ch05-6-strong-weak) |
 | IPv6 源选 | RFC **6724** 八条；开发 **bind** → [5.6](5.6-host-ip-processing.md#ch05-6-rfc6724) |
 | 安全 | 源 IP 不可信；**BCP38/uRPF**；分片 **Teardrop** → [5.7](5.7-ip-attacks.md#ch05-7-cheat) |
