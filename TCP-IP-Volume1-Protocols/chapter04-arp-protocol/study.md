@@ -42,7 +42,9 @@
 **ARP 表**：下一跳 IP → **下一跳 MAC**  
 **封装**：IP 目的 = 最终接收方（不变）；帧 MAC 目的 = 直连下一跳（每跳重写）
 
-→ 多跳实例：[4.2 §零附二](4.2-arp-basic-operation.md#ch04-2-end-to-end)
+**路由器发 ARP**：路由表定 **出接口** → **只从该网口**发二层广播（`FF:FF:FF:FF:FF:FF`）；广播**不过**其他接口 → [§零附 A](4.2-arp-basic-operation.md#ch04-2-router-arp-egress)
+
+→ 多跳实例：[4.2 §零附二](4.2-arp-basic-operation.md#ch04-2-end-to-end) · [路由器跨接口 ARP](4.2-arp-basic-operation.md#ch04-2-router-arp-egress)
 
 | 概念 | 说明 |
 |------|------|
