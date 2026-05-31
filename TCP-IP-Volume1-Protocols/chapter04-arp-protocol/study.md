@@ -152,11 +152,29 @@ ARP 是**链路层负载**（EtherType **0x0806**），**不**封装在 IP 数�
 
 不存在的主机 → ARP 多次后**静默超时** → 上层可能见 **ICMP Host Unreachable**。
 
+→ 抓包实例：[4.5 ARP 例子](4.5-arp-tcpdump-example.md#ch04-5-capture)
+
+---
+
+<a id="ch04-5-capture"></a>
+
+## 4.5 ARP 例子（抓包与超时）
+
+→ 精读：[4.5-arp-tcpdump-example.md](4.5-arp-tcpdump-example.md)
+
+| 场景 | 抓包特征 |
+|------|----------|
+| **正常** | who-has **广播** → is-at **单播**；~1–3 ms |
+| **无主机** | **3 次** who-has / ~1 s；**Incomplete**；~3 min 超时 |
+| **成功缓存** | 完整条目 ~**20 min** |
+
+过滤器：`arp` · `arp.opcode == 1/2` · `eth.type == 0x0806`
+
 ---
 
 <a id="ch04-5"></a>
 
-## 4.5 特殊场景：代理 ARP 与免费 ARP
+## 4.7 / 4.8 特殊场景：代理 ARP 与免费 ARP
 
 ### 代理 ARP（Proxy ARP）
 
