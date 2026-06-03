@@ -98,11 +98,22 @@
 
 **规范**：禁用 `gethostbyname`；**`freeaddrinfo`** 必调 → [Ch 11.6](../../2_AdvancedSkill/Chapter11_Name_Address_Convert/11.6_Getaddrinfo_Func.md)
 
+<a id="ch1-12"></a>
+
+### 1.12 本章小结（速记）
+
+→ [1.12_Summary.md](./1.12_Summary.md#ch1-12-cheat) · [HFT 自检清单](./1.12_Summary.md#ch1-12-hft-checklist) · [后续路线](./1.12_Summary.md#ch1-12-roadmap)
+
+**定位**：Daytime TCP **最小 C/S 闭环** = 全书骨架 · [1.2](./1.2_SimpleTimeClient.md) + [1.5](./1.5_SimpleTimeServer.md) · [图1-5/1-9 联合流程](./1.12_Appendix_DaytimeCS联合流程.md)
+
+**四规范**：大写包裹 · `SA` 宏 · htons/pton · 协议无关→Ch11
+
+**HFT 优先**：Ch6/14 epoll · Ch5/26 并发 · Ch11 双栈 · Ch8/21 UDP/组播
+
 ## 速记
 
 ```text
-C/S；两层→三层→B/S；TCP/IP；LAN 无路由 WAN 经路由器。
-客户 **socket→connect→while read**（[1.2 详](./1.2_SimpleTimeClient.md#ch1-2-flow)）；服 **bind→listen→accept**。
-包裹函数大写；errno 仅错误时有意义。
-协议无关→Ch11 getaddrinfo；[1.7](./1.7_OSIModel.md) 套接字在应用↔传输交界；Raw/链路 Ch28/29。
+C/S；Daytime:13；客户 connect+while read；服 bind listen accept write close(connfd)。
+大写包裹；errno；[1.12 全章背版](./1.12_Summary.md#ch1-12-cheat)。
+Ch6/14 epoll；Ch11 双栈；[1.7](./1.7_OSIModel.md) Socket 分界。
 ```
