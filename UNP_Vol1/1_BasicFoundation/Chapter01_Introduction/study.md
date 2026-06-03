@@ -48,7 +48,8 @@
 **链路**：1.2 裸 `if` → 1.4 `Socket`/`Connect` → Ch5/6 改造
 
 | 1.7 | [1.7_OSIModel](./1.7_OSIModel.md) | **厚** · OSI/TCP/IP/Socket 位置 |
-| 1.6～1.12 其余 | 各目录 | 索引/ BSD / 测试网 / POSIX / LP64 / 小结 |
+| 1.12 | [1.12_Summary](./1.12_Summary.md) | **厚** · 全章总纲/HFT路线/背诵版 |
+| 1.6～1.11 | 各目录 | 索引/ BSD / 测试网 / POSIX / LP64 |
 
 <a id="ch1-5"></a>
 
