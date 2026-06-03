@@ -40,9 +40,9 @@
 
 | 文件 | 模式 |
 |------|------|
-| `daytimetcpcli.c` | IPv4 硬编码 |
-| `daytimetcpcli6.c` | IPv6 硬编码 |
-| `daytimetcpcligai.c` | 协议无关 |
+| [code/1.2/…/daytimetcpcli.c](./code/1.2_SimpleTimeClient/original_c/daytimetcpcli.c) | IPv4 硬编码 |
+| [code/1.3/…/daytimetcpcli6.c](./code/1.3_ProtocolIndependence/original_c/daytimetcpcli6.c) | IPv6 硬编码 |
+| [code/1.3/…/daytimetcpcligai.c](./code/1.3_ProtocolIndependence/original_c/daytimetcpcligai.c) | 协议无关 |
 
 **规范**：禁用 `gethostbyname`；**`freeaddrinfo`** 必调 → [Ch 11.6](../../2_AdvancedSkill/Chapter11_Name_Address_Convert/11.6_Getaddrinfo_Func.md)
 
