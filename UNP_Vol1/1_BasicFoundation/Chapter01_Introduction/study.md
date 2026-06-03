@@ -7,14 +7,14 @@
 | 节 | 目录 | 备注 |
 |----|------|------|
 | 1.1 | [1.1_Overview](./1.1_Overview.md) | C/S、TCP/IP、LAN/WAN、[C/S→B/S](./1.1_Overview.md#ch1-1-cs-bs) |
-| 1.2 | [1.2_SimpleTimeClient](./1.2_SimpleTimeClient.md) | **薄主笔记** · 附录 C/Rust |
-| 1.2 附录 | [C新手与字节序](./1.2_Appendix_C新手与字节序.md) · [Rust](./1.2_Appendix_Rust客户端.md) | 深读拆出 |
+| 1.2 | [1.2_SimpleTimeClient](./1.2_SimpleTimeClient.md) | **主笔记** + [阅读地图](1.2_SimpleTimeClient.md#ch1-2) |
+| 1.2 附录 | [API](1.2_Appendix_API精读.md) · [源码](1.2_Appendix_源码与考点.md) · [C/字节序](1.2_Appendix_C新手与字节序.md) · [Rust](1.2_Appendix_Rust客户端.md) | 详文拆开、不重复 |
 
 <a id="ch1-2"></a>
 
 ### 1.2 时间客户端（速记）
 
-→ [主笔记](./1.2_SimpleTimeClient.md#ch1-2-flow) · [附录 C](./1.2_Appendix_C新手与字节序.md) · [附录 Rust](./1.2_Appendix_Rust客户端.md)
+→ [主笔记·五步法/IP端口](1.2_SimpleTimeClient.md#ch1-2-flow) · [API connect/read](1.2_Appendix_API精读.md) · [源码](1.2_Appendix_源码与考点.md) · [C FAQ](1.2_Appendix_C新手与字节序.md)
 
 **五步法**：`socket(AF_INET,TCP,0)` → 填 **sin_addr=IP / sin_port=13** → `connect` → **`while read`** → `exit` · [socket 三参数](1.2_SimpleTimeClient.md#ch1-2-socket)
 
