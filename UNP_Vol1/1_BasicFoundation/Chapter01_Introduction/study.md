@@ -7,7 +7,23 @@
 | 节 | 目录 | 备注 |
 |----|------|------|
 | 1.1 | [1.1_Overview](./1.1_Overview.md) | C/S、TCP/IP、LAN/WAN、[C/S→B/S](./1.1_Overview.md#ch1-1-cs-bs) |
-| 1.2 | [1.2_SimpleTimeClient](./1.2_SimpleTimeClient.md) | **厚** · socket/connect/循环 read |
+| 1.2 | [1.2_SimpleTimeClient](./1.2_SimpleTimeClient.md) | **厚** · 五步法/socket/connect/循环 read/易错 |
+
+<a id="ch1-2"></a>
+
+### 1.2 时间客户端（速记）
+
+→ 精读：[1.2_SimpleTimeClient.md](./1.2_SimpleTimeClient.md) · [流程](1.2_SimpleTimeClient.md#ch1-2-flow) · [源码](1.2_SimpleTimeClient.md#ch1-2-source) · [考点](1.2_SimpleTimeClient.md#ch1-2-cheat)
+
+**五步法**：`socket` → `sockaddr_in`+**htons/inet_pton** → `connect` → **`while read`** → `close`/`exit`(FIN)
+
+| 易错 | 规范 |
+|------|------|
+| 一次 read 读全 | **while**（TCP 无边界） |
+| connect 失败再 connect | **close + 新 socket** |
+| memset 写反 | **bzero** 清零 |
+
+**13 端口 Daytime**；对端 [1.5 服务器](./1.5_SimpleTimeServer.md)
 | 1.3 | [1.3_ProtocolIndependence](./1.3_ProtocolIndependence.md) | IPv6、getaddrinfo |
 | 1.4 | [1.4_ErrorHandlingWrapper](./1.4_ErrorHandlingWrapper.md) | 包裹函数、errno |
 | 1.5 | [1.5_SimpleTimeServer](./1.5_SimpleTimeServer.md) | **厚** · bind/listen/accept |
@@ -17,7 +33,7 @@
 
 ```text
 C/S；两层→三层→B/S；TCP/IP；LAN 无路由 WAN 经路由器。
-客户 socket→connect→while read；服 bind→listen→accept。
+客户 **socket→connect→while read**（[1.2 详](./1.2_SimpleTimeClient.md#ch1-2-flow)）；服 **bind→listen→accept**。
 包裹函数大写；errno 仅错误时有意义。
 协议无关→Ch11 getaddrinfo；套接字在应用↔传输交界。
 ```
