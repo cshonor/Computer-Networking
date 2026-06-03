@@ -1,0 +1,35 @@
+---
+description: 本仓库完成修改后自动 git commit，无需用户再说「提交」
+alwaysApply: true
+---
+
+# 修改后自动提交（Computer Networking 仓库）
+
+## 何时必须提交
+
+在本仓库**完成一轮有意义的修改**后（文档归档、源码/注释、目录结构、脚本、规则等），**默认立即 `git commit`**。用户**不必**再说「提交」「commit」「归档完提交一下」。
+
+仍须遵守：
+- **不要自动 `git push`**，除非用户明确说推送 / push。
+- **不要**为无关或未纳入本轮任务的未跟踪目录擅自 `git add`（例如整棵 `HTTP-The-Definitive-Guide/` 若与当前任务无关）。
+- **不要**提交疑似密钥文件（`.env`、credentials 等）；若用户坚持，先警告。
+- **无变更**时不做空提交。
+
+## 提交流程
+
+1. 并行查看：`git status`、`git diff`（含 staged）、`git log -3 --oneline`。
+2. 只 `git add` 与**本轮任务相关**的路径。
+3. 写 **1～2 句** commit message，说明「为什么」；风格对齐近期提交（如 `docs(unp-ch1): …`、`chore(unp): …`、`docs(tcpip-chN): …`）。
+4. `git commit`，再 `git status` 确认干净（或仅剩刻意未纳入的文件）。
+5. Pre-commit hook 失败：**修问题后新建 commit**，不要 amend（除非用户规则中的 amend 例外全部满足）。
+
+## 何时可以不提交
+
+- 用户**明确**说：先别提交 / 不要 commit / 等我检查。
+- 本轮**仅**回答知识性问题，**未改**仓库文件。
+- 仅创建了本地临时草稿且用户要求保留未提交状态。
+
+## 回复用户
+
+- 在回复末尾**简短注明** commit hash 与 message，无需每次征求「要不要提交」。
+- 若分支领先 `origin`，可一句提示「未推送」；**不要**主动 push。
