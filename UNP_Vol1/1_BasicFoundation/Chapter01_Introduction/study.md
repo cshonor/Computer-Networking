@@ -24,7 +24,7 @@
 | 一次 read 读全 | **while** |
 | connect 失败再 connect | **close + 新 socket** |
 
-**13 端口 Daytime**；对端 [1.5 服务器](./1.5_SimpleTimeServer.md)
+**13 = Daytime（RFC865）** → [端口说明](1.2_Appendix_Daytime端口13.md)；对端 [1.5](./1.5_SimpleTimeServer.md)
 
 | 1.3 | [1.3_ProtocolIndependence](./1.3_ProtocolIndependence.md) | **厚** · 协议无关/getaddrinfo |
 | 1.4 | [1.4_ErrorHandlingWrapper](./1.4_ErrorHandlingWrapper.md) | **厚** · 包裹/errno/Pthread |
