@@ -28,7 +28,7 @@
 
 | 1.3 | [1.3_ProtocolIndependence](./1.3_ProtocolIndependence.md) | **厚** · 协议无关/getaddrinfo |
 | 1.4 | [1.4_ErrorHandlingWrapper](./1.4_ErrorHandlingWrapper.md) | **厚** · 包裹/errno/Pthread |
-| 1.5 | [1.5_SimpleTimeServer](./1.5_SimpleTimeServer.md) | **厚** · bind/listen/accept |
+| 1.5 | [1.5_SimpleTimeServer](./1.5_SimpleTimeServer.md) | **厚** · 六步/listenfd·connfd |
 
 <a id="ch1-4"></a>
 
@@ -46,7 +46,23 @@
 **不能盲用大写**：**EINTR / EAGAIN / ECONNRESET** → 小写 + 分支（Ch 5/6）
 
 **链路**：1.2 裸 `if` → 1.4 `Socket`/`Connect` → Ch5/6 改造
+
 | 1.6～1.12 | 各目录 | 索引/ OSI / BSD / 测试网 / POSIX / LP64 / 小结 |
+
+<a id="ch1-5"></a>
+
+### 1.5 时间服务器（速记）
+
+→ [1.5 精读](./1.5_SimpleTimeServer.md) · [C](1.5_SimpleTimeServer.md#ch1-5-source) · [Rust](1.5_SimpleTimeServer.md#ch1-5-rust)
+
+**六步**：`Socket` → **Bind(INADDR_ANY:13)** → `Listen` → **`Accept` 循环** → `Write` → **`Close(connfd)`**
+
+| fd | 用途 |
+|----|------|
+| **listenfd** | 只 accept |
+| **connfd** | 只一路 I/O，完即关 |
+
+**迭代** 串行 · 配 [1.2 客户](./1.2_SimpleTimeClient.md)
 
 <a id="ch1-3"></a>
 
