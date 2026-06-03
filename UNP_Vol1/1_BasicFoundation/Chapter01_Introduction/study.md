@@ -16,7 +16,7 @@
 
 → [主笔记](./1.2_SimpleTimeClient.md#ch1-2-flow) · [附录 C](./1.2_Appendix_C新手与字节序.md) · [附录 Rust](./1.2_Appendix_Rust客户端.md)
 
-**五步法**：`socket` → 填 **`sin_addr`=IP（`inet_pton`+argv[1]）**、**`sin_port`=端口（`htons(13)`）** → `connect` → **`while read`** → `exit`
+**五步法**：`socket(AF_INET,TCP,0)` → 填 **sin_addr=IP / sin_port=13** → `connect` → **`while read`** → `exit` · [socket 三参数](1.2_SimpleTimeClient.md#ch1-2-socket)
 
 | 易错 | 规范 |
 |------|------|
