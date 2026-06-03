@@ -24,10 +24,27 @@
 | memset 写反 | **bzero** 清零 |
 
 **13 端口 Daytime**；对端 [1.5 服务器](./1.5_SimpleTimeServer.md)
-| 1.3 | [1.3_ProtocolIndependence](./1.3_ProtocolIndependence.md) | IPv6、getaddrinfo |
+
+| 1.3 | [1.3_ProtocolIndependence](./1.3_ProtocolIndependence.md) | **厚** · 协议无关/getaddrinfo |
 | 1.4 | [1.4_ErrorHandlingWrapper](./1.4_ErrorHandlingWrapper.md) | 包裹函数、errno |
 | 1.5 | [1.5_SimpleTimeServer](./1.5_SimpleTimeServer.md) | **厚** · bind/listen/accept |
 | 1.6～1.12 | 各目录 | 索引/ OSI / BSD / 测试网 / POSIX / LP64 / 小结 |
+
+<a id="ch1-3"></a>
+
+### 1.3 协议无关性（速记）
+
+→ 精读：[1.3_ProtocolIndependence.md](./1.3_ProtocolIndependence.md) · [对照表](1.3_ProtocolIndependence.md#ch1-3-struct) · [三套源码](1.3_ProtocolIndependence.md#ch1-3-source)
+
+**1.2 硬编码 IPv4** → **图 1-6 硬编码 IPv6**（仍耦合）→ **`getaddrinfo` + `AF_UNSPEC`**（双栈）
+
+| 文件 | 模式 |
+|------|------|
+| `daytimetcpcli.c` | IPv4 硬编码 |
+| `daytimetcpcli6.c` | IPv6 硬编码 |
+| `daytimetcpcligai.c` | 协议无关 |
+
+**规范**：禁用 `gethostbyname`；**`freeaddrinfo`** 必调 → [Ch 11.6](../../2_AdvancedSkill/Chapter11_Name_Address_Convert/11.6_Getaddrinfo_Func.md)
 
 ## 速记
 
