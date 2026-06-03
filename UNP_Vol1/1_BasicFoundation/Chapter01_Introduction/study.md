@@ -7,21 +7,22 @@
 | 节 | 目录 | 备注 |
 |----|------|------|
 | 1.1 | [1.1_Overview](./1.1_Overview.md) | C/S、TCP/IP、LAN/WAN、[C/S→B/S](./1.1_Overview.md#ch1-1-cs-bs) |
-| 1.2 | [1.2_SimpleTimeClient](./1.2_SimpleTimeClient.md) | **厚** · 五步法/socket/connect/循环 read/易错 |
+| 1.2 | [1.2_SimpleTimeClient](./1.2_SimpleTimeClient.md) | **薄主笔记** · 附录 C/Rust |
+| 1.2 附录 | [C新手与字节序](./1.2_Appendix_C新手与字节序.md) · [Rust](./1.2_Appendix_Rust客户端.md) | 深读拆出 |
 
 <a id="ch1-2"></a>
 
 ### 1.2 时间客户端（速记）
 
-→ 精读：[1.2](./1.2_SimpleTimeClient.md) · [**C FAQ**](1.2_SimpleTimeClient.md#ch1-2-faq) · [C 源码](1.2_SimpleTimeClient.md#ch1-2-source) · [Rust 全文](1.2_SimpleTimeClient.md#ch1-2-rust) · [字节序](1.2_SimpleTimeClient.md#ch1-2-byteorder)
+→ [主笔记](./1.2_SimpleTimeClient.md#ch1-2-flow) · [附录 C](./1.2_Appendix_C新手与字节序.md) · [附录 Rust](./1.2_Appendix_Rust客户端.md)
 
-**五步法**：`socket` → **组装 IP+端口（网络序：hton* / inet_pton）** → `connect`（内核三次握手）→ **`while read`** → `close`/`exit`
+**五步法**：`socket` → 填 **`sin_addr`=IP（`inet_pton`+argv[1]）**、**`sin_port`=端口（`htons(13)`）** → `connect` → **`while read`** → `exit`
 
 | 易错 | 规范 |
 |------|------|
-| 一次 read 读全 | **while**（TCP 无边界） |
+| 搞不清 IP/端口 | **sin_addr / sin_port** 见主笔记表 |
+| 一次 read 读全 | **while** |
 | connect 失败再 connect | **close + 新 socket** |
-| memset 写反 | **bzero** 清零 |
 
 **13 端口 Daytime**；对端 [1.5 服务器](./1.5_SimpleTimeServer.md)
 
