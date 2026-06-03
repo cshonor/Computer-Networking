@@ -13,9 +13,9 @@
 
 ### 1.2 时间客户端（速记）
 
-→ 精读：[1.2_SimpleTimeClient.md](./1.2_SimpleTimeClient.md) · [流程](1.2_SimpleTimeClient.md#ch1-2-flow) · [源码](1.2_SimpleTimeClient.md#ch1-2-source) · [考点](1.2_SimpleTimeClient.md#ch1-2-cheat)
+→ 精读：[1.2_SimpleTimeClient.md](./1.2_SimpleTimeClient.md) · [流程](1.2_SimpleTimeClient.md#ch1-2-flow) · [**网络字节序**](1.2_SimpleTimeClient.md#ch1-2-byteorder) · [源码](1.2_SimpleTimeClient.md#ch1-2-source)
 
-**五步法**：`socket` → `sockaddr_in`+**htons/inet_pton** → `connect` → **`while read`** → `close`/`exit`(FIN)
+**五步法**：`socket` → **组装 IP+端口（网络序：hton* / inet_pton）** → `connect`（内核三次握手）→ **`while read`** → `close`/`exit`
 
 | 易错 | 规范 |
 |------|------|
