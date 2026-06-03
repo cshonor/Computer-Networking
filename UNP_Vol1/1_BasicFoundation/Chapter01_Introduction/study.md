@@ -53,7 +53,7 @@
 
 ### 1.5 时间服务器（速记）
 
-→ [1.5 精读](./1.5_SimpleTimeServer.md) · [C](1.5_SimpleTimeServer.md#ch1-5-source) · [Rust](1.5_SimpleTimeServer.md#ch1-5-rust)
+→ [1.5 精读](./1.5_SimpleTimeServer.md) · [listen 队列](1.5_Appendix_listen队列.md) · [C/Rust 全文](1.5_Appendix_源码与Rust.md)
 
 **六步**：`Socket` → **Bind(INADDR_ANY:13)** → `Listen` → **`Accept` 循环** → `Write` → **`Close(connfd)`**
 
