@@ -47,7 +47,8 @@
 
 **链路**：1.2 裸 `if` → 1.4 `Socket`/`Connect` → Ch5/6 改造
 
-| 1.6～1.12 | 各目录 | 索引/ OSI / BSD / 测试网 / POSIX / LP64 / 小结 |
+| 1.7 | [1.7_OSIModel](./1.7_OSIModel.md) | **厚** · OSI/TCP/IP/Socket 位置 |
+| 1.6～1.12 其余 | 各目录 | 索引/ BSD / 测试网 / POSIX / LP64 / 小结 |
 
 <a id="ch1-5"></a>
 
@@ -63,6 +64,22 @@
 | **connfd** | 只一路 I/O，完即关 |
 
 **迭代** 串行 · 配 [1.2 客户](./1.2_SimpleTimeClient.md)
+
+<a id="ch1-7"></a>
+
+### 1.7 OSI & TCP/IP 分层（速记）
+
+→ [1.7_OSIModel.md](./1.7_OSIModel.md#ch1-7-socket)
+
+**TCP/IP 四层** · 应用层 = OSI 5+6+7 · **Socket = 用户态调内核协议栈**
+
+| 套接字 | 层级 |
+|--------|------|
+| TCP/UDP 普通 | 只见应用数据，内核加 TCP/IP/以太网头 |
+| Raw Ch28 | 可到 IP，自定义传输/ICMP |
+| 链路 Ch29 | 二层帧 |
+
+**封装**：应用 → Socket → 内核加 TCP/IP/帧头 · **解封装**：read 前内核已剥头
 
 <a id="ch1-3"></a>
 
@@ -86,5 +103,5 @@
 C/S；两层→三层→B/S；TCP/IP；LAN 无路由 WAN 经路由器。
 客户 **socket→connect→while read**（[1.2 详](./1.2_SimpleTimeClient.md#ch1-2-flow)）；服 **bind→listen→accept**。
 包裹函数大写；errno 仅错误时有意义。
-协议无关→Ch11 getaddrinfo；套接字在应用↔传输交界。
+协议无关→Ch11 getaddrinfo；[1.7](./1.7_OSIModel.md) 套接字在应用↔传输交界；Raw/链路 Ch28/29。
 ```
