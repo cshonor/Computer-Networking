@@ -13,7 +13,7 @@
 
 ### 1.2 时间客户端（速记）
 
-→ 精读：[1.2](./1.2_SimpleTimeClient.md) · [逐行源码](1.2_SimpleTimeClient.md#ch1-2-source) · [考点](1.2_SimpleTimeClient.md#ch1-2-exam-detail) · [编译运行](1.2_SimpleTimeClient.md#ch1-2-build) · [总结](1.2_SimpleTimeClient.md#ch1-2-summary) · [字节序](1.2_SimpleTimeClient.md#ch1-2-byteorder)
+→ 精读：[1.2](./1.2_SimpleTimeClient.md) · [C 源码](1.2_SimpleTimeClient.md#ch1-2-source) · [Rust](1.2_SimpleTimeClient.md#ch1-2-rust) · [字节序](1.2_SimpleTimeClient.md#ch1-2-byteorder) · [总结](1.2_SimpleTimeClient.md#ch1-2-summary)
 
 **五步法**：`socket` → **组装 IP+端口（网络序：hton* / inet_pton）** → `connect`（内核三次握手）→ **`while read`** → `close`/`exit`
 
