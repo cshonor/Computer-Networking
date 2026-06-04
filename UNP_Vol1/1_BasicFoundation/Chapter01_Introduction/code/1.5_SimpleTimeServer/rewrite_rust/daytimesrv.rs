@@ -16,6 +16,7 @@ fn main() -> std::io::Result<()> {
         let (mut conn, peer) = listener.accept()?;
         eprintln!("accepted from {peer}");
 
+        /* {:?} 需要 Debug trait；SystemTime 已实现 Debug（非 Display，见 1.2_Appendix_Rust_Debug_Display与Trait.md） */
         let time_str = format!("{:?}\r\n", std::time::SystemTime::now());
         conn.write_all(time_str.as_bytes())?;
         /* conn Drop → close(connfd)；listener 仍存活 ≡ listenfd */
