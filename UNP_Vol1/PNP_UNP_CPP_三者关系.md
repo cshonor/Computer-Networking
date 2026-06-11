@@ -59,7 +59,7 @@ C++ 工程课（语言/架构）  ←──交叉在并发/性能──┘
 
 1. **PNP**：用 C/C++ 跑通 Socket，亲手踩 **粘包、自连接、非阻塞 I/O**。  
 2. **本仓库**：边课边记 → [UNP Ch1](./1_BasicFoundation/Chapter01_Introduction/study.md) Daytime → Ch4/5/6…  
-3. **Rust/Go 重写**：Netcat、简单服务器，对比 I/O 封装（你已在 Ch1 有 [Rust rewrite](./1_BasicFoundation/Chapter01_Introduction/code/README.md)）。  
+3. **Rust/Go 重写**：在 [PNP/code/](../PNP/code/README.md) 做 Netcat、TTCP 等实验；Daytime 见 Ch1 [Rust rewrite](./1_BasicFoundation/Chapter01_Introduction/code/README.md)。  
 4. **UNP 原书**：查漏补缺，建立完整索引。
 
 ---
@@ -82,7 +82,7 @@ C++ 工程课（语言/架构）  ←──交叉在并发/性能──┘
 | **非阻塞 I/O**、边缘触发 | `EAGAIN`、`EINTR` | **Ch16、Ch14** | [1.4 特殊 errno](./1_BasicFoundation/Chapter01_Introduction/1.4_ErrorHandlingWrapper.md#ch1-4-special) |
 | UDP、**组播** | 无连接、丢包 | **Ch8、Ch21–22** | [Ch8](../1_BasicFoundation/Chapter08_BasicUDPSocket/) |
 | **TTCP**、吞吐测试 | 批量读写、`writen` | **Ch3.9、Ch14** | readn/writen 节 |
-| **Netcat** 类工具 | 双向转发、半关闭 | **Ch5–6、Ch14** | 综合 |
+| **Netcat** 类工具 | 双向转发、半关闭 | **Ch5–6、Ch14** | [PNP 04 Netcat](../PNP/code/04_Netcat/notes.md) |
 | 原始 / 链路套接字 | 自己封 IP/TCP 头 | **Ch28–29** | [Ch28](../3_DeepMaster/Chapter28_RawSocket/) |
 | 序列化、Protobuf 陷阱 | 对齐、版本（**UNP 少讲**） | PNP 独有 | 记实验笔记即可 |
 | 线程池、并发模型 | 锁、条件变量 | **Ch26** + PNP | [Ch26](../../2_AdvancedSkill/Chapter26_Thread/) |

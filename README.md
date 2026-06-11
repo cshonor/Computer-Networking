@@ -1,7 +1,7 @@
 # computer_network_top_down
 
 > 后端开发专用 · 计算机网络学习仓库  
-> **三轨并行**：[自顶向下](top_down/) · [TCP/IP 详解 卷1](TCP-IP-Volume1-Protocols/) · [UNIX 网络编程 卷1](UNP_Vol1/)  
+> **三轨并行**：[自顶向下](top_down/) · [TCP/IP 详解 卷1](TCP-IP-Volume1-Protocols/) · [UNIX 网络编程 卷1](UNP_Vol1/) · [陈硕 PNP 实验](PNP/)  
 > 主攻：**HTTP/TCP/IP 原理、Socket 编程、抓包排障、安全与路由**
 
 ---
@@ -13,6 +13,7 @@ Computer-Networking/
 ├─ top_down/                      # 《自顶向下》Ch1–8 + 99 实践（01_–99_）
 ├─ TCP-IP-Volume1-Protocols/      # 《TCP/IP 详解》卷1 第2版（18 章，节笔记平铺在章目录）
 ├─ UNP_Vol1/                      # 《UNIX 网络编程》卷1（四阶段 Ch1–31，节笔记平铺）
+├─ PNP/                           # 陈硕《实用网络编程》实验（code/ + Rust 对照）
 ├─ http-authoritative-guide/      # 《HTTP 权威指南》（chapter-summary + 01-小节英文名.md）
 ├─ HTTP-The-Definitive-Guide/     # 旧结构（study.md），见该目录 README 迁移说明
 ├─ wireshark-packet-analysis/     # Wireshark：chapter-XX/chapter-summary + 01-小节英文名.md
@@ -24,7 +25,8 @@ Computer-Networking/
 | **自顶向下** | [top_down/README.md](top_down/README.md) | 章级 `study.md` + 小节 `*/study.md` |
 | **TCP/IP 卷1** | [QUICKREF.md](TCP-IP-Volume1-Protocols/QUICKREF.md) · [OUTLINE.md](TCP-IP-Volume1-Protocols/OUTLINE.md) | `chapterNN-主题/` 下 `x.y-*.md` 与 `study.md` 同级 |
 | **UNP 卷1** | [UNP_Vol1/README.md](UNP_Vol1/README.md) · [OUTLINE.md](UNP_Vol1/OUTLINE.md) | `ChapterNN_*/` 下 `x.y_*.md` 与 `study.md` 同级 |
-| **PNP↔UNP** | [陈硕 PNP 与 UNP 对照](UNP_Vol1/PNP_UNP_CPP_三者关系.md) | 实战课 vs 教科书；非 UNP 配套 |
+| **PNP 实验** | [PNP/README.md](PNP/README.md) · [OUTLINE](PNP/OUTLINE.md) · [study](PNP/study.md) | 粘包/Netcat/epoll 等；04 Netcat 已有 Rust |
+| **PNP↔UNP** | [三者关系](UNP_Vol1/PNP_UNP_CPP_三者关系.md) | 实战课 vs 教科书；非 UNP 配套 |
 | **HTTP 指南** | [http-authoritative-guide/](http-authoritative-guide/) · [OUTLINE](http-authoritative-guide/OUTLINE.md) | 21 章 · `chapter-summary` + 小节笔记 |
 | **Wireshark 实战** | [wireshark-packet-analysis/](wireshark-packet-analysis/) | 每章 `chapter-summary.md` + 小节 `01-xxx.md` · [速查](wireshark-packet-analysis/cheatsheet/notes.md) |
 
