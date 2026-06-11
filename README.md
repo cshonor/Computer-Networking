@@ -24,6 +24,7 @@ Computer-Networking/
 | **自顶向下** | [top_down/README.md](top_down/README.md) | 章级 `study.md` + 小节 `*/study.md` |
 | **TCP/IP 卷1** | [QUICKREF.md](TCP-IP-Volume1-Protocols/QUICKREF.md) · [OUTLINE.md](TCP-IP-Volume1-Protocols/OUTLINE.md) | `chapterNN-主题/` 下 `x.y-*.md` 与 `study.md` 同级 |
 | **UNP 卷1** | [UNP_Vol1/README.md](UNP_Vol1/README.md) · [OUTLINE.md](UNP_Vol1/OUTLINE.md) | `ChapterNN_*/` 下 `x.y_*.md` 与 `study.md` 同级 |
+| **PNP↔UNP** | [陈硕 PNP 与 UNP 对照](UNP_Vol1/PNP_UNP_CPP_三者关系.md) | 实战课 vs 教科书；非 UNP 配套 |
 | **HTTP 指南** | [http-authoritative-guide/](http-authoritative-guide/) · [OUTLINE](http-authoritative-guide/OUTLINE.md) | 21 章 · `chapter-summary` + 小节笔记 |
 | **Wireshark 实战** | [wireshark-packet-analysis/](wireshark-packet-analysis/) | 每章 `chapter-summary.md` + 小节 `01-xxx.md` · [速查](wireshark-packet-analysis/cheatsheet/notes.md) |
 

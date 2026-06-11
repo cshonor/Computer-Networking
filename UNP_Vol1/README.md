@@ -1,7 +1,8 @@
 # UNP Vol1 — UNIX Network Programming 卷 1 学习目录
 
 > 基于 **UNIX Network Programming, Volume 1, 3rd Edition**（Stevens / Fenner / Rudoff）  
-> 三层浏览：**阶段 → 章节 → 小节 `.md` + `code/`**（节笔记平铺在章目录，少点两层）
+> 三层浏览：**阶段 → 章节 → 小节 `.md` + `code/`**（节笔记平铺在章目录，少点两层）  
+> **对照陈硕 PNP 课**：[PNP / UNP / C++ 三者关系](./PNP_UNP_CPP_三者关系.md) · [主题章节对照表](./PNP_UNP_CPP_三者关系.md#pnp-unp-map)
 
 ## 目录层级
 
